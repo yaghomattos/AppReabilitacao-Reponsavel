@@ -4,7 +4,12 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import Parse from 'parse/react-native.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { createPatient } from './src/Patient';
+import {
+  createPatient,
+  readPatient,
+  updatePatient,
+  deletePatient,
+} from './src/controller/Patient';
 
 Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
@@ -14,30 +19,12 @@ Parse.initialize(
 Parse.serverURL = 'https://parseapi.back4app.com/';
 
 const App = () => {
-  const [patient, setPatient] = useState(new Parse.Object('Patient'));
-
-  //Fetch Patiente
-  async function fetchPatient() {
-    let query = new Parse.Query('Patient');
-
-    query.equalTo('name', 'Paciente Teste');
-
-    let queryResult = await query.find();
-
-    const currentPatient = queryResult[0];
-
-    alert('Pacient returned !');
-    console.log('Paciente nome: ', currentPatient.get('name'));
-    console.log('Paciente email: ', currentPatient.get('email'));
-    setPatient(currentPatient);
-  }
-
   return (
     <View style={styles.container}>
-      <Text>Name: {patient.get('name')}</Text>
-      <Text>email: {patient.get('email')}</Text>
       <Button title="Add patient" onPress={createPatient} />
-      <Button title="Fetch patient" onPress={fetchPatient} />
+      <Button title="Update patient" onPress={updatePatient} />
+      <Button title="Read patient" onPress={readPatient} />
+      <Button title="Delete patient" onPress={deletePatient} />
     </View>
   );
 };
