@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-export default function Home() {
+import { Logout } from '../components/Logout';
+import { Hello } from '../components/Hello';
+import { ToChat } from '../components/ToChat';
+
+import Styles from '../components/Styles';
+
+export function Home() {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <StatusBar style="light" />
-    </View>
+    <>
+      <StatusBar />
+      <SafeAreaView style={Styles.login_container}>
+        <View style={Styles.login_header}>
+          <Text style={Styles.login_header_text}>
+            <Text style={Styles.login_header_text_bold}>
+              {'AppReabilitação - '}
+            </Text>
+            {' Menu'}
+          </Text>
+        </View>
+        <Hello />
+        <ToChat />
+        <Logout />
+      </SafeAreaView>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f8f8f8',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
