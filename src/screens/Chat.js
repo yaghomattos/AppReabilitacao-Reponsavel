@@ -1,12 +1,21 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-import Parse from 'parse/react-native.js';
+//import Parse from 'parse/react-native.js';
+import { useParseQuery } from '@parse/react-native';
+
+Parse.enableLocalDatastore();
+
+const parseQuery = new Parse.Query('Chat');
+parseQuery.descending('createdAt');
 
 export function Chat() {
   let currentUser;
 
   const [messages, setMessages] = useState([]);
+
+  const { isLive, isLoading, isSync, results, count, erro, reload } =
+    useParseQuery(parseQuery);
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -14,19 +23,6 @@ export function Chat() {
         console.warn('No user');
       });
     }
-
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-    ]);
 
     getCurrentUser();
   }, []);
@@ -46,7 +42,19 @@ export function Chat() {
 
   return (
     <GiftedChat
-      messages={messages}
+      messages={
+        results &&
+        results.map((liveMessage) => ({
+          _id: liveMessage.id,
+          text: liveMessage.get('content'),
+          createdAt: liveMessage.get('createdAt'),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            avatar: 'https://placeimg.com/140/140/any',
+          },
+        }))
+      }
       onSend={(messages) => onSend(messages)}
       user={{
         _id: 1,
