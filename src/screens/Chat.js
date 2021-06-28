@@ -4,6 +4,8 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import Parse from 'parse/react-native.js';
 
 export function Chat() {
+  let currentUser;
+
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export function Chat() {
     const Message = Parse.Object.extend('Chat');
     let message = new Message();
 
-    message.set('from');
+    message.set('fromAdmin', currentUser);
     message.set('content', messages[0].text);
     message.save();
   }, []);
