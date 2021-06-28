@@ -15,7 +15,7 @@ Parse.initialize(
   'm0GlXlzavxfoYkdEfQOfcvg3P57xCrcQDhTwJ0O8',
   'fKv7jVaceov8sgadLXeGa6HFpPS3UrUOrpCyAhjw'
 );
-Parse.serverURL = 'https://parseapi.back4app.com/';
+Parse.serverURL = 'https://reabilitacao.b4a.io/';
 
 const Stack = createStackNavigator();
 
