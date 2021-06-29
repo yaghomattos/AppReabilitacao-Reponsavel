@@ -1,6 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 
+import { AsyncStorage } from 'react-native';
+AsyncStorage.clear();
+
 //import Parse from 'parse/react-native.js';
 import { useParseQuery } from '@parse/react-native';
 
