@@ -1,9 +1,8 @@
 import Parse from 'parse/react-native.js';
 
-export async function createPatient() {
+export async function createPatient(name) {
   const newPatient = new Parse.Object('Patient');
-  newPatient.set('name', 'Paciente1');
-  newPatient.set('email', 'paciente1@gmail.com');
+  newPatient.set('name', name);
 
   try {
     const result = await newPatient.save();
@@ -22,9 +21,7 @@ export async function readPatient() {
     const results = await query.find();
     for (const object of results) {
       const name = object.get('name');
-      const email = object.get('email');
       console.log(name);
-      console.log(email);
     }
   } catch (error) {
     console.error('Error while fetching Patient', error);
@@ -36,12 +33,10 @@ export async function updatePatient() {
   try {
     const object = await query.get('zhHv8svvJ6');
     object.set('name', 'A string');
-    object.set('email', 'A string');
     try {
       const response = await object.save();
 
       console.log(response.get('name'));
-      console.log(response.get('email'));
       console.log('Patient updated', response);
     } catch (error) {
       console.error('Error while updating Patient', error);
