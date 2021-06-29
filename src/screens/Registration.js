@@ -16,7 +16,7 @@ export function Registration() {
             <Text style={Styles.login_header_text_bold}>
               {'AppReabilitação - '}
             </Text>
-            {' Admin registration'}
+            {'Responsável'}
           </Text>
         </View>
         <AdminRegistration />

@@ -15,7 +15,7 @@ export function Login() {
             <Text style={Styles.login_header_text_bold}>
               {'AppReabilitação - '}
             </Text>
-            {' Admin login'}
+            {'Responsável'}
           </Text>
         </View>
         <SingIn />
