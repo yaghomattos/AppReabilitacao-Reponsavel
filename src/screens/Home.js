@@ -5,6 +5,7 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { Logout } from '../components/Logout';
 import { Hello } from '../components/Hello';
 import { ToChat } from '../components/ToChat';
+import { ToRecordPatient } from '../components/ToRecordPatient';
 
 import Styles from '../components/Styles';
 
@@ -18,11 +19,12 @@ export function Home() {
             <Text style={Styles.login_header_text_bold}>
               {'AppReabilitação - '}
             </Text>
-            {' Menu'}
+            {'Menu'}
           </Text>
         </View>
         <Hello />
         <ToChat />
+        <ToRecordPatient />
         <Logout />
       </SafeAreaView>
     </>
