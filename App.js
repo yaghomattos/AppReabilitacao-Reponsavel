@@ -7,7 +7,7 @@ import { Registration } from './src/screens/Registration';
 import { Home } from './src/screens/Home';
 import { Chat } from './src/screens/Chat';
 import { LoginPatient } from './src/components/Patient/PatientLogin';
-import { HomePatient } from './src/screens/Patient/MenuPaciente';
+import { HomePatient } from './src/screens/Patient/HomePatient';
 import { PatientRecord } from './src/screens/RecordPatient';
 
 import Parse from 'parse/react-native.js';
@@ -26,11 +26,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Sign Up" component={Registration} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Chat" component={Chat} />
-        <Stack.Screen name="PatientRecord" component={PatientRecord} /> */}
+        <Stack.Screen name="PatientRecord" component={PatientRecord} />
         <Stack.Screen name="LoginPatient" component={LoginPatient} />
         <Stack.Screen name="HomePatient" component={HomePatient} />
       </Stack.Navigator>
