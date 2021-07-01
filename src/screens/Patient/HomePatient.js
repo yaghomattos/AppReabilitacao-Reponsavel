@@ -17,6 +17,9 @@ export function HomePatient() {
             {'Paciente'}
           </Text>
         </View>
+        <View style={Styles.menu_patient}>
+          <Text style={Styles.other_text}>{'Menu para o app de paciente'}</Text>
+        </View>
       </SafeAreaView>
     </>
   );
