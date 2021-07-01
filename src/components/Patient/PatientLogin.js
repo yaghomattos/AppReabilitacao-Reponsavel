@@ -33,7 +33,7 @@ export const LoginPatient = () => {
 
   async function doUserLogIn() {
     if (await fetchPatient()) {
-      navigation.navigate('Menu');
+      navigation.navigate('HomePatient');
     } else Alert.alert('Error ! User not found');
   }
 
