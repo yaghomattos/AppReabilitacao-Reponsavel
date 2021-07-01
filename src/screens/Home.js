@@ -4,8 +4,9 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
 import { Logout } from '../components/Logout';
 import { Hello } from '../components/Hello';
-import { ToChat } from '../components/ToChat';
-import { ToRecordPatient } from '../components/ToRecordPatient';
+import { ToChat } from '../routes/ToChat';
+import { ToRecordPatient } from '../routes/ToRecordPatient';
+import { ToAppPatient } from '../routes/ToAppPatient';
 
 import Styles from '../components/Styles';
 
@@ -25,6 +26,7 @@ export function Home() {
         <Hello />
         <ToChat />
         <ToRecordPatient />
+        <ToAppPatient />
         <Logout />
       </SafeAreaView>
     </>
