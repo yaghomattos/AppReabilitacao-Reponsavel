@@ -69,6 +69,17 @@ const Styles = StyleSheet.create({
     width: '100%',
     maxWidth: 600,
   },
+  menu_patient: {
+    alignItems: 'center',
+    paddingTop: 200,
+    paddingBottom: 20,
+  },
+  other_text: {
+    marginTop: 30,
+    color: '#000',
+    fontSize: 20,
+    alignItems: 'center',
+  },
 });
 
 export default Styles;
