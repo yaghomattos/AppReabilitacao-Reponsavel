@@ -20,7 +20,7 @@ export const AdminRegistration = () => {
       .then((createdAdmin) => {
         Alert.alert(
           'Success!',
-          `Admin ${createdAdmin.get('adminname')} was successfully created!`
+          `Admin ${createdAdmin.get('username')} was successfully created!`
         );
         navigation.navigate('Home');
         return true;
