@@ -7,6 +7,7 @@ import { Hello } from '../components/Hello';
 import { ToChat } from '../routes/ToChat';
 import { ToRecordPatient } from '../routes/ToRecordPatient';
 import { ToAppPatient } from '../routes/ToAppPatient';
+import { ToDeletePatient } from '../routes/ToDeletePatient';
 
 import Styles from '../components/Styles';
 
@@ -26,6 +27,7 @@ export function Home() {
         <Hello />
         <ToChat />
         <ToRecordPatient />
+        <ToDeletePatient />
         <ToAppPatient />
         <Logout />
       </SafeAreaView>

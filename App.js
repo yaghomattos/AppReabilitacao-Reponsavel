@@ -9,6 +9,7 @@ import { Chat } from './src/screens/Chat';
 import { LoginPatient } from './src/components/Patient/PatientLogin';
 import { HomePatient } from './src/screens/Patient/HomePatient';
 import { PatientRecord } from './src/screens/RecordPatient';
+import { DeletePatient } from './src/screens/DeletePatient';
 
 import Parse from 'parse/react-native.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -33,6 +34,7 @@ const App = () => {
         <Stack.Screen name="PatientRecord" component={PatientRecord} />
         <Stack.Screen name="LoginPatient" component={LoginPatient} />
         <Stack.Screen name="HomePatient" component={HomePatient} />
+        <Stack.Screen name="DeletePatient" component={DeletePatient} />
       </Stack.Navigator>
     </NavigationContainer>
   );
