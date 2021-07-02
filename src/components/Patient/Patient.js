@@ -12,19 +12,22 @@ export async function createPatient(name) {
   }
 }
 
-export async function readPatient() {
+export async function readPatient(name) {
   const Patient = Parse.Object.extend('Patient');
   const query = new Parse.Query(Patient);
-  query.equalTo('objectId', 'S58KvGR3Ex');
-
+  let count = 0;
+  query.equalTo('name', name);
   try {
     const results = await query.find();
     for (const object of results) {
       const name = object.get('name');
       console.log(name);
+      count++;
     }
+    return count;
   } catch (error) {
     console.error('Error while fetching Patient', error);
+    return count;
   }
 }
 
@@ -46,10 +49,10 @@ export async function updatePatient() {
   }
 }
 
-export async function deletePatient() {
+export async function deletePatient(name) {
   const query = new Parse.Query('Patient');
   try {
-    const patient = await query.get('xKue915KBG');
+    const patient = await query.get(name);
     try {
       const response = await patient.destroy();
       console.log('Deleted ParsePatient', response);
