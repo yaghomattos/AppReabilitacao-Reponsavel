@@ -49,10 +49,10 @@ export async function updatePatient() {
   }
 }
 
-export async function deletePatient(name) {
+export async function deletePatient(objectId) {
   const query = new Parse.Query('Patient');
   try {
-    const patient = await query.get(name);
+    const patient = await query.get(objectId);
     try {
       const response = await patient.destroy();
       console.log('Deleted ParsePatient', response);
