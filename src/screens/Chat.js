@@ -23,20 +23,19 @@ export function Chat() {
   useEffect(() => {
     let mounted = true;
 
-    async function getCurrentUser() {
-      currentUser = await Parse.User.currentAsync()
+    function getCurrentUser() {
+      currentUser = Parse.User.currentAsync()
         .then(() => {
           console.log('mounted true');
         })
         .catch(() => {
           console.warn('No user');
+          return function cleanup() {
+            mounted = false;
+          };
         });
     }
     getCurrentUser();
-
-    return function cleanup() {
-      mounted = false;
-    };
   }, []);
 
   const onSend = useCallback((messages = []) => {
