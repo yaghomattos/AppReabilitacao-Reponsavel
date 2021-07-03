@@ -7,7 +7,7 @@ import Styles from '../components/Styles';
 export function PatientRecord() {
   const [username, setUsername] = useState('');
 
-  async function callCreate() {
+  async function handleCreate() {
     const usernameValue = username;
     createPatient(usernameValue);
   }
@@ -23,7 +23,7 @@ export function PatientRecord() {
           autoCapitalize={'none'}
           keyboardType={'email-address'}
         />
-        <TouchableOpacity onPress={() => callCreate()}>
+        <TouchableOpacity onPress={() => handleCreate()}>
           <View style={Styles.button}>
             <Text style={Styles.button_label}>{'Cadastrar Paciente'}</Text>
           </View>
