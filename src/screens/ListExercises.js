@@ -33,7 +33,7 @@ export const ListExercises = () => {
         renderItem={({ item }) => (
           <List.Item
             title={item.get('name')}
-            description={'Exercício ' + item.get('name')}
+            description={item.get('description')}
             titleNumberOfLines={1}
             titleStyle={styles.listTitle}
             descriptionStyle={styles.listDescription}
