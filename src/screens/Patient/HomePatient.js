@@ -2,6 +2,8 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
+import { ToChat } from '../../routes/ToChat';
+
 import Styles from '../../components/Styles';
 
 export function HomePatient() {
@@ -20,6 +22,7 @@ export function HomePatient() {
         <View style={Styles.menu_patient}>
           <Text style={Styles.other_text}>{'Menu para o app de paciente'}</Text>
         </View>
+        <ToChat />
       </SafeAreaView>
     </>
   );
