@@ -10,6 +10,9 @@ import { LoginPatient } from './src/components/Patient/PatientLogin';
 import { HomePatient } from './src/screens/Patient/HomePatient';
 import { PatientRecord } from './src/screens/RecordPatient';
 import { DeletePatient } from './src/screens/DeletePatient';
+// import { UploadExercise } from './src/screens/UploadExercise';
+import { ListExercises } from './src/screens/ListExercises';
+import { PatientControl } from './src/screens/PatientControl';
 
 import Parse from 'parse/react-native.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -31,10 +34,13 @@ const App = () => {
         <Stack.Screen name="Sign Up" component={Registration} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="PatientControl" component={PatientControl} />
         <Stack.Screen name="PatientRecord" component={PatientRecord} />
         <Stack.Screen name="LoginPatient" component={LoginPatient} />
         <Stack.Screen name="HomePatient" component={HomePatient} />
         <Stack.Screen name="DeletePatient" component={DeletePatient} />
+        {/* <Stack.Screen name="UploadExercise" component={UploadExercise} /> */}
+        <Stack.Screen name="ListExercises" component={ListExercises} />
       </Stack.Navigator>
     </NavigationContainer>
   );
