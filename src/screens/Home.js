@@ -5,9 +5,9 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { Logout } from '../components/Logout';
 import { Hello } from '../components/Hello';
 import { ToChat } from '../routes/ToChat';
-import { ToRecordPatient } from '../routes/ToRecordPatient';
-import { ToAppPatient } from '../routes/ToAppPatient';
-import { ToDeletePatient } from '../routes/ToDeletePatient';
+import { ToListExercises } from '../routes/ToListExercises';
+import { ToPatientControl } from '../routes/ToPatientControl';
+//import { ToUploadExercise } from '../routes/ToUploadExercise';
 
 import Styles from '../components/Styles';
 
@@ -26,9 +26,9 @@ export function Home() {
         </View>
         <Hello />
         <ToChat />
-        <ToRecordPatient />
-        <ToDeletePatient />
-        <ToAppPatient />
+        <ToPatientControl />
+        {/* <ToUploadExercise /> */}
+        <ToListExercises />
         <Logout />
       </SafeAreaView>
     </>
