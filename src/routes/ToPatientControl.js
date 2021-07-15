@@ -11,7 +11,7 @@ export const ToPatientControl = () => {
       <View style={Styles.form}>
         <TouchableOpacity onPress={() => navigation.navigate('PatientControl')}>
           <View style={Styles.button}>
-            <Text style={Styles.button_label}>{'Contole Paciente'}</Text>
+            <Text style={Styles.button_label}>{'Cadastro Paciente'}</Text>
           </View>
         </TouchableOpacity>
       </View>
