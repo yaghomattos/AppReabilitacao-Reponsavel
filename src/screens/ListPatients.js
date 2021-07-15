@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
 
@@ -10,6 +11,8 @@ parseQuery.descending('name');
 export const ListPatients = () => {
   const { isLive, isLoading, isSyncing, results, count, error, reload } =
     useParseQuery(parseQuery);
+
+  const navigation = useNavigation();
 
   const styles = StyleSheet.create({
     container: {
@@ -32,6 +35,7 @@ export const ListPatients = () => {
             title={item.get('name')}
             titleNumberOfLines={1}
             titleStyle={styles.listTitle}
+            onPress={() => navigation.navigate('ListExercises')}
           />
         )}
       />
