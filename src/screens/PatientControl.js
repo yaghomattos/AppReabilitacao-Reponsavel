@@ -6,6 +6,7 @@ import { Hello } from '../components/Hello';
 import { ToRecordPatient } from '../routes/ToRecordPatient';
 import { ToAppPatient } from '../routes/ToAppPatient';
 import { ToDeletePatient } from '../routes/ToDeletePatient';
+import { ToListPatient } from '../routes/ToListPatient';
 
 import Styles from '../components/Styles';
 
@@ -19,12 +20,13 @@ export function PatientControl() {
             <Text style={Styles.login_header_text_bold}>
               {'AppReabilitação - '}
             </Text>
-            {'Controle Paciente'}
+            {'Cadastro Paciente'}
           </Text>
         </View>
         <Hello />
         <ToRecordPatient />
         <ToDeletePatient />
+        <ToListPatient />
         <ToAppPatient />
       </SafeAreaView>
     </>
