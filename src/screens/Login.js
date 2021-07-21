@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { SingIn } from '../components/SingIn';
+import { HandleLogin } from '../components/Login';
 import Styles from '../components/Styles';
 
 export function Login() {
@@ -18,7 +18,7 @@ export function Login() {
             {'Responsável'}
           </Text>
         </View>
-        <SingIn />
+        <HandleLogin />
       </SafeAreaView>
     </>
   );

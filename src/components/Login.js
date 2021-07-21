@@ -6,22 +6,23 @@ import Parse from 'parse/react-native';
 
 import Styles from './Styles';
 
-export const AdminRegistration = () => {
+export const HandleLogin = () => {
   const navigation = useNavigation();
 
-  const [adminname, setAdminname] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const adminSignUp = async function () {
-    const adminnameValue = adminname;
+  const doUserLogIn = async function () {
+    const usernameValue = username;
     const passwordValue = password;
-
-    return await Parse.User.signUp(adminnameValue, passwordValue)
-      .then((createdAdmin) => {
+    return await Parse.User.logIn(usernameValue, passwordValue)
+      .then(async (loggedInUser) => {
         Alert.alert(
           'Success!',
-          `Admin ${createdAdmin.get('username')} was successfully created!`
+          `User ${loggedInUser.get('username')} has successfully signed in!`
         );
+        const currentUser = await Parse.User.currentAsync();
+        console.log(loggedInUser === currentUser);
         navigation.navigate('Home');
         return true;
       })
@@ -36,9 +37,9 @@ export const AdminRegistration = () => {
       <View style={Styles.form}>
         <TextInput
           style={Styles.form_input}
-          value={adminname}
+          value={username}
           placeholder={'Usuário'}
-          onChangeText={(text) => setAdminname(text)}
+          onChangeText={(text) => setUsername(text)}
           autoCapitalize={'none'}
           keyboardType={'email-address'}
         />
@@ -49,17 +50,17 @@ export const AdminRegistration = () => {
           secureTextEntry
           onChangeText={(text) => setPassword(text)}
         />
-        <TouchableOpacity onPress={() => adminSignUp()}>
+        <TouchableOpacity onPress={() => doUserLogIn()}>
           <View style={Styles.button}>
-            <Text style={Styles.button_label}>{'Registrar'}</Text>
+            <Text style={Styles.button_label}>{'Entrar'}</Text>
           </View>
         </TouchableOpacity>
       </View>
       <>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
           <Text style={Styles.login_footer_text}>
-            {'Já possui conta? '}
-            <Text style={Styles.login_footer_link}>{'Entrar'}</Text>
+            {'Não possui conta? '}
+            <Text style={Styles.login_footer_link}>{'Registre-se'}</Text>
           </Text>
         </TouchableOpacity>
       </>
