@@ -4,7 +4,6 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
 import { Hello } from '../components/Hello';
 import { ToRecordPatient } from '../routes/ToRecordPatient';
-import { ToAppPatient } from '../routes/ToAppPatient';
 import { ToDeletePatient } from '../routes/ToDeletePatient';
 import { ToListPatient } from '../routes/ToListPatient';
 
@@ -17,9 +16,7 @@ export function PatientControl() {
       <SafeAreaView style={Styles.login_container}>
         <View style={Styles.login_header}>
           <Text style={Styles.login_header_text}>
-            <Text style={Styles.login_header_text_bold}>
-              {'AppReabilitação - '}
-            </Text>
+            <Text style={Styles.login_header_text_bold}>{'AppReabilitação - '}</Text>
             {'Cadastro Paciente'}
           </Text>
         </View>
@@ -27,7 +24,6 @@ export function PatientControl() {
         <ToRecordPatient />
         <ToDeletePatient />
         <ToListPatient />
-        <ToAppPatient />
       </SafeAreaView>
     </>
   );

@@ -1,9 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-import { AsyncStorage } from 'react-native';
-AsyncStorage.clear();
-
 //import Parse from 'parse/react-native.js';
 import { useParseQuery } from '@parse/react-native';
 
@@ -39,9 +36,7 @@ export function Chat() {
   }, []);
 
   const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages)
-    );
+    setMessages((previousMessages) => GiftedChat.append(previousMessages, messages));
 
     const Message = Parse.Object.extend('Chat');
     let message = new Message();
