@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { createPatient } from '../components/Patient/Patient';
+import { createPatient } from '../components/Patient';
+
 import Styles from '../components/Styles';
 
 export function PatientRecord() {
