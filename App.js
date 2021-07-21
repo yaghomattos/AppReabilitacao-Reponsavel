@@ -3,17 +3,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Login } from './src/screens/Login';
-import { Registration } from './src/screens/Registration';
+import { Register } from './src/screens/Register';
 import { Home } from './src/screens/Home';
 import { Chat } from './src/screens/Chat';
-import { LoginPatient } from './src/components/Patient/PatientLogin';
-import { HomePatient } from './src/screens/Patient/HomePatient';
 import { PatientRecord } from './src/screens/RecordPatient';
 import { DeletePatient } from './src/screens/DeletePatient';
 // import { UploadExercise } from './src/screens/UploadExercise';
 import { ListExercises } from './src/screens/ListExercises';
 import { PatientControl } from './src/screens/PatientControl';
 import { ListPatients } from './src/screens/ListPatients';
+import { ListPatientExercises } from './src/screens/ListPatientExercises';
 
 import Parse from 'parse/react-native.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -32,17 +31,16 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Sign Up" component={Registration} />
+        <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="PatientControl" component={PatientControl} />
         <Stack.Screen name="PatientRecord" component={PatientRecord} />
-        <Stack.Screen name="LoginPatient" component={LoginPatient} />
-        <Stack.Screen name="HomePatient" component={HomePatient} />
         <Stack.Screen name="DeletePatient" component={DeletePatient} />
         {/* <Stack.Screen name="UploadExercise" component={UploadExercise} /> */}
         <Stack.Screen name="ListExercises" component={ListExercises} />
         <Stack.Screen name="ListPatients" component={ListPatients} />
+        <Stack.Screen name="ListPatientExercises" component={ListPatientExercises} />
       </Stack.Navigator>
     </NavigationContainer>
   );
