@@ -11,7 +11,7 @@ export const ToListExercises = () => {
       <View style={Styles.form}>
         <TouchableOpacity onPress={() => navigation.navigate('ListExercises')}>
           <View style={Styles.button}>
-            <Text style={Styles.button_label}>{'Exercícios'}</Text>
+            <Text style={Styles.button_label}>{'Adicionar Exercício (+)'}</Text>
           </View>
         </TouchableOpacity>
       </View>
