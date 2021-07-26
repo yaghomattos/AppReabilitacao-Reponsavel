@@ -14,7 +14,7 @@ import Styles from '../components/Styles';
 const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
 
-export const ListPatients = () => {
+export const ListPatientSelectExercise = () => {
   const { isLive, isLoading, isSyncing, results, count, error, reload } =
     useParseQuery(parseQuery);
 
@@ -50,6 +50,7 @@ export const ListPatients = () => {
               title={item.get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
+              onPress={() => navigation.navigate('ListSelectExercises')}
             />
           )}
         />

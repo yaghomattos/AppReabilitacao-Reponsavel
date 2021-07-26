@@ -4,14 +4,14 @@ import { useNavigation } from '@react-navigation/native';
 
 import Styles from '../components/Styles';
 
-export const ToListPatient = () => {
+export const ToListPatientSelectExercise = () => {
   const navigation = useNavigation();
   return (
     <View style={Styles.login_wrapper}>
       <View style={Styles.form}>
-        <TouchableOpacity onPress={() => navigation.navigate('ListPatients')}>
+        <TouchableOpacity onPress={() => navigation.navigate('ListPatientSelectExercise')}>
           <View style={Styles.button}>
-            <Text style={Styles.button_label}>{'Lista de Pacientes'}</Text>
+            <Text style={Styles.button_label}>{'Exercícios'}</Text>
           </View>
         </TouchableOpacity>
       </View>
