@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
