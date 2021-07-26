@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { Hello } from '../components/Hello';
 import { ToRecordPatient } from '../routes/ToRecordPatient';
 import { ToDeletePatient } from '../routes/ToDeletePatient';
 import { ToListPatient } from '../routes/ToListPatient';
@@ -20,7 +19,6 @@ export function PatientControl() {
             {'Cadastro Paciente'}
           </Text>
         </View>
-        <Hello />
         <ToRecordPatient />
         <ToDeletePatient />
         <ToListPatient />
