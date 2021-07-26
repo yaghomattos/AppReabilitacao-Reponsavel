@@ -1,8 +1,9 @@
 import Parse from 'parse/react-native.js';
 
-export async function createPatient(name) {
+export async function createPatient(name, CPF) {
   const newPatient = new Parse.Object('Patient');
   newPatient.set('name', name);
+  newPatient.set('CPF', CPF);
 
   try {
     const result = await newPatient.save();

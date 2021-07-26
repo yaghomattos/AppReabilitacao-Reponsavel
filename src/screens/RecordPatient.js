@@ -7,10 +7,12 @@ import Styles from '../components/Styles';
 
 export function PatientRecord() {
   const [username, setUsername] = useState('');
+  const [CPF, setCPF] = useState(0);
 
   async function handleCreate() {
     const usernameValue = username;
-    createPatient(usernameValue);
+    const CPFValue = CPF;
+    createPatient(usernameValue, CPFValue);
   }
 
   return (
@@ -19,10 +21,18 @@ export function PatientRecord() {
         <TextInput
           style={Styles.form_input}
           value={username}
-          placeholder={'Usuário'}
+          placeholder={'Nome'}
           onChangeText={(text) => setUsername(text)}
           autoCapitalize={'none'}
           keyboardType={'email-address'}
+        />
+        <TextInput
+          style={Styles.form_input}
+          value={CPF}
+          placeholder={'CPF'}
+          onChangeText={(text) => setCPF(text)}
+          keyboardType={'numeric'}
+          maxLength={12}
         />
         <TouchableOpacity onPress={() => handleCreate()}>
           <View style={Styles.button}>
