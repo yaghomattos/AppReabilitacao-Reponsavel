@@ -1,11 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
-
-import PatientContext from '../context/patientContext';
 
 import Parse from 'parse/react-native.js';
 
@@ -50,7 +48,7 @@ export const ListPatientSelectExercise = () => {
               title={item.get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
-              onPress={() => navigation.navigate('ListSelectExercises')}
+              onPress={() => navigation.navigate('ListSelectExercises', item.get('name'))}
             />
           )}
         />

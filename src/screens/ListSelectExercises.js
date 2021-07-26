@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, FlatList, Text, Alert } from 'react-native';
 
 import { List, Divider } from 'react-native-paper';
@@ -9,34 +9,24 @@ import Parse from 'parse/react-native.js';
 import { ToListExercises } from '../routes/ToListExercises';
 import Styles from '../components/Styles';
 
-/* quando o id = x pegar todos os exercises de SelectExercises, pra isso usar o context
-para saber qual é o id cliclado */
 const parseQuery = new Parse.Query('Patient');
 parseQuery.descending('createdAt');
 
 let exercise = '';
 
-async function teste() {
-  parseQuery.equalTo('name', 'paciente 2');
+async function test(patient) {
+  parseQuery.equalTo('name', patient);
   const results = await parseQuery.find();
 
   let exerciseRelation = results[0].relation('exercises');
   results.exercises = await exerciseRelation.query().find();
 
   exercise = results.exercises;
-
-  for (let result of results.exercises) {
-    console.log(result.get('name'));
-  }
 }
 
-teste();
-
-export const ListSelectExercises = () => {
+export const ListSelectExercises = (patient) => {
   const { isLive, isLoading, isSyncing, results, count, error, reload } =
     useParseQuery(parseQuery);
-
-  console.log(parseQuery);
 
   const styles = StyleSheet.create({
     container: {
@@ -50,6 +40,8 @@ export const ListSelectExercises = () => {
       fontSize: 16,
     },
   });
+
+  test(patient.route.params);
 
   return (
     <>
