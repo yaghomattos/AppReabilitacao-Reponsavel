@@ -8,7 +8,7 @@ import { ToPatientControl } from '../routes/ToPatientControl';
 import { ToListPatientSelectExercise } from '../routes/ToListPatientSelectExercise';
 import { ToUploadExercise } from '../routes/ToUploadExercise';
 
-import PatientContext from '../components/patientContext';
+import PatientContext from '../context/patientContext';
 
 import Styles from '../components/Styles';
 
