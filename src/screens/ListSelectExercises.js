@@ -9,19 +9,22 @@ import Parse from 'parse/react-native.js';
 import { ToSelectExercises } from '../routes/ToSelectExercise';
 import Styles from '../components/Styles';
 
-const parseQuery = new Parse.Query('Patient');
+const parseQuery = new Parse.Query('SelectExercises');
 parseQuery.descending('createdAt');
 
-let exercise = '';
+var exercise = '';
 
-async function test(patient) {
-  parseQuery.equalTo('name', patient);
+async function test(patientId) {
+  var patientPointer = {
+    __type: 'Pointer',
+    className: 'Patient',
+    objectId: patientId
+  }
+
+  parseQuery.equalTo('patient', patientPointer);
   const results = await parseQuery.find();
 
-  let exerciseRelation = results[0].relation('exercises');
-  results.exercises = await exerciseRelation.query().find();
-
-  exercise = results.exercises;
+  exercise = results;
 }
 
 export const ListSelectExercises = (patient) => {
@@ -60,7 +63,7 @@ export const ListSelectExercises = (patient) => {
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <List.Item
-              title={item.get('name')}
+              title={item.get('exercise').get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
             />

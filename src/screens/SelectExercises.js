@@ -21,26 +21,20 @@ export const SelectExercises = (props) => {
 
   const navigation = useNavigation();
 
-  //console.log(props.route.params.children);
-  /* preciso pegar o objeto que tem o id do patient pra salvar na lista de exercícios 
-  selecionados */
-
   async function SelectedExercise(exerciseName) {
     var patient = await readPatient(props.route.params.children);
     var exercise = await readExercise(exerciseName);
-    
-    console.log(exercise);
 
     var exercisePointer = {
       __type: 'Pointer',
       className: 'Exercise',
-      objectId: exercise
+      objectId: exercise.id
     }
 
     var patientPointer = {
       __type: 'Pointer',
       className: 'Patient',
-      objectId: patient
+      objectId: patient.id
     }
 
     createSelectExercises(patientPointer, exercisePointer);
