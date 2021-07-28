@@ -2,6 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Parse from 'parse/react-native.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { Login } from './src/screens/Login';
 import { Register } from './src/screens/Register';
 import { Home } from './src/screens/Home';
@@ -15,8 +18,9 @@ import { ListPatients } from './src/screens/ListPatients';
 import { ListSelectExercises } from './src/screens/ListSelectExercises';
 import { ConfirmExercise } from './src/components/ConfirmExercise';
 import { ListPatientSelectExercise } from './src/screens/ListPatientSelectExercise'
-import Parse from 'parse/react-native.js';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SelectExercises } from './src/screens/SelectExercises';
+import PatientContext from './src/context/patientContext';
+
 
 Parse.initialize(
   'm0GlXlzavxfoYkdEfQOfcvg3P57xCrcQDhTwJ0O8',
@@ -25,27 +29,32 @@ Parse.initialize(
 Parse.serverURL = 'https://reabilitacao.b4a.io/';
 Parse.setAsyncStorage(AsyncStorage);
 
+Parse.enableLocalDatastore();
+
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Chat" component={Chat} />
-        <Stack.Screen name="PatientControl" component={PatientControl} />
-        <Stack.Screen name="PatientRecord" component={PatientRecord} />
-        <Stack.Screen name="DeletePatient" component={DeletePatient} />
-        <Stack.Screen name="UploadExercise" component={UploadExercise} />
-        <Stack.Screen name="ListExercises" component={ListExercises} />
-        <Stack.Screen name="ListPatients" component={ListPatients} />
-        <Stack.Screen name="ListSelectExercises" component={ListSelectExercises} />
-        <Stack.Screen name="ConfirmExercise" component={ConfirmExercise} />
-        <Stack.Screen name="ListPatientSelectExercise" component={ListPatientSelectExercise} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PatientContext.Provider value={{ patient: '' }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="PatientControl" component={PatientControl} />
+          <Stack.Screen name="PatientRecord" component={PatientRecord} />
+          <Stack.Screen name="DeletePatient" component={DeletePatient} />
+          <Stack.Screen name="UploadExercise" component={UploadExercise} />
+          <Stack.Screen name="ListExercises" component={ListExercises} />
+          <Stack.Screen name="ListPatients" component={ListPatients} />
+          <Stack.Screen name="ListSelectExercises" component={ListSelectExercises} />
+          <Stack.Screen name="ConfirmExercise" component={ConfirmExercise} />
+          <Stack.Screen name="ListPatientSelectExercise" component={ListPatientSelectExercise} />
+          <Stack.Screen name="SelectExercises" component={SelectExercises} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PatientContext.Provider>
   );
 };
 
