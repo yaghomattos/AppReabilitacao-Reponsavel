@@ -1,16 +1,18 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-//import Parse from 'parse/react-native.js';
+import Parse from 'parse/react-native.js';
 import { useParseQuery } from '@parse/react-native';
 
-Parse.enableLocalDatastore();
+//Parse.enableLocalDatastore();
 
 const parseQuery = new Parse.Query('Chat');
 parseQuery.descending('createdAt');
 
 export function Chat() {
-  let currentUser;
+  var currentUser = '';
+
+  var testUser = '';
 
   const [messages, setMessages] = useState([]);
 
@@ -18,32 +20,30 @@ export function Chat() {
     useParseQuery(parseQuery);
 
   useEffect(() => {
-    let mounted = true;
-
-    function getCurrentUser() {
-      currentUser = Parse.User.currentAsync()
-        .then(() => {
-          console.log('mounted true');
-        })
-        .catch(() => {
-          console.warn('No user');
-          return function cleanup() {
-            mounted = false;
-          };
-        });
+    var mounted = false;
+    if (!mounted) {
+      currentUser = Parse.User.current();
+      console.log(currentUser);
+      testUser = currentUser;
     }
-    getCurrentUser();
+    if (currentUser !== testUser) {
+      console.log('erro');
+    }
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) => GiftedChat.append(previousMessages, messages));
+    setMessages((previousMessages) =>
+      GiftedChat.append(previousMessages, messages)
+    );
 
-    const Message = Parse.Object.extend('Chat');
-    let message = new Message();
+    const Message = new Parse.Object('Chat');
 
-    message.set('fromAdmin', currentUser);
-    message.set('content', messages[0].text);
-    message.save();
+    Message.set('fromAdmin', currentUser);
+    Message.set('content', messages[0].text);
+    Message.save();
   }, []);
 
   return (
