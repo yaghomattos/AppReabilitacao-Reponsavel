@@ -1,9 +1,9 @@
 import Parse from 'parse/react-native.js';
 
-export function createSelectExercises() {
+export async function createSelectExercises(patient, exercise) {
   const myNewObject = new Parse.Object('SelectExercises');
-  myNewObject.set('Patient', new Parse.Object('Patient'));
-  myNewObject.set('Exercise', new Parse.Object('Exercise'));
+  myNewObject.set('patient', patient);
+  myNewObject.set('exercise', exercise);
   myNewObject.set('name', 'A string');
   try {
     const result = await myNewObject.save();
@@ -13,7 +13,7 @@ export function createSelectExercises() {
   }
 }
 
-export function readSelectExercises() {
+export async function readSelectExercises() {
   const SelectExercises = Parse.Object.extend('SelectExercises');
   const query = new Parse.Query(SelectExercises);
   // You can also query by using a parameter of an object
@@ -35,7 +35,7 @@ export function readSelectExercises() {
   }
 }
 
-export function updateSelectExercises() {
+export async function updateSelectExercises() {
   const query = new Parse.Query(SelectExercises);
   try {
     // here you put the objectId that you want to update
@@ -60,7 +60,7 @@ export function updateSelectExercises() {
     }
 }
 
-export function deleteSelectExercises() {
+export async function deleteSelectExercises() {
   const query = new Parse.Query('SelectExercises');
   try {
     const object = await query.get('xKue915KBG');

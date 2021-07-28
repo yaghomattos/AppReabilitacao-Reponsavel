@@ -15,19 +15,22 @@ export async function createExercise() {
   }
 }
 
-export async function readExercise() {
+export async function readExercise(name) {
+  var result = '';
   const Exercise = Parse.Object.extend('Exercise');
   const query = new Parse.Query(Exercise);
-  query.equalTo('objectId', 'xKue915KBG');
+  query.equalTo('name', name);
   try {
     const results = await query.find();
     for (const object of results) {
       const video = object.get('video');
-      console.log(video);
+      //console.log(video);
     }
+    result = results;
   } catch (error) {
     console.error('Error while fetching Exercise', error);
   }
+  return result[0].id;
 }
 
 export async function updateExercise() {

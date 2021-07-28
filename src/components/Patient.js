@@ -16,20 +16,20 @@ export async function createPatient(name, CPF) {
 export async function readPatient(name) {
   const Patient = Parse.Object.extend('Patient');
   const query = new Parse.Query(Patient);
-  let count = 0;
+  var result = '';
   query.equalTo('name', name);
   try {
     const results = await query.find();
     for (const object of results) {
       const name = object.get('name');
-      console.log(name);
-      count++;
+      //console.log(object.id);
     }
-    return count;
+    result = results;
   } catch (error) {
     console.error('Error while fetching Patient', error);
-    return count;
+    return;
   }
+  return result[0].id;
 }
 
 export async function updatePatient() {

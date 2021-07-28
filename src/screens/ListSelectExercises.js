@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View, StyleSheet, FlatList, Text, Alert } from 'react-native';
 
 import { List, Divider } from 'react-native-paper';
@@ -6,7 +6,7 @@ import { useParseQuery } from '@parse/react-native';
 
 import Parse from 'parse/react-native.js';
 
-import { ToListExercises } from '../routes/ToListExercises';
+import { ToSelectExercises } from '../routes/ToSelectExercise';
 import Styles from '../components/Styles';
 
 const parseQuery = new Parse.Query('Patient');
@@ -67,7 +67,7 @@ export const ListSelectExercises = (patient) => {
           )}
         />
       </View>
-      <ToListExercises />
+      <ToSelectExercises>{patient.route.params}</ToSelectExercises>
     </>
   );
 };
