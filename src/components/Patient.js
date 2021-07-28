@@ -13,23 +13,19 @@ export async function createPatient(name, CPF) {
   }
 }
 
-export async function readPatient(name) {
+export async function readPatient(id) {
   const Patient = Parse.Object.extend('Patient');
   const query = new Parse.Query(Patient);
   var result = '';
-  query.equalTo('name', name);
+  query.equalTo('objectId', id);
   try {
     const results = await query.find();
-    for (const object of results) {
-      const name = object.get('name');
-      //console.log(object.id);
-    }
     result = results;
   } catch (error) {
     console.error('Error while fetching Patient', error);
     return;
   }
-  return result[0].id;
+  return result[0];
 }
 
 export async function updatePatient() {

@@ -30,7 +30,7 @@ export async function readExercise(name) {
   } catch (error) {
     console.error('Error while fetching Exercise', error);
   }
-  return result[0].id;
+  return result[0];
 }
 
 export async function updateExercise() {
