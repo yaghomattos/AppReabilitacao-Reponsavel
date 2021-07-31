@@ -5,8 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
 
-import PatientContext from '../context/patientContext';
-
 import Parse from 'parse/react-native.js';
 
 import Styles from '../components/Styles';
