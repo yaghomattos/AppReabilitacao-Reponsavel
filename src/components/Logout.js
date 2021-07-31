@@ -11,9 +11,10 @@ export const Logout = () => {
   const navigation = useNavigation();
 
   const userLogout = async function () {
+    let currentUser = await Parse.User.currentAsync();
     return await Parse.User.logOut()
       .then(async () => {
-        const currentUser = await Parse.User.currentAsync();
+        currentUser = await Parse.User.currentAsync();
         if (currentUser === null) {
           Alert.alert('Success!', 'No user is logged in anymore!');
         }
@@ -21,7 +22,8 @@ export const Logout = () => {
         return true;
       })
       .catch((error) => {
-        Alert.alert('Error!', error.message);
+        Alert.alert('Error in logout!', error.message);
+        navigation.dispatch(StackActions.popToTop());
         return false;
       });
   };
