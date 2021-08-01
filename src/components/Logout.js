@@ -12,7 +12,7 @@ export const Logout = () => {
 
   const userLogout = async function () {
     let currentUser = await Parse.User.currentAsync();
-    return await Parse.User.logOut()
+    await Parse.User.logOut()
       .then(async () => {
         currentUser = await Parse.User.currentAsync();
         if (currentUser === null) {
