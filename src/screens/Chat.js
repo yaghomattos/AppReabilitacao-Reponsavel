@@ -17,8 +17,8 @@ export function Chat(props) {
   var toPatient = {
     __type: 'Pointer',
     className: 'Patient',
-    objectId: props.route.params.item.id
-  }
+    objectId: props.route.params.item.id,
+  };
 
   parseQuery.equalTo('fromAdmin', currentUser);
 
@@ -27,11 +27,13 @@ export function Chat(props) {
   const { isLive, isLoading, isSync, results, count, erro, reload } =
     useParseQuery(parseQuery);
 
+  Parse.User._clearCache();
+
   function teste(object) {
-    if(object.get('from') === '1') {
-      return 1; 
+    if (object.get('from') === '1') {
+      return 1;
     }
-    return 2;  
+    return 2;
   }
 
   const onSend = useCallback((messages = []) => {
@@ -43,9 +45,13 @@ export function Chat(props) {
 
     Message.set('fromAdmin', currentUser);
     Message.set('fromPatient', toPatient);
-    Message.set('from', 1);
+    Message.set('from', '1');
     Message.set('content', messages[0].text);
-    Message.save();
+    try {
+      const result = Message.save();
+    } catch (error) {
+      console.error('Error while creating Chat: ', error);
+    }
   }, []);
 
   return (
