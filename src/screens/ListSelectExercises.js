@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, Alert } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
 
@@ -30,6 +31,8 @@ async function test(patientId) {
 export const ListSelectExercises = (patient) => {
   const { isLive, isLoading, isSyncing, results, count, error, reload } =
     useParseQuery(parseQuery);
+
+  const navigation = useNavigation();
 
   const styles = StyleSheet.create({
     container: {
@@ -66,6 +69,7 @@ export const ListSelectExercises = (patient) => {
               title={item.get('exercise').get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
+              onPress={() => navigation.navigate('Player', item.get('exercise').get('video').url())}
             />
           )}
         />
