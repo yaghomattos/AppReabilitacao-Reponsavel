@@ -21,6 +21,7 @@ import { ConfirmExercise } from './src/components/ConfirmExercise';
 import { ListPatientSelectExercise } from './src/screens/ListPatientSelectExercise';
 import { SelectExercises } from './src/screens/SelectExercises';
 import { ListPatientChat } from './src/screens/ListPatientChat';
+import { Player } from './src/screens/Player';
 
 Parse.initialize(
   'm0GlXlzavxfoYkdEfQOfcvg3P57xCrcQDhTwJ0O8',
@@ -51,6 +52,7 @@ const App = () => {
         <Stack.Screen name="ConfirmExercise" component={ConfirmExercise} />
         <Stack.Screen name="ListPatientSelectExercise" component={ListPatientSelectExercise}/>
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
+        <Stack.Screen name="Player" component={Player} />
       </Stack.Navigator>
     </NavigationContainer>
   );
