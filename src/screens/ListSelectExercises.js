@@ -69,7 +69,6 @@ export const ListSelectExercises = (patient) => {
               title={item.get('exercise').get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
-              onPress={() => navigation.navigate('Player', item.get('exercise').get('video').url())}
             />
           )}
         />
