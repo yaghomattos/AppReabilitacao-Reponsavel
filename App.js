@@ -21,13 +21,12 @@ import { ConfirmExercise } from './src/components/ConfirmExercise';
 import { ListPatientSelectExercise } from './src/screens/ListPatientSelectExercise';
 import { SelectExercises } from './src/screens/SelectExercises';
 import { ListPatientChat } from './src/screens/ListPatientChat';
-import { Player } from './src/screens/Player';
 
 Parse.initialize(
-  'm0GlXlzavxfoYkdEfQOfcvg3P57xCrcQDhTwJ0O8',
-  'fKv7jVaceov8sgadLXeGa6HFpPS3UrUOrpCyAhjw'
+  'mZ19CetKStaIV82Fqx1ZOgKc5HXs8cEuoY8B1igk',
+  'X841DiHGWSe4Pac6DgbzQxt96xqMaXzcOZR4mhN1'
 );
-Parse.serverURL = 'https://reabilitacao.b4a.io/';
+Parse.serverURL = 'https://reab.b4a.io/';
 Parse.setAsyncStorage(AsyncStorage);
 Parse.enableLocalDatastore();
 
@@ -52,7 +51,6 @@ const App = () => {
         <Stack.Screen name="ConfirmExercise" component={ConfirmExercise} />
         <Stack.Screen name="ListPatientSelectExercise" component={ListPatientSelectExercise}/>
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
-        <Stack.Screen name="Player" component={Player} />
       </Stack.Navigator>
     </NavigationContainer>
   );
