@@ -11,7 +11,7 @@ export const ToSelectExercises = (patient) => {
       <View style={Styles.form}>
         <TouchableOpacity onPress={() => navigation.navigate('SelectExercises', patient)}>
           <View style={Styles.button}>
-            <Text style={Styles.button_label}>{'Adicionar Exercício (+)'}</Text>
+            <Text style={Styles.button_label}>{'+'}</Text>
           </View>
         </TouchableOpacity>
       </View>
