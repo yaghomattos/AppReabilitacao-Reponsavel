@@ -24,11 +24,9 @@ export const HandleLogin = () => {
         const currentUser = await Parse.User.currentAsync();
         console.log(loggedInUser === currentUser);
         navigation.navigate('Home');
-        return true;
       })
       .catch((error) => {
         Alert.alert('Error!', error.message);
-        return false;
       });
   };
 
