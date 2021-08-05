@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, Alert } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
 
