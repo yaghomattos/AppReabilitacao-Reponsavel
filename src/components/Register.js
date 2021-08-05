@@ -19,8 +19,8 @@ export const HandleRegister = () => {
     return await Parse.User.signUp(adminnameValue, passwordValue)
       .then((createdAdmin) => {
         Alert.alert(
-          'Success!',
-          `Admin ${createdAdmin.get('username')} was successfully created!`
+          'Sucesso!',
+          `Responsável: ${createdAdmin.get('username')} criado.`
         );
         navigation.navigate('Home');
         return true;

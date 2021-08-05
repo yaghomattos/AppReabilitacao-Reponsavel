@@ -18,8 +18,8 @@ export const HandleLogin = () => {
     return await Parse.User.logIn(usernameValue, passwordValue)
       .then(async (loggedInUser) => {
         Alert.alert(
-          'Success!',
-          `User ${loggedInUser.get('username')} has successfully signed in!`
+          'Sucesso!',
+          `Responsável: ${loggedInUser.get('username')} logado.`
         );
         const currentUser = await Parse.User.currentAsync();
         console.log(loggedInUser === currentUser);

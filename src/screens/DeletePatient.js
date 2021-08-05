@@ -15,14 +15,14 @@ export function DeletePatient() {
     const test = await readPatient(usernameValue);
 
     if (test > 0) {
-      Alert.alert('Success! Patient found');
+      Alert.alert('Sucesso, Paciente deletado!');
 
       let query = new Parse.Query('Patient');
       query.equalTo('name', usernameValue);
       let result = await query.find();
 
       deletePatient(result[0].id);
-    } else Alert.alert('Error! Patient not found');
+    } else Alert.alert('Erro, paciente não encotrado!');
   }
 
   return (

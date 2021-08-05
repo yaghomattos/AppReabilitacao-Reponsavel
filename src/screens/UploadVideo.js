@@ -30,7 +30,7 @@ export default function UploadVideo() {
     gallery.set('description', 'descrição')
   
     await gallery.save();
-    Alert.alert('The file has been saved to Back4app.');
+    Alert.alert('Arquivo salvo na Back4app.');
     } catch (error) {
       console.log(
         'The file either could not be read, or could not be saved to Back4app.',
@@ -55,7 +55,7 @@ export default function UploadVideo() {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Pick an image from gallery" onPress={pickImage} />
+      <Button title="Selecionar imagem da galeria" onPress={pickImage} />
       {image && (
         <Image
           source={{ uri: image.uri }}
