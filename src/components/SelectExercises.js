@@ -4,7 +4,6 @@ export async function createSelectExercises(patient, exercise) {
   const myNewObject = new Parse.Object('SelectExercises');
   myNewObject.set('patient', patient);
   myNewObject.set('exercise', exercise);
-  myNewObject.set('name', 'A string');
   try {
     const result = await myNewObject.save();
     console.log('SelectExercises created', result);
