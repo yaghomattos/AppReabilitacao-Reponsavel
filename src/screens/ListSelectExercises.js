@@ -31,8 +31,6 @@ export const ListSelectExercises = (patient) => {
   const { isLive, isLoading, isSyncing, results, count, error, reload } =
     useParseQuery(parseQuery);
 
-  const navigation = useNavigation();
-
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#f5f5f5',
