@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { readPatient, deletePatient } from '../components/Patient';
+import { readPatientCPF, deletePatient } from '../components/Patient';
 
 import Styles from '../components/Styles';
 
 import Parse from 'parse/react-native.js';
 
 export function DeletePatient() {
-  const [username, setUsername] = useState('');
+  const [CPF, setCPF] = useState('');
 
   async function handleDelete() {
-    const usernameValue = username;
-    const test = await readPatient(usernameValue);
+    const found = await readPatientCPF(CPF);
 
-    if (test > 0) {
+    if (found) {
       Alert.alert('Sucesso, Paciente deletado!');
 
       let query = new Parse.Query('Patient');
-      query.equalTo('name', usernameValue);
+      query.equalTo('CPF', CPF);
       let result = await query.find();
 
       deletePatient(result[0].id);
@@ -30,9 +29,9 @@ export function DeletePatient() {
       <View style={Styles.form}>
         <TextInput
           style={Styles.form_input}
-          value={username}
+          value={CPF}
           placeholder={'Usuário'}
-          onChangeText={(text) => setUsername(text)}
+          onChangeText={(text) => setCPF(text)}
           autoCapitalize={'none'}
           keyboardType={'email-address'}
         />

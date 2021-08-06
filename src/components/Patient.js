@@ -28,6 +28,21 @@ export async function readPatient(id) {
   return result[0];
 }
 
+export async function readPatientCPF(cpf) {
+  const Patient = Parse.Object.extend('Patient');
+  const query = new Parse.Query(Patient);
+  var result = '';
+  query.equalTo('CPF', cpf);
+  try {
+    const results = await query.find();
+    result = results;
+    return true;
+  } catch (error) {
+    console.error('Error while fetching Patient', error);
+    return false;
+  }
+}
+
 export async function updatePatient() {
   const query = new Parse.Query('Patient');
   try {
