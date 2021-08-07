@@ -1,12 +1,9 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
+import { Button } from '../components/Button';
 import { Logout } from '../components/Logout';
-import { ToChat } from '../routes/ToChat';
-import { ToPatientControl } from '../routes/ToPatientControl';
-import { ToListPatientSelectExercise } from '../routes/ToListPatientSelectExercise';
-import { ToUploadExercise } from '../routes/ToUploadExercise';
-import { CurrentUser } from '../components/CurrentUser';
+import { CurrentUser } from '../components/CurrentUser'
 
 import Styles from '../components/Styles';
 import AuthContext from '../components/authContext';
@@ -19,7 +16,9 @@ export function Home() {
 
   return (
     <>
-      <AuthContext.Provider value={{ id: id, token: token, username: username }}>
+      <AuthContext.Provider
+        value={{ id: id, token: token, username: username }}
+      >
         <StatusBar />
         <SafeAreaView style={Styles.login_container}>
           <View style={Styles.login_header}>
@@ -30,10 +29,10 @@ export function Home() {
               {'Menu'}
             </Text>
           </View>
-          <ToChat />
-          <ToPatientControl />
-          <ToListPatientSelectExercise />
-          <ToUploadExercise />
+          <Button title="Chat" onPress="ListPatientChat" props={id} />
+          <Button title="Cadastro Paciente" onPress="PatientControl" />
+          <Button title="Exercícios" onPress="ListPatientSelectExercise" />
+          <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
           <Logout />
         </SafeAreaView>
       </AuthContext.Provider>
