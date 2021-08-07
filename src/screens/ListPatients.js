@@ -48,6 +48,7 @@ export const ListPatients = () => {
               title={item.get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
+              onPress={() => navigation.navigate('PatientProfile', item)}
             />
           )}
         />
