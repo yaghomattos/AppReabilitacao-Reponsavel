@@ -6,7 +6,7 @@ import { useParseQuery } from '@parse/react-native';
 
 import Parse from 'parse/react-native.js';
 
-import { ToSelectExercises } from '../routes/ToSelectExercise';
+import { Button } from '../components/Button';
 import Styles from '../components/Styles';
 
 const parseQuery = new Parse.Query('SelectExercises');
@@ -27,7 +27,7 @@ async function test(patientId) {
   exercise = results;
 }
 
-export const ListSelectExercises = (patient) => {
+export const ListSelectExercises = (props) => {
   const { isLive, isLoading, isSyncing, results, count, error, reload } =
     useParseQuery(parseQuery);
 
@@ -44,7 +44,9 @@ export const ListSelectExercises = (patient) => {
     },
   });
 
-  test(patient.route.params);
+  test(props.route.params);
+
+  const patient = props.route.params;
 
   return (
     <>
@@ -70,7 +72,7 @@ export const ListSelectExercises = (patient) => {
           )}
         />
       </View>
-      <ToSelectExercises>{patient.route.params}</ToSelectExercises>
+      <Button title="+" onPress="SelectExercises" props={patient} />
     </>
   );
 };

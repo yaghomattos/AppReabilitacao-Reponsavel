@@ -22,7 +22,9 @@ export const SelectExercises = (props) => {
   const navigation = useNavigation();
 
   async function SelectedExercise(exerciseName) {
-    var patient = await readPatient(props.route.params.children);
+    console.log(props.route.params)
+
+    var patient = await readPatient(props.route.params);
     var exercise = await readExercise(exerciseName);
 
     var exercisePointer = {
