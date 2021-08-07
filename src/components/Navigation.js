@@ -18,6 +18,7 @@ import { ConfirmExercise } from '../components/ConfirmExercise';
 import { ListPatientSelectExercise } from '../screens/ListPatientSelectExercise';
 import { SelectExercises } from '../screens/SelectExercises';
 import { ListPatientChat } from '../screens/ListPatientChat';
+import { PatientProfile } from '../screens/PatientProfile';
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,7 @@ export function Navigation() {
           component={ListPatientSelectExercise}
         />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
+        <Stack.Screen name="PatientProfile" component={PatientProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
