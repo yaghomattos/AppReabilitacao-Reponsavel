@@ -7,7 +7,7 @@ import Styles from '../components/Styles';
 
 export function PatientRecord() {
   const [username, setUsername] = useState('');
-  const [CPF, setCPF] = useState(0);
+  const [CPF, setCPF] = useState('');
 
   async function handleCreate() {
     const usernameValue = username;
