@@ -7,8 +7,6 @@ import Styles from '../components/Styles';
 export function Button({ title, onPress, props }) {
   const navigation = useNavigation();
 
-  console.log(onPress, props)
-
   return (
     <View style={Styles.login_wrapper}>
       <View style={Styles.form}>
