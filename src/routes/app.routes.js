@@ -10,7 +10,6 @@ import { Chat } from '../screens/Chat';
 import { PatientRecord } from '../screens/RecordPatient';
 import { DeletePatient } from '../screens/DeletePatient';
 import { UploadExercise } from '../screens/UploadExercise';
-import { ListExercises } from '../screens/ListExercises';
 import { PatientControl } from '../screens/PatientControl';
 import { ListPatients } from '../screens/ListPatients';
 import { ListSelectExercises } from '../screens/ListSelectExercises';
@@ -22,7 +21,7 @@ import { PatientProfile } from '../screens/PatientProfile';
 
 const Stack = createStackNavigator();
 
-export function Navigation() {
+export function AppRoutes() {
   return (
     <NavigationContainer>
       <Stack.Navigator >
@@ -34,7 +33,6 @@ export function Navigation() {
         <Stack.Screen name="PatientRecord" component={PatientRecord} />
         <Stack.Screen name="DeletePatient" component={DeletePatient} />
         <Stack.Screen name="UploadExercise" component={UploadExercise} />
-        <Stack.Screen name="ListExercises" component={ListExercises} />
         <Stack.Screen name="ListPatients" component={ListPatients} />
         <Stack.Screen
           name="ListSelectExercises"

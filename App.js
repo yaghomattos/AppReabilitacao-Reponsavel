@@ -4,7 +4,7 @@ import React from 'react';
 import Parse from 'parse/react-native.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Navigation } from './src/components/Navigation';
+import { AppRoutes } from './src/routes/app.routes';
 
 Parse.initialize(
   'mZ19CetKStaIV82Fqx1ZOgKc5HXs8cEuoY8B1igk',
@@ -16,7 +16,7 @@ Parse.enableLocalDatastore();
 
 const App = () => {
   return (
-    <Navigation />
+    <AppRoutes />
   );
 };
 
