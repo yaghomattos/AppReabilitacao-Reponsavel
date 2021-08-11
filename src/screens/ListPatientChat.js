@@ -13,22 +13,11 @@ const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
 
 export const ListPatientChat = (props) => {
-  const { isLive, isLoading, isSyncing, results, count, error, reload } =
-    useParseQuery(parseQuery);
+  const results = useParseQuery(parseQuery).results;
 
   const navigation = useNavigation();
 
   const admin = props.route.params;
-
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#f5f5f5',
-      flex: 1,
-    },
-    listTitle: {
-      fontSize: 22,
-    },
-  });
 
   return (
     <>
@@ -58,3 +47,13 @@ export const ListPatientChat = (props) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f5f5f5',
+    flex: 1,
+  },
+  listTitle: {
+    fontSize: 22,
+  },
+});

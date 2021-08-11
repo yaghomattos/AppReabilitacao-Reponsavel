@@ -28,21 +28,7 @@ async function test(patientId) {
 }
 
 export const ListSelectExercises = (props) => {
-  const { isLive, isLoading, isSyncing, results, count, error, reload } =
-    useParseQuery(parseQuery);
-
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#f5f5f5',
-      flex: 1,
-    },
-    listTitle: {
-      fontSize: 22,
-    },
-    listDescription: {
-      fontSize: 16,
-    },
-  });
+  const results = useParseQuery(parseQuery).results;
 
   test(props.route.params);
 
@@ -76,3 +62,16 @@ export const ListSelectExercises = (props) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f5f5f5',
+    flex: 1,
+  },
+  listTitle: {
+    fontSize: 22,
+  },
+  listDescription: {
+    fontSize: 16,
+  },
+});

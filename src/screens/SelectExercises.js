@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
 
@@ -16,10 +15,7 @@ const parseQuery = new Parse.Query('Exercise');
 parseQuery.descending('createdAt');
 
 export const SelectExercises = (props) => {
-  const { isLive, isLoading, isSyncing, results, count, error, reload } =
-    useParseQuery(parseQuery);
-
-  const navigation = useNavigation();
+  const results = useParseQuery(parseQuery).results;
 
   async function SelectedExercise(exerciseName) {
     console.log(props.route.params)
@@ -41,19 +37,6 @@ export const SelectExercises = (props) => {
 
     createSelectExercises(patientPointer, exercisePointer);
   }
-
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#f5f5f5',
-      flex: 1,
-    },
-    listTitle: {
-      fontSize: 22,
-    },
-    listDescription: {
-      fontSize: 16,
-    },
-  });
 
   return (
     <>
@@ -78,7 +61,7 @@ export const SelectExercises = (props) => {
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={1}
-              onPress={() => SelectedExercise(item.get('name'))/*navigation.navigate('ConfirmExercise', {patient})*/}
+              onPress={() => SelectedExercise(item.get('name'))}
             />
           )}
         />
@@ -86,3 +69,16 @@ export const SelectExercises = (props) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f5f5f5',
+    flex: 1,
+  },
+  listTitle: {
+    fontSize: 22,
+  },
+  listDescription: {
+    fontSize: 16,
+  },
+});
