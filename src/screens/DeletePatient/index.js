@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { readPatientCPF, deletePatient } from '../../components/Patient';
+import Parse from 'parse/react-native.js';
+
+import { readPatientCPF, deletePatient } from '../../components/Patient/index';
 
 import Styles from '../../components/Styles';
-
-import Parse from 'parse/react-native.js';
 
 export function DeletePatient() {
   const [CPF, setCPF] = useState('');

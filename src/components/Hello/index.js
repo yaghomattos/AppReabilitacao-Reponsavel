@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import Parse from 'parse/react-native';
 
-import Styles from './Styles';
+import Styles from '../Styles';
 
 export const Hello = () => {
   const [username, setUsername] = useState('');

@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { Button } from '../../components/Button';
+import { Button } from '../../components/Button/index';
 
 import Styles from '../../components/Styles';
 

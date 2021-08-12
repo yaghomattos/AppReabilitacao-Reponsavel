@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-import Styles from '../components/Styles';
+import Styles from '../Styles';
 
 export function Button({ title, onPress, props }) {
   const navigation = useNavigation();

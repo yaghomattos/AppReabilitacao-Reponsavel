@@ -1,10 +1,9 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 
+import { UploadVideo } from '../../components/UploadVideo/index';
+
 import Styles from '../../components/Styles';
-
-import { UploadVideo } from '../../components/UploadVideo';
-
 
 export function UploadExercise() {
   return (

@@ -2,7 +2,8 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { HandleLogin } from '../../components/Login';
+import { HandleLogin } from '../../components/Login/index';
+
 import Styles from '../../components/Styles';
 
 export function Login() {

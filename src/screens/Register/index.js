@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { HandleRegister } from '../../components/Register';
+import { HandleRegister } from '../../components/Register/index';
 
 import Styles from '../../components/Styles';
 

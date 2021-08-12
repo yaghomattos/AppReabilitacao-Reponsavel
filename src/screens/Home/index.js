@@ -1,13 +1,13 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { Button } from '../../components/Button';
-import { Logout } from '../../components/Logout';
-import { CurrentUser } from '../../components/CurrentUser'
-import { Hello } from '../../components/Hello';
+import { Button } from '../../components/Button/index';
+import { Logout } from '../../components/Logout/index';
+import { CurrentUser } from '../../components/CurrentUser/index';
+import { Hello } from '../../components/Hello/index';
+import AuthContext from '../../components/AuthContext/index';
 
 import Styles from '../../components/Styles';
-import AuthContext from '../../components/authContext';
 
 export function Home() {
   const currentUser = CurrentUser();

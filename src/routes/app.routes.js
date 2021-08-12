@@ -17,8 +17,7 @@ import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercis
 import { SelectExercises } from '../screens/SelectExercise/index';
 import { ListPatientChat } from '../screens/ListPatientToChat/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
-import { Hello } from '../components/Hello/';
-import { ConfirmExercise } from '../components/ConfirmExercise';
+import { Hello } from '../components/Hello/index';
 
 const Stack = createStackNavigator();
 

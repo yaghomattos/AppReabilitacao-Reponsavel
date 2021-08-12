@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Parse from 'parse/react-native';
 
-import Styles from './Styles';
+import Styles from '../Styles';
 
 export const HandleRegister = () => {
   const navigation = useNavigation();

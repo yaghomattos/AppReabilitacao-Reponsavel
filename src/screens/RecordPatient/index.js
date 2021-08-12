@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { createPatient } from '../../components/Patient';
+import { createPatient } from '../../components/Patient/index';
 
 import Styles from '../../components/Styles';
 
