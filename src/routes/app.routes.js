@@ -40,7 +40,6 @@ export function AppRoutes() {
           component={ListSelectExercises}
         />
         <Stack.Screen name="ListPatientChat" component={ListPatientChat} />
-        <Stack.Screen name="ConfirmExercise" component={ConfirmExercise} />
         <Stack.Screen
           name="ListPatientSelectExercise"
           component={ListPatientSelectExercise}
