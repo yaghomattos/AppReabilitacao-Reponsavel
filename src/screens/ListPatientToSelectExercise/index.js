@@ -7,17 +7,15 @@ import { useParseQuery } from '@parse/react-native';
 
 import Parse from 'parse/react-native.js';
 
-import Styles from '../components/Styles';
+import Styles from '../../components/Styles';
 
 const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
 
-export const ListPatientChat = (props) => {
+export const ListPatientSelectExercise = () => {
   const results = useParseQuery(parseQuery).results;
 
   const navigation = useNavigation();
-
-  const admin = props.route.params;
 
   return (
     <>
@@ -39,7 +37,7 @@ export const ListPatientChat = (props) => {
               title={item.get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
-              onPress={() => navigation.navigate('Chat', {item, admin})}
+              onPress={() => navigation.navigate('ListSelectExercises', item.id)}
             />
           )}
         />

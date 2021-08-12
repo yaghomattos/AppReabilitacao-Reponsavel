@@ -3,21 +3,22 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Login } from '../screens/Login';
-import { Register } from '../screens/Register';
-import { Home } from '../screens/Home';
-import { Chat } from '../screens/Chat';
-import { PatientRecord } from '../screens/RecordPatient';
-import { DeletePatient } from '../screens/DeletePatient';
-import { UploadExercise } from '../screens/UploadExercise';
-import { PatientControl } from '../screens/PatientControl';
-import { ListPatients } from '../screens/ListPatients';
-import { ListSelectExercises } from '../screens/ListSelectExercises';
+import { Login } from '../screens/Login/index';
+import { Register } from '../screens/Register/index';
+import { Home } from '../screens/Home/index';
+import { Chat } from '../screens/Chat/index';
+import { PatientRecord } from '../screens/RecordPatient/index';
+import { DeletePatient } from '../screens/DeletePatient/index';
+import { UploadExercise } from '../screens/UploadExercise/index';
+import { PatientControl } from '../screens/PatientControl/index';
+import { ListPatients } from '../screens/ListPatients/index';
+import { ListSelectExercises } from '../screens/ListSelectExercise/index';
+import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercise/index';
+import { SelectExercises } from '../screens/SelectExercise/index';
+import { ListPatientChat } from '../screens/ListPatientToChat/index';
+import { PatientProfile } from '../screens/PatientProfile/index';
+import { Hello } from '../components/Hello/';
 import { ConfirmExercise } from '../components/ConfirmExercise';
-import { ListPatientSelectExercise } from '../screens/ListPatientSelectExercise';
-import { SelectExercises } from '../screens/SelectExercises';
-import { ListPatientChat } from '../screens/ListPatientChat';
-import { PatientProfile } from '../screens/PatientProfile';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ export function AppRoutes() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} options={{ mode: 'modal', headerLeft: null }}/>
+        <Stack.Screen name="Hello" component={Hello} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="PatientControl" component={PatientControl} />
         <Stack.Screen name="PatientRecord" component={PatientRecord} />

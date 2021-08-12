@@ -6,10 +6,10 @@ import { useParseQuery } from '@parse/react-native';
 
 import Parse from 'parse/react-native.js';
 
-import Styles from '../components/Styles';
-import { readPatient } from '../components/Patient';
-import { createSelectExercises } from '../components/SelectExercises';
-import { readExercise } from '../components/Exercices';
+import Styles from '../../components/Styles';
+import { readPatient } from '../../components/Patient';
+import { createSelectExercises } from '../../components/SelectExercises';
+import { readExercise } from '../../components/Exercices';
 
 const parseQuery = new Parse.Query('Exercise');
 parseQuery.descending('createdAt');

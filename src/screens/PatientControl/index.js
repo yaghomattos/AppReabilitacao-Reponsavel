@@ -2,9 +2,9 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { Button } from '../components/Button';
+import { Button } from '../../components/Button';
 
-import Styles from '../components/Styles';
+import Styles from '../../components/Styles';
 
 export function PatientControl() {
   return (

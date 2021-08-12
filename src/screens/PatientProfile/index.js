@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import Styles from '../components/Styles';
+import Styles from '../../components/Styles';
 
 export function PatientProfile(props) {
 

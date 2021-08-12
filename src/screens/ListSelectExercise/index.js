@@ -6,8 +6,8 @@ import { useParseQuery } from '@parse/react-native';
 
 import Parse from 'parse/react-native.js';
 
-import { Button } from '../components/Button';
-import Styles from '../components/Styles';
+import { Button } from '../../components/Button';
+import Styles from '../../components/Styles';
 
 const parseQuery = new Parse.Query('SelectExercises');
 parseQuery.descending('createdAt');

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { createPatient } from '../components/Patient';
+import { createPatient } from '../../components/Patient';
 
-import Styles from '../components/Styles';
+import Styles from '../../components/Styles';
 
 export function PatientRecord() {
   const [username, setUsername] = useState('');

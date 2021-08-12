@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { readPatientCPF, deletePatient } from '../components/Patient';
+import { readPatientCPF, deletePatient } from '../../components/Patient';
 
-import Styles from '../components/Styles';
+import Styles from '../../components/Styles';
 
 import Parse from 'parse/react-native.js';
 

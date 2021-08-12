@@ -1,12 +1,13 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { Button } from '../components/Button';
-import { Logout } from '../components/Logout';
-import { CurrentUser } from '../components/CurrentUser'
+import { Button } from '../../components/Button';
+import { Logout } from '../../components/Logout';
+import { CurrentUser } from '../../components/CurrentUser'
+import { Hello } from '../../components/Hello';
 
-import Styles from '../components/Styles';
-import AuthContext from '../components/authContext';
+import Styles from '../../components/Styles';
+import AuthContext from '../../components/authContext';
 
 export function Home() {
   const currentUser = CurrentUser();
@@ -28,6 +29,7 @@ export function Home() {
               </Text>
               {'Menu'}
             </Text>
+            <Hello />
           </View>
           <Button title="Chat" onPress="ListPatientChat" props={id} />
           <Button title="Cadastro Paciente" onPress="PatientControl" />

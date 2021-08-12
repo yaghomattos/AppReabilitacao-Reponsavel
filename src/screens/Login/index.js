@@ -2,11 +2,10 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
-import { HandleRegister } from '../components/Register';
+import { HandleLogin } from '../../components/Login';
+import Styles from '../../components/Styles';
 
-import Styles from '../components/Styles';
-
-export function Register() {
+export function Login() {
   return (
     <>
       <StatusBar />
@@ -19,7 +18,7 @@ export function Register() {
             {'Responsável'}
           </Text>
         </View>
-        <HandleRegister />
+        <HandleLogin />
       </SafeAreaView>
     </>
   );
