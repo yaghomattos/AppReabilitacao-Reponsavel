@@ -19,14 +19,13 @@ export const HandleRegister = () => {
     return await Parse.User.signUp(adminnameValue, passwordValue)
       .then((createdAdmin) => {
         Alert.alert(
-          'Sucesso!',
-          `Responsável: ${createdAdmin.get('username')} criado.`
+          `Responsável: ${createdAdmin.get('username')}, criado criado com sucesso!`
         );
         navigation.navigate('Home');
         return true;
       })
       .catch((error) => {
-        Alert.alert('Error!', error.message);
+        Alert.alert('Erro!', error.message);
         return false;
       });
   };

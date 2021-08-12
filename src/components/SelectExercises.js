@@ -1,4 +1,5 @@
 import Parse from 'parse/react-native.js';
+import { Alert } from 'react-native';
 
 export async function createSelectExercises(patient, exercise) {
   const myNewObject = new Parse.Object('SelectExercises');
@@ -6,7 +7,8 @@ export async function createSelectExercises(patient, exercise) {
   myNewObject.set('exercise', exercise);
   try {
     const result = await myNewObject.save();
-    console.log('SelectExercises created', result);
+    Alert.alert('Exercício', result.get('exercise').get('name'), 
+    'selecionado para o paciente', result.get('patient').get('name'));
   } catch (error) {
     console.error('Error while creating SelectExercises: ', error);
   }

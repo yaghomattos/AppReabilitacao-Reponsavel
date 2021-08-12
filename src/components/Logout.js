@@ -16,7 +16,7 @@ export const Logout = () => {
       .then(async () => {
         currentUser = await Parse.User.currentAsync();
         if (currentUser === null) {
-          Alert.alert('Sucesso, Responsável deslogado!');
+          Alert.alert('Responsável deslogado!');
         }
         navigation.dispatch(StackActions.popToTop());
         return true;

@@ -1,4 +1,5 @@
 import Parse from 'parse/react-native.js';
+import { Alert } from 'react-native';
 
 export async function createPatient(name, CPF) {
   const newPatient = new Parse.Object('Patient');
@@ -7,9 +8,9 @@ export async function createPatient(name, CPF) {
 
   try {
     const result = await newPatient.save();
-    console.log('Patient created', result);
+    Alert.alert('Paciente cadastrado com sucesso!');
   } catch (error) {
-    console.error('Error while creating Patient: ', error);
+    console.error('Erro ao cadastrar paciente');
   }
 }
 
@@ -22,7 +23,7 @@ export async function readPatient(id) {
     const results = await query.find();
     result = results;
   } catch (error) {
-    console.error('Error while fetching Patient', error);
+    console.error('Erro ao buscar paciente:', error);
     return;
   }
   return result[0];
@@ -38,7 +39,7 @@ export async function readPatientCPF(cpf) {
     result = results;
     return true;
   } catch (error) {
-    console.error('Error while fetching Patient', error);
+    console.error('Erro ao buscar paciente:', error);
     return false;
   }
 }
