@@ -8,13 +8,22 @@ import Styles from '../../components/Styles';
 export function PatientRecord() {
   const [username, setUsername] = useState('');
   const [CPF, setCPF] = useState('');
+  const [age, setAge] = useState('');
+  const [phone, setPhone] = useState('');
+  const [diagnosis, setDiagnosis] = useState('');
+  const [address, setAddress] = useState('');
 
   async function handleCreate() {
-    const usernameValue = username;
-    const CPFValue = CPF;
-    createPatient(usernameValue, CPFValue);
+    const patient = {
+      name: username,
+      cpf: CPF,
+      age: age,
+      phone: phone,
+      diagnosis: diagnosis,
+      address: address
+    }
 
-    Alert.alert('Paciente: ', usernameValue, ' criado.')
+    createPatient(patient);
   }
 
   return (
@@ -35,6 +44,42 @@ export function PatientRecord() {
           onChangeText={(text) => setCPF(text)}
           keyboardType={'numeric'}
           maxLength={12}
+        />
+        <TextInput
+          style={Styles.form_input}
+          value={age}
+          placeholder={'Idade'}
+          onChangeText={(text) => setAge(text)}
+          keyboardType={'numeric'}
+          maxLength={2}
+        />
+        <TextInput
+          style={Styles.form_input}
+          value={phone}
+          placeholder={'Telefone'}
+          onChangeText={(text) => setPhone(text)}
+          autoCapitalize={'none'}
+          keyboardType={'numeric'}
+        />
+        <TextInput
+          editable
+          multiline
+          style={Styles.form_input}
+          value={diagnosis}
+          placeholder={'Diagnóstico'}
+          onChangeText={(text) => setDiagnosis(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
+        <TextInput
+          editable
+          multiline
+          style={Styles.form_input}
+          value={address}
+          placeholder={'Endereço'}
+          onChangeText={(text) => setAddress(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
         />
         <TouchableOpacity onPress={() => handleCreate()}>
           <View style={Styles.button}>

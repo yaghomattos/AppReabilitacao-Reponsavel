@@ -1,11 +1,15 @@
 import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
-export async function createPatient(name, CPF) {
+export async function createPatient(props) {
   const newPatient = new Parse.Object('Patient');
-  newPatient.set('name', name);
-  newPatient.set('CPF', CPF);
-
+  newPatient.set('name', props.name);
+  newPatient.set('CPF', props.cpf);
+  newPatient.set('age', props.age);
+  newPatient.set('phone', props.phone);
+  newPatient.set('diagnosis', props.diagnosis);
+  newPatient.set('address', props.address);
+  
   try {
     const result = await newPatient.save();
     Alert.alert('Paciente cadastrado com sucesso!');
