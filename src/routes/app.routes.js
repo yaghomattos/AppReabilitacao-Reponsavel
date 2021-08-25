@@ -24,10 +24,10 @@ const Stack = createStackNavigator();
 export function AppRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator >
+      <Stack.Navigator headerMode="none">
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Home" component={Home} options={{ mode: 'modal', headerLeft: null }}/>
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Hello" component={Hello} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="PatientControl" component={PatientControl} />
