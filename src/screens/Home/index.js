@@ -4,10 +4,9 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { Button } from '../../components/Button/index';
 import { Logout } from '../../components/Logout/index';
 import { CurrentUser } from '../../components/CurrentUser/index';
-import { Hello } from '../../components/Hello/index';
 import AuthContext from '../../components/AuthContext/index';
 
-import Styles from '../../components/Styles';
+import styles from './styles';
 
 export function Home() {
   const currentUser = CurrentUser();
@@ -21,20 +20,19 @@ export function Home() {
         value={{ id: id, token: token, username: username }}
       >
         <StatusBar />
-        <SafeAreaView style={Styles.login_container}>
-          <View style={Styles.login_header}>
-            <Text style={Styles.login_header_text}>
-              <Text style={Styles.login_header_text_bold}>
-                {'AppReabilitação - '}
-              </Text>
-              {'Menu'}
+        <SafeAreaView style={styles.container}>
+          <View style={styles.header}>
+          <Text style={styles.header_text}>
+              {'Bem Vindo - '}
+              <Text style={styles.header_text_bold}>{username}</Text>
             </Text>
-            <Hello />
           </View>
-          <Button title="Chat" onPress="ListPatientChat" props={id} />
-          <Button title="Cadastro Paciente" onPress="PatientControl" />
-          <Button title="Exercícios" onPress="ListPatientSelectExercise" />
-          <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
+          <View style={styles.background}>
+            <Button title="Chat" onPress="ListPatientChat" props={id} />
+            <Button title="Cadastro Paciente" onPress="PatientControl" />
+            <Button title="Exercícios" onPress="ListPatientSelectExercise" />
+            <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
+          </View>
           <Logout />
         </SafeAreaView>
       </AuthContext.Provider>
