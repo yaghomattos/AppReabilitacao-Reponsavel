@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 
+import { useNavigation } from '@react-navigation/core';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
 
@@ -11,15 +12,19 @@ import { createSelectExercises } from '../../components/SelectExercises/index';
 import { readExercise } from '../../components/Exercises/index';
 
 import Styles from '../../components/Styles';
+import styles from './styles';
+import { Ionicons } from '@expo/vector-icons';
 
 const parseQuery = new Parse.Query('Exercise');
-parseQuery.descending('createdAt');
+parseQuery.ascending('createdAt');
 
 export const SelectExercises = (props) => {
+  const navigation = useNavigation();
+
   const results = useParseQuery(parseQuery).results;
 
   async function SelectedExercise(exerciseName) {
-    console.log(props.route.params)
+    console.log(props.route.params);
 
     var patient = await readPatient(props.route.params);
     var exercise = await readExercise(exerciseName);
@@ -27,59 +32,50 @@ export const SelectExercises = (props) => {
     var exercisePointer = {
       __type: 'Pointer',
       className: 'Exercise',
-      objectId: exercise.id
-    }
+      objectId: exercise.id,
+    };
 
     var patientPointer = {
       __type: 'Pointer',
       className: 'Patient',
-      objectId: patient.id
-    }
+      objectId: patient.id,
+    };
 
     createSelectExercises(patientPointer, exercisePointer);
   }
 
   return (
-    <>
-      <View style={Styles.login_header}>
-        <Text style={Styles.login_header_text}>
-          <Text style={Styles.login_header_text_bold}>
-            {'AppReabilitação - '}
-          </Text>
-          {'Lista de Exercícios Selecionados'}
-        </Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.backView}>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            style={styles.back}
+            onPress={() => navigation.goBack()}
+          />
+          <Text style={styles.header_text}>{'Cadastro de paciente'}</Text>
+        </View>
       </View>
-      <View style={styles.container}>
+      <View style={styles.viewList}>
         <FlatList
           data={results}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
-            <List.Item
-              title={item.get('name')}
-              description={item.get('description')}
-              titleNumberOfLines={1}
-              titleStyle={styles.listTitle}
-              descriptionStyle={styles.listDescription}
-              descriptionNumberOfLines={1}
-              onPress={() => SelectedExercise(item.get('name'))}
-            />
+              <List.Item
+                style={styles.item}
+                title={item.get('name')}
+                description={item.get('description')}
+                titleNumberOfLines={1}
+                titleStyle={styles.itemTitle}
+                descriptionStyle={styles.listDescription}
+                descriptionNumberOfLines={10}
+                onPress={() => SelectedExercise(item.get('name'))}
+              />
           )}
         />
       </View>
-    </>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f5f5f5',
-    flex: 1,
-  },
-  listTitle: {
-    fontSize: 22,
-  },
-  listDescription: {
-    fontSize: 16,
-  },
-});
