@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, FlatList, TextInput } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
@@ -8,36 +8,54 @@ import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
 import Styles from '../../components/Styles';
+import styles from '../ListPatientToChat/styles';
+import { Ionicons } from '@expo/vector-icons';
 
 const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
 
 export const ListPatientSelectExercise = () => {
+  const [search, setSearch] = useState('');
+
   const results = useParseQuery(parseQuery).results;
 
   const navigation = useNavigation();
 
   return (
     <>
-      <View style={Styles.login_header}>
-        <Text style={Styles.login_header_text}>
-          <Text style={Styles.login_header_text_bold}>
-            {'AppReabilitação - '}
-          </Text>
-          {'Lista de Pacientes'}
-        </Text>
+      <View style={styles.header}>
+        <View style={styles.backView}>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            style={styles.back}
+            onPress={() => navigation.goBack()}
+          />
+        </View>
+        <TextInput
+          style={styles.input}
+          value={search}
+          placeholder={'Pesquisar'}
+          onChangeText={(text) => setSearch(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
       </View>
-      <View style={styles.container}>
+      <View style={styles.viewList}>
         <FlatList
+          numColumns={2}
           data={results}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <List.Item
+              style={styles.item}
               title={item.get('name')}
               titleNumberOfLines={1}
-              titleStyle={styles.listTitle}
-              onPress={() => navigation.navigate('ListSelectExercises', item.id)}
+              titleStyle={styles.itemTitle}
+              onPress={() =>
+                navigation.navigate('ListSelectExercises', item.id)
+              }
             />
           )}
         />
@@ -45,13 +63,3 @@ export const ListPatientSelectExercise = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f5f5f5',
-    flex: 1,
-  },
-  listTitle: {
-    fontSize: 22,
-  },
-});
