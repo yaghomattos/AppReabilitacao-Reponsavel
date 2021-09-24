@@ -31,7 +31,7 @@ export const Login = () => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.logo}>
-        <Text style={styles.text_label}>Logo</Text>
+        <Text style={styles.text_label}>{'App Reabilitação'}</Text>
       </View>
       <View style={styles.form}>
         <TextInput
