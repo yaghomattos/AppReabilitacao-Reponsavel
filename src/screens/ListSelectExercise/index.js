@@ -66,11 +66,12 @@ export const ListSelectExercises = (props) => {
                   title={item.get('exercise').get('name')}
                   titleNumberOfLines={1}
                   titleStyle={styles.itemTitle}
+                  onPress={() => navigation.navigate('ExerciseSettings', item.id)}
                 />
               )}
             />
           </View>
-          <Button title="+" onPress="SelectExercises" props={patient} />
+          <Button title="Selecionar Exercício" onPress="SelectExercises" props={patient} />
         </View>
       </View>
     </>

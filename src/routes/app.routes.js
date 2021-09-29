@@ -18,6 +18,8 @@ import { SelectExercises } from '../screens/SelectExercise/index';
 import { ListPatientChat } from '../screens/ListPatientToChat/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
 import { Hello } from '../components/Hello/index';
+import { ExerciseSettings } from '../screens/ExerciseSettings/index'
+import { Monitoring } from '../screens/Monitoring/index'
 
 const Stack = createStackNavigator();
 
@@ -46,6 +48,8 @@ export function AppRoutes() {
         />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
         <Stack.Screen name="PatientProfile" component={PatientProfile} />
+        <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
+        <Stack.Screen name="Monitoring" component={Monitoring} />
       </Stack.Navigator>
     </NavigationContainer>
   );
