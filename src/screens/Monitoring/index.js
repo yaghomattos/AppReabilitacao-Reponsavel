@@ -1,15 +1,49 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { SafeAreaView, StatusBar, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, Text, View, FlatList } from 'react-native';
+
+import Parse from 'parse/react-native.js';
 
 import { useNavigation } from '@react-navigation/native';
+import { useParseQuery } from '@parse/react-native';
 
 import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
-import { Divider } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 
-export function Monitoring() {
+const parseQuery = new Parse.Query('SelectExercises');
+parseQuery.ascending('createdAt');
+
+var exercise = '';
+var totalExercise = 0;
+
+async function search(patientId) {
+  var patientPointer = {
+    __type: 'Pointer',
+    className: 'Patient',
+    objectId: patientId,
+  };
+
+  parseQuery.equalTo('patient', patientPointer);
+  var results = await parseQuery.find();
+  totalExercise = results.length;
+
+  const query = new Parse.Query('SelectExercises');
+  query.ascending('createdAt');
+  query.equalTo('check', true);
+
+  var result = await query.find();
+  exercise = result;
+}
+
+export function Monitoring(props) {
   const navigation = useNavigation();
+
+  const patientId = props.route.params;
+
+  const results = useParseQuery(parseQuery).results;
+
+  search(patientId);
 
   return (
     <>
@@ -31,31 +65,24 @@ export function Monitoring() {
         <View style={styles.exerciseBox}>
           <Text style={styles.subTitle}>{'Exercícios:'}</Text>
           <View style={styles.exerciseContainer}>
-            <Text style={styles.description}>
-              {
-                'Exercício 1 - Inspire profundamente elevando os braços até a altura dos ombros, em seguida expire lentamente abaixando-os.'
-              }
-            </Text>
-          </View>
-          <View style={styles.exerciseContainer}>
-            <Text style={styles.description}>
-              {
-                'Exercício 2 - Em pé, com as mãos apoiadas na cama, fique na ponta dos pés e volte à posição original.'
-              }
-            </Text>
-          </View>
-          <View style={styles.exerciseContainer}>
-            <Text style={styles.description}>
-              {
-                'Exercício 3 - Sentado em uma cadeira, relaxe os ombros, com as mãos na barriga, respire lentamente e profundamente.'
-              }
-            </Text>
+            <FlatList
+              data={exercise}
+              keyExtractor={(item) => item.id}
+              ItemSeparatorComponent={() => <Divider />}
+              renderItem={({ item }) => (
+                <List.Item
+                  style={styles.item}
+                  title={item.get('exercise').get('name')}
+                  titleNumberOfLines={1}
+                  titleStyle={styles.description}
+                />
+              )}
+            />
           </View>
           <View>
             <Text style={styles.subTitle}>{'Quantidade:'}</Text>
             <View>
-              <Text style={styles.feedback}>
-                {'3 de 3 exercícios concluídos'}
+              <Text style={styles.feedback}> {exercise.length + ` de ${totalExercise} exercícios concluídos`}
               </Text>
             </View>
             <Text style={styles.subTitle}>{'Produtividade:'}</Text>
