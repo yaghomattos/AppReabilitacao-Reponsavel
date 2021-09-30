@@ -32,7 +32,7 @@ export function Home() {
             <Button title="Cadastro Paciente" onPress="PatientControl" />
             <Button title="Exercícios" onPress="ListPatientSelectExercise" />
             <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
-            <Button title="Monitoramento" onPress="Monitoring" />
+            <Button title="Monitoramento" onPress="ListPatientMonitoring" />
           </View>
           <Logout />
         </SafeAreaView>

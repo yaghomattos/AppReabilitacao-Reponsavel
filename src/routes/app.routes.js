@@ -12,14 +12,15 @@ import { DeletePatient } from '../screens/DeletePatient/index';
 import { UploadExercise } from '../screens/UploadExercise/index';
 import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
-import { ListSelectExercises } from '../screens/ListSelectExercise/index';
 import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercise/index';
-import { SelectExercises } from '../screens/SelectExercise/index';
 import { ListPatientChat } from '../screens/ListPatientToChat/index';
+import { ListPatientMonitoring } from '../screens/ListPatientToMonitoring/index';
+import { ListSelectExercises } from '../screens/ListSelectExercise/index';
+import { SelectExercises } from '../screens/SelectExercise/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
 import { Hello } from '../components/Hello/index';
-import { ExerciseSettings } from '../screens/ExerciseSettings/index'
-import { Monitoring } from '../screens/Monitoring/index'
+import { ExerciseSettings } from '../screens/ExerciseSettings/index';
+import { Monitoring } from '../screens/Monitoring/index';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +51,10 @@ export function AppRoutes() {
         <Stack.Screen name="PatientProfile" component={PatientProfile} />
         <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
         <Stack.Screen name="Monitoring" component={Monitoring} />
+        <Stack.Screen
+          name="ListPatientMonitoring"
+          component={ListPatientMonitoring}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
