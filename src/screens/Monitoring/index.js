@@ -36,6 +36,37 @@ async function search(patientId) {
   exercise = result;
 }
 
+function Case1() {
+  return 'Ruim';
+}
+
+function Case2() {
+  return 'Bom';
+}
+
+function Case3() {
+  return 'Excelente';
+}
+
+function Productivy(props) {
+  const percent = props;
+  if (percent <= 0.34) return <Case1 />;
+  else if (percent > 0.33 && percent <= 0.67) return <Case2 />;
+  else return <Case3 />;
+}
+
+function CurrentDate() {
+
+  var date = new Date().getDate();
+  var month = new Date().getMonth();
+  var year = new Date().getFullYear();
+
+  var monName;
+  monName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro")
+
+  return date + ' de ' + monName[month] + ', ' + year;
+}
+
 export function Monitoring(props) {
   const navigation = useNavigation();
 
@@ -56,7 +87,7 @@ export function Monitoring(props) {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.date}>{'21 de set, 2021'}</Text>
+          <Text style={styles.date}>{CurrentDate()}</Text>
         </View>
         <View style={styles.today}>
           <Text style={styles.title}>{'Feito Hoje'}</Text>
@@ -82,12 +113,16 @@ export function Monitoring(props) {
           <View>
             <Text style={styles.subTitle}>{'Quantidade:'}</Text>
             <View>
-              <Text style={styles.feedback}> {exercise.length + ` de ${totalExercise} exercícios concluídos`}
+              <Text style={styles.feedback}>
+                {' '}
+                {exercise.length + ` de ${totalExercise} exercícios concluídos`}
               </Text>
             </View>
             <Text style={styles.subTitle}>{'Produtividade:'}</Text>
             <View>
-              <Text style={styles.feedback}>{'Excelente'}</Text>
+              <Text style={styles.feedback}>
+                {Productivy(exercise.length / totalExercise)}
+              </Text>
             </View>
           </View>
         </View>
