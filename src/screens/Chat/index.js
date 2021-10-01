@@ -28,10 +28,11 @@ export function Chat(props) {
   };
 
   parseQuery.equalTo('fromAdmin', currentUser);
+  parseQuery.find();
+  parseQuery.equalTo('fromPatient', toPatient);
+  const results = useParseQuery(parseQuery).results;
 
   const [messages, setMessages] = useState([]);
-
-  const results = useParseQuery(parseQuery).results;
 
   Parse.User._clearCache();
 
