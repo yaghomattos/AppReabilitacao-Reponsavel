@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 52,
     paddingHorizontal: 20,
-    marginBottom: "20%",
+    marginBottom: 30,
     backgroundColor: '#F4F4F4',
     borderRadius: 10,
   },
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#C4C4C4',
   },
-  footer_link:{
+  footer_link: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
-  }
+  },
 });
 
 export default styles;
