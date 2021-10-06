@@ -1,47 +1,48 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#3E9ACD',
+  },
   header: {
-    height: '19%',
+    height: 125,
     alignItems: 'center',
     justifyContent: 'center',
   },
   backView: {
-    width: '100%', 
+    width: '100%',
     paddingStart: 20,
     margin: 30,
   },
   back: {
-    color: '#000',
+    color: '#fff',
   },
   input: {
     width: 340,
     height: 45,
     paddingHorizontal: 20,
-    backgroundColor: '#6f6f6f',
-    borderRadius: 30,
+    backgroundColor: '#f8f8f8',
+    borderRadius: 15,
   },
   viewList: {
     flex: 1,
     paddingTop: 10,
-    borderTopStartRadius: 15,
-    borderTopEndRadius: 15,
-   
   },
   item: {
-    width: 150,
-    height: 208,
+    width: '85%',
+    height: 80,
     marginTop: 20,
     marginEnd: 20,
     marginStart: 30,
     borderRadius: 15,
-    justifyContent: 'center',    
-    backgroundColor: '#6f6f6f',
+    justifyContent: 'center',
+    backgroundColor: '#f8f8f8',
   },
   itemTitle: {
     fontSize: 22,
     color: '#000',
-  }
+  },
 });
 
 export default styles;

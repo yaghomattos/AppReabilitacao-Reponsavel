@@ -14,13 +14,13 @@ parseQuery.ascending('name');
 
 export const ListPatientMonitoring = () => {
   const navigation = useNavigation();
-  
+
   const [search, setSearch] = useState('');
 
   const results = useParseQuery(parseQuery).results;
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.backView}>
           <Ionicons
@@ -41,7 +41,7 @@ export const ListPatientMonitoring = () => {
       </View>
       <View style={styles.viewList}>
         <FlatList
-          numColumns={2}
+          numColumns={1}
           data={results}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
@@ -51,13 +51,11 @@ export const ListPatientMonitoring = () => {
               title={item.get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.itemTitle}
-              onPress={() =>
-                navigation.navigate('Monitoring', item.id)
-              }
+              onPress={() => navigation.navigate('Monitoring', item.id)}
             />
           )}
         />
       </View>
-    </>
+    </View>
   );
 };

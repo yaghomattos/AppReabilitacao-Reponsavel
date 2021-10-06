@@ -7,7 +7,7 @@ import Parse from 'parse/react-native.js';
 
 import { Ionicons } from '@expo/vector-icons';
 
-import styles from '../ListPatientToChat/styles';
+import styles from './styles';
 
 const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
@@ -20,7 +20,7 @@ export const ListPatientSelectExercise = () => {
   const results = useParseQuery(parseQuery).results;
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.backView}>
           <Ionicons
@@ -41,7 +41,7 @@ export const ListPatientSelectExercise = () => {
       </View>
       <View style={styles.viewList}>
         <FlatList
-          numColumns={2}
+          numColumns={1}
           data={results}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
@@ -58,6 +58,6 @@ export const ListPatientSelectExercise = () => {
           )}
         />
       </View>
-    </>
+    </View>
   );
 };

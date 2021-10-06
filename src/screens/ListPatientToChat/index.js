@@ -14,7 +14,7 @@ parseQuery.ascending('name');
 
 export const ListPatientChat = (props) => {
   const navigation = useNavigation();
-  
+
   const [search, setSearch] = useState('');
 
   const results = useParseQuery(parseQuery).results;
@@ -22,7 +22,7 @@ export const ListPatientChat = (props) => {
   const adminId = props.route.params;
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.backView}>
           <Ionicons
@@ -43,7 +43,7 @@ export const ListPatientChat = (props) => {
       </View>
       <View style={styles.viewList}>
         <FlatList
-          numColumns={2}
+          numColumns={1}
           data={results}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
@@ -58,6 +58,6 @@ export const ListPatientChat = (props) => {
           )}
         />
       </View>
-    </>
+    </View>
   );
 };

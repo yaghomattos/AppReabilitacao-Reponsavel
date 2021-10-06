@@ -16,13 +16,13 @@ export const ListPatients = () => {
   const navigation = useNavigation();
 
   const [search, setSearch] = useState('');
-  
+
   const results = useParseQuery(parseQuery).results;
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.header}>
-      <View style={styles.backView}>
+        <View style={styles.backView}>
           <Ionicons
             name="arrow-back"
             size={24}
@@ -41,7 +41,7 @@ export const ListPatients = () => {
       </View>
       <View style={styles.viewList}>
         <FlatList
-          numColumns={2}
+          numColumns={1}
           data={results}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
@@ -56,6 +56,6 @@ export const ListPatients = () => {
           )}
         />
       </View>
-    </>
+    </View>
   );
 };
