@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   background: {
-    flex: 2,
+    flex: 3,
     height: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
   },

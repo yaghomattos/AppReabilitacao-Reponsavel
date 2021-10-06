@@ -2,18 +2,18 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+    flex: 0.5,
     paddingVertical: 0,
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 40,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#f5f5f5',
   },
   form: {
     width: '40%',
     maxWidth: 200,
   },
-    button: {
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
     height: 35,
