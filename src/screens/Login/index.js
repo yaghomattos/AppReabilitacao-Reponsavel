@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  StatusBar,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Parse from 'parse/react-native';
 
@@ -22,45 +30,52 @@ export const Login = () => {
         navigation.navigate('Home');
       })
       .catch((error) => {
-        Alert.alert('Error!', error.message);
+        Alert.alert('Erro!', 'Email e Senha inválidos');
       });
   };
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.logo}>
-        <Text style={styles.text_label}>{'App Reabilitação'}</Text>
+    <KeyboardAvoidingView
+      behavior="height"
+      keyboardVerticalOffset="-140"
+      style={styles.keyboard}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor="#0065A4" />
+      <View style={styles.wrapper}>
+        <View style={styles.logo}>
+          <Text style={styles.text_label}>{'App Reabilitação'}</Text>
+        </View>
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            value={username}
+            placeholder={'Usuário'}
+            onChangeText={(text) => setUsername(text)}
+            autoCapitalize={'none'}
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            style={styles.input}
+            value={password}
+            placeholder={'Senha'}
+            secureTextEntry
+            onChangeText={(text) => setPassword(text)}
+          />
+          <TouchableOpacity onPress={() => doUserLogin()}>
+            <View style={styles.button}>
+              <Text style={styles.text_label}>{'Entrar'}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.footer_text}>
+              {'Não possui conta? '}
+              <Text style={styles.footer_link}>{'Registre-se'}</Text>
+            </Text>
+          </TouchableOpacity>
+        </>
       </View>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          value={username}
-          placeholder={'Usuário'}
-          onChangeText={(text) => setUsername(text)}
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
-        />
-        <TextInput
-          style={styles.input}
-          value={password}
-          placeholder={'Senha'}
-          secureTextEntry
-          onChangeText={(text) => setPassword(text)}
-        />
-        <TouchableOpacity onPress={() => doUserLogin()}>
-          <View style={styles.button}>
-            <Text style={styles.text_label}>{'Entrar'}</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-      <>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text style={styles.footer_text}>
-            {'Não possui conta? '}
-            <Text style={styles.footer_link}>{'Registre-se'}</Text>
-          </Text>
-        </TouchableOpacity>
-      </>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
