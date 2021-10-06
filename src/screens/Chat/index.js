@@ -1,26 +1,29 @@
 import React, { useState, useCallback } from 'react';
-import { GiftedChat, Send } from 'react-native-gifted-chat';
 import { View, Text, SafeAreaView, ActivityIndicator } from 'react-native';
-
-import Parse from 'parse/react-native.js';
-import { useParseQuery } from '@parse/react-native';
+import { GiftedChat, Send } from 'react-native-gifted-chat';
 import { useNavigation } from '@react-navigation/native';
+import { useParseQuery } from '@parse/react-native';
+import Parse from 'parse/react-native.js';
 
-import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
 import { IconButton } from 'react-native-paper';
 import { Avatar } from 'react-native-paper';
+
+import styles from './styles';
 
 const parseQuery = new Parse.Query('Chat');
 parseQuery.descending('createdAt');
 
 export function Chat(props) {
+  const navigation = useNavigation();
+  
+  const [messages, setMessages] = useState([]);
+
   var currentUser = {
     __type: 'Pointer',
     className: '_User',
-    objectId: props.route.params.admin,
+    objectId: props.route.params.adminId,
   };
-
   var toPatient = {
     __type: 'Pointer',
     className: 'Patient',
@@ -32,16 +35,7 @@ export function Chat(props) {
   parseQuery.equalTo('fromPatient', toPatient);
   const results = useParseQuery(parseQuery).results;
 
-  const [messages, setMessages] = useState([]);
-
   Parse.User._clearCache();
-
-  function teste(object) {
-    if (object.get('from') === '1') {
-      return 1;
-    }
-    return 2;
-  }
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
@@ -61,7 +55,12 @@ export function Chat(props) {
     }
   }, []);
 
-  const navigation = useNavigation();
+  function CheckRecipient(object) {
+    if (object.get('from') === '1') {
+      return 1;
+    }
+    return 2;
+  }
 
   function renderSend(props) {
     return (
@@ -135,7 +134,7 @@ export function Chat(props) {
             text: liveMessage.get('content'),
             createdAt: liveMessage.get('createdAt'),
             user: {
-              _id: teste(liveMessage),
+              _id: CheckRecipient(liveMessage),
               name: 'Teste',
               avatar: 'https://placeimg.com/140/140/any',
             },
@@ -145,7 +144,7 @@ export function Chat(props) {
         user={{
           _id: 1,
         }}
-        placeholder='Digite sua mensagem'
+        placeholder="Digite sua mensagem"
         alwaysShowSend
         renderSend={renderSend}
         scrollToBottomComponent={scrollToBottomComponent}

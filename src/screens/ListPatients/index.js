@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, FlatList, Text, TextInput } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
-
 import Parse from 'parse/react-native.js';
 
-import Styles from '../../components/Styles';
-import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
 
 const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
 
 export const ListPatients = () => {
-  const [search, setSearch] = useState('');
-  const results = useParseQuery(parseQuery).results;
-
   const navigation = useNavigation();
+
+  const [search, setSearch] = useState('');
+  
+  const results = useParseQuery(parseQuery).results;
 
   return (
     <>

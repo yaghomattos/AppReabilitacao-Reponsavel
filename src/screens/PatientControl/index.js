@@ -1,14 +1,12 @@
-import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
-
 import { useNavigation } from '@react-navigation/core';
 
 import { Button } from '../../components/Button/index';
 
-import Styles from '../../components/Styles';
-import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
 
 export function PatientControl() {
   const navigation = useNavigation();

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
-
 import { useNavigation } from '@react-navigation/core';
 import Parse from 'parse/react-native.js';
 
 import { readPatientCPF, deletePatient } from '../../components/Patient/index';
 
-import Styles from '../../components/Styles';
-import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
 
 export function DeletePatient() {
   const navigation = useNavigation();
@@ -16,9 +15,9 @@ export function DeletePatient() {
   const [CPF, setCPF] = useState('');
 
   async function handleDelete() {
-    const found = await readPatientCPF(CPF);
+    const patientFound = await readPatientCPF(CPF);
 
-    if (found) {
+    if (patientFound) {
       Alert.alert('Sucesso, Paciente deletado!');
 
       let query = new Parse.Query('Patient');

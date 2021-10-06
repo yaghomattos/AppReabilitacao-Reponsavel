@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-
 import { useNavigation } from '@react-navigation/core';
-
 import Parse from 'parse/react-native.js';
 
-import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
 
-export function ExerciseSettings(props) {
-  var id = props.route.params
+import styles from './styles';
 
+export function ExerciseSettings(props) {
   const navigation = useNavigation();
 
   const [sets, setSets] = useState('');
   const [reps, setReps] = useState('');
   const [timer, setTimer] = useState('');
 
-  async function handleSettings(id) {
+  var selectExerciseId = props.route.params
+
+  async function handleSettings(selectExerciseId) {
     const query = new Parse.Query('SelectExercises');
-    console.log(id)
     try {
-      const object = await query.get(id);
-      console.log(object);
+      const object = await query.get(selectExerciseId);
       object.set('sets', sets);
       object.set('reps', reps);
       object.set('timer', timer);
@@ -79,7 +76,7 @@ export function ExerciseSettings(props) {
             keyboardType={'numeric'}
             maxLength={4}
           />
-          <TouchableOpacity onPress={() => handleSettings(id)}>
+          <TouchableOpacity onPress={() => handleSettings(selectExerciseId)}>
             <View style={styles.button}>
               <Text style={styles.text_label}>{'Salvar'}</Text>
             </View>

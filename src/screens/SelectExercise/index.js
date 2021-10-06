@@ -1,19 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
-
+import { View, FlatList, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import { List, Divider } from 'react-native-paper';
 import { useParseQuery } from '@parse/react-native';
-
 import Parse from 'parse/react-native.js';
 
 import { readPatient } from '../../components/Patient/index';
 import { createSelectExercises } from '../../components/SelectExercises/index';
 import { readExercise } from '../../components/Exercises/index';
 
-import Styles from '../../components/Styles';
-import styles from './styles';
+import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
 
 const parseQuery = new Parse.Query('Exercise');
 parseQuery.ascending('createdAt');
@@ -23,7 +21,7 @@ export const SelectExercises = (props) => {
 
   const results = useParseQuery(parseQuery).results;
 
-  async function SelectedExercise(exerciseName) {
+  async function HandleCreateSelectedExercise(exerciseName) {
     console.log(props.route.params);
 
     var patient = await readPatient(props.route.params);
@@ -71,7 +69,7 @@ export const SelectExercises = (props) => {
                 titleStyle={styles.itemTitle}
                 descriptionStyle={styles.listDescription}
                 descriptionNumberOfLines={10}
-                onPress={() => SelectedExercise(item.get('name'))}
+                onPress={() => HandleCreateSelectedExercise(item.get('name'))}
               />
           )}
         />

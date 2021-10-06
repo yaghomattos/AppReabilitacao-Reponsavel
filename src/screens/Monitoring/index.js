@@ -1,15 +1,14 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View, FlatList } from 'react-native';
-
-import Parse from 'parse/react-native.js';
-
 import { useNavigation } from '@react-navigation/native';
 import { useParseQuery } from '@parse/react-native';
+import Parse from 'parse/react-native.js';
+
+import { List, Divider } from 'react-native-paper';
+import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
-import { Ionicons } from '@expo/vector-icons';
-import { List, Divider } from 'react-native-paper';
 
 const parseQuery = new Parse.Query('SelectExercises');
 parseQuery.ascending('createdAt');
@@ -17,7 +16,7 @@ parseQuery.ascending('createdAt');
 var exercise = '';
 var totalExercise = 0;
 
-async function search(patientId) {
+async function Search(patientId) {
   var patientPointer = {
     __type: 'Pointer',
     className: 'Patient',
@@ -25,8 +24,8 @@ async function search(patientId) {
   };
 
   parseQuery.equalTo('patient', patientPointer);
-  var results = await parseQuery.find();
-  totalExercise = results.length;
+  var resultPatient = await parseQuery.find();
+  totalExercise = resultPatient.length;
 
   const query = new Parse.Query('SelectExercises');
   query.ascending('createdAt');
@@ -36,23 +35,23 @@ async function search(patientId) {
   exercise = result;
 }
 
-function Case1() {
+function CaseBad() {
   return 'Ruim';
 }
 
-function Case2() {
+function CaseOkay() {
   return 'Bom';
 }
 
-function Case3() {
+function CaseGreat() {
   return 'Excelente';
 }
 
 function Productivy(props) {
   const percent = props;
-  if (percent <= 0.34) return <Case1 />;
-  else if (percent > 0.33 && percent <= 0.67) return <Case2 />;
-  else return <Case3 />;
+  if (percent <= 0.34) return <CaseBad />;
+  else if (percent > 0.33 && percent <= 0.67) return <CaseOkay />;
+  else return <CaseGreat />;
 }
 
 function CurrentDate() {
@@ -61,10 +60,10 @@ function CurrentDate() {
   var month = new Date().getMonth();
   var year = new Date().getFullYear();
 
-  var monName;
-  monName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro")
+  var monthName;
+  monthName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro")
 
-  return date + ' de ' + monName[month] + ', ' + year;
+  return date + ' de ' + monthName[month] + ', ' + year;
 }
 
 export function Monitoring(props) {
@@ -74,7 +73,7 @@ export function Monitoring(props) {
 
   const results = useParseQuery(parseQuery).results;
 
-  search(patientId);
+  Search(patientId);
 
   return (
     <>

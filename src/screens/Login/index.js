@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import Parse from 'parse/react-native';
 
-import Styles from '../../components/Styles';
 import styles from './styles';
 
 export const Login = () => {
@@ -13,7 +11,7 @@ export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const doUserLogIn = async function () {
+  const doUserLogin = async function () {
     const usernameValue = username;
     const passwordValue = password;
     return await Parse.User.logIn(usernameValue, passwordValue)
@@ -49,7 +47,7 @@ export const Login = () => {
           secureTextEntry
           onChangeText={(text) => setPassword(text)}
         />
-        <TouchableOpacity onPress={() => doUserLogIn()}>
+        <TouchableOpacity onPress={() => doUserLogin()}>
           <View style={styles.button}>
             <Text style={styles.text_label}>{'Entrar'}</Text>
           </View>

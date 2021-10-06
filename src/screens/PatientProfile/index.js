@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StatusBar, Text, View, TextInput } from 'react-native';
-
-import Styles from '../../components/Styles';
-import styles from './styles';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 
+import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
+
 export function PatientProfile(props) {
+  const navigation = useNavigation();
+
   const [patient, setPatient] = useState('');
   const [CPF, setCPF] = useState('');
   const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
   const [diagnosis, setDiagnosis] = useState('');
   const [address, setAddress] = useState('');
-
-  const navigation = useNavigation();
   
   return (
     <>

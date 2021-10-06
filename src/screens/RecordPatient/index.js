@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
-
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+
 import { createPatient } from '../../components/Patient/index';
 
-import Styles from '../../components/Styles';
-import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
 
 export function PatientRecord() {
   const navigation = useNavigation();
@@ -18,7 +18,7 @@ export function PatientRecord() {
   const [diagnosis, setDiagnosis] = useState('');
   const [address, setAddress] = useState('');
 
-  async function handleCreate() {
+  async function handleCreatePatient() {
     const patient = {
       name: username,
       cpf: CPF,
@@ -98,7 +98,7 @@ export function PatientRecord() {
             autoCapitalize={'none'}
             keyboardType={'email-address'}
           />
-          <TouchableOpacity onPress={() => handleCreate()}>
+          <TouchableOpacity onPress={() => handleCreatePatient()}>
             <View style={styles.button}>
               <Text style={styles.text_label}>{'Cadastrar'}</Text>
             </View>
