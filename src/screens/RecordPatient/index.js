@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
 import { createPatient } from '../../components/Patient/index';
+import { CurrentUser } from '../../components/CurrentUser/index';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -18,6 +19,11 @@ export function PatientRecord() {
   const [diagnosis, setDiagnosis] = useState('');
   const [address, setAddress] = useState('');
 
+  const user = CurrentUser();
+
+  var userId = user.id;
+  var userName = user.username;
+
   async function handleCreatePatient() {
     const patient = {
       name: username,
@@ -26,6 +32,8 @@ export function PatientRecord() {
       phone: phone,
       diagnosis: diagnosis,
       address: address,
+      id: userId,
+      username: userName,
     };
 
     createPatient(patient);
