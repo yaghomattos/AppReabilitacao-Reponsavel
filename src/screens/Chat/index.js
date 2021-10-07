@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
+import { readPatient } from '../../components/Patient/index';
+
 import { Ionicons } from '@expo/vector-icons';
 import { IconButton } from 'react-native-paper';
 import { Avatar } from 'react-native-paper';
@@ -14,20 +16,33 @@ import styles from './styles';
 const parseQuery = new Parse.Query('Chat');
 parseQuery.descending('createdAt');
 
+var patient = '';
+
+async function Search(props) {
+  readPatient(props).then((response) => {
+    patient = response.get('name');
+  });
+}
+
 export function Chat(props) {
   const navigation = useNavigation();
-  
+
   const [messages, setMessages] = useState([]);
+
+  var patientId = props.route.params.item.id;
+  var userId = props.route.params.adminId;
+
+  Search(patientId);
 
   var currentUser = {
     __type: 'Pointer',
     className: '_User',
-    objectId: props.route.params.adminId,
+    objectId: userId,
   };
   var toPatient = {
     __type: 'Pointer',
     className: 'Patient',
-    objectId: props.route.params.item.id,
+    objectId: patientId,
   };
 
   parseQuery.equalTo('fromAdmin', currentUser);
@@ -105,7 +120,7 @@ export function Chat(props) {
           />
         </View>
         <View style={styles.person}>
-          <Text style={styles.text}>{'Nome do Paciente'}</Text>
+          <Text style={styles.text}>{patient}</Text>
           <View style={styles.viewCircle}>
             <View style={styles.circleCall}>
               <Ionicons
@@ -135,7 +150,7 @@ export function Chat(props) {
             createdAt: liveMessage.get('createdAt'),
             user: {
               _id: CheckRecipient(liveMessage),
-              name: 'Teste',
+              name: patient,
               avatar: 'https://placeimg.com/140/140/any',
             },
           }))
