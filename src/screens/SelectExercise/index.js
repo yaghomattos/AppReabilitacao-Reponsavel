@@ -21,6 +21,8 @@ export const SelectExercises = (props) => {
 
   const results = useParseQuery(parseQuery).results;
 
+  Parse.User._clearCache();
+
   async function HandleCreateSelectedExercise(exerciseName) {
     console.log(props.route.params);
 
@@ -61,16 +63,16 @@ export const SelectExercises = (props) => {
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
-              <List.Item
-                style={styles.item}
-                title={item.get('name')}
-                description={item.get('description')}
-                titleNumberOfLines={1}
-                titleStyle={styles.itemTitle}
-                descriptionStyle={styles.listDescription}
-                descriptionNumberOfLines={10}
-                onPress={() => HandleCreateSelectedExercise(item.get('name'))}
-              />
+            <List.Item
+              style={styles.item}
+              title={item.get('name')}
+              description={item.get('description')}
+              titleNumberOfLines={1}
+              titleStyle={styles.itemTitle}
+              descriptionStyle={styles.listDescription}
+              descriptionNumberOfLines={10}
+              onPress={() => HandleCreateSelectedExercise(item.get('name'))}
+            />
           )}
         />
       </View>

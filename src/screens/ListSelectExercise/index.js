@@ -34,9 +34,11 @@ export const ListSelectExercises = (props) => {
 
   const results = useParseQuery(parseQuery).results;
 
-  Search(props.route.params);
+  Parse.User._clearCache();
 
   const patient = props.route.params;
+
+  Search(patient);
 
   return (
     <>
@@ -67,6 +69,7 @@ export const ListSelectExercises = (props) => {
                   onPress={() =>
                     navigation.navigate('ExerciseSettings', item.id)
                   }
+                  left={(props) => <List.Icon {...props} icon="movie-edit" />}
                 />
               )}
             />

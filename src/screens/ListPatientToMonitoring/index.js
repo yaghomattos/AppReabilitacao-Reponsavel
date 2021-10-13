@@ -19,6 +19,8 @@ export const ListPatientMonitoring = () => {
 
   const results = useParseQuery(parseQuery).results;
 
+  Parse.User._clearCache();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>

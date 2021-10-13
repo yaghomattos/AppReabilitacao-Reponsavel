@@ -19,6 +19,8 @@ export const ListPatientChat = (props) => {
 
   const results = useParseQuery(parseQuery).results;
 
+  Parse.User._clearCache();
+
   const adminId = props.route.params;
 
   return (

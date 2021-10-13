@@ -55,13 +55,25 @@ function Productivy(props) {
 }
 
 function CurrentDate() {
-
   var date = new Date().getDate();
   var month = new Date().getMonth();
   var year = new Date().getFullYear();
 
   var monthName;
-  monthName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro")
+  monthName = new Array(
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'Maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro'
+  );
 
   return date + ' de ' + monthName[month] + ', ' + year;
 }
@@ -72,6 +84,8 @@ export function Monitoring(props) {
   const patientId = props.route.params;
 
   const results = useParseQuery(parseQuery).results;
+
+  Parse.User._clearCache();
 
   Search(patientId);
 
