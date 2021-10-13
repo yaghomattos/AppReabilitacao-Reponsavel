@@ -151,7 +151,6 @@ export function Chat(props) {
             user: {
               _id: CheckRecipient(liveMessage),
               name: patient,
-              avatar: 'https://placeimg.com/140/140/any',
             },
           }))
         }
