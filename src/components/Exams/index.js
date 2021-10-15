@@ -1,16 +1,22 @@
 import Parse from 'parse/react-native.js';
+import { Alert } from 'react-native';
 
-export async function createExam() {
-  const object = new Parse.Object('Exam');
-  object.set(
-    'video',
-    new Parse.File('resume.txt', { base64: btoa('My file content') })
-  );
+export async function createExam(props) {
+  var { base64, fileName } = props.video;
+  fileName = props.name;
+  const parseFile = new Parse.File(fileName, { base64 });
   try {
-    const result = await object.save();
-    console.log('Exam created', result);
+    const responseFile = await parseFile.save();
+    const File = Parse.Object.extend('Exam');
+    const object = new File();
+    object.set('video', responseFile);
+    object.set('name', props.name);
+    object.set('description', props.description);
+
+    await object.save();
+    Alert.alert('Exame Salvo');
   } catch (error) {
-    console.error('Error while creating Exam: ', error);
+    Alert.alert('Erro ao salvar exame!');
   }
 }
 
