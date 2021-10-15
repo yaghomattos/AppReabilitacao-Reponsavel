@@ -1,17 +1,22 @@
 import Parse from 'parse/react-native.js';
+import { Alert } from 'react-native';
 
-export async function createExercise() {
-  const exercise = new Parse.Object('Exercise');
-  exercise.set(
-    'video',
-    new Parse.File('resume.txt', { base64: btoa('My file content') })
-  );
+export async function createExercise(props) {
+  var { base64, fileName } = props.video;
+  fileName = props.name;
+  const parseFile = new Parse.File(fileName, { base64 });
   try {
-    const result = await exercise.save();
-    // Access the Parse Object attributes using the .GET method
-    console.log('Exercise created', result);
+    const responseFile = await parseFile.save();
+    const File = Parse.Object.extend('Exercise');
+    const object = new File();
+    object.set('video', responseFile);
+    object.set('name', props.name);
+    object.set('description', props.description);
+
+    await object.save();
+    Alert.alert('Exercício Salvo');
   } catch (error) {
-    console.error('Error while creating Exercise: ', error);
+    Alert.alert('Erro ao salvar exercício!');
   }
 }
 
