@@ -56,11 +56,16 @@ export async function readPatientCPF(cpf) {
   }
 }
 
-export async function updatePatient() {
+export async function updatePatient(props) {
   const query = new Parse.Query('Patient');
   try {
-    const object = await query.get('zhHv8svvJ6');
-    object.set('name', 'A string');
+    const object = await query.get(props.id);
+    if (props.name != '') object.set('name', props.name);
+    if (props.cpf != '') object.set('CPF', props.cpf);
+    if (props.age != '') object.set('age', props.age);
+    if (props.phone != '') object.set('phone', props.phone);
+    if (props.diagnosis != '') object.set('diagnosis', props.diagnosis);
+    if (props.address != '') object.set('address', props.address);
     try {
       const response = await object.save();
 

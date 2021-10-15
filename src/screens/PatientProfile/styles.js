@@ -30,13 +30,26 @@ const styles = StyleSheet.create({
   form: {
     width: '100%',
     maxWidth: 350,
-    paddingTop: 10,
+    paddingTop: 5,
     fontSize: 18,
   },
   input: {
     width: 350,
     marginBottom: 10,
     fontSize: 18,
+  },
+  button: {
+    width: 180,
+    height: 60,
+    borderRadius: 10,
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#384955',
+  },
+  text_label: {
+    color: '#fff',
+    fontSize: 15,
   },
 });
 
