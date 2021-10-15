@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Image, View, Platform } from 'react-native';
+
 import * as ImagePicker from 'expo-image-picker';
 
+import { createExercise } from '../../components/Exercises';
+
 export function UploadExercise() {
-  const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -18,46 +21,32 @@ export function UploadExercise() {
   }, []);
 
   async function upload() {
-    const myfile = image;
-    const parseFile = new Parse.File('image', { base64: myfile.base64 });
-    try {
-      const Gallery = Parse.Object.extend('Exercise');
-      const gallery = new Gallery();
-      gallery.set('video', parseFile);
-      gallery.set('name', 'nome');
-      gallery.set('description', 'descrição');
+    var exercise = {
+      video: file,
+      name: 'nome',
+      description: 'descrição',
+    };
 
-      gallery.save();
-      Alert.alert('Arquivo salvo na Back4app.');
-    } catch (error) {
-      console.log(
-        'The file either could not be read, or could not be saved to Back4app.'
-      );
-    }
+    createExercise(exercise);
   }
 
-  const pickImage = async () => {
+  const pickFile = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
       base64: true,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      setImage(result);
+      setFile(result);
     }
   };
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Selecionar imagem da galeria" onPress={pickImage} />
-      {image && (
+      <Button title="Selecionar arquivo da galeria" onPress={pickFile} />
+      {file && (
         <Image
-          source={{ uri: image.uri }}
+          source={{ uri: file.uri }}
           style={{
             width: 250,
             height: 250,
@@ -69,7 +58,7 @@ export function UploadExercise() {
         />
       )}
 
-      {image && <Button title="Upload" color="green" onPress={upload} />}
+      {file && <Button title="Upload" color="green" onPress={upload} />}
     </View>
   );
 }
