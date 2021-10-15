@@ -10,6 +10,7 @@ import { Chat } from '../screens/Chat/index';
 import { PatientRecord } from '../screens/RecordPatient/index';
 import { DeletePatient } from '../screens/DeletePatient/index';
 import { UploadExercise } from '../screens/UploadExercise/index';
+import { UploadExam } from '../screens/UploadExam/index';
 import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
 import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercise/index';
@@ -35,6 +36,7 @@ export function AppRoutes() {
         <Stack.Screen name="PatientRecord" component={PatientRecord} />
         <Stack.Screen name="DeletePatient" component={DeletePatient} />
         <Stack.Screen name="UploadExercise" component={UploadExercise} />
+        <Stack.Screen name="UploadExam" component={UploadExam} />
         <Stack.Screen name="ListPatients" component={ListPatients} />
         <Stack.Screen
           name="ListSelectExercises"
