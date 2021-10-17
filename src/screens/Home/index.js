@@ -26,6 +26,7 @@ export function Home() {
           <Button title="Chat" onPress="ListPatientChat" props={id} />
           <Button title="Cadastro Paciente" onPress="PatientControl" />
           <Button title="Exercícios" onPress="ListPatientSelectExercise" />
+          <Button title="Exams" onPress="ListPatientSelectExam" />
           <Button title="Monitoramento" onPress="ListPatientMonitoring" />
           <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
           <Button title="Cadastrar Novo Exame" onPress="UploadExam" />

@@ -14,10 +14,13 @@ import { UploadExam } from '../screens/UploadExam/index';
 import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
 import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercise/index';
+import { ListPatientSelectExam } from '../screens/ListPatientToSelectExam/index';
 import { ListPatientChat } from '../screens/ListPatientToChat/index';
 import { ListPatientMonitoring } from '../screens/ListPatientToMonitoring/index';
 import { ListSelectExercises } from '../screens/ListSelectExercise/index';
+import { ListSelectExams } from '../screens/ListSelectExam/index';
 import { SelectExercises } from '../screens/SelectExercise/index';
+import { SelectExams } from '../screens/SelectExam/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
 import { ExerciseSettings } from '../screens/ExerciseSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
@@ -42,12 +45,18 @@ export function AppRoutes() {
           name="ListSelectExercises"
           component={ListSelectExercises}
         />
+        <Stack.Screen name="ListSelectExams" component={ListSelectExams} />
         <Stack.Screen name="ListPatientChat" component={ListPatientChat} />
         <Stack.Screen
           name="ListPatientSelectExercise"
           component={ListPatientSelectExercise}
         />
+        <Stack.Screen
+          name="ListPatientSelectExam"
+          component={ListPatientSelectExam}
+        />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
+        <Stack.Screen name="SelectExams" component={SelectExams} />
         <Stack.Screen name="PatientProfile" component={PatientProfile} />
         <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
         <Stack.Screen name="Monitoring" component={Monitoring} />
