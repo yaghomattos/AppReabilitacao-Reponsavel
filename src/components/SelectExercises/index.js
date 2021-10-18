@@ -1,14 +1,24 @@
 import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
-export async function createSelectExercises(patient, exercise) {
+export async function createSelectExercises(patientId, exerciseId) {
+  var patientPointer = {
+    __type: 'Pointer',
+    className: 'Patient',
+    objectId: patientId,
+  };
+  var exercisePointer = {
+    __type: 'Pointer',
+    className: 'Exercise',
+    objectId: exerciseId,
+  };
+
   const myNewObject = new Parse.Object('SelectExercises');
-  myNewObject.set('patient', patient);
-  myNewObject.set('exercise', exercise);
+  myNewObject.set('patient', patientPointer);
+  myNewObject.set('exercise', exercisePointer);
   try {
     const result = await myNewObject.save();
-    Alert.alert('Exercício', result.get('exercise').get('name'), 
-    'selecionado para o paciente', result.get('patient').get('name'));
+    Alert.alert('Exercício selecionado para o paciente');
   } catch (error) {
     console.error('Error while creating SelectExercises: ', error);
   }
@@ -34,8 +44,8 @@ export async function updateSelectExercises() {
   const query = new Parse.Query(SelectExercises);
   try {
     const object = await query.get('xKue915KBG');
-    object.set('Patient', new Parse.Object("Patient"));
-    object.set('Exercise', new Parse.Object("Exercise"));
+    object.set('Patient', new Parse.Object('Patient'));
+    object.set('Exercise', new Parse.Object('Exercise'));
     try {
       const response = await object.save();
       console.log(response.get('Patient'));
@@ -43,10 +53,10 @@ export async function updateSelectExercises() {
       console.log('SelectExercises updated', response);
     } catch (error) {
       console.error('Error while updating SelectExercises', error);
-      }
-    } catch (error) {
-      console.error('Error while retrieving object SelectExercises', error);
     }
+  } catch (error) {
+    console.error('Error while retrieving object SelectExercises', error);
+  }
 }
 
 export async function deleteSelectExercises() {

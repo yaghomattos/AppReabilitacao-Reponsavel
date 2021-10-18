@@ -1,18 +1,24 @@
 import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
-export async function createSelectExams(patient, exam) {
+export async function createSelectExams(patientId, examId) {
+  var patientPointer = {
+    __type: 'Pointer',
+    className: 'Patient',
+    objectId: patientId,
+  };
+  var examPointer = {
+    __type: 'Pointer',
+    className: 'Exam',
+    objectId: examId,
+  };
+
   const myNewObject = new Parse.Object('SelectExams');
-  myNewObject.set('patient', patient);
-  myNewObject.set('exam', exam);
+  myNewObject.set('patient', patientPointer);
+  myNewObject.set('exam', examPointer);
   try {
     const result = await myNewObject.save();
-    Alert.alert(
-      'Exercício',
-      result.get('exam').get('name'),
-      'selecionado para o paciente',
-      result.get('patient').get('name')
-    );
+    Alert.alert('Exame selecionado para o paciente');
   } catch (error) {
     console.error('Error while creating SelectExams: ', error);
   }
