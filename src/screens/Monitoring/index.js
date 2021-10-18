@@ -150,6 +150,9 @@ export function Monitoring(props) {
                   title={item.get('exercise').get('name')}
                   titleNumberOfLines={1}
                   titleStyle={styles.description}
+                  onPress={() =>
+                    navigation.navigate('ViewForm', item.get('form'))
+                  }
                 />
               )}
             />

@@ -24,6 +24,7 @@ import { SelectExams } from '../screens/SelectExam/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
 import { ExerciseSettings } from '../screens/ExerciseSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
+import { ViewForm } from '../screens/ViewForm';
 
 const Stack = createStackNavigator();
 
@@ -55,15 +56,16 @@ export function AppRoutes() {
           name="ListPatientSelectExam"
           component={ListPatientSelectExam}
         />
+        <Stack.Screen
+          name="ListPatientMonitoring"
+          component={ListPatientMonitoring}
+        />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
         <Stack.Screen name="SelectExams" component={SelectExams} />
         <Stack.Screen name="PatientProfile" component={PatientProfile} />
         <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
         <Stack.Screen name="Monitoring" component={Monitoring} />
-        <Stack.Screen
-          name="ListPatientMonitoring"
-          component={ListPatientMonitoring}
-        />
+        <Stack.Screen name="ViewForm" component={ViewForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );
