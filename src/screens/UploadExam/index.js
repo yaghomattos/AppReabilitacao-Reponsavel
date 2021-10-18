@@ -42,9 +42,9 @@ export function UploadExam() {
     var exam = {
       video: file,
       photo: photo,
-      name: 'nome',
-      description: 'descrição',
-      timer: '60',
+      name: name,
+      description: description,
+      timer: timer,
     };
 
     createExam(exam);
