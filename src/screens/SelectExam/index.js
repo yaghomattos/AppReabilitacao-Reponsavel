@@ -4,9 +4,7 @@ import { useNavigation } from '@react-navigation/core';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
-import { readPatient } from '../../components/Patient/index';
-import { createSelectExam } from '../../components/SelectExams/index';
-import { readExam } from '../../components/Exams/index';
+import { createSelectExams } from '../../components/SelectExams/index';
 
 import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,28 +18,12 @@ export const SelectExams = (props) => {
   const navigation = useNavigation();
 
   const results = useParseQuery(parseQuery).results;
-
   Parse.User._clearCache();
 
-  async function HandleCreateSelectedExam(examName) {
-    console.log(props.route.params);
+  async function HandleCreateSelectedExam(examId) {
+    var patientId = props.route.params;
 
-    var patient = await readPatient(props.route.params);
-    var exam = await readExam(examName);
-
-    var examPointer = {
-      __type: 'Pointer',
-      className: 'Exam',
-      objectId: exam.id,
-    };
-
-    var patientPointer = {
-      __type: 'Pointer',
-      className: 'Patient',
-      objectId: patient.id,
-    };
-
-    createSelectExam(patientPointer, examPointer);
+    createSelectExams(patientId, examId);
   }
 
   return (
@@ -71,7 +53,7 @@ export const SelectExams = (props) => {
               titleStyle={styles.itemTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={10}
-              onPress={() => HandleCreateSelectedExam(item.get('name'))}
+              onPress={() => HandleCreateSelectedExam(item.id)}
             />
           )}
         />
