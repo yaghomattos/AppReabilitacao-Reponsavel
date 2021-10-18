@@ -18,15 +18,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
+var date = new Date();
+
 const parseQueryExams = new Parse.Query('SelectExams');
 parseQueryExams.ascending('createdAt');
-
 const parseQuery = new Parse.Query('SelectExercises');
 parseQuery.ascending('createdAt');
 
 var exercise = '';
 var totalExercise = 0;
-
 var exam = '';
 var totalExam = 0;
 
@@ -79,10 +79,10 @@ function Productivy(props) {
   else return <CaseGreat />;
 }
 
-function CurrentDate() {
-  var date = new Date().getDate();
-  var month = new Date().getMonth();
-  var year = new Date().getFullYear();
+function getCurrentDate(data) {
+  var date = data.getDate();
+  var month = data.getMonth();
+  var year = data.getFullYear();
 
   var monthName;
   monthName = new Array(
@@ -102,14 +102,17 @@ function CurrentDate() {
   return date + ' de ' + monthName[month] + ', ' + year;
 }
 
+const displayDate = () => {
+  return <Text style={styles.date}>{getCurrentDate(date)}</Text>;
+};
+
 export function Monitoring(props) {
   const navigation = useNavigation();
 
   const patientId = props.route.params;
 
-  const currentDate = new Date();
+  const lastDate = new Date();
 
-  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
   const results = useParseQuery(parseQuery).results;
@@ -135,17 +138,19 @@ export function Monitoring(props) {
             setShow(true);
           }}
         >
-          <Text style={styles.date}>{CurrentDate()}</Text>
+          {displayDate()}
         </TouchableHighlight>
         {show && (
           <DateTimePicker
             testID="dateTimePicker"
-            value={new Date(date)}
+            value={date}
             mode="date"
             display="calendar"
-            maximumDate={currentDate}
-            onChange={(date) => {
-              setDate(date);
+            maximumDate={lastDate}
+            onChange={(dateString) => {
+              const newDate = new Date(dateString.nativeEvent.timestamp);
+              date = newDate;
+              setShow(false);
             }}
           />
         )}
