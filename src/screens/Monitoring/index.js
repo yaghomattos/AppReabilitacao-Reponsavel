@@ -1,10 +1,17 @@
-import 'react-native-gesture-handler';
-import React from 'react';
-import { SafeAreaView, StatusBar, Text, View, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import {
+  SafeAreaView,
+  StatusBar,
+  Text,
+  View,
+  FlatList,
+  TouchableHighlight,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -83,8 +90,12 @@ export function Monitoring(props) {
 
   const patientId = props.route.params;
 
-  const results = useParseQuery(parseQuery).results;
+  const currentDate = new Date();
 
+  const [date, setDate] = useState(new Date());
+  const [show, setShow] = useState(false);
+
+  const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
 
   Search(patientId);
@@ -100,7 +111,27 @@ export function Monitoring(props) {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.date}>{CurrentDate()}</Text>
+          <TouchableHighlight
+            style={styles.highlight}
+            activeOpacity={0}
+            onPress={() => {
+              setShow(true);
+            }}
+          >
+            <Text style={styles.date}>{CurrentDate()}</Text>
+          </TouchableHighlight>
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={new Date(date)}
+              mode="date"
+              display="calendar"
+              maximumDate={currentDate}
+              onChange={(date) => {
+                setDate(date);
+              }}
+            />
+          )}
         </View>
         <View style={styles.today}>
           <Text style={styles.title}>{'Feito Hoje'}</Text>
