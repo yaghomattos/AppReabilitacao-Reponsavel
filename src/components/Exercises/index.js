@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 
 export async function createExercise(props) {
   var { base64, fileName } = props.video;
-  fileName = props.name;
+  fileName = props.name + '.gif';
   const parseFile = new Parse.File(fileName, { base64 });
   try {
     const responseFile = await parseFile.save();
