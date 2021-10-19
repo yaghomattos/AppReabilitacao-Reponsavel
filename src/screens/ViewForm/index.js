@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { readForm } from '../../components/Form';
-
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
@@ -12,6 +10,10 @@ export function ViewForm(props) {
   const navigation = useNavigation();
 
   const form = props.route.params;
+
+  var exam = false;
+
+  if (form.get('reps') != undefined && form.get('reps') != '') exam = true;
 
   return (
     <View style={styles.wrapper}>
@@ -28,6 +30,11 @@ export function ViewForm(props) {
       </View>
       <View style={styles.container}>
         <View style={styles.form}>
+          <Text style={styles.title}>
+            {exam ? null : 'Número de repetições'}
+          </Text>
+          <Text style={styles.label}>{exam ? null : form.get('reps')}</Text>
+
           <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
           <Text style={styles.label}>{form.get('Frequency')}</Text>
 
