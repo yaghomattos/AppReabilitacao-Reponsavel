@@ -31,9 +31,9 @@ export function ViewForm(props) {
       <View style={styles.container}>
         <View style={styles.form}>
           <Text style={styles.title}>
-            {exam ? null : 'Número de repetições'}
+            {exam ? 'Número de repetições' : null}
           </Text>
-          <Text style={styles.label}>{exam ? null : form.get('reps')}</Text>
+          <Text style={styles.label}>{exam ? form.get('reps') : null}</Text>
 
           <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
           <Text style={styles.label}>{form.get('Frequency')}</Text>
