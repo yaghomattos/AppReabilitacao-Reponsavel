@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -24,41 +24,6 @@ const parseQueryExams = new Parse.Query('SelectExams');
 parseQueryExams.ascending('createdAt');
 const parseQuery = new Parse.Query('SelectExercises');
 parseQuery.ascending('createdAt');
-
-var exercise = '';
-var totalExercise = 0;
-var exam = '';
-var totalExam = 0;
-
-async function Search(patientId) {
-  var patientPointer = {
-    __type: 'Pointer',
-    className: 'Patient',
-    objectId: patientId,
-  };
-
-  parseQuery.equalTo('patient', patientPointer);
-  var resultPatient = await parseQuery.find();
-  totalExercise = resultPatient.length;
-
-  const query = new Parse.Query('SelectExercises');
-  query.ascending('createdAt');
-  query.equalTo('check', true);
-
-  var result = await query.find();
-  exercise = result;
-
-  parseQueryExams.equalTo('patient', patientPointer);
-  var resultPatientExam = await parseQueryExams.find();
-  totalExam = resultPatientExam.length;
-
-  const queryExam = new Parse.Query('SelectExams');
-  queryExam.ascending('createdAt');
-  queryExam.equalTo('check', true);
-
-  var resultExam = await queryExam.find();
-  exam = resultExam;
-}
 
 function CaseBad() {
   return 'Ruim';
@@ -109,17 +74,53 @@ const displayDate = () => {
 export function Monitoring(props) {
   const navigation = useNavigation();
 
+  const [show, setShow] = useState(false);
+  const [exercise, setExercise] = useState('');
+  const [exam, setExam] = useState('');
+  const [totalExercise, setTotalExercise] = useState(0);
+  const [totalExam, setTotalExam] = useState(0);
+
   const patientId = props.route.params;
 
   const lastDate = new Date();
 
-  const [show, setShow] = useState(false);
+  useEffect(() => {
+    async function Search(patientId) {
+      var patientPointer = {
+        __type: 'Pointer',
+        className: 'Patient',
+        objectId: patientId,
+      };
+
+      parseQuery.equalTo('patient', patientPointer);
+      var resultPatient = await parseQuery.find();
+      setTotalExercise(resultPatient.length);
+
+      const query = new Parse.Query('SelectExercises');
+      query.ascending('createdAt');
+      query.equalTo('check', true);
+
+      var result = await query.find();
+      setExercise(result);
+
+      parseQueryExams.equalTo('patient', patientPointer);
+      var resultPatientExam = await parseQueryExams.find();
+      setTotalExam(resultPatientExam.length);
+
+      const queryExam = new Parse.Query('SelectExams');
+      queryExam.ascending('createdAt');
+      queryExam.equalTo('check', true);
+
+      var resultExam = await queryExam.find();
+      setExam(resultExam);
+    }
+
+    Search(patientId);
+  }, []);
 
   const results = useParseQuery(parseQuery).results;
   const resultsExam = useParseQuery(parseQueryExams).results;
   Parse.User._clearCache();
-
-  Search(patientId);
 
   return (
     <SafeAreaView style={styles.container}>
