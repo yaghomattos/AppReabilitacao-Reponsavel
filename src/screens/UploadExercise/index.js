@@ -67,7 +67,7 @@ export function UploadExercise() {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.header_text}>{'Cadastrar Exercício'}</Text>
+          <Text style={styles.header_text}>{'Cadastro de Exercício'}</Text>
         </View>
       </View>
       <ScrollView style={styles.scrollView}>
@@ -95,7 +95,9 @@ export function UploadExercise() {
               style={file ? styles.button : styles.button2}
               onPress={pickFile}
             >
-              <Text style={styles.text_label}>{'Selecionar Exercício'}</Text>
+              <Text style={styles.text_label}>
+                {'Selecionar vídeo ou imagem'}
+              </Text>
             </TouchableOpacity>
             {file && <Image source={{ uri: file.uri }} style={styles.image} />}
           </View>

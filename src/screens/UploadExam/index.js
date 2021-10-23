@@ -82,7 +82,7 @@ export function UploadExam() {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.header_text}>{'Cadastrar Exame'}</Text>
+          <Text style={styles.header_text}>{'Cadastro de Teste'}</Text>
         </View>
       </View>
       <ScrollView style={styles.scrollView}>
@@ -90,7 +90,7 @@ export function UploadExam() {
           <TextInput
             style={styles.input}
             value={name}
-            placeholder={'nome do exame'}
+            placeholder={'Nome do teste'}
             onChangeText={(text) => setName(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
@@ -100,7 +100,7 @@ export function UploadExam() {
             multiline
             style={styles.input}
             value={description}
-            placeholder={'descrição do exame'}
+            placeholder={'Descrição do teste'}
             onChangeText={(text) => setDescription(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
@@ -108,7 +108,7 @@ export function UploadExam() {
           <TextInput
             style={styles.input}
             value={timer}
-            placeholder={'tempo em segundos'}
+            placeholder={'Tempo'}
             onChangeText={(text) => setTimer(text)}
             autoCapitalize={'none'}
             keyboardType={'numeric'}
@@ -118,13 +118,15 @@ export function UploadExam() {
               style={file ? styles.button : styles.button2}
               onPress={pickFile}
             >
-              <Text style={styles.text_label}>{'Selecionar Exame'}</Text>
+              <Text style={styles.text_label}>
+                {'Selecionar vídeo ou imagem'}
+              </Text>
             </TouchableOpacity>
             {file && <Image source={{ uri: file.uri }} style={styles.image} />}
           </View>
           <View style={styles.preview}>
             <TouchableOpacity style={styles.button} onPress={pickPhoto}>
-              <Text style={styles.text_label}>{'Selecionar Foto'}</Text>
+              <Text style={styles.text_label}>{'Selecionar imagem'}</Text>
             </TouchableOpacity>
             {photo && (
               <Image source={{ uri: photo.uri }} style={styles.image} />

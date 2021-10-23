@@ -60,10 +60,10 @@ export function ViewForm(props) {
           <Text style={styles.title}>{'Saturação'}</Text>
           <Text style={styles.label}>{saturation}</Text>
 
-          <Text style={styles.title}>{'Borg Dispineia'}</Text>
+          <Text style={styles.title}>{'Falta de Ar'}</Text>
           <Text style={styles.label}>{dyspnea}</Text>
 
-          <Text style={styles.title}>{'Borg Fadiga'}</Text>
+          <Text style={styles.title}>{'Cansaço'}</Text>
           <Text style={styles.label}>{fatigue}</Text>
 
           <TouchableOpacity onPress={() => navigation.goBack()}>

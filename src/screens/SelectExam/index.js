@@ -36,7 +36,7 @@ export const SelectExams = (props) => {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.header_text}>{'Selecionar Exames'}</Text>
+          <Text style={styles.header_text}>{'Selecionar Testes'}</Text>
         </View>
       </View>
       <View style={styles.viewList}>

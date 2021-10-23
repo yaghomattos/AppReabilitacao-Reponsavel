@@ -49,7 +49,7 @@ export function PatientRecord() {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.header_text}>{'Cadastro de paciente'}</Text>
+          <Text style={styles.header_text}>{'Cadastro de Participante'}</Text>
         </View>
       </View>
       <View style={styles.container}>

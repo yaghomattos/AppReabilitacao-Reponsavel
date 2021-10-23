@@ -51,7 +51,7 @@ export const ListSelectExams = (props) => {
               style={styles.back}
               onPress={() => navigation.goBack()}
             />
-            <Text style={styles.header_text}>{'Exames selecionados'}</Text>
+            <Text style={styles.header_text}>{'Testes selecionados'}</Text>
           </View>
         </View>
         <View style={styles.backgroundList}>
@@ -66,14 +66,16 @@ export const ListSelectExams = (props) => {
                   title={item.get('exam').get('name')}
                   titleNumberOfLines={1}
                   titleStyle={styles.itemTitle}
-                  onPress={() => navigation.navigate('ExamSettings', item.id)}
+                  onPress={() =>
+                    navigation.navigate('ExamSettings', item.get('exam').id)
+                  }
                   left={(props) => <List.Icon {...props} icon="movie-edit" />}
                 />
               )}
             />
           </View>
           <Button
-            title="Selecionar Exame"
+            title="Selecionar Testes"
             onPress="SelectExams"
             props={patient}
           />

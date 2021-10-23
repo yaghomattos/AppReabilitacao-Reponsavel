@@ -50,7 +50,7 @@ export function PatientProfile(props) {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.header_text}>{'Perfil do Paciente'}</Text>
+          <Text style={styles.header_text}>{'Perfil do Participante'}</Text>
         </View>
         <View style={styles.background}>
           <Text style={styles.form}>{'Nome:'}</Text>

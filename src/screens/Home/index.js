@@ -24,12 +24,12 @@ export function Home() {
         </View>
         <View style={styles.background}>
           <Button title="Chat" onPress="ListPatientChat" props={id} />
-          <Button title="Cadastro Paciente" onPress="PatientControl" />
-          <Button title="Exercícios" onPress="ListPatientSelectExercise" />
-          <Button title="Exams" onPress="ListPatientSelectExam" />
+          <Button title="Cadastro de Participantes" onPress="PatientControl" />
+          <Button title="Treinamento" onPress="ListPatientSelectExercise" />
+          <Button title="Avaliação" onPress="ListPatientSelectExam" />
           <Button title="Monitoramento" onPress="ListPatientMonitoring" />
           <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
-          <Button title="Cadastrar Novo Exame" onPress="UploadExam" />
+          <Button title="Cadastrar Novo Teste" onPress="UploadExam" />
         </View>
         <Logout />
       </SafeAreaView>
