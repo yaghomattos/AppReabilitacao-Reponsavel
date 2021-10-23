@@ -23,6 +23,7 @@ import { SelectExercises } from '../screens/SelectExercise/index';
 import { SelectExams } from '../screens/SelectExam/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
 import { ExerciseSettings } from '../screens/ExerciseSettings/index';
+import { ExamSettings } from '../screens/ExamSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
 import { ViewForm } from '../screens/ViewForm';
 
@@ -64,6 +65,7 @@ export function AppRoutes() {
         <Stack.Screen name="SelectExams" component={SelectExams} />
         <Stack.Screen name="PatientProfile" component={PatientProfile} />
         <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
+        <Stack.Screen name="ExamSettings" component={ExamSettings} />
         <Stack.Screen name="Monitoring" component={Monitoring} />
         <Stack.Screen name="ViewForm" component={ViewForm} />
       </Stack.Navigator>
