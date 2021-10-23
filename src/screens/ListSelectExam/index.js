@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, FlatList, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useParseQuery } from '@parse/react-native';
@@ -14,31 +14,32 @@ import styles from './styles';
 const parseQuery = new Parse.Query('SelectExams');
 parseQuery.descending('createdAt');
 
-var exam = '';
-
-async function Search(patientId) {
-  var patientPointer = {
-    __type: 'Pointer',
-    className: 'Patient',
-    objectId: patientId,
-  };
-
-  parseQuery.equalTo('patient', patientPointer);
-  const results = await parseQuery.find();
-
-  exam = results;
-}
-
 export const ListSelectExams = (props) => {
   const navigation = useNavigation();
 
-  const results = useParseQuery(parseQuery).results;
-
-  Parse.User._clearCache();
-
   const patient = props.route.params;
 
-  Search(patient);
+  const [exam, setExam] = useState('');
+
+  useEffect(() => {
+    async function Search(patientId) {
+      var patientPointer = {
+        __type: 'Pointer',
+        className: 'Patient',
+        objectId: patientId,
+      };
+
+      parseQuery.equalTo('patient', patientPointer);
+      const results = await parseQuery.find();
+
+      setExam(results);
+    }
+
+    Search(patient);
+  });
+
+  const results = useParseQuery(parseQuery).results;
+  Parse.User._clearCache();
 
   return (
     <>
