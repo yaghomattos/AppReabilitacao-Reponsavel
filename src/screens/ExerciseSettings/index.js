@@ -6,6 +6,7 @@ import Parse from 'parse/react-native.js';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
+import { updateSelectExercises } from '../../components/SelectExercises';
 
 export function ExerciseSettings(props) {
   const navigation = useNavigation();
@@ -14,24 +15,17 @@ export function ExerciseSettings(props) {
   const [reps, setReps] = useState('');
   const [timer, setTimer] = useState('');
 
-  var selectExerciseId = props.route.params
+  var selectExerciseId = props.route.params;
 
-  async function handleSettings(selectExerciseId) {
-    const query = new Parse.Query('SelectExercises');
-    try {
-      const object = await query.get(selectExerciseId);
-      object.set('sets', sets);
-      object.set('reps', reps);
-      object.set('timer', timer);
-      try {
-        const response = await object.save();
-        console.log('SelectExercises updated', response);
-      } catch (error) {
-        console.error('Error while updating SelectExercises', error);
-      }
-    } catch (error) {
-      console.error('Error while retrieving object SelectExercises', error);
-    }
+  async function handleSettings() {
+    var exercise = {
+      id: selectExerciseId,
+      sets: sets,
+      reps: reps,
+      timer: timer,
+    };
+
+    updateSelectExercises(exercise);
   }
 
   return (
@@ -76,7 +70,7 @@ export function ExerciseSettings(props) {
             keyboardType={'numeric'}
             maxLength={4}
           />
-          <TouchableOpacity onPress={() => handleSettings(selectExerciseId)}>
+          <TouchableOpacity onPress={() => handleSettings()}>
             <View style={styles.button}>
               <Text style={styles.text_label}>{'Salvar'}</Text>
             </View>
