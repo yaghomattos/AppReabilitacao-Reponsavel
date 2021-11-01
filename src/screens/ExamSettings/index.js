@@ -3,6 +3,8 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import Parse from 'parse/react-native.js';
 
+import { updateSelectExams } from '../../components/SelectExams';
+
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
@@ -10,24 +12,13 @@ import styles from './styles';
 export function ExamSettings(props) {
   const navigation = useNavigation();
 
-  const [timer, setTimer] = useState('');
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
   var examId = props.route.params;
 
   async function handleSettings() {
-    const query = new Parse.Query('Exams');
-    try {
-      const object = await query.get(examId);
-      object.set('timer', timer);
-      try {
-        const response = await object.save();
-        console.log('SelectExams updated', response);
-      } catch (error) {
-        console.error('Error while updating SelectExams', error);
-      }
-    } catch (error) {
-      console.error('Error while retrieving object SelectExams', error);
-    }
+    updateSelectExams(examId, parseInt(minutes) * 60 + parseInt(seconds));
   }
 
   return (
@@ -48,9 +39,17 @@ export function ExamSettings(props) {
           <Text style={styles.inputName}>{'Cronômetro'}</Text>
           <TextInput
             style={styles.input}
-            value={timer}
+            value={minutes}
+            placeholder={'minutos'}
+            onChangeText={(text) => setMinutes(text)}
+            keyboardType={'numeric'}
+            maxLength={2}
+          />
+          <TextInput
+            style={styles.input}
+            value={seconds}
             placeholder={'segundos'}
-            onChangeText={(text) => setTimer(text)}
+            onChangeText={(text) => setSeconds(text)}
             keyboardType={'numeric'}
             maxLength={4}
           />
