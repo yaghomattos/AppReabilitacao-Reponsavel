@@ -40,16 +40,19 @@ export async function readSelectExams() {
   }
 }
 
-export async function updateSelectExams() {
-  const query = new Parse.Query(SelectExams);
+export async function updateSelectExams(examId, timer) {
+  var examPointer = {
+    __type: 'Pointer',
+    className: 'Exam',
+    objectId: examId,
+  };
+
+  const query = new Parse.Query('SelectExams');
   try {
-    const object = await query.get('xKue915KBG');
-    object.set('Patient', new Parse.Object('Patient'));
-    object.set('exam', new Parse.Object('Exam'));
+    const object = await query.get(examPointer);
+    if (timer != 0) object.set('timer', timer);
     try {
       const response = await object.save();
-      console.log(response.get('Patient'));
-      console.log(response.get('exam'));
       console.log('SelectExams updated', response);
     } catch (error) {
       console.error('Error while updating SelectExams', error);
