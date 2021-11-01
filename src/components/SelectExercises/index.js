@@ -40,16 +40,21 @@ export async function readSelectExercises() {
   }
 }
 
-export async function updateSelectExercises() {
-  const query = new Parse.Query(SelectExercises);
+export async function updateSelectExercises(exercise) {
+  var exercisePointer = {
+    __type: 'Pointer',
+    className: 'Exercise',
+    objectId: exercise.id,
+  };
+
+  const query = new Parse.Query('SelectExercises');
   try {
-    const object = await query.get('xKue915KBG');
-    object.set('Patient', new Parse.Object('Patient'));
-    object.set('Exercise', new Parse.Object('Exercise'));
+    const object = await query.get(exercisePointer);
+    if (exercise.sets != '') object.set('sets', exercise.sets);
+    if (exercise.reps != '') object.set('reps', exercise.reps);
+    if (exercise.timer != '') object.set('timer', exercise.timer);
     try {
       const response = await object.save();
-      console.log(response.get('Patient'));
-      console.log(response.get('Exercise'));
       console.log('SelectExercises updated', response);
     } catch (error) {
       console.error('Error while updating SelectExercises', error);
