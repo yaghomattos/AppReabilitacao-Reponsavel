@@ -1,21 +1,22 @@
 import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
-export async function createSelectOrientations(patientId, orientationId) {
+export async function createSelectOrientations(props) {
   var patientPointer = {
     __type: 'Pointer',
     className: 'Patient',
-    objectId: patientId,
+    objectId: props.patientId,
   };
   var orientationPointer = {
     __type: 'Pointer',
     className: 'Orientation',
-    objectId: orientationId,
+    objectId: props.orientationId,
   };
 
   const myNewObject = new Parse.Object('SelectOrientations');
   myNewObject.set('patient', patientPointer);
   myNewObject.set('orientation', orientationPointer);
+  myNewObject.set('receiver', props.receiver);
   try {
     const result = await myNewObject.save();
     Alert.alert('Orientação selecionada para o paciente');
