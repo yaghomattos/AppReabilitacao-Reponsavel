@@ -26,10 +26,11 @@ export function Home() {
           <Button title="Chat" onPress="ListPatientChat" props={id} />
           <Button title="Cadastro de Participantes" onPress="PatientControl" />
           <Button title="Treinamento" onPress="ListPatientSelectExercise" />
-          <Button title="Avaliação" onPress="ListPatientSelectExam" />
-          <Button title="Monitoramento" onPress="ListPatientMonitoring" />
           <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
+          <Button title="Avaliação" onPress="ListPatientSelectExam" />
           <Button title="Cadastrar Novo Teste" onPress="UploadExam" />
+          <Button title="Monitoramento" onPress="ListPatientMonitoring" />
+          <Button title="Orientações" onPress="MenuOrientation" />
         </View>
         <Logout />
       </SafeAreaView>

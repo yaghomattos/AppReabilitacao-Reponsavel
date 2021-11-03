@@ -15,17 +15,22 @@ import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
 import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercise/index';
 import { ListPatientSelectExam } from '../screens/ListPatientToSelectExam/index';
+import { ListPatientSelectOrientation } from '../screens/ListPatientToSelectOrientation/index';
 import { ListPatientChat } from '../screens/ListPatientToChat/index';
 import { ListPatientMonitoring } from '../screens/ListPatientToMonitoring/index';
 import { ListSelectExercises } from '../screens/ListSelectExercise/index';
 import { ListSelectExams } from '../screens/ListSelectExam/index';
+import { ListSelectOrientations } from '../screens/ListSelectOrientation/index';
 import { SelectExercises } from '../screens/SelectExercise/index';
 import { SelectExams } from '../screens/SelectExam/index';
+import { SelectOrientations } from '../screens/SelectOrientation/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
 import { ExerciseSettings } from '../screens/ExerciseSettings/index';
 import { ExamSettings } from '../screens/ExamSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
-import { ViewForm } from '../screens/ViewForm';
+import { ViewForm } from '../screens/ViewForm/index';
+import { MenuOrientation } from '../screens/MenuOrientation/index';
+import { NewOrientation } from '../screens/NewOrientation/index';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +53,10 @@ export function AppRoutes() {
           component={ListSelectExercises}
         />
         <Stack.Screen name="ListSelectExams" component={ListSelectExams} />
+        <Stack.Screen
+          name="ListSelectOrientations"
+          component={ListSelectOrientations}
+        />
         <Stack.Screen name="ListPatientChat" component={ListPatientChat} />
         <Stack.Screen
           name="ListPatientSelectExercise"
@@ -58,16 +67,26 @@ export function AppRoutes() {
           component={ListPatientSelectExam}
         />
         <Stack.Screen
+          name="ListPatientSelectOrientation"
+          component={ListPatientSelectOrientation}
+        />
+        <Stack.Screen
           name="ListPatientMonitoring"
           component={ListPatientMonitoring}
         />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
         <Stack.Screen name="SelectExams" component={SelectExams} />
+        <Stack.Screen
+          name="SelectOrientations"
+          component={SelectOrientations}
+        />
         <Stack.Screen name="PatientProfile" component={PatientProfile} />
         <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
         <Stack.Screen name="ExamSettings" component={ExamSettings} />
         <Stack.Screen name="Monitoring" component={Monitoring} />
         <Stack.Screen name="ViewForm" component={ViewForm} />
+        <Stack.Screen name="MenuOrientation" component={MenuOrientation} />
+        <Stack.Screen name="NewOrientation" component={NewOrientation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
