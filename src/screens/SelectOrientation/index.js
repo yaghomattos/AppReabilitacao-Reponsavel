@@ -81,7 +81,6 @@ export const SelectOrientations = (props) => {
           <Picker.Item label="Avaliação" value="exam" />
           <Picker.Item label="Ambos" value="both" />
         </Picker>
-        <Text>{receiver}</Text>
         <View>
           {!orientationId ? (
             <Text style={styles.warning}>{'Orientação não selecionada!'}</Text>
