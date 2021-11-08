@@ -2,26 +2,26 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    height: '100%',
   },
   header: {
-    paddingBottom: "2%",
+    paddingBottom: '2%',
     backgroundColor: '#3E9ACD',
   },
   back: {
-    paddingTop: "8%",
-    paddingLeft: "6%",
+    paddingTop: '8%',
+    paddingLeft: '6%',
     color: '#fff',
   },
   avatarContainer: {
-    paddingBottom: "2%",
+    paddingBottom: '2%',
     alignItems: 'center',
   },
   avatar: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   person: {
-    paddingLeft: "10%",
+    paddingLeft: '10%',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     fontSize: 20,
     fontWeight: 'bold',
-    color: "#fff",
+    color: '#fff',
   },
   viewCircle: {
     width: 110,
@@ -40,29 +40,29 @@ const styles = StyleSheet.create({
   circleCall: {
     width: 42,
     height: 42,
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "#000",
+    backgroundColor: '#000',
   },
   circleVideo: {
     width: 42,
     height: 42,
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "#000",
-    marginRight: "10%",
+    backgroundColor: '#000',
+    marginRight: '10%',
   },
   sendingContainer: {
     paddingTop: 10,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-    bottomComponentContainer: {
+  bottomComponentContainer: {
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export default styles;
