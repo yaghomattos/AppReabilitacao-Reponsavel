@@ -7,6 +7,7 @@ import { Login } from '../screens/Login/index';
 import { Register } from '../screens/Register/index';
 import { Home } from '../screens/Home/index';
 import { Chat } from '../screens/Chat/index';
+import { Educational } from '../screens/Educational/index';
 import { PatientRecord } from '../screens/RecordPatient/index';
 import { DeletePatient } from '../screens/DeletePatient/index';
 import { UploadExercise } from '../screens/UploadExercise/index';
@@ -17,6 +18,7 @@ import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercis
 import { ListPatientSelectExam } from '../screens/ListPatientToSelectExam/index';
 import { ListPatientSelectOrientation } from '../screens/ListPatientToSelectOrientation/index';
 import { ListPatientChat } from '../screens/ListPatientToChat/index';
+import { ListPatientEducational } from '../screens/ListPatientToEducational/index';
 import { ListPatientMonitoring } from '../screens/ListPatientToMonitoring/index';
 import { ListSelectExercises } from '../screens/ListSelectExercise/index';
 import { ListSelectExams } from '../screens/ListSelectExam/index';
@@ -42,6 +44,7 @@ export function AppRoutes() {
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Educational" component={Educational} />
         <Stack.Screen name="PatientControl" component={PatientControl} />
         <Stack.Screen name="PatientRecord" component={PatientRecord} />
         <Stack.Screen name="DeletePatient" component={DeletePatient} />
@@ -58,6 +61,10 @@ export function AppRoutes() {
           component={ListSelectOrientations}
         />
         <Stack.Screen name="ListPatientChat" component={ListPatientChat} />
+        <Stack.Screen
+          name="ListPatientEducational"
+          component={ListPatientEducational}
+        />
         <Stack.Screen
           name="ListPatientSelectExercise"
           component={ListPatientSelectExercise}

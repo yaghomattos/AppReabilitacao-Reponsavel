@@ -31,6 +31,11 @@ export function Home() {
           <Button title="Cadastrar Novo Teste" onPress="UploadExam" />
           <Button title="Monitoramento" onPress="ListPatientMonitoring" />
           <Button title="Orientações" onPress="MenuOrientation" />
+          <Button
+            title="Educacional"
+            onPress="ListPatientEducational"
+            props={id}
+          />
         </View>
         <Logout />
       </SafeAreaView>
