@@ -25,10 +25,8 @@ export function Home() {
         <View style={styles.background}>
           <Button title="Chat" onPress="ListPatientChat" props={id} />
           <Button title="Cadastro de Participantes" onPress="PatientControl" />
-          <Button title="Treinamento" onPress="ListPatientSelectExercise" />
-          <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
-          <Button title="Avaliação" onPress="ListPatientSelectExam" />
-          <Button title="Cadastrar Novo Teste" onPress="UploadExam" />
+          <Button title="Treinamento" onPress="MenuTraining" />
+          <Button title="Avaliação" onPress="MenuTest" />
           <Button title="Monitoramento" onPress="ListPatientMonitoring" />
           <Button title="Orientações" onPress="MenuOrientation" />
           <Button

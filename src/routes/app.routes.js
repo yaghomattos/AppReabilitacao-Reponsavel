@@ -32,6 +32,8 @@ import { ExamSettings } from '../screens/ExamSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
 import { ViewForm } from '../screens/ViewForm/index';
 import { MenuOrientation } from '../screens/MenuOrientation/index';
+import { MenuTraining } from '../screens/MenuTraining/index';
+import { MenuTest } from '../screens/MenuTest/index';
 import { NewOrientation } from '../screens/NewOrientation/index';
 
 const Stack = createStackNavigator();
@@ -93,6 +95,8 @@ export function AppRoutes() {
         <Stack.Screen name="Monitoring" component={Monitoring} />
         <Stack.Screen name="ViewForm" component={ViewForm} />
         <Stack.Screen name="MenuOrientation" component={MenuOrientation} />
+        <Stack.Screen name="MenuTraining" component={MenuTraining} />
+        <Stack.Screen name="MenuTest" component={MenuTest} />
         <Stack.Screen name="NewOrientation" component={NewOrientation} />
       </Stack.Navigator>
     </NavigationContainer>
