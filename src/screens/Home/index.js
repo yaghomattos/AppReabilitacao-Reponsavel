@@ -9,7 +9,7 @@ import styles from './styles';
 
 export function Home() {
   const currentUser = CurrentUser();
-  const id = currentUser.id;
+  const adminId = currentUser.id;
   const username = currentUser.username;
 
   return (
@@ -23,16 +23,24 @@ export function Home() {
           </Text>
         </View>
         <View style={styles.background}>
-          <Button title="Chat" onPress="ListPatientChat" props={id} />
+          <Button
+            title="Chat"
+            onPress="ListPatientRoute"
+            props={['Chat', adminId]}
+          />
           <Button title="Cadastro de Participantes" onPress="PatientControl" />
           <Button title="Treinamento" onPress="MenuTraining" />
           <Button title="Avaliação" onPress="MenuTest" />
-          <Button title="Monitoramento" onPress="ListPatientMonitoring" />
+          <Button
+            title="Monitoramento"
+            onPress="ListPatientRoute"
+            props={'Monitoring'}
+          />
           <Button title="Orientações" onPress="MenuOrientation" />
           <Button
             title="Educacional"
-            onPress="ListPatientEducational"
-            props={id}
+            onPress="ListPatientRoute"
+            props={['Educational', adminId]}
           />
         </View>
         <Logout />

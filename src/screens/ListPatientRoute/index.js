@@ -12,7 +12,7 @@ import styles from './styles';
 const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
 
-export const ListPatientSelectExam = () => {
+export const ListPatientRoute = (props) => {
   const navigation = useNavigation();
 
   const [search, setSearch] = useState('');
@@ -20,6 +20,13 @@ export const ListPatientSelectExam = () => {
   const results = useParseQuery(parseQuery).results;
 
   Parse.User._clearCache();
+
+  var route = props.route.params;
+  var adminId = '';
+  if (props.route.params[1].length > 1) {
+    route = props.route.params[0];
+    adminId = props.route.params[1];
+  }
 
   return (
     <View style={styles.container}>
@@ -53,7 +60,28 @@ export const ListPatientSelectExam = () => {
               title={item.get('name')}
               titleNumberOfLines={1}
               titleStyle={styles.itemTitle}
-              onPress={() => navigation.navigate('ListSelectExams', item.id)}
+              onPress={() => {
+                switch (route) {
+                  case 'Chat':
+                    navigation.navigate('Chat', { item, adminId });
+                    break;
+                  case 'Monitoring':
+                    navigation.navigate('Monitoring', { item, adminId });
+                    break;
+                  case 'Educational':
+                    navigation.navigate('Educational', { item, adminId });
+                    break;
+                  case 'ListSelectExams':
+                    navigation.navigate('ListSelectExams', item.id);
+                    break;
+                  case 'ListSelectExercises':
+                    navigation.navigate('ListSelectExercises', item.id);
+                    break;
+                  case 'ListSelectOrientations':
+                    navigation.navigate('ListSelectOrientations', item.id);
+                    break;
+                }
+              }}
             />
           )}
         />

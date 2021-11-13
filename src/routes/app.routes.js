@@ -14,12 +14,7 @@ import { UploadExercise } from '../screens/UploadExercise/index';
 import { UploadExam } from '../screens/UploadExam/index';
 import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
-import { ListPatientSelectExercise } from '../screens/ListPatientToSelectExercise/index';
-import { ListPatientSelectExam } from '../screens/ListPatientToSelectExam/index';
-import { ListPatientSelectOrientation } from '../screens/ListPatientToSelectOrientation/index';
-import { ListPatientChat } from '../screens/ListPatientToChat/index';
-import { ListPatientEducational } from '../screens/ListPatientToEducational/index';
-import { ListPatientMonitoring } from '../screens/ListPatientToMonitoring/index';
+import { ListPatientRoute } from '../screens/ListPatientRoute/index';
 import { ListSelectExercises } from '../screens/ListSelectExercise/index';
 import { ListSelectExams } from '../screens/ListSelectExam/index';
 import { ListSelectOrientations } from '../screens/ListSelectOrientation/index';
@@ -62,27 +57,7 @@ export function AppRoutes() {
           name="ListSelectOrientations"
           component={ListSelectOrientations}
         />
-        <Stack.Screen name="ListPatientChat" component={ListPatientChat} />
-        <Stack.Screen
-          name="ListPatientEducational"
-          component={ListPatientEducational}
-        />
-        <Stack.Screen
-          name="ListPatientSelectExercise"
-          component={ListPatientSelectExercise}
-        />
-        <Stack.Screen
-          name="ListPatientSelectExam"
-          component={ListPatientSelectExam}
-        />
-        <Stack.Screen
-          name="ListPatientSelectOrientation"
-          component={ListPatientSelectOrientation}
-        />
-        <Stack.Screen
-          name="ListPatientMonitoring"
-          component={ListPatientMonitoring}
-        />
+        <Stack.Screen name="ListPatientRoute" component={ListPatientRoute} />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
         <Stack.Screen name="SelectExams" component={SelectExams} />
         <Stack.Screen

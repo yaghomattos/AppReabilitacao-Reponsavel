@@ -25,7 +25,11 @@ export function MenuTest() {
         </View>
         <View style={styles.background}>
           <View style={styles.buttons}>
-            <Button title="Avaliação" onPress="ListPatientSelectExam" />
+            <Button
+              title="Avaliação"
+              onPress="ListPatientRoute"
+              props={'ListSelectExams'}
+            />
             <Button title="Cadastrar Novo Teste" onPress="UploadExam" />
           </View>
         </View>
