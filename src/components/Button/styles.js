@@ -2,22 +2,17 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 20,
     borderRadius: 10,
-    backgroundColor: '#f5f5f5',
-  },
-  form: {
-    width: '54%',
-    maxWidth: 280,
   },
   button: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
+    width: 200,
     borderRadius: 10,
     backgroundColor: '#384955',
   },
