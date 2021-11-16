@@ -36,7 +36,7 @@ export const ListSelectExams = (props) => {
     }
 
     Search(patient);
-  });
+  }, [exam]);
 
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
