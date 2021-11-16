@@ -118,15 +118,14 @@ export function UploadExam() {
               style={file ? styles.button : styles.button2}
               onPress={pickFile}
             >
-              <Text style={styles.text_label}>
-                {'Selecionar vídeo ou imagem'}
-              </Text>
+              <Text style={styles.text_button}>{'Selecionar vídeo'}</Text>
+              <Text style={styles.text_button}>{'ou imagem'}</Text>
             </TouchableOpacity>
             {file && <Image source={{ uri: file.uri }} style={styles.image} />}
           </View>
           <View style={styles.preview}>
             <TouchableOpacity style={styles.button} onPress={pickPhoto}>
-              <Text style={styles.text_label}>{'Selecionar imagem'}</Text>
+              <Text style={styles.text_button}>{'Selecionar imagem'}</Text>
             </TouchableOpacity>
             {photo && (
               <Image source={{ uri: photo.uri }} style={styles.image} />
@@ -135,7 +134,7 @@ export function UploadExam() {
 
           {file && photo && (
             <TouchableOpacity style={styles.send} onPress={upload}>
-              <Text style={styles.text_label}>{'Cadastrar'}</Text>
+              <Text style={styles.text_button}>{'Cadastrar'}</Text>
             </TouchableOpacity>
           )}
         </View>
