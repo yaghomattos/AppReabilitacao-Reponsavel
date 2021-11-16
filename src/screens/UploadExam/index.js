@@ -11,6 +11,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
+import { Button } from '../../components/Button/index';
 import { createExam } from '../../components/Exams';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -131,6 +132,8 @@ export function UploadExam() {
               <Image source={{ uri: photo.uri }} style={styles.image} />
             )}
           </View>
+
+          <Button title="Orientações" onPress="MenuOrientation" />
 
           {file && photo && (
             <TouchableOpacity style={styles.send} onPress={upload}>
