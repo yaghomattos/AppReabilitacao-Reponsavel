@@ -1,13 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  header: {
+  wrapper: {
+    flex: 1,
     backgroundColor: '#3E9ACD',
+  },
+  header: {
     alignItems: 'center',
-    height: "20%",
+    height: 100,
   },
   backView: {
-    width: '100%', 
+    width: '100%',
     paddingStart: 20,
     margin: 30,
   },
@@ -18,34 +21,52 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     paddingLeft: '10%',
-    paddingTop: '4%',
+    paddingTop: 20,
     fontWeight: 'bold',
   },
   container: {
-    flex: 1,
-    paddingBottom: 50,
+    paddingTop: 80,
     justifyContent: 'center',
-    backgroundColor: '#3E9ACD',
-  },
-  form: {
     alignItems: 'center',
   },
-  inputName: {
+  title: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 18,
+  },
+  form: {
+    width: '20%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   input: {
-    width: "40%",
-    height: 40,
-    paddingHorizontal: 20,
-    marginBottom: "5%",
-    backgroundColor: '#F4F4F4',
-    borderRadius: 10,
+    width: 30,
+    height: 30,
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    borderColor: '#F4F4F4',
+    color: '#FFFFFF',
+    fontSize: 18,
+  },
+  inputText: {
+    color: '#fff',
+    fontSize: 28,
+    paddingBottom: 15,
+  },
+  wrapperCheckbox: {},
+  checkboxContainer: {
+    flexDirection: 'row',
+  },
+  text_checkbox: {
+    color: '#fff',
+    fontSize: 15,
+    marginTop: 8,
   },
   button: {
     width: 100,
     height: 50,
-    marginTop: '5%',
+    marginTop: 20,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
