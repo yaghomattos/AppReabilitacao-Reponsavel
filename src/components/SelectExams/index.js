@@ -40,17 +40,22 @@ export async function readSelectExams() {
   }
 }
 
-export async function updateSelectExams(examId, timer) {
+export async function updateSelectExams(props) {
   var examPointer = {
     __type: 'Pointer',
     className: 'Exam',
-    objectId: examId,
+    objectId: props.examId,
   };
 
   const query = new Parse.Query('SelectExams');
   try {
     const object = await query.get(examPointer);
-    if (timer != 0) object.set('timer', timer);
+    if (props.timer != 0) object.set('timer', props.timer);
+    if (props.reps) object.set('reps', true);
+    if (props.frequency) object.set('frequency', true);
+    if (props.saturation) object.set('saturation');
+    if (props.dyspnea) object.set('dyspnea', true);
+    if (props.fatigue) object.set('fatigue', true);
     try {
       const response = await object.save();
       console.log('SelectExams updated', response);
