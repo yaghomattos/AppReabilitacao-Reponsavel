@@ -115,7 +115,7 @@ export function Monitoring(props) {
       setExam(resultExam);
     }
 
-    Search(patientId);
+    if (patientId != '') Search(patientId);
   }, []);
 
   const results = useParseQuery(parseQuery).results;

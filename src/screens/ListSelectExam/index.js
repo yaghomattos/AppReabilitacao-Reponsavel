@@ -35,7 +35,7 @@ export const ListSelectExams = (props) => {
       setExam(results);
     }
 
-    Search(patient);
+    if (patient != '') Search(patient);
   }, [exam]);
 
   const results = useParseQuery(parseQuery).results;
@@ -55,7 +55,7 @@ export const ListSelectExams = (props) => {
             <Text style={styles.header_text}>{'Testes selecionados'}</Text>
           </View>
         </View>
-        <View style={styles.backgroundList}>
+        <View style={styles.background}>
           <View style={styles.viewList}>
             <FlatList
               data={exam}

@@ -35,7 +35,7 @@ export const ListSelectOrientations = (props) => {
       setOrientation(results);
     }
 
-    Search();
+    if (examId != '') Search();
   }, [orientation]);
 
   const results = useParseQuery(parseQuery).results;

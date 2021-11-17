@@ -35,8 +35,8 @@ export const ListSelectExercises = (props) => {
       setExercise(results);
     }
 
-    Search(patient);
-  });
+    if (patient != '') Search(patient);
+  }, [exercise]);
 
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
@@ -55,7 +55,7 @@ export const ListSelectExercises = (props) => {
             <Text style={styles.header_text}>{'Exercícios selecionados'}</Text>
           </View>
         </View>
-        <View style={styles.backgroundList}>
+        <View style={styles.background}>
           <View style={styles.viewList}>
             <FlatList
               data={exercise}
