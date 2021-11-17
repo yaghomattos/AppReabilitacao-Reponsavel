@@ -2,10 +2,10 @@ import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
 export async function createSelectOrientations(props) {
-  var patientPointer = {
+  var examPointer = {
     __type: 'Pointer',
-    className: 'Patient',
-    objectId: props.patientId,
+    className: 'Exam',
+    objectId: props.examId,
   };
   var orientationPointer = {
     __type: 'Pointer',
@@ -14,12 +14,11 @@ export async function createSelectOrientations(props) {
   };
 
   const myNewObject = new Parse.Object('SelectOrientations');
-  myNewObject.set('patient', patientPointer);
+  myNewObject.set('exam', examPointer);
   myNewObject.set('orientation', orientationPointer);
-  myNewObject.set('receiver', props.receiver);
   try {
     const result = await myNewObject.save();
-    Alert.alert('Orientação selecionada para o paciente');
+    Alert.alert('Orientação selecionada para o exame');
   } catch (error) {
     console.error('Error while creating SelectOrientations: ', error);
   }
