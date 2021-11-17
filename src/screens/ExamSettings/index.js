@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { Checkbox } from 'react-native-paper';
 
+import { Button } from '../../components/Button/index';
 import { updateSelectExams } from '../../components/SelectExams';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -121,6 +122,13 @@ export function ExamSettings(props) {
             <Text style={styles.text_checkbox}>Cansaço</Text>
           </View>
         </View>
+
+        <Button
+          title="Orientações"
+          onPress="ListSelectOrientations"
+          props={examId}
+        />
+
         {(minutes != '' || seconds != '') && (
           <TouchableOpacity onPress={() => handleSettings()}>
             <View style={styles.button}>
