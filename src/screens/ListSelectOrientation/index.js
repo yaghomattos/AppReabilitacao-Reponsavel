@@ -17,26 +17,26 @@ parseQuery.descending('createdAt');
 export const ListSelectOrientations = (props) => {
   const navigation = useNavigation();
 
-  const patient = props.route.params;
+  const examId = props.route.params;
 
   const [orientation, setOrientation] = useState('');
 
   useEffect(() => {
     async function Search() {
-      var patientPointer = {
+      var examPointer = {
         __type: 'Pointer',
-        className: 'Patient',
-        objectId: patient,
+        className: 'Exam',
+        objectId: examId,
       };
 
-      parseQuery.equalTo('patient', patientPointer);
+      parseQuery.equalTo('exam', examPointer);
       const results = await parseQuery.find();
 
       setOrientation(results);
     }
 
     Search();
-  }, []);
+  }, [orientation]);
 
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
@@ -74,7 +74,7 @@ export const ListSelectOrientations = (props) => {
           <Button
             title="Selecionar Orientações"
             onPress="SelectOrientations"
-            props={patient}
+            props={examId}
           />
         </View>
       </View>
