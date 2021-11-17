@@ -2,12 +2,10 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 0.5,
+    flex: 0.4,
     paddingVertical: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 40,
-    backgroundColor: '#f5f5f5',
   },
   form: {
     width: '40%',
