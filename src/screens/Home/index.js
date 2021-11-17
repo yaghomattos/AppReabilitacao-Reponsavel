@@ -36,14 +36,13 @@ export function Home() {
             onPress="ListPatientRoute"
             props={'Monitoring'}
           />
-          <Button title="Orientações" onPress="MenuOrientation" />
           <Button
             title="Educacional"
             onPress="ListPatientRoute"
             props={['Educational', adminId]}
           />
+          <Logout />
         </View>
-        <Logout />
       </SafeAreaView>
     </>
   );

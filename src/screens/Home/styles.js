@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   header: {
     justifyContent: 'center',
-    height: '30%',
+    height: '25%',
   },
   header_text: {
     color: '#f0f0f0',
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   background: {
-    flex: 3,
     height: '100%',
     backgroundColor: '#f5f5f5',
     borderTopStartRadius: 20,
