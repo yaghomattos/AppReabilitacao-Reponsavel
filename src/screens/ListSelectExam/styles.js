@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#208AEC',
+    backgroundColor: '#3E9ACD',
   },
   header: {
     alignItems: 'center',
@@ -25,19 +25,18 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     fontWeight: 'bold',
   },
-  backgroundList: {
+  background: {
     flex: 1,
-    backgroundColor: '#fff',
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
+    backgroundColor: '#f5f5f5',
   },
   viewList: {
-    flex: 1,
+    height: '80%',
     paddingTop: 10,
     alignItems: 'center',
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
-    backgroundColor: '#f5f5f5',
   },
   item: {
     width: 350,

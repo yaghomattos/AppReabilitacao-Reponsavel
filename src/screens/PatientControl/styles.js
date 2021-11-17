@@ -23,10 +23,12 @@ const styles = StyleSheet.create({
     height: '100%',
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
-    backgroundColor: '#f6f6f6'
+    backgroundColor: '#f6f6f6',
   },
   buttons: {
+    justifyContent: 'space-evenly',
     height: '40%',
+    marginTop: '20%',
   },
 });
 
