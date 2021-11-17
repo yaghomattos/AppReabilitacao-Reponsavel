@@ -47,15 +47,9 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   extra: {
-    height: '25%',
+    height: '15%',
     alignItems: 'center',
     backgroundColor: '#fff',
-  },
-  picker: {
-    marginVertical: 20,
-    width: 260,
-    borderWidth: 1,
-    color: '#6f6f6f',
   },
   warning: {
     marginTop: 5,

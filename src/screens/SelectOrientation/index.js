@@ -3,7 +3,6 @@ import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
-import { Picker } from '@react-native-picker/picker';
 
 import { createSelectOrientations } from '../../components/SelectOrientations/index';
 
@@ -18,13 +17,12 @@ parseQuery.ascending('createdAt');
 export const SelectOrientations = (props) => {
   const navigation = useNavigation();
 
-  const [receiver, setReceiver] = useState('both');
   const [orientationId, setOrientationId] = useState('');
 
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
 
-  var patientId = props.route.params;
+  var examId = props.route.params;
 
   async function SaveItemId(id) {
     setOrientationId(id);
@@ -32,9 +30,8 @@ export const SelectOrientations = (props) => {
 
   async function HandleCreateSelectedOrientation() {
     var props = {
-      patientId: patientId,
+      examId: examId,
       orientationId: orientationId,
-      receiver: receiver,
     };
 
     createSelectOrientations(props);
@@ -70,17 +67,6 @@ export const SelectOrientations = (props) => {
         />
       </View>
       <View style={styles.extra}>
-        <Picker
-          selectedValue={receiver}
-          onValueChange={(value, index) => setReceiver(value)}
-          mode="dropdown"
-          style={styles.picker}
-        >
-          <Picker.Item label="Onde exibir a Orientação ?" value="" />
-          <Picker.Item label="Treinamento" value="exercise" />
-          <Picker.Item label="Avaliação" value="exam" />
-          <Picker.Item label="Ambos" value="both" />
-        </Picker>
         <View>
           {!orientationId ? (
             <Text style={styles.warning}>{'Orientação não selecionada!'}</Text>
