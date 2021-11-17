@@ -15,6 +15,7 @@ import { UploadExam } from '../screens/UploadExam/index';
 import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
 import { ListPatientRoute } from '../screens/ListPatientRoute/index';
+import { ListExamRoute } from '../screens/ListExamRoute/index';
 import { ListSelectExercises } from '../screens/ListSelectExercise/index';
 import { ListSelectExams } from '../screens/ListSelectExam/index';
 import { ListSelectOrientations } from '../screens/ListSelectOrientation/index';
@@ -58,6 +59,7 @@ export function AppRoutes() {
           component={ListSelectOrientations}
         />
         <Stack.Screen name="ListPatientRoute" component={ListPatientRoute} />
+        <Stack.Screen name="ListExamRoute" component={ListExamRoute} />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
         <Stack.Screen name="SelectExams" component={SelectExams} />
         <Stack.Screen
