@@ -45,13 +45,14 @@ const styles = StyleSheet.create({
   },
   preview: {
     flexDirection: 'row',
-    width: '100%',
+    width: '80%',
     marginTop: 10,
     justifyContent: 'space-evenly',
   },
   image: {
-    width: 150,
-    height: 150,
+    backgroundColor: '#b7b',
+    width: 90,
+    height: 90,
     borderRadius: 10,
   },
   button: {
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 180,
     height: 60,
-    marginTop: '10%',
+    marginTop: '4%',
     borderRadius: 10,
     backgroundColor: '#384955',
   },
@@ -69,10 +70,9 @@ const styles = StyleSheet.create({
     width: 180,
     height: 60,
     borderRadius: 10,
-    marginBottom: 30,
     backgroundColor: '#384955',
   },
-  text_label: {
+  text_button: {
     color: '#fff',
     fontSize: 15,
   },
