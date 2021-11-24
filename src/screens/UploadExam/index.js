@@ -126,7 +126,7 @@ export function UploadExam() {
           </View>
           <View style={styles.preview}>
             <TouchableOpacity style={styles.button} onPress={pickPhoto}>
-              <Text style={styles.text_button}>{'Selecionar imagem'}</Text>
+              <Text style={styles.text_button}>{'Definir ícone'}</Text>
             </TouchableOpacity>
             {photo && (
               <Image source={{ uri: photo.uri }} style={styles.image} />
