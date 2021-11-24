@@ -21,6 +21,7 @@ export function UploadExercise() {
   const navigation = useNavigation();
 
   const [file, setFile] = useState(null);
+  const [photo, setPhoto] = useState(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -39,6 +40,7 @@ export function UploadExercise() {
   async function upload() {
     var exercise = {
       video: file,
+      photo: photo,
       name: name,
       description: description,
     };
@@ -54,6 +56,17 @@ export function UploadExercise() {
 
     if (!result.cancelled) {
       setFile(result);
+    }
+  };
+
+  const pickPhoto = async () => {
+    let resultPhoto = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      base64: true,
+    });
+
+    if (!resultPhoto.cancelled) {
+      setPhoto(resultPhoto);
     }
   };
 
@@ -95,11 +108,18 @@ export function UploadExercise() {
               style={file ? styles.button : styles.button2}
               onPress={pickFile}
             >
-              <Text style={styles.text_label}>
-                {'Selecionar vídeo ou imagem'}
-              </Text>
+              <Text style={styles.text_button}>{'Selecionar vídeo'}</Text>
+              <Text style={styles.text_button}>{'ou imagem'}</Text>
             </TouchableOpacity>
             {file && <Image source={{ uri: file.uri }} style={styles.image} />}
+          </View>
+          <View style={styles.preview}>
+            <TouchableOpacity style={styles.button} onPress={pickPhoto}>
+              <Text style={styles.text_button}>{'Definir ícone'}</Text>
+            </TouchableOpacity>
+            {photo && (
+              <Image source={{ uri: photo.uri }} style={styles.image} />
+            )}
           </View>
 
           {file && (

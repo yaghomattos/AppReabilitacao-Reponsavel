@@ -5,11 +5,19 @@ export async function createExercise(props) {
   var { base64, fileName } = props.video;
   fileName = props.name + '.gif';
   const parseFile = new Parse.File(fileName, { base64 });
+
+  var { base64, photoName } = props.photo;
+  photoName = props.name + '.png';
+  const parseFilePhoto = new Parse.File(photoName, { base64 });
+
   try {
     const responseFile = await parseFile.save();
+    const photoFile = await parseFilePhoto.save();
+
     const File = Parse.Object.extend('Exercise');
     const object = new File();
     object.set('video', responseFile);
+    object.set('photo', photoFile);
     object.set('name', props.name);
     object.set('description', props.description);
 
