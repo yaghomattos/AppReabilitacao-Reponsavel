@@ -15,6 +15,7 @@ export function ExamSettings(props) {
 
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
+  const [numReps, setNumReps] = useState('');
 
   const [reps, setReps] = useState(false);
   const [frequency, setFrequency] = useState(false);
@@ -31,6 +32,7 @@ export function ExamSettings(props) {
     const object = {
       examId: examId,
       timer: parseInt(minutes) * 60 + parseInt(seconds),
+      numReps: numReps,
       reps: reps,
       frequency: frequency,
       saturation: saturation,
@@ -75,7 +77,19 @@ export function ExamSettings(props) {
             maxLength={3}
           />
         </View>
+        <Text style={styles.title}>{'Número de repetições'}</Text>
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            value={numReps}
+            placeholder={'Repetições'}
+            onChangeText={(text) => setNumReps(text)}
+            autoCapitalize={'none'}
+            keyboardType={'numeric'}
+          />
+        </View>
         <View style={styles.wrapperCheckbox}>
+          <Text style={styles.title}>{'Dados do formulário'}</Text>
           <View style={styles.checkboxContainer}>
             <Checkbox
               status={reps ? 'checked' : 'unchecked'}
