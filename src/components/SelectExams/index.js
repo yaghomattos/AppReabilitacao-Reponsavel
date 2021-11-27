@@ -50,7 +50,9 @@ export async function updateSelectExams(props) {
   const query = new Parse.Query('SelectExams');
   try {
     const object = await query.get(examPointer);
-    if (props.timer != 0) object.set('timer', props.timer);
+    if (props.timer != '') object.set('timer', props.timer);
+    else if (props.numReps != '') object.set('numReps', props.numReps);
+
     if (props.reps) object.set('reps', true);
     if (props.frequency) object.set('frequency', true);
     if (props.saturation) object.set('saturation');
