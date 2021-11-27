@@ -32,23 +32,33 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 15,
   },
   viewList: {
-    flex: 1,
+    height: '80%',
     paddingTop: 10,
     alignItems: 'center',
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
-    backgroundColor: '#f5f5f5',
   },
   item: {
+    flexDirection: 'row',
     width: 350,
     height: 100,
     marginTop: 10,
     borderRadius: 10,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     backgroundColor: '#afafaf',
   },
-  itemTitle: {
+  listItem: {
+    width: 300,
+    height: 80,
+    justifyContent: 'space-evenly',
+  },
+  listItemTitle: {
     fontSize: 22,
+    color: '#fff',
+  },
+  deleteButton: {
+    alignItems: 'center',
     color: '#fff',
   },
 });
