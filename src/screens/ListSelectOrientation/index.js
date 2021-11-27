@@ -5,6 +5,7 @@ import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
 import { Button } from '../../components/Button/index';
+import { deleteSelectOrientations } from '../../components/SelectOrientations';
 
 import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
@@ -41,6 +42,10 @@ export const ListSelectOrientations = (props) => {
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
 
+  async function handleDelete(object_id) {
+    deleteSelectOrientations(object_id);
+  }
+
   return (
     <>
       <View style={styles.container}>
@@ -62,12 +67,22 @@ export const ListSelectOrientations = (props) => {
               keyExtractor={(item) => item.id}
               ItemSeparatorComponent={() => <Divider />}
               renderItem={({ item }) => (
-                <List.Item
-                  style={styles.item}
-                  title={item.get('orientation').get('text')}
-                  titleNumberOfLines={10}
-                  titleStyle={styles.itemTitle}
-                />
+                <View style={styles.item}>
+                  <List.Item
+                    style={styles.listItem}
+                    title={item.get('orientation').get('text')}
+                    titleNumberOfLines={10}
+                    titleStyle={styles.listItemTitle}
+                  />
+                  <Ionicons
+                    name="trash"
+                    size={24}
+                    style={styles.deleteButton}
+                    onPress={() => {
+                      handleDelete(item.id);
+                    }}
+                  />
+                </View>
               )}
             />
           </View>
