@@ -49,12 +49,24 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 18,
   },
+  inputReps: {
+    width: 90,
+    height: 30,
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    borderColor: '#F4F4F4',
+    color: '#FFFFFF',
+    fontSize: 18,
+  },
   inputText: {
     color: '#fff',
     fontSize: 28,
     paddingBottom: 15,
   },
-  wrapperCheckbox: {},
+  wrapperCheckbox: {
+    marginTop: 20,
+  },
   checkboxContainer: {
     flexDirection: 'row',
   },

@@ -80,7 +80,7 @@ export function ExamSettings(props) {
         <Text style={styles.title}>{'Número de repetições'}</Text>
         <View style={styles.form}>
           <TextInput
-            style={styles.input}
+            style={styles.inputReps}
             value={numReps}
             placeholder={'Repetições'}
             onChangeText={(text) => setNumReps(text)}
