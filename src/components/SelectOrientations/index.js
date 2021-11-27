@@ -56,10 +56,10 @@ export async function updateSelectOrientations(orientationId, text) {
   }
 }
 
-export async function deleteSelectOrientations() {
+export async function deleteSelectOrientations(props) {
   const query = new Parse.Query('SelectOrientations');
   try {
-    const object = await query.get('xKue915KBG');
+    const object = await query.get(props);
     try {
       const response = await object.destroy();
       console.log('Deleted SelectOrienatitons', response);
