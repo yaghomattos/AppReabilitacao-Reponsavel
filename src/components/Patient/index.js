@@ -17,6 +17,8 @@ export async function createPatient(props) {
   newPatient.set('address', props.address);
   newPatient.set('createdFrom', currentUser);
   newPatient.set('createdFromName', props.username);
+  newPatient.set('height', props.height);
+  newPatient.set('weight', props.weight);
 
   try {
     const result = await newPatient.save();

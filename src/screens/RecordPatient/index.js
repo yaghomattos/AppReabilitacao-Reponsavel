@@ -18,6 +18,8 @@ export function PatientRecord() {
   const [phone, setPhone] = useState('');
   const [diagnosis, setDiagnosis] = useState('');
   const [address, setAddress] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
 
   const user = CurrentUser();
 
@@ -32,6 +34,8 @@ export function PatientRecord() {
       phone: phone,
       diagnosis: diagnosis,
       address: address,
+      weight: weight,
+      height: height,
       id: userId,
       username: userName,
     };
@@ -111,6 +115,22 @@ export function PatientRecord() {
             onChangeText={(text) => setAddress(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
+          />
+          <TextInput
+            style={styles.input}
+            value={height}
+            placeholder={'Altura'}
+            onChangeText={(text) => setHeight(text)}
+            autoCapitalize={'none'}
+            keyboardType={'numeric'}
+          />
+          <TextInput
+            style={styles.input}
+            value={weight}
+            placeholder={'Peso'}
+            onChangeText={(text) => setWeight(text)}
+            autoCapitalize={'none'}
+            keyboardType={'numeric'}
           />
           <TouchableOpacity onPress={() => handleCreatePatient()}>
             <View style={styles.button}>
