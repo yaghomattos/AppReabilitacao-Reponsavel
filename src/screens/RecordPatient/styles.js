@@ -1,24 +1,29 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  header: {
+  container: {
+    flex: 1,
     backgroundColor: '#3E9ACD',
+  },
+  header: {
+    height: 130,
     alignItems: 'center',
-    height: "20%",
+    justifyContent: 'center',
   },
   backView: {
-    width: '100%', 
-    paddingStart: 20,
+    flexDirection: 'row',
+    width: '100%',
     margin: 30,
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
   },
-  back: {
+  icon: {
     color: '#fff',
   },
   header_text: {
     color: '#fff',
     fontSize: 18,
-    paddingLeft: '10%',
-    paddingTop: '4%',
+    paddingTop: '10%',
     fontWeight: 'bold',
   },
   container: {
@@ -31,10 +36,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    width: "80%",
+    width: '80%',
     height: 45,
     paddingHorizontal: 20,
-    marginBottom: "5%",
+    marginBottom: '5%',
     backgroundColor: '#F4F4F4',
     borderRadius: 10,
   },

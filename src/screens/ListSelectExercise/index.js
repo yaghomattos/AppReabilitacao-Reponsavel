@@ -49,10 +49,16 @@ export const ListSelectExercises = (props) => {
             <Ionicons
               name="arrow-back"
               size={24}
-              style={styles.back}
+              style={styles.icon}
               onPress={() => navigation.goBack()}
             />
             <Text style={styles.header_text}>{'Exercícios selecionados'}</Text>
+            <Ionicons
+              name="home"
+              size={24}
+              style={styles.icon}
+              onPress={() => navigation.navigate('Home')}
+            />
           </View>
         </View>
         <View style={styles.background}>

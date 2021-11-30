@@ -6,17 +6,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#3E9ACD',
   },
   header: {
-    justifyContent: 'space-evenly',
-    height: '20%',
+    height: 130,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  back: {
-    paddingLeft: 20,
+  backView: {
+    flexDirection: 'row',
+    width: '100%',
+    margin: 30,
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+  },
+  icon: {
     color: '#fff',
   },
   header_text: {
     color: '#fff',
     fontSize: 18,
-    paddingLeft: '10%',
+    paddingTop: '10%',
     fontWeight: 'bold',
   },
   background: {

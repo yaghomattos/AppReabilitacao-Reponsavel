@@ -40,16 +40,22 @@ export function PatientRecord() {
   }
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.backView}>
           <Ionicons
             name="arrow-back"
             size={24}
-            style={styles.back}
+            style={styles.icon}
             onPress={() => navigation.goBack()}
           />
           <Text style={styles.header_text}>{'Cadastro de Participante'}</Text>
+          <Ionicons
+            name="home"
+            size={24}
+            style={styles.icon}
+            onPress={() => navigation.navigate('Home')}
+          />
         </View>
       </View>
       <View style={styles.container}>
@@ -113,6 +119,6 @@ export function PatientRecord() {
           </TouchableOpacity>
         </View>
       </View>
-    </>
+    </View>
   );
 }

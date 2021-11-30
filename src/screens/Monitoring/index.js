@@ -126,35 +126,43 @@ export function Monitoring(props) {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <View style={styles.header}>
-        <Ionicons
-          name="arrow-back"
-          size={24}
-          style={styles.back}
-          onPress={() => navigation.goBack()}
-        />
-        <TouchableHighlight
-          style={styles.highlight}
-          activeOpacity={0}
-          onPress={() => {
-            setShow(true);
-          }}
-        >
-          {displayDate()}
-        </TouchableHighlight>
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="date"
-            display="calendar"
-            maximumDate={lastDate}
-            onChange={(dateString) => {
-              const newDate = new Date(dateString.nativeEvent.timestamp);
-              date = newDate;
-              setShow(false);
-            }}
+        <View style={styles.backView}>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            style={styles.icon}
+            onPress={() => navigation.goBack()}
           />
-        )}
+          <TouchableHighlight
+            style={styles.highlight}
+            activeOpacity={0}
+            onPress={() => {
+              setShow(true);
+            }}
+          >
+            {displayDate()}
+          </TouchableHighlight>
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode="date"
+              display="calendar"
+              maximumDate={lastDate}
+              onChange={(dateString) => {
+                const newDate = new Date(dateString.nativeEvent.timestamp);
+                date = newDate;
+                setShow(false);
+              }}
+            />
+          )}
+          <Ionicons
+            name="home"
+            size={24}
+            style={styles.icon}
+            onPress={() => navigation.navigate('Home')}
+          />
+        </View>
       </View>
       <View style={styles.today}>
         <Text style={styles.title}>{'Feito Hoje'}</Text>

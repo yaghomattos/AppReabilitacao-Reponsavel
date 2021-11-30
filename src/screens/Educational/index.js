@@ -97,12 +97,20 @@ export function Educational(props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Ionicons
-          name="arrow-back"
-          size={24}
-          style={styles.back}
-          onPress={() => navigation.goBack()}
-        />
+        <View style={styles.headerNavigator}>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            style={styles.icon}
+            onPress={() => navigation.goBack()}
+          />
+          <Ionicons
+            name="home"
+            size={24}
+            style={styles.icon}
+            onPress={() => navigation.navigate('Home')}
+          />
+        </View>
         <View style={styles.avatarContainer}>
           <Avatar.Image
             size={100}

@@ -6,22 +6,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#3E9ACD',
   },
   header: {
-    alignItems: 'center',
     height: 130,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   backView: {
+    flexDirection: 'row',
     width: '100%',
-    paddingStart: 20,
     margin: 30,
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
   },
-  back: {
+  icon: {
     color: '#fff',
   },
   header_text: {
     color: '#fff',
     fontSize: 18,
-    paddingLeft: '10%',
-    paddingTop: '4%',
+    paddingTop: '10%',
     fontWeight: 'bold',
   },
   scrollView: {

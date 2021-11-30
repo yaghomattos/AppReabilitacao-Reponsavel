@@ -6,18 +6,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#3E9ACD',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    height: 130,
     alignItems: 'center',
-    paddingTop: '8%',
-    paddingBottom: '8%',
+    justifyContent: 'center',
   },
-  back: {
-    paddingLeft: '6%',
+  backView: {
+    flexDirection: 'row',
+    width: '100%',
+    margin: 30,
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+  },
+  icon: {
     color: '#fff',
   },
   highlight: {
-    marginRight: '28%',
     backgroundColor: '#fff',
     paddingVertical: 15,
     paddingHorizontal: 10,
