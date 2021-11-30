@@ -137,11 +137,7 @@ export function ExamSettings(props) {
           </View>
         </View>
 
-        <Button
-          title="Orientações"
-          onPress="ListSelectOrientations"
-          props={examId}
-        />
+        <Button title="Orientações" onPress="MenuOrientation" props={examId} />
 
         {(minutes != '' || seconds != '') && (
           <TouchableOpacity onPress={() => handleSettings()}>
