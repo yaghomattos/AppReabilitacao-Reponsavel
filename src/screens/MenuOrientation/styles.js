@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#f6f6f6',
   },
   buttons: {
-    width: '100%',
-    height: 200,
-    marginTop: '30%',
+    justifyContent: 'space-evenly',
+    height: '40%',
+    marginTop: '20%',
   },
 });
 
