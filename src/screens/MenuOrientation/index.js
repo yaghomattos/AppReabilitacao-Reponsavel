@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-export function MenuOrientation() {
+export function MenuOrientation(props) {
   const navigation = useNavigation();
 
   return (
@@ -29,6 +29,7 @@ export function MenuOrientation() {
             <Button
               title="Orientações selecionadas"
               onPress="ListSelectOrientations"
+              props={props.route.params}
             />
             <Button
               title="Cadastrar nova Orientação"

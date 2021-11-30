@@ -74,7 +74,10 @@ export const ListSelectExercises = (props) => {
                   titleNumberOfLines={1}
                   titleStyle={styles.itemTitle}
                   onPress={() =>
-                    navigation.navigate('ExerciseSettings', item.id)
+                    navigation.navigate(
+                      'ExerciseSettings',
+                      item.get('exercise').id
+                    )
                   }
                   left={(props) => <List.Icon {...props} icon="movie-edit" />}
                 />

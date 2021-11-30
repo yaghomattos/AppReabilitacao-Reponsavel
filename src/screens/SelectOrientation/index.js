@@ -22,7 +22,8 @@ export const SelectOrientations = (props) => {
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
 
-  var examId = props.route.params;
+  const examOrExerciseId = props.route.params[0];
+  const className = props.route.params[1];
 
   async function SaveItemId(id) {
     setOrientationId(id);
@@ -30,8 +31,9 @@ export const SelectOrientations = (props) => {
 
   async function HandleCreateSelectedOrientation() {
     var props = {
-      examId: examId,
+      examOrExerciseId: examOrExerciseId,
       orientationId: orientationId,
+      className: className,
     };
 
     createSelectOrientations(props);

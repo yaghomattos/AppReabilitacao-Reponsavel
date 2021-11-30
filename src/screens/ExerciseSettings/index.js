@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
+
+import { updateSelectExercises } from '../../components/SelectExercises';
+import { Button } from '../../components/Button/index';
 
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
-import { updateSelectExercises } from '../../components/SelectExercises';
 
 export function ExerciseSettings(props) {
   const navigation = useNavigation();
@@ -15,11 +16,11 @@ export function ExerciseSettings(props) {
   const [reps, setReps] = useState('');
   const [timer, setTimer] = useState('');
 
-  var selectExerciseId = props.route.params;
+  var exerciseId = props.route.params;
 
   async function handleSettings() {
     var exercise = {
-      id: selectExerciseId,
+      id: exerciseId,
       sets: sets,
       reps: reps,
       timer: timer,
@@ -70,6 +71,13 @@ export function ExerciseSettings(props) {
             keyboardType={'numeric'}
             maxLength={4}
           />
+
+          <Button
+            title="Orientações"
+            onPress="MenuOrientation"
+            props={[exerciseId, 'exercise']}
+          />
+
           <TouchableOpacity onPress={() => handleSettings()}>
             <View style={styles.button}>
               <Text style={styles.text_label}>{'Salvar'}</Text>
