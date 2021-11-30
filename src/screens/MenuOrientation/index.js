@@ -26,7 +26,10 @@ export function MenuOrientation() {
         </View>
         <View style={styles.background}>
           <View style={styles.buttons}>
-            <Button title="Orientações selecionadas" onPress="ListExamRoute" />
+            <Button
+              title="Orientações selecionadas"
+              onPress="ListSelectOrientations"
+            />
             <Button
               title="Cadastrar nova Orientação"
               onPress="NewOrientation"
