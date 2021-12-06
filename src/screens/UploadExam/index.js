@@ -26,6 +26,7 @@ export function UploadExam() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [timer, setTimer] = useState('');
+  const [reps, setReps] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -46,6 +47,7 @@ export function UploadExam() {
       name: name,
       description: description,
       timer: timer,
+      reps: reps,
     };
 
     createExam(exam);
@@ -117,6 +119,15 @@ export function UploadExam() {
             value={timer}
             placeholder={'Tempo'}
             onChangeText={(text) => setTimer(text)}
+            autoCapitalize={'none'}
+            keyboardType={'numeric'}
+          />
+          <Text>{'ou'}</Text>
+          <TextInput
+            style={styles.input}
+            value={reps}
+            placeholder={'Repetições'}
+            onChangeText={(text) => setReps(text)}
             autoCapitalize={'none'}
             keyboardType={'numeric'}
           />
