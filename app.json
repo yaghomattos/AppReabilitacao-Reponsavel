@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "App Reabilitacao-Responsavel",
+    "slug": "app-reabilitacao-responsavel",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,6 +30,7 @@
     },
     "plugins": [
       "expo-image-picker"
-    ]
+    ],
+    "description": ""
   }
 }
