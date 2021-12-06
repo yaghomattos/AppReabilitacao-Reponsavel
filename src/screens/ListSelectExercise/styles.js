@@ -39,16 +39,21 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
   },
-  item: {
-    width: 350,
-    height: 60,
+  itemContainer: {
+    flexDirection: 'row',
+    width: 340,
+    height: 50,
     marginTop: 10,
     borderRadius: 10,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     backgroundColor: '#afafaf',
   },
+  item: {
+    width: 280,
+  },
   itemTitle: {
-    fontSize: 22,
+    fontSize: 20,
     color: '#fff',
   },
 });
