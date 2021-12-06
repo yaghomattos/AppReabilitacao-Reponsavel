@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@babel/helper-validator-identifier": "^7.15.7",
     "@parse/react-native": "^0.0.1-alpha.15",
     "@react-native-async-storage/async-storage": "^1.15.5",
     "@react-native-community/datetimepicker": "^3.5.2",
