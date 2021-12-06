@@ -77,6 +77,7 @@ export function ExamSettings(props) {
             maxLength={3}
           />
         </View>
+        <Text style={styles.title}>{'ou'}</Text>
         <Text style={styles.title}>{'Número de repetições'}</Text>
         <View style={styles.form}>
           <TextInput
@@ -143,7 +144,7 @@ export function ExamSettings(props) {
           props={[examId, 'exam']}
         />
 
-        {(minutes != '' || seconds != '') && (
+        {(minutes != '' || seconds != '' || numReps != '') && (
           <TouchableOpacity onPress={() => handleSettings()}>
             <View style={styles.button}>
               <Text style={styles.text_label}>{'Salvar'}</Text>
