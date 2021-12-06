@@ -46,7 +46,15 @@ export const SelectExercises = (props) => {
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <List.Item
-              style={styles.item}
+              style={{
+                width: 350,
+                height: item.get('description').lenght,
+                marginBottom: 10,
+                borderRadius: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#6f6f6f',
+              }}
               title={item.get('name')}
               description={item.get('description')}
               titleNumberOfLines={1}

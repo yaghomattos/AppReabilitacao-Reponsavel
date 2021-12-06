@@ -58,13 +58,23 @@ export const SelectOrientations = (props) => {
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
-            <List.Item
-              style={styles.item}
-              title={item.get('text')}
-              titleNumberOfLines={10}
-              titleStyle={styles.itemTitle}
-              onPress={() => SaveItemId(item.id)}
-            />
+            <>
+              <List.Item
+                style={{
+                  width: 350,
+                  height: item.get('text').length,
+                  marginBottom: 5,
+                  borderRadius: 5,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#6f6f6f',
+                }}
+                title={item.get('text')}
+                titleNumberOfLines={100}
+                titleStyle={styles.itemTitle}
+                onPress={() => SaveItemId(item.id)}
+              />
+            </>
           )}
         />
       </View>
