@@ -50,15 +50,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#afafaf',
   },
   listItem: {
-    width: 300,
-    height: 80,
-    justifyContent: 'space-evenly',
+    width: 320,
   },
   listItemTitle: {
-    fontSize: 22,
+    fontSize: 20,
     color: '#fff',
   },
   deleteButton: {
+    marginRight: 10,
     alignItems: 'center',
     color: '#fff',
   },

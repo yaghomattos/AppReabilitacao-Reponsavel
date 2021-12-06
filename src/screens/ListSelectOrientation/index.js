@@ -50,7 +50,7 @@ export const ListSelectOrientations = (props) => {
       setOrientation(results);
     }
 
-    if (id == 'exam') SearchExam();
+    if (examOrExercise == 'exam') SearchExam();
     else SearchExercise();
   }, []);
 
@@ -88,11 +88,25 @@ export const ListSelectOrientations = (props) => {
               keyExtractor={(item) => item.id}
               ItemSeparatorComponent={() => <Divider />}
               renderItem={({ item }) => (
-                <View style={styles.item}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    width: 360,
+                    height: item.get('orientation').get('text').length,
+                    marginTop: 10,
+                    borderRadius: 10,
+                    justifyContent: 'space-evenly',
+                    alignItems: 'center',
+                    backgroundColor: '#afafaf',
+                  }}
+                >
                   <List.Item
-                    style={styles.listItem}
+                    style={{
+                      width: 320,
+                      height: item.get('orientation').get('text').length,
+                    }}
                     title={item.get('orientation').get('text')}
-                    titleNumberOfLines={10}
+                    titleNumberOfLines={100}
                     titleStyle={styles.listItemTitle}
                   />
                   <Ionicons
