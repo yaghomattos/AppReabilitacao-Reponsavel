@@ -20,12 +20,13 @@ export async function createExam(props) {
     object.set('photo', photoFile);
     object.set('name', props.name);
     object.set('description', props.description);
-    object.set('timer', props.timer);
+    if (timer != '') object.set('timer', props.timer);
+    else object.set('reps', props.reps);
 
     await object.save();
     Alert.alert('Exame Salvo');
   } catch (error) {
-    Alert.alert('Erro ao salvar exame!');
+    Alert.alert('Erro ao salvar exame!', error);
   }
 }
 
