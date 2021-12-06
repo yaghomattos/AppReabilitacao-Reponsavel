@@ -35,7 +35,7 @@ export const ListSelectExams = (props) => {
       setExam(results);
     }
 
-    if (patient != '') Search(patient);
+    Search(patient);
   }, [exam]);
 
   const results = useParseQuery(parseQuery).results;
@@ -68,16 +68,22 @@ export const ListSelectExams = (props) => {
               keyExtractor={(item) => item.id}
               ItemSeparatorComponent={() => <Divider />}
               renderItem={({ item }) => (
-                <List.Item
-                  style={styles.item}
-                  title={item.get('exam').get('name')}
-                  titleNumberOfLines={1}
-                  titleStyle={styles.itemTitle}
-                  onPress={() =>
-                    navigation.navigate('ExamSettings', item.get('exam').id)
-                  }
-                  left={(props) => <List.Icon {...props} icon="movie-edit" />}
-                />
+                <View style={styles.viewList}>
+                  <List.Item
+                    style={styles.item}
+                    title={item.get('exam').get('name')}
+                    titleNumberOfLines={1}
+                    titleStyle={styles.itemTitle}
+                  />
+                  <Ionicons
+                    name="build"
+                    size={24}
+                    style={styles.icon}
+                    onPress={() => {
+                      navigation.navigate('ExamSettings', item.get('exam').id);
+                    }}
+                  />
+                </View>
               )}
             />
           </View>

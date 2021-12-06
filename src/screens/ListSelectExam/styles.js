@@ -40,15 +40,10 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 15,
   },
   item: {
-    width: 350,
-    height: 60,
-    marginTop: 10,
-    borderRadius: 10,
-    justifyContent: 'center',
-    backgroundColor: '#afafaf',
+    width: 280,
   },
   itemTitle: {
-    fontSize: 22,
+    fontSize: 20,
     color: '#fff',
   },
 });
