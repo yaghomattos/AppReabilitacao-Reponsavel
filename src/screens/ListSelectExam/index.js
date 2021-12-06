@@ -68,7 +68,7 @@ export const ListSelectExams = (props) => {
               keyExtractor={(item) => item.id}
               ItemSeparatorComponent={() => <Divider />}
               renderItem={({ item }) => (
-                <View style={styles.viewList}>
+                <View style={styles.itemContainer}>
                   <List.Item
                     style={styles.item}
                     title={item.get('exam').get('name')}
