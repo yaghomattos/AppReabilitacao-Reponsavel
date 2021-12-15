@@ -14,7 +14,7 @@ import styles from './styles';
 const parseQuery = new Parse.Query('Orientation');
 parseQuery.ascending('createdAt');
 
-export const SelectOrientations = (props) => {
+export const SelectOrientation = (props) => {
   const navigation = useNavigation();
 
   const [orientationId, setOrientationId] = useState('');

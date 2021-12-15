@@ -15,7 +15,7 @@ import styles from './styles';
 const parseQuery = new Parse.Query('SelectOrientations');
 parseQuery.descending('createdAt');
 
-export const ListSelectOrientations = (props) => {
+export const ListSelectOrientation = (props) => {
   const navigation = useNavigation();
 
   const id = props.route.params[0];

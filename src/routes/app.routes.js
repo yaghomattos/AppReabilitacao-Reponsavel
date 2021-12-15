@@ -18,10 +18,10 @@ import { ListParticipantRoute } from '../screens/Participant/ListParticipantRout
 import { ListTestRoute } from '../screens/Test/ListTestRoute/index';
 import { ListSelectExercise } from '../screens/Exercise/ListSelectExercise/index';
 import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
-import { ListSelectOrientations } from '../screens/ListSelectOrientation/index';
+import { ListSelectOrientation } from '../screens/Orientation/ListSelectOrientation/index';
 import { SelectExercise } from '../screens/Exercise/SelectExercise/index';
 import { SelectTest } from '../screens/Test/SelectTest/index';
-import { SelectOrientations } from '../screens/SelectOrientation/index';
+import { SelectOrientation } from '../screens/Orientation/SelectOrientation/index';
 import { ParticipantProfile } from '../screens/Participant/ParticipantProfile/index';
 import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
 import { TestSettings } from '../screens/Test/TestSettings/index';
@@ -58,8 +58,8 @@ export function AppRoutes() {
         />
         <Stack.Screen name="ListSelectTest" component={ListSelectTest} />
         <Stack.Screen
-          name="ListSelectOrientations"
-          component={ListSelectOrientations}
+          name="ListSelectOrientation"
+          component={ListSelectOrientation}
         />
         <Stack.Screen
           name="ListParticipantRoute"
@@ -68,10 +68,7 @@ export function AppRoutes() {
         <Stack.Screen name="ListTestRoute" component={ListTestRoute} />
         <Stack.Screen name="SelectExercise" component={SelectExercise} />
         <Stack.Screen name="SelectTest" component={SelectTest} />
-        <Stack.Screen
-          name="SelectOrientations"
-          component={SelectOrientations}
-        />
+        <Stack.Screen name="SelectOrientation" component={SelectOrientation} />
         <Stack.Screen
           name="ParticipantProfile"
           component={ParticipantProfile}

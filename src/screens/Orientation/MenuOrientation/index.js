@@ -28,7 +28,7 @@ export function MenuOrientation(props) {
           <View style={styles.buttons}>
             <Button
               title="Orientações selecionadas"
-              onPress="ListSelectOrientations"
+              onPress="ListSelectOrientation"
               props={props.route.params}
             />
             <Button
