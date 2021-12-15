@@ -14,7 +14,7 @@ import styles from './styles';
 const parseQuery = new Parse.Query('SelectExercises');
 parseQuery.descending('createdAt');
 
-export const ListSelectExercises = (props) => {
+export const ListSelectExercise = (props) => {
   const navigation = useNavigation();
 
   const patient = props.route.params;

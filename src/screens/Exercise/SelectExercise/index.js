@@ -14,7 +14,7 @@ import styles from './styles';
 const parseQuery = new Parse.Query('Exercise');
 parseQuery.ascending('createdAt');
 
-export const SelectExercises = (props) => {
+export const SelectExercise = (props) => {
   const navigation = useNavigation();
 
   const results = useParseQuery(parseQuery).results;

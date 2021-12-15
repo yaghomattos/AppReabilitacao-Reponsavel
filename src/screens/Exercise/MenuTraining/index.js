@@ -28,7 +28,7 @@ export function MenuTraining() {
             <Button
               title="Treinamento"
               onPress="ListPatientRoute"
-              props={'ListSelectExercises'}
+              props={'ListSelectExercise'}
             />
             <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
           </View>

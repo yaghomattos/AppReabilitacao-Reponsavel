@@ -16,19 +16,19 @@ import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
 import { ListPatientRoute } from '../screens/ListPatientRoute/index';
 import { ListTestRoute } from '../screens/Test/ListTestRoute/index';
-import { ListSelectExercises } from '../screens/ListSelectExercise/index';
+import { ListSelectExercise } from '../screens/Exercise/ListSelectExercise/index';
 import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
 import { ListSelectOrientations } from '../screens/ListSelectOrientation/index';
-import { SelectExercises } from '../screens/SelectExercise/index';
+import { SelectExercise } from '../screens/Exercise/SelectExercise/index';
 import { SelectTest } from '../screens/Test/SelectTest/index';
 import { SelectOrientations } from '../screens/SelectOrientation/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
-import { ExerciseSettings } from '../screens/ExerciseSettings/index';
+import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
 import { TestSettings } from '../screens/Test/TestSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
 import { ViewForm } from '../screens/ViewForm/index';
 import { MenuOrientation } from '../screens/MenuOrientation/index';
-import { MenuTraining } from '../screens/MenuTraining/index';
+import { MenuTraining } from '../screens/Exercise/MenuTraining/index';
 import { MenuTest } from '../screens/Test/MenuTest';
 import { NewOrientation } from '../screens/NewOrientation/index';
 
@@ -50,8 +50,8 @@ export function AppRoutes() {
         <Stack.Screen name="UploadTest" component={UploadTest} />
         <Stack.Screen name="ListPatients" component={ListPatients} />
         <Stack.Screen
-          name="ListSelectExercises"
-          component={ListSelectExercises}
+          name="ListSelectExercise"
+          component={ListSelectExercise}
         />
         <Stack.Screen name="ListSelectTest" component={ListSelectTest} />
         <Stack.Screen
@@ -60,7 +60,7 @@ export function AppRoutes() {
         />
         <Stack.Screen name="ListPatientRoute" component={ListPatientRoute} />
         <Stack.Screen name="ListTestRoute" component={ListTestRoute} />
-        <Stack.Screen name="SelectExercises" component={SelectExercises} />
+        <Stack.Screen name="SelectExercise" component={SelectExercise} />
         <Stack.Screen name="SelectTest" component={SelectTest} />
         <Stack.Screen
           name="SelectOrientations"
