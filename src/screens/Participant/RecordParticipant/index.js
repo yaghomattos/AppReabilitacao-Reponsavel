@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-export function PatientRecord() {
+export function ParticipantRecord() {
   const navigation = useNavigation();
 
   const [username, setUsername] = useState('');

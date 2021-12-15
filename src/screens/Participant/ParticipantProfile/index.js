@@ -15,7 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-export function PatientProfile(props) {
+export function ParticipantProfile(props) {
   const navigation = useNavigation();
 
   const [patientName, setPatientName] = useState('');

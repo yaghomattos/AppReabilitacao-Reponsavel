@@ -12,7 +12,7 @@ import styles from './styles';
 const parseQuery = new Parse.Query('Patient');
 parseQuery.ascending('name');
 
-export const ListPatientRoute = (props) => {
+export const ListParticipantRoute = (props) => {
   const navigation = useNavigation();
 
   const [search, setSearch] = useState('');

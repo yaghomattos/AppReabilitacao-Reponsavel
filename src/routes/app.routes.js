@@ -8,13 +8,13 @@ import { Register } from '../screens/Register/index';
 import { Home } from '../screens/Home/index';
 import { Chat } from '../screens/Chat/index';
 import { Educational } from '../screens/Educational/index';
-import { PatientRecord } from '../screens/RecordPatient/index';
-import { DeletePatient } from '../screens/DeletePatient/index';
+import { ParticipantRecord } from '../screens/Participant/RecordParticipant/index';
+import { DeleteParticipant } from '../screens/Participant/DeleteParticipant/index';
 import { UploadExercise } from '../screens/UploadExercise/index';
 import { UploadTest } from '../screens/Test/UploadTest/index';
-import { PatientControl } from '../screens/PatientControl/index';
-import { ListPatients } from '../screens/ListPatients/index';
-import { ListPatientRoute } from '../screens/ListPatientRoute/index';
+import { ParticipantControl } from '../screens/Participant/ParticipantControl/index';
+import { ListParticipants } from '../screens/Participant/ListParticipants/index';
+import { ListParticipantRoute } from '../screens/Participant/ListParticipantRoute/index';
 import { ListTestRoute } from '../screens/Test/ListTestRoute/index';
 import { ListSelectExercise } from '../screens/Exercise/ListSelectExercise/index';
 import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
@@ -22,7 +22,7 @@ import { ListSelectOrientations } from '../screens/ListSelectOrientation/index';
 import { SelectExercise } from '../screens/Exercise/SelectExercise/index';
 import { SelectTest } from '../screens/Test/SelectTest/index';
 import { SelectOrientations } from '../screens/SelectOrientation/index';
-import { PatientProfile } from '../screens/PatientProfile/index';
+import { ParticipantProfile } from '../screens/Participant/ParticipantProfile/index';
 import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
 import { TestSettings } from '../screens/Test/TestSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
@@ -43,12 +43,15 @@ export function AppRoutes() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Educational" component={Educational} />
-        <Stack.Screen name="PatientControl" component={PatientControl} />
-        <Stack.Screen name="PatientRecord" component={PatientRecord} />
-        <Stack.Screen name="DeletePatient" component={DeletePatient} />
+        <Stack.Screen
+          name="ParticipantControl"
+          component={ParticipantControl}
+        />
+        <Stack.Screen name="ParticipantRecord" component={ParticipantRecord} />
+        <Stack.Screen name="DeleteParticipant" component={DeleteParticipant} />
         <Stack.Screen name="UploadExercise" component={UploadExercise} />
         <Stack.Screen name="UploadTest" component={UploadTest} />
-        <Stack.Screen name="ListPatients" component={ListPatients} />
+        <Stack.Screen name="ListParticipants" component={ListParticipants} />
         <Stack.Screen
           name="ListSelectExercise"
           component={ListSelectExercise}
@@ -58,7 +61,10 @@ export function AppRoutes() {
           name="ListSelectOrientations"
           component={ListSelectOrientations}
         />
-        <Stack.Screen name="ListPatientRoute" component={ListPatientRoute} />
+        <Stack.Screen
+          name="ListParticipantRoute"
+          component={ListParticipantRoute}
+        />
         <Stack.Screen name="ListTestRoute" component={ListTestRoute} />
         <Stack.Screen name="SelectExercise" component={SelectExercise} />
         <Stack.Screen name="SelectTest" component={SelectTest} />
@@ -66,7 +72,10 @@ export function AppRoutes() {
           name="SelectOrientations"
           component={SelectOrientations}
         />
-        <Stack.Screen name="PatientProfile" component={PatientProfile} />
+        <Stack.Screen
+          name="ParticipantProfile"
+          component={ParticipantProfile}
+        />
         <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
         <Stack.Screen name="TestSettings" component={TestSettings} />
         <Stack.Screen name="Monitoring" component={Monitoring} />

@@ -9,9 +9,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-export function DeletePatient() {
+export function DeleteParticipant() {
   const navigation = useNavigation();
-  
+
   const [CPF, setCPF] = useState('');
 
   async function handleDelete() {

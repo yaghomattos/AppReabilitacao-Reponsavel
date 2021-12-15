@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-export function PatientControl() {
+export function ParticipantControl() {
   const navigation = useNavigation();
 
   return (
