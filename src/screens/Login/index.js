@@ -11,6 +11,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Parse from 'parse/react-native';
 
+import { database } from '../../services/firebase';
+
 import styles from './styles';
 
 export const Login = () => {
