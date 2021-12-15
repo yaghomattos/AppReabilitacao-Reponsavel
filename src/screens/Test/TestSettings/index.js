@@ -3,14 +3,14 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { Checkbox } from 'react-native-paper';
 
-import { Button } from '../../components/Button/index';
-import { updateSelectExams } from '../../components/SelectExams';
+import { Button } from '../../../components/Button/index';
+import { updateSelectExams } from '../../../components/SelectExams';
 
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-export function ExamSettings(props) {
+export function TestSettings(props) {
   const navigation = useNavigation();
 
   const [minutes, setMinutes] = useState('');

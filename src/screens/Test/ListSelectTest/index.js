@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
-import { Button } from '../../components/Button/index';
+import { Button } from '../../../components/Button/index';
 
 import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,7 +14,7 @@ import styles from './styles';
 const parseQuery = new Parse.Query('SelectExams');
 parseQuery.descending('createdAt');
 
-export const ListSelectExams = (props) => {
+export const ListSelectTest = (props) => {
   const navigation = useNavigation();
 
   const patient = props.route.params;

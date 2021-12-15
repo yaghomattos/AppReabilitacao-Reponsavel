@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { Button } from '../../components/Button/index';
+import { Button } from '../../../components/Button/index';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -28,7 +28,7 @@ export function MenuTest() {
             <Button
               title="Avaliação"
               onPress="ListPatientRoute"
-              props={'ListSelectExams'}
+              props={'ListSelectTest'}
             />
             <Button title="Cadastrar Novo Teste" onPress="UploadExam" />
           </View>

@@ -11,25 +11,25 @@ import { Educational } from '../screens/Educational/index';
 import { PatientRecord } from '../screens/RecordPatient/index';
 import { DeletePatient } from '../screens/DeletePatient/index';
 import { UploadExercise } from '../screens/UploadExercise/index';
-import { UploadExam } from '../screens/UploadExam/index';
+import { UploadTest } from '../screens/Test/UploadTest/index';
 import { PatientControl } from '../screens/PatientControl/index';
 import { ListPatients } from '../screens/ListPatients/index';
 import { ListPatientRoute } from '../screens/ListPatientRoute/index';
-import { ListExamRoute } from '../screens/ListExamRoute/index';
+import { ListTestRoute } from '../screens/Test/ListTestRoute/index';
 import { ListSelectExercises } from '../screens/ListSelectExercise/index';
-import { ListSelectExams } from '../screens/ListSelectExam/index';
+import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
 import { ListSelectOrientations } from '../screens/ListSelectOrientation/index';
 import { SelectExercises } from '../screens/SelectExercise/index';
-import { SelectExams } from '../screens/SelectExam/index';
+import { SelectTest } from '../screens/Test/SelectTest/index';
 import { SelectOrientations } from '../screens/SelectOrientation/index';
 import { PatientProfile } from '../screens/PatientProfile/index';
 import { ExerciseSettings } from '../screens/ExerciseSettings/index';
-import { ExamSettings } from '../screens/ExamSettings/index';
+import { TestSettings } from '../screens/Test/TestSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
 import { ViewForm } from '../screens/ViewForm/index';
 import { MenuOrientation } from '../screens/MenuOrientation/index';
 import { MenuTraining } from '../screens/MenuTraining/index';
-import { MenuTest } from '../screens/MenuTest/index';
+import { MenuTest } from '../screens/Test/MenuTest';
 import { NewOrientation } from '../screens/NewOrientation/index';
 
 const Stack = createStackNavigator();
@@ -47,28 +47,28 @@ export function AppRoutes() {
         <Stack.Screen name="PatientRecord" component={PatientRecord} />
         <Stack.Screen name="DeletePatient" component={DeletePatient} />
         <Stack.Screen name="UploadExercise" component={UploadExercise} />
-        <Stack.Screen name="UploadExam" component={UploadExam} />
+        <Stack.Screen name="UploadTest" component={UploadTest} />
         <Stack.Screen name="ListPatients" component={ListPatients} />
         <Stack.Screen
           name="ListSelectExercises"
           component={ListSelectExercises}
         />
-        <Stack.Screen name="ListSelectExams" component={ListSelectExams} />
+        <Stack.Screen name="ListSelectTest" component={ListSelectTest} />
         <Stack.Screen
           name="ListSelectOrientations"
           component={ListSelectOrientations}
         />
         <Stack.Screen name="ListPatientRoute" component={ListPatientRoute} />
-        <Stack.Screen name="ListExamRoute" component={ListExamRoute} />
+        <Stack.Screen name="ListTestRoute" component={ListTestRoute} />
         <Stack.Screen name="SelectExercises" component={SelectExercises} />
-        <Stack.Screen name="SelectExams" component={SelectExams} />
+        <Stack.Screen name="SelectTest" component={SelectTest} />
         <Stack.Screen
           name="SelectOrientations"
           component={SelectOrientations}
         />
         <Stack.Screen name="PatientProfile" component={PatientProfile} />
         <Stack.Screen name="ExerciseSettings" component={ExerciseSettings} />
-        <Stack.Screen name="ExamSettings" component={ExamSettings} />
+        <Stack.Screen name="TestSettings" component={TestSettings} />
         <Stack.Screen name="Monitoring" component={Monitoring} />
         <Stack.Screen name="ViewForm" component={ViewForm} />
         <Stack.Screen name="MenuOrientation" component={MenuOrientation} />

@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
-import { View, FlatList, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { List, Divider } from 'react-native-paper';
+import React from 'react';
+import { View, FlatList, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
+import { createSelectExams } from '../../../components/SelectExams/index';
+
+import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
 const parseQuery = new Parse.Query('Exam');
-parseQuery.ascending('name');
+parseQuery.ascending('createdAt');
 
-export const ListExamRoute = () => {
+export const SelectTest = (props) => {
   const navigation = useNavigation();
 
-  const [search, setSearch] = useState('');
-
   const results = useParseQuery(parseQuery).results;
-
   Parse.User._clearCache();
+
+  async function HandleCreateSelectedExam(examId) {
+    var patientId = props.route.params;
+
+    createSelectExams(patientId, examId);
+  }
 
   return (
     <View style={styles.container}>
@@ -31,31 +36,32 @@ export const ListExamRoute = () => {
             style={styles.back}
             onPress={() => navigation.goBack()}
           />
+          <Text style={styles.header_text}>{'Selecionar Testes'}</Text>
         </View>
-        <TextInput
-          style={styles.input}
-          value={search}
-          placeholder={'Pesquisar'}
-          onChangeText={(text) => setSearch(text)}
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
-        />
       </View>
       <View style={styles.viewList}>
         <FlatList
-          numColumns={1}
           data={results}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <List.Item
-              style={styles.item}
+              style={{
+                width: 350,
+                height: item.get('description').lenght,
+                marginBottom: 10,
+                borderRadius: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#6f6f6f',
+              }}
               title={item.get('name')}
+              description={item.get('description')}
               titleNumberOfLines={1}
               titleStyle={styles.itemTitle}
-              onPress={() => {
-                navigation.navigate('ListSelectOrientations', item.id);
-              }}
+              descriptionStyle={styles.listDescription}
+              descriptionNumberOfLines={100}
+              onPress={() => HandleCreateSelectedExam(item.id)}
             />
           )}
         />

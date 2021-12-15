@@ -9,10 +9,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-const parseQuery = new Parse.Query('Patient');
+const parseQuery = new Parse.Query('Exam');
 parseQuery.ascending('name');
 
-export const ListPatientRoute = (props) => {
+export const ListTestRoute = () => {
   const navigation = useNavigation();
 
   const [search, setSearch] = useState('');
@@ -20,13 +20,6 @@ export const ListPatientRoute = (props) => {
   const results = useParseQuery(parseQuery).results;
 
   Parse.User._clearCache();
-
-  var route = props.route.params;
-  var adminId = '';
-  if (props.route.params[1].length > 1) {
-    route = props.route.params[0];
-    adminId = props.route.params[1];
-  }
 
   return (
     <View style={styles.container}>
@@ -61,26 +54,7 @@ export const ListPatientRoute = (props) => {
               titleNumberOfLines={1}
               titleStyle={styles.itemTitle}
               onPress={() => {
-                switch (route) {
-                  case 'Chat':
-                    navigation.navigate('Chat', { item, adminId });
-                    break;
-                  case 'Monitoring':
-                    navigation.navigate('Monitoring', { item, adminId });
-                    break;
-                  case 'Educational':
-                    navigation.navigate('Educational', { item, adminId });
-                    break;
-                  case 'ListSelectTest':
-                    navigation.navigate('ListSelectTest', item.id);
-                    break;
-                  case 'ListSelectExercises':
-                    navigation.navigate('ListSelectExercises', item.id);
-                    break;
-                  case 'ListSelectOrientations':
-                    navigation.navigate('ListSelectOrientations', item.id);
-                    break;
-                }
+                navigation.navigate('ListSelectOrientations', item.id);
               }}
             />
           )}

@@ -11,14 +11,14 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
-import { Button } from '../../components/Button/index';
-import { createExam } from '../../components/Exams';
+import { Button } from '../../../components/Button/index';
+import { createExam } from '../../../components/Exams';
 
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-export function UploadExam() {
+export function UploadTest() {
   const navigation = useNavigation();
 
   const [file, setFile] = useState(null);
