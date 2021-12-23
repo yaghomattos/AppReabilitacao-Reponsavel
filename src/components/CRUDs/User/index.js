@@ -7,7 +7,7 @@ export const CurrentUser = () => {
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
 
-   useEffect(() => {
+  useEffect(() => {
     async function getCurrentUser() {
       if (username === '') {
         const currentUser = await Parse.User.currentAsync();
@@ -15,11 +15,11 @@ export const CurrentUser = () => {
           setId(currentUser.id);
           setUsername(currentUser.getUsername());
           setToken(currentUser.getSessionToken());
-        };
-      };
+        }
+      }
     }
     getCurrentUser();
   }, [id, token, username]);
 
-  return {id, token, username};
+  return { id, token, username };
 };
