@@ -9,30 +9,25 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Parse from 'parse/react-native';
 
-import { database } from '../../services/firebase';
+import { auth } from '../../services/firebase';
 
 import styles from './styles';
 
 export const Login = () => {
   const navigation = useNavigation();
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const doUserLogin = async function () {
-    const usernameValue = username;
-    const passwordValue = password;
-    return await Parse.User.logIn(usernameValue, passwordValue)
-      .then(async (loggedInUser) => {
-        Alert.alert('Login realizado com sucesso!');
-        const currentUser = await Parse.User.currentAsync();
-        console.log(loggedInUser === currentUser);
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
         navigation.navigate('Home');
       })
-      .catch((error) => {
-        Alert.alert('Erro!', 'Email e Senha inválidos');
+      .catch(() => {
+        Alert.alert('Email/Senha inválidos');
       });
   };
 
@@ -50,9 +45,9 @@ export const Login = () => {
         <View style={styles.form}>
           <TextInput
             style={styles.input}
-            value={username}
-            placeholder={'Usuário'}
-            onChangeText={(text) => setUsername(text)}
+            value={email}
+            placeholder={'Email'}
+            onChangeText={(text) => setEmail(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
           />

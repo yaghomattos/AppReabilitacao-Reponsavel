@@ -9,35 +9,29 @@ import {
   Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Parse from 'parse/react-native';
+
+import { auth } from '../../services/firebase';
 
 import styles from './styles';
 
 export function Register() {
   const navigation = useNavigation();
 
-  const [adminname, setAdminname] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const adminSignUp = async function () {
-    const adminnameValue = adminname;
-    const passwordValue = password;
-
-    return await Parse.User.signUp(adminnameValue, passwordValue)
-      .then((createdAdmin) => {
-        Alert.alert(
-          `Responsável: ${createdAdmin.get(
-            'username'
-          )}, criado criado com sucesso!`
-        );
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        Alert.alert(`${user.user.email}, cadastro realizado com sucesso!`);
         navigation.navigate('Home');
-        return true;
       })
-      .catch((error) => {
-        Alert.alert('Erro!', 'Conta já existente');
-        return false;
+      .catch(() => {
+        Alert.alert('Erro! Email já cadastrado');
       });
   };
+
   return (
     <KeyboardAvoidingView
       behavior="height"
@@ -53,9 +47,9 @@ export function Register() {
         <View style={styles.form}>
           <TextInput
             style={styles.input}
-            value={adminname}
+            value={email}
             placeholder={'Usuário'}
-            onChangeText={(text) => setAdminname(text)}
+            onChangeText={(text) => setEmail(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
           />
