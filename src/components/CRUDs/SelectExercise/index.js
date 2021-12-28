@@ -1,11 +1,11 @@
 import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
-export async function createSelectExercises(patientId, exerciseId) {
-  var patientPointer = {
+export async function createSelectExercises(participantId, exerciseId) {
+  var participantPointer = {
     __type: 'Pointer',
-    className: 'Patient',
-    objectId: patientId,
+    className: 'Participant',
+    objectId: participantId,
   };
   var exercisePointer = {
     __type: 'Pointer',
@@ -14,7 +14,7 @@ export async function createSelectExercises(patientId, exerciseId) {
   };
 
   const myNewObject = new Parse.Object('SelectExercises');
-  myNewObject.set('patient', patientPointer);
+  myNewObject.set('participant', participantPointer);
   myNewObject.set('exercise', exercisePointer);
   try {
     const result = await myNewObject.save();
@@ -30,9 +30,9 @@ export async function readSelectExercises() {
   try {
     const results = await query.find();
     for (const object of results) {
-      const Patient = object.get('Patient');
+      const Participant = object.get('Participant');
       const Exercise = object.get('Exercise');
-      console.log(Patient);
+      console.log(Participant);
       console.log(Exercise);
     }
   } catch (error) {

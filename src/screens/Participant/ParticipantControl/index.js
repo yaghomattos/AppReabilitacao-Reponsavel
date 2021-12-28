@@ -1,11 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-
 import { Button } from '../../../components/Button/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 
 export function ParticipantControl() {
@@ -26,9 +23,9 @@ export function ParticipantControl() {
         </View>
         <View style={styles.background}>
           <View style={styles.buttons}>
-            <Button title="Novo Participante" onPress="PatientRecord" />
-            <Button title="Deletar Participante" onPress="DeletePatient" />
-            <Button title="Lista de Participantes" onPress="ListPatients" />
+            <Button title="Novo Participante" onPress="ParticipantRecord" />
+            <Button title="Deletar Participante" onPress="DeleteParticipant" />
+            <Button title="Lista de Participantes" onPress="ListParticipants" />
           </View>
         </View>
       </SafeAreaView>

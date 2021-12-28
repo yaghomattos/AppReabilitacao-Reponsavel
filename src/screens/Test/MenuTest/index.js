@@ -1,11 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-
 import { Button } from '../../../components/Button/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 
 export function MenuTest() {
@@ -27,7 +24,7 @@ export function MenuTest() {
           <View style={styles.buttons}>
             <Button
               title="Avaliação"
-              onPress="ListPatientRoute"
+              onPress="ListParticipantRoute"
               props={'ListSelectTest'}
             />
             <Button title="Cadastrar Novo Teste" onPress="UploadExam" />

@@ -1,25 +1,22 @@
-import React, { useState, useCallback } from 'react';
-import { View, Text, SafeAreaView, ActivityIndicator } from 'react-native';
-import { GiftedChat, Send } from 'react-native-gifted-chat';
-import { useNavigation } from '@react-navigation/native';
-import { useParseQuery } from '@parse/react-native';
-import Parse from 'parse/react-native.js';
-
-import { readPatient } from '../../components/CRUDs/Participant/index';
-
 import { Ionicons } from '@expo/vector-icons';
-import { IconButton, Avatar } from 'react-native-paper';
-
+import { useParseQuery } from '@parse/react-native';
+import { useNavigation } from '@react-navigation/native';
+import Parse from 'parse/react-native.js';
+import React, { useCallback, useState } from 'react';
+import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
+import { GiftedChat, Send } from 'react-native-gifted-chat';
+import { Avatar, IconButton } from 'react-native-paper';
+import { readParticipant } from '../../components/CRUDs/Participant/index';
 import styles from './styles';
 
 const parseQuery = new Parse.Query('Educational');
 parseQuery.descending('createdAt');
 
-var patient = '';
+var participant = '';
 
 async function Search(props) {
-  readPatient(props).then((response) => {
-    patient = response.get('name');
+  readParticipant(props).then((response) => {
+    participant = response.get('name');
   });
 }
 
@@ -28,25 +25,25 @@ export function Educational(props) {
 
   const [messages, setMessages] = useState([]);
 
-  var patientId = props.route.params.item.id;
+  var participantId = props.route.params.item.id;
   var userId = props.route.params.adminId;
 
-  Search(patientId);
+  Search(participantId);
 
   var currentUser = {
     __type: 'Pointer',
     className: '_User',
     objectId: userId,
   };
-  var toPatient = {
+  var toParticipant = {
     __type: 'Pointer',
-    className: 'Patient',
-    objectId: patientId,
+    className: 'Participant',
+    objectId: participantId,
   };
 
   parseQuery.equalTo('from', currentUser);
   parseQuery.find();
-  parseQuery.equalTo('to', toPatient);
+  parseQuery.equalTo('to', toParticipant);
   const results = useParseQuery(parseQuery).results;
 
   Parse.User._clearCache();
@@ -59,7 +56,7 @@ export function Educational(props) {
     const Message = new Parse.Object('Educational');
 
     Message.set('from', currentUser);
-    Message.set('to', toPatient);
+    Message.set('to', toParticipant);
     Message.set('content', messages[0].text);
     try {
       const result = Message.save();
@@ -119,7 +116,7 @@ export function Educational(props) {
           />
         </View>
         <View style={styles.person}>
-          <Text style={styles.text}>{patient}</Text>
+          <Text style={styles.text}>{participant}</Text>
           <View style={styles.viewCircle}>
             <View style={styles.circleMic}>
               <Ionicons name="mic" size={24} color="#fff" />
@@ -139,7 +136,7 @@ export function Educational(props) {
             createdAt: liveMessage.get('createdAt'),
             user: {
               _id: 1,
-              name: patient,
+              name: participant,
             },
           }))
         }

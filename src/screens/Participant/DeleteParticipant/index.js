@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import Parse from 'parse/react-native.js';
-
+import React, { useState } from 'react';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {
-  readPatientCPF,
-  deletePatient,
+  deleteParticipant,
+  readParticipantCPF,
 } from '../../../components/CRUDs/Participant/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 
 export function DeleteParticipant() {
@@ -18,16 +15,16 @@ export function DeleteParticipant() {
   const [CPF, setCPF] = useState('');
 
   async function handleDelete() {
-    const patientFound = await readPatientCPF(CPF);
+    const participantFound = await readParticipantCPF(CPF);
 
-    if (patientFound) {
+    if (participantFound) {
       Alert.alert('Sucesso, Paciente deletado!');
 
-      let query = new Parse.Query('Patient');
+      let query = new Parse.Query('Participant');
       query.equalTo('CPF', CPF);
       let result = await query.find();
 
-      deletePatient(result[0].id);
+      deleteParticipant(result[0].id);
     } else Alert.alert('Erro, paciente não encotrado!');
   }
 

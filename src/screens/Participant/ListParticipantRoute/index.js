@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { View, FlatList, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { List, Divider } from 'react-native-paper';
-import { useParseQuery } from '@parse/react-native';
-import Parse from 'parse/react-native.js';
-
 import { Ionicons } from '@expo/vector-icons';
-
+import { useParseQuery } from '@parse/react-native';
+import { useNavigation } from '@react-navigation/native';
+import Parse from 'parse/react-native.js';
+import React, { useState } from 'react';
+import { FlatList, TextInput, View } from 'react-native';
+import { Divider, List } from 'react-native-paper';
 import styles from './styles';
 
-const parseQuery = new Parse.Query('Patient');
+const parseQuery = new Parse.Query('Participant');
 parseQuery.ascending('name');
 
 export const ListParticipantRoute = (props) => {

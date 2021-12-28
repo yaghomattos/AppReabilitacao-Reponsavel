@@ -1,12 +1,9 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-
-import { createPatient } from '../../../components/CRUDs/Participant/index';
+import { createParticipant } from '../../../components/CRUDs/Participant/index';
 import { CurrentUser } from '../../../components/CRUDs/User/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 
 export function ParticipantRecord() {
@@ -23,11 +20,11 @@ export function ParticipantRecord() {
 
   const user = CurrentUser();
 
-  var userId = user.id;
-  var userName = user.username;
+  var userId = user.id; //responsável
+  // var userName = user.username;
 
-  async function handleCreatePatient() {
-    const patient = {
+  async function handleCreateParticipant() {
+    const participant = {
       name: username,
       cpf: CPF,
       age: age,
@@ -37,10 +34,10 @@ export function ParticipantRecord() {
       weight: weight,
       height: height,
       id: userId,
-      username: userName,
+      // username: userName,
     };
 
-    createPatient(patient);
+    createParticipant(participant);
   }
 
   return (
@@ -132,7 +129,7 @@ export function ParticipantRecord() {
             autoCapitalize={'none'}
             keyboardType={'numeric'}
           />
-          <TouchableOpacity onPress={() => handleCreatePatient()}>
+          <TouchableOpacity onPress={() => handleCreateParticipant()}>
             <View style={styles.button}>
               <Text style={styles.text_label}>{'Cadastrar'}</Text>
             </View>

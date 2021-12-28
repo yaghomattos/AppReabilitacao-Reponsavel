@@ -1,24 +1,20 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import {
-  SafeAreaView,
   StatusBar,
   Text,
-  View,
   TextInput,
   TouchableOpacity,
+  View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-
-import { updatePatient } from '../../../components/CRUDs/Participant/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
+import { updateParticipant } from '../../../components/CRUDs/Participant/index';
 import styles from './styles';
 
 export function ParticipantProfile(props) {
   const navigation = useNavigation();
 
-  const [patientName, setPatientName] = useState('');
+  const [participantName, setParticipantName] = useState('');
   const [CPF, setCPF] = useState('');
   const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
@@ -26,8 +22,8 @@ export function ParticipantProfile(props) {
   const [address, setAddress] = useState('');
 
   async function handleSave() {
-    const patient = {
-      name: patientName,
+    const participant = {
+      name: participantName,
       cpf: CPF,
       age: age,
       phone: phone,
@@ -36,7 +32,7 @@ export function ParticipantProfile(props) {
       id: props.route.params.id,
     };
 
-    updatePatient(patient);
+    updateParticipant(participant);
   }
 
   return (
@@ -64,10 +60,10 @@ export function ParticipantProfile(props) {
         <Text style={styles.form}>{'Nome:'}</Text>
         <TextInput
           style={styles.input}
-          value={patientName}
+          value={participantName}
           placeholder={props.route.params.get('name')}
           onChangeText={(text) =>
-            text == null || text == '' ? '' : setPatientName(text)
+            text == null || text == '' ? '' : setParticipantName(text)
           }
           autoCapitalize={'none'}
           keyboardType={'email-address'}

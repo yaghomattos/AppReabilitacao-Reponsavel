@@ -1,21 +1,19 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useParseQuery } from '@parse/react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation } from '@react-navigation/native';
+import Parse from 'parse/react-native.js';
 import React, { useEffect, useState } from 'react';
 import {
+  FlatList,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   Text,
-  View,
-  FlatList,
   TouchableHighlight,
-  ScrollView,
+  View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useParseQuery } from '@parse/react-native';
-import Parse from 'parse/react-native.js';
-
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { List, Divider } from 'react-native-paper';
-import { Ionicons } from '@expo/vector-icons';
-
+import { Divider, List } from 'react-native-paper';
 import styles from './styles';
 
 var date = new Date();
@@ -80,21 +78,21 @@ export function Monitoring(props) {
   const [totalExercise, setTotalExercise] = useState(0);
   const [totalExam, setTotalExam] = useState(0);
 
-  const patientId = props.route.params;
+  const participantId = props.route.params;
 
   const lastDate = new Date();
 
   useEffect(() => {
-    async function Search(patientId) {
-      var patientPointer = {
+    async function Search(participantId) {
+      var participantPointer = {
         __type: 'Pointer',
-        className: 'Patient',
-        objectId: patientId,
+        className: 'Participant',
+        objectId: participantId,
       };
 
-      parseQuery.equalTo('patient', patientPointer);
-      var resultPatient = await parseQuery.find();
-      setTotalExercise(resultPatient.length);
+      parseQuery.equalTo('participant', participantPointer);
+      var resultParticipant = await parseQuery.find();
+      setTotalExercise(resultParticipant.length);
 
       const query = new Parse.Query('SelectExercises');
       query.ascending('createdAt');
@@ -103,9 +101,9 @@ export function Monitoring(props) {
       var result = await query.find();
       setExercise(result);
 
-      parseQueryExams.equalTo('patient', patientPointer);
-      var resultPatientExam = await parseQueryExams.find();
-      setTotalExam(resultPatientExam.length);
+      parseQueryExams.equalTo('participant', participantPointer);
+      var resultParticipantExam = await parseQueryExams.find();
+      setTotalExam(resultParticipantExam.length);
 
       const queryExam = new Parse.Query('SelectExams');
       queryExam.ascending('createdAt');
@@ -115,7 +113,7 @@ export function Monitoring(props) {
       setExam(resultExam);
     }
 
-    if (patientId != '') Search(patientId);
+    if (participantId != '') Search(participantId);
   }, []);
 
   const results = useParseQuery(parseQuery).results;

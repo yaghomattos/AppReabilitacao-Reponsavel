@@ -1,14 +1,11 @@
-import React from 'react';
-import { View, FlatList, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { useParseQuery } from '@parse/react-native';
-import Parse from 'parse/react-native.js';
-
-import { createSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
-
-import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useParseQuery } from '@parse/react-native';
+import { useNavigation } from '@react-navigation/core';
+import Parse from 'parse/react-native.js';
+import React from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { Divider, List } from 'react-native-paper';
+import { createSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
 import styles from './styles';
 
 const parseQuery = new Parse.Query('Exercise');
@@ -21,9 +18,9 @@ export const SelectExercise = (props) => {
   Parse.User._clearCache();
 
   async function HandleCreateSelectedExercise(exerciseId) {
-    var patientId = props.route.params;
+    var participantId = props.route.params;
 
-    createSelectExercises(patientId, exerciseId);
+    createSelectExercises(participantId, exerciseId);
   }
 
   return (

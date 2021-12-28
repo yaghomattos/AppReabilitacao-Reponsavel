@@ -1,14 +1,11 @@
-import React from 'react';
-import { View, FlatList, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { useParseQuery } from '@parse/react-native';
-import Parse from 'parse/react-native.js';
-
-import { createSelectExams } from '../../../components/CRUDs/SelectTest/index';
-
-import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useParseQuery } from '@parse/react-native';
+import { useNavigation } from '@react-navigation/core';
+import Parse from 'parse/react-native.js';
+import React from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { Divider, List } from 'react-native-paper';
+import { createSelectExams } from '../../../components/CRUDs/SelectTest/index';
 import styles from './styles';
 
 const parseQuery = new Parse.Query('Exam');
@@ -21,9 +18,9 @@ export const SelectTest = (props) => {
   Parse.User._clearCache();
 
   async function HandleCreateSelectedExam(examId) {
-    var patientId = props.route.params;
+    var participantId = props.route.params;
 
-    createSelectExams(patientId, examId);
+    createSelectExams(participantId, examId);
   }
 
   return (

@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { useParseQuery } from '@parse/react-native';
-import Parse from 'parse/react-native.js';
-
-import { Button } from '../../../components/Button/index';
-
-import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useParseQuery } from '@parse/react-native';
+import { useNavigation } from '@react-navigation/core';
+import Parse from 'parse/react-native.js';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { Divider, List } from 'react-native-paper';
+import { Button } from '../../../components/Button/index';
 import styles from './styles';
 
 const parseQuery = new Parse.Query('SelectExercises');
@@ -17,25 +14,25 @@ parseQuery.descending('createdAt');
 export const ListSelectExercise = (props) => {
   const navigation = useNavigation();
 
-  const patient = props.route.params;
+  const participant = props.route.params;
 
   const [exercise, setExercise] = useState('');
 
   useEffect(() => {
-    async function Search(patientId) {
-      var patientPointer = {
+    async function Search(participantId) {
+      var participantPointer = {
         __type: 'Pointer',
-        className: 'Patient',
-        objectId: patientId,
+        className: 'Participant',
+        objectId: participantId,
       };
 
-      parseQuery.equalTo('patient', patientPointer);
+      parseQuery.equalTo('participant', participantPointer);
       const results = await parseQuery.find();
 
       setExercise(results);
     }
 
-    Search(patient);
+    Search(participant);
   }, [exercise]);
 
   const results = useParseQuery(parseQuery).results;
@@ -93,7 +90,7 @@ export const ListSelectExercise = (props) => {
           <Button
             title="Selecionar Exercício"
             onPress="SelectExercises"
-            props={patient}
+            props={participant}
           />
         </View>
       </View>
