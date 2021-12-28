@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/core';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
-import { Button } from '../../components/Button/index';
-import { deleteSelectOrientations } from '../../components/SelectOrientations';
+import { Button } from '../../../components/Button/index';
+import { deleteSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
 
 import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';

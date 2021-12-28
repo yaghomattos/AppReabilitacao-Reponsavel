@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { updatePatient } from '../../components/Patient/index';
+import { updatePatient } from '../../../components/CRUDs/Participant/index';
 
 import { Ionicons } from '@expo/vector-icons';
 

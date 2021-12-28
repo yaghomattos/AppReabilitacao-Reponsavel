@@ -3,7 +3,7 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
 import { Button } from '../../components/Button/index';
 import { Logout } from '../../components/Logout/index';
-import { CurrentUser } from '../../components/CurrentUser/index';
+import { CurrentUser } from '../../components/CRUDs/User/index';
 
 import styles from './styles';
 

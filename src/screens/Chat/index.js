@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
-import { readPatient } from '../../components/Patient/index';
+import { readPatient } from '../../components/CRUDs/Participant/index';
 
 import { Ionicons } from '@expo/vector-icons';
 import { IconButton } from 'react-native-paper';

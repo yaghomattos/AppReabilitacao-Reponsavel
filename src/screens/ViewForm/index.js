@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { readForm } from '../../components/Form';
+import { readForm } from '../../components/CRUDs/Form/index';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -65,6 +65,9 @@ export function ViewForm(props) {
 
           <Text style={styles.title}>{'Cansaço'}</Text>
           <Text style={styles.label}>{fatigue}</Text>
+
+          <Text style={styles.title}>{'Desempenho'}</Text>
+          <Text style={styles.label}>{'0 %'}</Text>
 
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <View style={styles.button}>

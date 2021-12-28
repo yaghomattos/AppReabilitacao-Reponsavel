@@ -11,8 +11,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
-import { Button } from '../../components/Button/index';
-import { createExercise } from '../../components/Exercises';
+import { Button } from '../../../components/Button/index';
+import { createExercise } from '../../../components/CRUDs/Exercise/index';
 
 import { Ionicons } from '@expo/vector-icons';
 

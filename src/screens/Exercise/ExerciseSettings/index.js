@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { updateSelectExercises } from '../../components/SelectExercises';
-import { Button } from '../../components/Button/index';
+import { updateSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
+import { Button } from '../../../components/Button/index';
 
 import { Ionicons } from '@expo/vector-icons';
 

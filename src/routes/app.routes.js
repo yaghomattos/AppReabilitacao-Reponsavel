@@ -10,7 +10,7 @@ import { Chat } from '../screens/Chat/index';
 import { Educational } from '../screens/Educational/index';
 import { ParticipantRecord } from '../screens/Participant/RecordParticipant/index';
 import { DeleteParticipant } from '../screens/Participant/DeleteParticipant/index';
-import { UploadExercise } from '../screens/UploadExercise/index';
+import { UploadExercise } from '../screens/Exercise/UploadExercise/index';
 import { UploadTest } from '../screens/Test/UploadTest/index';
 import { ParticipantControl } from '../screens/Participant/ParticipantControl/index';
 import { ListParticipants } from '../screens/Participant/ListParticipants/index';
@@ -27,10 +27,10 @@ import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
 import { TestSettings } from '../screens/Test/TestSettings/index';
 import { Monitoring } from '../screens/Monitoring/index';
 import { ViewForm } from '../screens/ViewForm/index';
-import { MenuOrientation } from '../screens/MenuOrientation/index';
+import { MenuOrientation } from '../screens/Orientation/MenuOrientation/index';
 import { MenuTraining } from '../screens/Exercise/MenuTraining/index';
 import { MenuTest } from '../screens/Test/MenuTest';
-import { NewOrientation } from '../screens/NewOrientation/index';
+import { NewOrientation } from '../screens/Orientation/NewOrientation/index';
 
 const Stack = createStackNavigator();
 

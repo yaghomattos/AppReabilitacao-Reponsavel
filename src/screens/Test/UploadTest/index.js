@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
 import { Button } from '../../../components/Button/index';
-import { createExam } from '../../../components/Exams';
+import { createExam } from '../../../components/CRUDs/Test';
 
 import { Ionicons } from '@expo/vector-icons';
 

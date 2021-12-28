@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core';
 import { Checkbox } from 'react-native-paper';
 
 import { Button } from '../../../components/Button/index';
-import { updateSelectExams } from '../../../components/SelectExams';
+import { updateSelectExams } from '../../../components/CRUDs/SelectTest';
 
 import { Ionicons } from '@expo/vector-icons';
 

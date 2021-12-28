@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { createPatient } from '../../components/Patient/index';
-import { CurrentUser } from '../../components/CurrentUser/index';
+import { createPatient } from '../../../components/CRUDs/Participant/index';
+import { CurrentUser } from '../../../components/CRUDs/User/index';
 
 import { Ionicons } from '@expo/vector-icons';
 

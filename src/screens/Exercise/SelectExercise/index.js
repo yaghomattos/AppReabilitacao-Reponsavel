@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core';
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
-import { createSelectExercises } from '../../components/SelectExercises/index';
+import { createSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
 
 import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';

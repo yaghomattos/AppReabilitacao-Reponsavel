@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { Button } from '../../components/Button/index';
+import { Button } from '../../../components/Button/index';
 
 import { Ionicons } from '@expo/vector-icons';
 

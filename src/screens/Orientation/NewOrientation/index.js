@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { createOrientation } from '../../components/Orientations/index';
+import { createOrientation } from '../../../components/CRUDs/Orientations/index';
 
 import { Ionicons } from '@expo/vector-icons';
 

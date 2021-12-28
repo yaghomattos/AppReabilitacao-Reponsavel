@@ -3,7 +3,10 @@ import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import Parse from 'parse/react-native.js';
 
-import { readPatientCPF, deletePatient } from '../../components/Patient/index';
+import {
+  readPatientCPF,
+  deletePatient,
+} from '../../../components/CRUDs/Participant/index';
 
 import { Ionicons } from '@expo/vector-icons';
 
