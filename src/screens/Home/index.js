@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 
 import { Button } from '../../components/Button/index';
@@ -8,9 +8,15 @@ import { CurrentUser } from '../../components/CRUDs/User/index';
 import styles from './styles';
 
 export function Home() {
-  const currentUser = CurrentUser();
-  const adminId = currentUser.id;
-  const username = currentUser.username;
+  const [id, setId] = useState('');
+  const [username, setUsername] = useState('');
+
+  CurrentUser().then((currentUser) => {
+    console.log(currentUser);
+
+    setId(currentUser.id);
+    setUsername(currentUser.username);
+  });
 
   return (
     <>
@@ -26,7 +32,7 @@ export function Home() {
           <Button
             title="Chat"
             onPress="ListPatientRoute"
-            props={['Chat', adminId]}
+            props={['Chat', id]}
           />
           <Button title="Cadastro de Participantes" onPress="PatientControl" />
           <Button title="Treinamento" onPress="MenuTraining" />
@@ -39,7 +45,7 @@ export function Home() {
           <Button
             title="Educacional"
             onPress="ListPatientRoute"
-            props={['Educational', adminId]}
+            props={['Educational', id]}
           />
           <Logout />
         </View>
