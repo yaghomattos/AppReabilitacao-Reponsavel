@@ -27,7 +27,7 @@ export function MenuTest() {
               onPress="ListParticipantRoute"
               props={'ListSelectTest'}
             />
-            <Button title="Cadastrar Novo Teste" onPress="UploadExam" />
+            <Button title="Cadastrar Novo Teste" onPress="UploadTest" />
           </View>
         </View>
       </SafeAreaView>

@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { View, FlatList, Text, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { useParseQuery } from '@parse/react-native';
-import Parse from 'parse/react-native.js';
-
-import { createSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
-
-import { List, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useParseQuery } from '@parse/react-native';
+import { useNavigation } from '@react-navigation/core';
+import Parse from 'parse/react-native.js';
+import React, { useState } from 'react';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Divider, List } from 'react-native-paper';
+import { createSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
 import styles from './styles';
 
 const parseQuery = new Parse.Query('Orientation');
@@ -22,7 +19,7 @@ export const SelectOrientation = (props) => {
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
 
-  const examOrExerciseId = props.route.params[0];
+  const testOrExerciseId = props.route.params[0];
   const className = props.route.params[1];
 
   async function SaveItemId(id) {
@@ -31,7 +28,7 @@ export const SelectOrientation = (props) => {
 
   async function HandleCreateSelectedOrientation() {
     var props = {
-      examOrExerciseId: examOrExerciseId,
+      testOrExerciseId: testOrExerciseId,
       orientationId: orientationId,
       className: className,
     };

@@ -5,12 +5,12 @@ export async function createSelectOrientations(props) {
   var exercisePointer = {
     __type: 'Pointer',
     className: 'Exercise',
-    objectId: props.examOrExerciseId,
+    objectId: props.testOrExerciseId,
   };
-  var examPointer = {
+  var testPointer = {
     __type: 'Pointer',
-    className: 'Exam',
-    objectId: props.examOrExerciseId,
+    className: 'Test',
+    objectId: props.testOrExerciseId,
   };
   var orientationPointer = {
     __type: 'Pointer',
@@ -19,13 +19,13 @@ export async function createSelectOrientations(props) {
   };
 
   const myNewObject = new Parse.Object('SelectOrientations');
-  if (props.className == 'exam') myNewObject.set('exam', examPointer);
+  if (props.className == 'test') myNewObject.set('test', testPointer);
   else myNewObject.set('exercise', exercisePointer);
   myNewObject.set('orientation', orientationPointer);
   try {
     const result = await myNewObject.save();
-    if (props.className == 'exam')
-      Alert.alert('Orientação selecionada para o exame');
+    if (props.className == 'test')
+      Alert.alert('Orientação selecionada para o teste');
     else Alert.alert('Orientação selecionada para o exercício');
   } catch (error) {
     console.error('Error while creating SelectOrientations: ', error);

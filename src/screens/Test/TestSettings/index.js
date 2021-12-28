@@ -1,13 +1,10 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
 import { Checkbox } from 'react-native-paper';
-
 import { Button } from '../../../components/Button/index';
-import { updateSelectExams } from '../../../components/CRUDs/SelectTest';
-
-import { Ionicons } from '@expo/vector-icons';
-
+import { updateSelectTests } from '../../../components/CRUDs/SelectTest';
 import styles from './styles';
 
 export function TestSettings(props) {
@@ -23,14 +20,14 @@ export function TestSettings(props) {
   const [dyspnea, setDyspnea] = useState(false);
   const [fatigue, setFatigue] = useState(false);
 
-  var examId = props.route.params;
+  var testId = props.route.params;
 
   async function handleSettings() {
     if (minutes == '') setMinutes('');
     if (seconds == '') setSeconds('');
 
     const object = {
-      examId: examId,
+      testId: testId,
       timer: parseInt(minutes) * 60 + parseInt(seconds),
       numReps: numReps,
       reps: reps,
@@ -40,7 +37,7 @@ export function TestSettings(props) {
       fatigue: fatigue,
     };
 
-    updateSelectExams(object);
+    updateSelectTests(object);
   }
 
   return (
@@ -141,7 +138,7 @@ export function TestSettings(props) {
         <Button
           title="Orientações"
           onPress="MenuOrientation"
-          props={[examId, 'exam']}
+          props={[testId, 'test']}
         />
 
         {(minutes != '' || seconds != '' || numReps != '') && (

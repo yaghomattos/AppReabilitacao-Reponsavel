@@ -5,10 +5,10 @@ import Parse from 'parse/react-native.js';
 import React from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
-import { createSelectExams } from '../../../components/CRUDs/SelectTest/index';
+import { createSelectTests } from '../../../components/CRUDs/SelectTest/index';
 import styles from './styles';
 
-const parseQuery = new Parse.Query('Exam');
+const parseQuery = new Parse.Query('Test');
 parseQuery.ascending('createdAt');
 
 export const SelectTest = (props) => {
@@ -17,10 +17,10 @@ export const SelectTest = (props) => {
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
 
-  async function HandleCreateSelectedExam(examId) {
+  async function HandleCreateSelectedTest(testId) {
     var participantId = props.route.params;
 
-    createSelectExams(participantId, examId);
+    createSelectTests(participantId, testId);
   }
 
   return (
@@ -58,7 +58,7 @@ export const SelectTest = (props) => {
               titleStyle={styles.itemTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={100}
-              onPress={() => HandleCreateSelectedExam(item.id)}
+              onPress={() => HandleCreateSelectedTest(item.id)}
             />
           )}
         />

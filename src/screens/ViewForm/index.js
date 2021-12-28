@@ -1,11 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-
 import { readForm } from '../../components/CRUDs/Form/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 
 export function ViewForm(props) {
@@ -31,8 +28,8 @@ export function ViewForm(props) {
 
   update();
 
-  var exam = false;
-  if (reps != undefined && reps != '') exam = true;
+  var test = false;
+  if (reps != undefined && reps != '') test = true;
 
   return (
     <View style={styles.wrapper}>
@@ -50,9 +47,9 @@ export function ViewForm(props) {
       <View style={styles.container}>
         <View style={styles.form}>
           <Text style={styles.title}>
-            {exam ? 'Número de repetições' : null}
+            {test ? 'Número de repetições' : null}
           </Text>
-          <Text style={styles.label}>{exam ? reps : null}</Text>
+          <Text style={styles.label}>{test ? reps : null}</Text>
 
           <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
           <Text style={styles.label}>{frequency}</Text>

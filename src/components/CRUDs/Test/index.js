@@ -1,22 +1,22 @@
 import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
-export async function createExam(props) {
-  var { base64, examName } = props.video;
-  examName = props.name + '.gif';
-  const parseFileExam = new Parse.File(examName, { base64 });
+export async function createTest(props) {
+  var { base64, testName } = props.video;
+  testName = props.name + '.gif';
+  const parseFileTest = new Parse.File(testName, { base64 });
 
   var { base64, photoName } = props.photo;
   photoName = props.name + '.png';
   const parseFilePhoto = new Parse.File(photoName, { base64 });
 
   try {
-    const examFile = await parseFileExam.save();
+    const testFile = await parseFileTest.save();
     const photoFile = await parseFilePhoto.save();
 
-    const File = Parse.Object.extend('Exam');
+    const File = Parse.Object.extend('Test');
     const object = new File();
-    object.set('video', examFile);
+    object.set('video', testFile);
     object.set('photo', photoFile);
     object.set('name', props.name);
     object.set('description', props.description);
@@ -24,28 +24,28 @@ export async function createExam(props) {
     else object.set('reps', props.reps);
 
     await object.save();
-    Alert.alert('Exame Salvo');
+    Alert.alert('Teste Salvo');
   } catch (error) {
-    Alert.alert('Erro ao salvar exame!', error);
+    Alert.alert('Erro ao salvar teste!', error);
   }
 }
 
-export async function readExam(name) {
+export async function readTest(name) {
   var result = '';
-  const Exam = Parse.Object.extend('Exam');
-  const query = new Parse.Query(Exam);
+  const Test = Parse.Object.extend('Test');
+  const query = new Parse.Query(Test);
   query.equalTo('name', name);
   try {
     const results = await query.find();
     result = results;
   } catch (error) {
-    console.error('Error while fetching Exam', error);
+    console.error('Error while fetching Test', error);
   }
   return result[0];
 }
 
-export async function updateExam() {
-  const query = new Parse.Query(Exam);
+export async function updateTest() {
+  const query = new Parse.Query(Test);
   try {
     const object = await query.get('xKue915KBG');
     object.set(
@@ -55,26 +55,26 @@ export async function updateExam() {
     try {
       const response = await object.save();
       console.log(response.get('video'));
-      console.log('Exam updated', response);
+      console.log('Test updated', response);
     } catch (error) {
-      console.error('Error while updating Exam', error);
+      console.error('Error while updating Test', error);
     }
   } catch (error) {
-    console.error('Error while retrieving object Exam', error);
+    console.error('Error while retrieving object Test', error);
   }
 }
 
-export async function deleteExam() {
-  const query = new Parse.Query('Exam');
+export async function deleteTest() {
+  const query = new Parse.Query('Test');
   try {
     const object = await query.get('xKue915KBG');
     try {
       const response = await object.destroy();
-      console.log('Deleted Exam', response);
+      console.log('Deleted Test', response);
     } catch (error) {
-      console.error('Error while deleting Exam', error);
+      console.error('Error while deleting Test', error);
     }
   } catch (error) {
-    console.error('Error while retrieving Exam', error);
+    console.error('Error while retrieving Test', error);
   }
 }

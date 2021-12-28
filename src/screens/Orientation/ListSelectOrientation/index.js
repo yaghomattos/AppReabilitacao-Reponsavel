@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
+import { Ionicons } from '@expo/vector-icons';
 import { useParseQuery } from '@parse/react-native';
+import { useNavigation } from '@react-navigation/core';
 import Parse from 'parse/react-native.js';
-
+import React, { useEffect, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import { deleteSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
-
-import { List, Divider } from 'react-native-paper';
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 
 const parseQuery = new Parse.Query('SelectOrientations');
@@ -19,19 +16,19 @@ export const ListSelectOrientation = (props) => {
   const navigation = useNavigation();
 
   const id = props.route.params[0];
-  const examOrExercise = props.route.params[1];
+  const testOrExercise = props.route.params[1];
 
   const [orientation, setOrientation] = useState('');
 
   useEffect(() => {
-    async function SearchExam() {
-      var examPointer = {
+    async function SearchTest() {
+      var testPointer = {
         __type: 'Pointer',
-        className: 'Exam',
+        className: 'Test',
         objectId: id,
       };
 
-      parseQuery.equalTo('exam', examPointer);
+      parseQuery.equalTo('test', testPointer);
       const results = await parseQuery.find();
 
       setOrientation(results);
@@ -50,7 +47,7 @@ export const ListSelectOrientation = (props) => {
       setOrientation(results);
     }
 
-    if (examOrExercise == 'exam') SearchExam();
+    if (testOrExercise == 'test') SearchTest();
     else SearchExercise();
   }, []);
 
@@ -124,7 +121,7 @@ export const ListSelectOrientation = (props) => {
           <Button
             title="Selecionar Orientações"
             onPress="SelectOrientations"
-            props={[id, examOrExercise]}
+            props={[id, testOrExercise]}
           />
         </View>
       </View>

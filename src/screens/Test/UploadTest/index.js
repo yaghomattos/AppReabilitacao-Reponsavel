@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import * as ImagePicker from 'expo-image-picker';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
-  View,
   Platform,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import * as ImagePicker from 'expo-image-picker';
-
 import { Button } from '../../../components/Button/index';
-import { createExam } from '../../../components/CRUDs/Test';
-
-import { Ionicons } from '@expo/vector-icons';
-
+import { createTest } from '../../../components/CRUDs/Test';
 import styles from './styles';
 
 export function UploadTest() {
@@ -41,7 +38,7 @@ export function UploadTest() {
   }, []);
 
   async function upload() {
-    var exam = {
+    var test = {
       video: file,
       photo: photo,
       name: name,
@@ -50,7 +47,7 @@ export function UploadTest() {
       reps: reps,
     };
 
-    createExam(exam);
+    createTest(test);
   }
 
   const pickFile = async () => {

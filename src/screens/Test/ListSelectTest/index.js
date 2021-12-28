@@ -8,7 +8,7 @@ import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import styles from './styles';
 
-const parseQuery = new Parse.Query('SelectExams');
+const parseQuery = new Parse.Query('SelectTests');
 parseQuery.descending('createdAt');
 
 export const ListSelectTest = (props) => {
@@ -16,7 +16,7 @@ export const ListSelectTest = (props) => {
 
   const participant = props.route.params;
 
-  const [exam, setExam] = useState('');
+  const [test, setTest] = useState('');
 
   useEffect(() => {
     async function Search(participantId) {
@@ -29,11 +29,11 @@ export const ListSelectTest = (props) => {
       parseQuery.equalTo('participant', participantPointer);
       const results = await parseQuery.find();
 
-      setExam(results);
+      setTest(results);
     }
 
     Search(participant);
-  }, [exam]);
+  }, [test]);
 
   const results = useParseQuery(parseQuery).results;
   Parse.User._clearCache();
@@ -61,14 +61,14 @@ export const ListSelectTest = (props) => {
         <View style={styles.background}>
           <View style={styles.viewList}>
             <FlatList
-              data={exam}
+              data={test}
               keyExtractor={(item) => item.id}
               ItemSeparatorComponent={() => <Divider />}
               renderItem={({ item }) => (
                 <View style={styles.itemContainer}>
                   <List.Item
                     style={styles.item}
-                    title={item.get('exam').get('name')}
+                    title={item.get('test').get('name')}
                     titleNumberOfLines={1}
                     titleStyle={styles.itemTitle}
                   />
@@ -77,7 +77,7 @@ export const ListSelectTest = (props) => {
                     size={24}
                     style={styles.icon}
                     onPress={() => {
-                      navigation.navigate('ExamSettings', item.get('exam').id);
+                      navigation.navigate('TestSettings', item.get('test').id);
                     }}
                   />
                 </View>
@@ -86,7 +86,7 @@ export const ListSelectTest = (props) => {
           </View>
           <Button
             title="Selecionar Testes"
-            onPress="SelectExams"
+            onPress="SelectTests"
             props={participant}
           />
         </View>

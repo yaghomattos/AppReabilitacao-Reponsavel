@@ -18,8 +18,8 @@ import styles from './styles';
 
 var date = new Date();
 
-const parseQueryExams = new Parse.Query('SelectExams');
-parseQueryExams.ascending('createdAt');
+const parseQueryTests = new Parse.Query('SelectTests');
+parseQueryTests.ascending('createdAt');
 const parseQuery = new Parse.Query('SelectExercises');
 parseQuery.ascending('createdAt');
 
@@ -74,9 +74,9 @@ export function Monitoring(props) {
 
   const [show, setShow] = useState(false);
   const [exercise, setExercise] = useState('');
-  const [exam, setExam] = useState('');
+  const [test, setTest] = useState('');
   const [totalExercise, setTotalExercise] = useState(0);
-  const [totalExam, setTotalExam] = useState(0);
+  const [totalTest, setTotalTest] = useState(0);
 
   const participantId = props.route.params;
 
@@ -101,23 +101,23 @@ export function Monitoring(props) {
       var result = await query.find();
       setExercise(result);
 
-      parseQueryExams.equalTo('participant', participantPointer);
-      var resultParticipantExam = await parseQueryExams.find();
-      setTotalExam(resultParticipantExam.length);
+      parseQueryTests.equalTo('participant', participantPointer);
+      var resultParticipantTest = await parseQueryTests.find();
+      setTotalTest(resultParticipantTest.length);
 
-      const queryExam = new Parse.Query('SelectExams');
-      queryExam.ascending('createdAt');
-      queryExam.equalTo('check', true);
+      const queryTest = new Parse.Query('SelectTests');
+      queryTest.ascending('createdAt');
+      queryTest.equalTo('check', true);
 
-      var resultExam = await queryExam.find();
-      setExam(resultExam);
+      var resultTest = await queryTest.find();
+      setTest(resultTest);
     }
 
     if (participantId != '') Search(participantId);
   }, []);
 
   const results = useParseQuery(parseQuery).results;
-  const resultsExam = useParseQuery(parseQueryExams).results;
+  const resultsTest = useParseQuery(parseQueryTests).results;
   Parse.User._clearCache();
 
   return (
@@ -208,12 +208,12 @@ export function Monitoring(props) {
             <View style={styles.exerciseContainer}>
               <FlatList
                 nestedScrollEnabled
-                data={exam}
+                data={test}
                 keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={() => <Divider />}
                 renderItem={({ item }) => (
                   <List.Item
-                    title={item.get('exam').get('name')}
+                    title={item.get('test').get('name')}
                     titleNumberOfLines={1}
                     titleStyle={styles.description}
                     onPress={() =>
@@ -228,13 +228,13 @@ export function Monitoring(props) {
               <View>
                 <Text style={styles.feedback}>
                   {' '}
-                  {exam.length + ` de ${totalExam} testes concluídos`}
+                  {test.length + ` de ${totalTest} testes concluídos`}
                 </Text>
               </View>
               <Text style={styles.subTitle}>{'Produtividade:'}</Text>
               <View>
                 <Text style={styles.feedback}>
-                  {Productivy(exam.length / totalExam)}
+                  {Productivy(test.length / totalTest)}
                 </Text>
               </View>
             </View>
