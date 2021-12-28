@@ -1,25 +1,20 @@
 import { useEffect, useState } from 'react';
+import { auth } from '../../../services/firebase';
 
-import Parse from 'parse/react-native';
-
-export const CurrentUser = () => {
+export async function CurrentUser() {
   const [id, setId] = useState('');
   const [username, setUsername] = useState('');
-  const [token, setToken] = useState('');
 
   useEffect(() => {
     async function getCurrentUser() {
-      if (username === '') {
-        const currentUser = await Parse.User.currentAsync();
-        if (currentUser !== null) {
-          setId(currentUser.id);
-          setUsername(currentUser.getUsername());
-          setToken(currentUser.getSessionToken());
-        }
+      const user = auth.currentUser;
+      if (user !== null) {
+        setId(user.uid);
+        setUsername(user.displayName);
       }
     }
     getCurrentUser();
-  }, [id, token, username]);
+  }, [id, username]);
 
-  return { id, token, username };
-};
+  return { id, username };
+}
