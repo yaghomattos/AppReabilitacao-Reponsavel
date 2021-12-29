@@ -10,8 +10,6 @@ export function Home() {
   const [username, setUsername] = useState('');
 
   CurrentUser().then((currentUser) => {
-    console.log(currentUser);
-
     setId(currentUser.id);
     setUsername(currentUser.username);
   });

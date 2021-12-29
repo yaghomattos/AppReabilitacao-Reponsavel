@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {
   deleteParticipant,
-  readParticipantCPF,
+  readParticipantWithCPF,
 } from '../../../components/CRUDs/Participant/index';
 import styles from './styles';
 
@@ -15,7 +15,7 @@ export function DeleteParticipant() {
   const [CPF, setCPF] = useState('');
 
   async function handleDelete() {
-    const participantFound = await readParticipantCPF(CPF);
+    const participantFound = await readParticipantWithCPF(CPF);
 
     if (participantFound) {
       Alert.alert('Sucesso, Paciente deletado!');

@@ -6,7 +6,7 @@ import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
 import { GiftedChat, Send } from 'react-native-gifted-chat';
 import { Avatar, IconButton } from 'react-native-paper';
-import { readParticipant } from '../../components/CRUDs/Participant/index';
+import { readParticipantWithId } from '../../components/CRUDs/Participant/index';
 import styles from './styles';
 
 const parseQuery = new Parse.Query('Educational');
@@ -15,7 +15,7 @@ parseQuery.descending('createdAt');
 var participant = '';
 
 async function Search(props) {
-  readParticipant(props).then((response) => {
+  readParticipantWithId(props).then((response) => {
     participant = response.get('name');
   });
 }
