@@ -1,80 +1,39 @@
-import Parse from 'parse/react-native.js';
 import { Alert } from 'react-native';
 
-export async function createSelectExercises(participantId, exerciseId) {
-  var participantPointer = {
-    __type: 'Pointer',
-    className: 'Participant',
-    objectId: participantId,
-  };
-  var exercisePointer = {
-    __type: 'Pointer',
-    className: 'Exercise',
-    objectId: exerciseId,
-  };
+export async function createSelectExercises(props) {
+  const selectExeriseRef = database.ref('selectExerise');
 
-  const myNewObject = new Parse.Object('SelectExercises');
-  myNewObject.set('participant', participantPointer);
-  myNewObject.set('exercise', exercisePointer);
-  try {
-    const result = await myNewObject.save();
-    Alert.alert('Exercício selecionado para o paciente');
-  } catch (error) {
-    console.error('Error while creating SelectExercises: ', error);
-  }
+  selectExeriseRef
+    .push({
+      participant: props.participant,
+      exercise: props.exercise,
+    })
+    .then(() => {
+      Alert.alert('Exercício selecionado');
+    })
+    .catch(() => {
+      Alert.alert('Erro ao selecionar exercício');
+    });
 }
 
-export async function readSelectExercises() {
-  const SelectExercises = Parse.Object.extend('SelectExercises');
-  const query = new Parse.Query(SelectExercises);
-  try {
-    const results = await query.find();
-    for (const object of results) {
-      const Participant = object.get('Participant');
-      const Exercise = object.get('Exercise');
-      console.log(Participant);
-      console.log(Exercise);
-    }
-  } catch (error) {
-    console.error('Error while fetching SelectExercises', error);
-  }
+export async function updateSelectExercises(props) {
+  const selectExerciseRef = database.ref('selectExercise/' + props.id);
+  if (props.sets != '')
+    selectExerciseRef.update({
+      sets: props.sets,
+    });
+  if (props.reps != '')
+    selectExerciseRef.update({
+      reps: props.reps,
+    });
+  if (props.timer != '')
+    selectExerciseRef.update({
+      timer: props.timer,
+    });
+  console.log('exercise updated');
 }
 
-export async function updateSelectExercises(exercise) {
-  var exercisePointer = {
-    __type: 'Pointer',
-    className: 'Exercise',
-    objectId: exercise.id,
-  };
-
-  const query = new Parse.Query('SelectExercises');
-  try {
-    const object = await query.get(exercisePointer);
-    if (exercise.sets != '') object.set('sets', exercise.sets);
-    if (exercise.reps != '') object.set('reps', exercise.reps);
-    if (exercise.timer != '') object.set('timer', exercise.timer);
-    try {
-      const response = await object.save();
-      console.log('SelectExercises updated', response);
-    } catch (error) {
-      console.error('Error while updating SelectExercises', error);
-    }
-  } catch (error) {
-    console.error('Error while retrieving object SelectExercises', error);
-  }
-}
-
-export async function deleteSelectExercises() {
-  const query = new Parse.Query('SelectExercises');
-  try {
-    const object = await query.get('xKue915KBG');
-    try {
-      const response = await object.destroy();
-      console.log('Deleted ParseObject', response);
-    } catch (error) {
-      console.error('Error while deleting ParseObject', error);
-    }
-  } catch (error) {
-    console.error('Error while retrieving ParseObject', error);
-  }
+export async function deleteSelectExercises(props) {
+  const selectExerciseRef = database.ref('selectExercise/' + props);
+  selectExerciseRef.remove();
 }
