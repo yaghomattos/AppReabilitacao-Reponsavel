@@ -1,97 +1,98 @@
-import Parse from 'parse/react-native.js';
-import { Alert } from 'react-native';
+import { Alert, LogBox } from 'react-native';
+import { database } from '../../../services/firebase';
 
-export async function createPatient(props) {
-  var currentUser = {
-    __type: 'Pointer',
-    className: '_User',
-    objectId: props.id,
-  };
+LogBox.ignoreLogs(['Setting a timer']);
 
-  const newPatient = new Parse.Object('Patient');
-  newPatient.set('name', props.name);
-  newPatient.set('CPF', props.cpf);
-  newPatient.set('age', props.age);
-  newPatient.set('phone', props.phone);
-  newPatient.set('diagnosis', props.diagnosis);
-  newPatient.set('address', props.address);
-  newPatient.set('createdFrom', currentUser);
-  newPatient.set('createdFromName', props.username);
-  newPatient.set('height', props.height);
-  newPatient.set('weight', props.weight);
+export async function createParticipant(props) {
+  const participantRef = database.ref('participant');
 
-  try {
-    const result = await newPatient.save();
-    Alert.alert('Paciente cadastrado com sucesso!');
-  } catch (error) {
-    console.error('Erro ao cadastrar paciente');
-  }
+  participantRef
+    .push({
+      name: props.name,
+      cpf: props.cpf,
+      age: props.age,
+      phone: props.phone,
+      diagnosis: props.diagnosis,
+      address: props.address,
+      height: props.height,
+      weight: props.weight,
+      user: props.id,
+    })
+    .then(() => {
+      Alert.alert('Participante cadastrado');
+    })
+    .catch(() => {
+      Alert.alert('Erro ao cadastrar participante');
+    });
 }
 
-export async function readPatient(id) {
-  const Patient = Parse.Object.extend('Patient');
-  const query = new Parse.Query(Patient);
-  var result = '';
-  query.equalTo('objectId', id);
-  try {
-    const results = await query.find();
-    result = results;
-  } catch (error) {
-    console.error('Erro ao buscar paciente:', error);
+export async function readParticipantWithId(props) {
+  const participantRef = await database.ref(`participant/${props}`).get();
+
+  if (!participantRef.exists()) {
+    console.log('Participant does not exists.');
     return;
-  }
-  return result[0];
-}
-
-export async function readPatientCPF(cpf) {
-  const Patient = Parse.Object.extend('Patient');
-  const query = new Parse.Query(Patient);
-  var result = '';
-  query.equalTo('CPF', cpf);
-  try {
-    const results = await query.find();
-    result = results;
-    return true;
-  } catch (error) {
-    console.error('Erro ao buscar paciente:', error);
-    return false;
+  } else {
+    return participantRef;
   }
 }
 
-export async function updatePatient(props) {
-  const query = new Parse.Query('Patient');
-  try {
-    const object = await query.get(props.id);
-    if (props.name != '') object.set('name', props.name);
-    if (props.cpf != '') object.set('CPF', props.cpf);
-    if (props.age != '') object.set('age', props.age);
-    if (props.phone != '') object.set('phone', props.phone);
-    if (props.diagnosis != '') object.set('diagnosis', props.diagnosis);
-    if (props.address != '') object.set('address', props.address);
-    try {
-      const response = await object.save();
+export async function readParticipantWithCPF(props) {
+  var participant = '';
+  const participantRef = database
+    .ref('participant')
+    .orderByChild('cpf')
+    .equalTo(props)
+    .on('child_added', function (snapshot) {
+      participant = snapshot;
+    });
 
-      console.log(response.get('name'));
-      console.log('Patient updated', response);
-    } catch (error) {
-      console.error('Error while updating Patient', error);
-    }
-  } catch (error) {
-    console.error('Error while retrieving object Patient', error);
+  if (!participant) {
+    console.log('Participant does not exists.');
+    return;
+  } else {
+    return participantRef;
   }
 }
 
-export async function deletePatient(objectId) {
-  const query = new Parse.Query('Patient');
-  try {
-    const patient = await query.get(objectId);
-    try {
-      const response = await patient.destroy();
-      console.log('Deleted ParsePatient', response);
-    } catch (error) {
-      console.error('Error while deleting ParsePatient', error);
-    }
-  } catch (error) {
-    console.error('Error while retrieving ParsePatient', error);
-  }
+export async function updateParticipant(props) {
+  const participantRef = database.ref('participant/' + props.id);
+  if (props.name != '')
+    participantRef.update({
+      title: props.name,
+    });
+  if (props.cpf != '')
+    participantRef.update({
+      cpf: props.cpf,
+    });
+  if (props.age != '')
+    participantRef.update({
+      age: props.age,
+    });
+  if (props.phone != '')
+    participantRef.update({
+      phone: props.phone,
+    });
+  if (props.diagnosis != '')
+    participantRef.update({
+      diagnosis: props.diagnosis,
+    });
+  if (props.address != '')
+    participantRef.update({
+      address: props.address,
+    });
+  if (props.height != '')
+    participantRef.update({
+      height: props.height,
+    });
+  if (props.weight != '')
+    participantRef.update({
+      weight: props.weight,
+    });
+  console.log('participant updated');
+}
+
+export async function deleteParticipant(props) {
+  const participantRef = database.ref('participant/' + props);
+  participantRef.remove();
 }
