@@ -1,11 +1,12 @@
 import { Alert } from 'react-native';
+import { database } from '../../../services/firebase';
 
 export async function createOrientation(props) {
   const orientationRef = database.ref('orientation');
 
   orientationRef
     .push({
-      text: props.text,
+      text: props,
     })
     .then(() => {
       Alert.alert('Orientação cadastrada');
