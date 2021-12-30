@@ -1,11 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-
-import { createOrientation } from '../../../components/CRUDs/Orientations/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
+import { createOrientation } from '../../../components/CRUDs/Orientation/index';
 import styles from './styles';
 
 export function NewOrientation() {
