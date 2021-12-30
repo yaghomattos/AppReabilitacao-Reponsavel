@@ -9,7 +9,7 @@ import styles from './styles';
 export function ParticipantRecord() {
   const navigation = useNavigation();
 
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [CPF, setCPF] = useState('');
   const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
@@ -18,14 +18,15 @@ export function ParticipantRecord() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
 
-  const user = CurrentUser();
+  var user = '';
 
-  var userId = user.id; //responsável
-  // var userName = user.username;
+  CurrentUser().then((currentUser) => {
+    user = currentUser;
+  });
 
   async function handleCreateParticipant() {
     const participant = {
-      name: username,
+      name: name,
       cpf: CPF,
       age: age,
       phone: phone,
@@ -33,8 +34,7 @@ export function ParticipantRecord() {
       address: address,
       weight: weight,
       height: height,
-      id: userId,
-      // username: userName,
+      id: user.id,
     };
 
     createParticipant(participant);
@@ -59,82 +59,80 @@ export function ParticipantRecord() {
           />
         </View>
       </View>
-      <View style={styles.container}>
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            value={username}
-            placeholder={'Nome'}
-            onChangeText={(text) => setUsername(text)}
-            autoCapitalize={'none'}
-            keyboardType={'email-address'}
-          />
-          <TextInput
-            style={styles.input}
-            value={CPF}
-            placeholder={'CPF'}
-            onChangeText={(text) => setCPF(text)}
-            keyboardType={'numeric'}
-            maxLength={12}
-          />
-          <TextInput
-            style={styles.input}
-            value={age}
-            placeholder={'Idade'}
-            onChangeText={(text) => setAge(text)}
-            keyboardType={'numeric'}
-            maxLength={2}
-          />
-          <TextInput
-            style={styles.input}
-            value={phone}
-            placeholder={'Telefone'}
-            onChangeText={(text) => setPhone(text)}
-            autoCapitalize={'none'}
-            keyboardType={'numeric'}
-          />
-          <TextInput
-            editable
-            multiline
-            style={styles.input}
-            value={diagnosis}
-            placeholder={'Diagnóstico'}
-            onChangeText={(text) => setDiagnosis(text)}
-            autoCapitalize={'none'}
-            keyboardType={'email-address'}
-          />
-          <TextInput
-            editable
-            multiline
-            style={styles.input}
-            value={address}
-            placeholder={'Endereço'}
-            onChangeText={(text) => setAddress(text)}
-            autoCapitalize={'none'}
-            keyboardType={'email-address'}
-          />
-          <TextInput
-            style={styles.input}
-            value={height}
-            placeholder={'Altura'}
-            onChangeText={(text) => setHeight(text)}
-            autoCapitalize={'none'}
-            keyboardType={'numeric'}
-          />
-          <TextInput
-            style={styles.input}
-            value={weight}
-            placeholder={'Peso'}
-            onChangeText={(text) => setWeight(text)}
-            autoCapitalize={'none'}
-            keyboardType={'numeric'}
-          />
-          <TouchableOpacity onPress={() => handleCreateParticipant()}>
-            <View style={styles.button}>
-              <Text style={styles.text_label}>{'Cadastrar'}</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          value={name}
+          placeholder={'Nome'}
+          onChangeText={(text) => setName(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
+        <TextInput
+          style={styles.input}
+          value={CPF}
+          placeholder={'CPF'}
+          onChangeText={(text) => setCPF(text)}
+          keyboardType={'numeric'}
+          maxLength={12}
+        />
+        <TextInput
+          style={styles.input}
+          value={age}
+          placeholder={'Idade'}
+          onChangeText={(text) => setAge(text)}
+          keyboardType={'numeric'}
+          maxLength={2}
+        />
+        <TextInput
+          style={styles.input}
+          value={phone}
+          placeholder={'Telefone'}
+          onChangeText={(text) => setPhone(text)}
+          autoCapitalize={'none'}
+          keyboardType={'numeric'}
+        />
+        <TextInput
+          editable
+          multiline
+          style={styles.input}
+          value={diagnosis}
+          placeholder={'Diagnóstico'}
+          onChangeText={(text) => setDiagnosis(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
+        <TextInput
+          editable
+          multiline
+          style={styles.input}
+          value={address}
+          placeholder={'Endereço'}
+          onChangeText={(text) => setAddress(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
+        <TextInput
+          style={styles.input}
+          value={height}
+          placeholder={'Altura'}
+          onChangeText={(text) => setHeight(text)}
+          autoCapitalize={'none'}
+          keyboardType={'numeric'}
+        />
+        <TextInput
+          style={styles.input}
+          value={weight}
+          placeholder={'Peso'}
+          onChangeText={(text) => setWeight(text)}
+          autoCapitalize={'none'}
+          keyboardType={'numeric'}
+        />
+        <TouchableOpacity onPress={() => handleCreateParticipant()}>
+          <View style={styles.button}>
+            <Text style={styles.text_label}>{'Cadastrar'}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
