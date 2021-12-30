@@ -59,7 +59,7 @@ export async function updateParticipant(props) {
   const participantRef = database.ref('participant/' + props.id);
   if (props.name != '')
     participantRef.update({
-      title: props.name,
+      name: props.name,
     });
   if (props.cpf != '')
     participantRef.update({
