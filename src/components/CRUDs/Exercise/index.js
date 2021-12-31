@@ -2,9 +2,9 @@ import { Alert } from 'react-native';
 import { database } from '../../../services/firebase';
 
 export async function createExercise(props) {
-  const participantRef = database.ref('participant');
+  const exerciseRef = database.ref('exercise');
 
-  participantRef
+  exerciseRef
     .push({
       name: props.name,
       description: props.description,
