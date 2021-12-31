@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Image,
   Platform,
   ScrollView,
@@ -13,13 +14,16 @@ import {
 } from 'react-native';
 import { Button } from '../../../components/Button/index';
 import { createTest } from '../../../components/CRUDs/Test';
+import { storage } from '../../../services/firebase';
 import styles from './styles';
 
 export function UploadTest() {
   const navigation = useNavigation();
 
-  const [file, setFile] = useState(null);
-  const [photo, setPhoto] = useState(null);
+  const [video, setVideo] = useState(false);
+  const [preview, setPreview] = useState(false);
+  const [videoURL, setVideoURL] = useState('');
+  const [previewURL, setPreviewURL] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [timer, setTimer] = useState('');
@@ -38,37 +42,75 @@ export function UploadTest() {
   }, []);
 
   async function upload() {
-    var test = {
-      video: file,
-      photo: photo,
-      name: name,
-      description: description,
-      timer: timer,
-      reps: reps,
-    };
+    var check = false;
+    var storageRef = storage.ref();
 
-    createTest(test);
+    var previewRef = storageRef.child(`test/preview/${name}.jpg`);
+    var videoRef = storageRef.child(`test/video/${name}.jpg`);
+
+    const responsePreview = await fetch(preview.uri);
+    const blobPreview = await responsePreview.blob();
+
+    const videoPreview = await fetch(video.uri);
+    const blobVideo = await videoPreview.blob();
+
+    Alert.alert('Fazendo upload das informações, aguarde!');
+
+    previewRef.put(blobPreview).then((snapshot) => {
+      console.log('Uploaded a blob preview!');
+      previewRef
+        .getDownloadURL()
+        .then((url) => {
+          setPreviewURL(url);
+        })
+        .catch((e) =>
+          console.log('getting downloadURL of preview error => ', e)
+        );
+    });
+    videoRef.put(blobVideo).then((snapshot) => {
+      console.log('Uploaded a blob video!');
+      videoRef
+        .getDownloadURL()
+        .then((url) => {
+          setVideoURL(url);
+        })
+        .catch((e) => console.log('getting downloadURL of video error => ', e));
+      setTimeout(function () {
+        createData();
+      }, 100);
+    });
+
+    async function createData() {
+      var test = {
+        video: videoURL,
+        preview: previewURL,
+        name: name,
+        description: description,
+        timer: timer,
+        reps: reps,
+      };
+
+      createTest(test);
+    }
   }
 
   const pickFile = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      base64: true,
     });
 
     if (!result.cancelled) {
-      setFile(result);
+      setVideo(result);
     }
   };
 
   const pickPhoto = async () => {
     let resultPhoto = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      base64: true,
     });
 
     if (!resultPhoto.cancelled) {
-      setPhoto(resultPhoto);
+      setPreview(resultPhoto);
     }
   };
 
@@ -130,26 +172,28 @@ export function UploadTest() {
           />
           <View style={styles.preview}>
             <TouchableOpacity
-              style={file ? styles.button : styles.button2}
+              style={video ? styles.button : styles.button2}
               onPress={pickFile}
             >
               <Text style={styles.text_button}>{'Selecionar vídeo'}</Text>
               <Text style={styles.text_button}>{'ou imagem'}</Text>
             </TouchableOpacity>
-            {file && <Image source={{ uri: file.uri }} style={styles.image} />}
+            {video && (
+              <Image source={{ uri: video.uri }} style={styles.image} />
+            )}
           </View>
           <View style={styles.preview}>
             <TouchableOpacity style={styles.button} onPress={pickPhoto}>
               <Text style={styles.text_button}>{'Definir ícone'}</Text>
             </TouchableOpacity>
-            {photo && (
-              <Image source={{ uri: photo.uri }} style={styles.image} />
+            {preview && (
+              <Image source={{ uri: preview.uri }} style={styles.image} />
             )}
           </View>
 
           <Button title="Orientações" onPress="MenuOrientation" />
 
-          {file && photo && (
+          {video && preview && (
             <TouchableOpacity style={styles.send} onPress={upload}>
               <Text style={styles.text_button}>{'Cadastrar'}</Text>
             </TouchableOpacity>
