@@ -11,6 +11,7 @@ import {
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: REACT_APP_API_KEY,
@@ -31,5 +32,6 @@ if (!firebase.apps.length) {
 
 const auth = firebase.auth();
 const database = firebase.database();
+const storage = firebase.storage();
 
-export { firebase, database, auth };
+export { firebase, database, auth, storage };
