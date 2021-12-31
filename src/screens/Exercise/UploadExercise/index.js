@@ -42,8 +42,8 @@ export function UploadExercise() {
     var check = false;
     var storageRef = storage.ref();
 
-    var previewRef = storageRef.child(`preview/${name}.jpg`);
-    var videoRef = storageRef.child(`video/${name}.jpg`);
+    var previewRef = storageRef.child(`exercise/preview/${name}.jpg`);
+    var videoRef = storageRef.child(`exercise/video/${name}.jpg`);
 
     const responsePreview = await fetch(preview.uri);
     const blobPreview = await responsePreview.blob();
