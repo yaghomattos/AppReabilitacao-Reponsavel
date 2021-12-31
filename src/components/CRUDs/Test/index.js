@@ -4,17 +4,35 @@ import { database } from '../../../services/firebase';
 export async function createTest(props) {
   const testRef = database.ref('test');
 
-  testRef
-    .push({
-      name: props.name,
-      description: props.description,
-      video: props.video,
-      preview: props.preview,
-    })
-    .then(() => {
-      console.log('Test criado');
-      Alert.alert('Teste cadastrado');
-    });
+  if (props.timer != '') {
+    testRef
+      .push({
+        name: props.name,
+        description: props.description,
+        video: props.video,
+        preview: props.preview,
+        timer: props.timer,
+        reps: '',
+      })
+      .then(() => {
+        console.log('Test criado');
+        Alert.alert('Teste cadastrado');
+      });
+  } else {
+    testRef
+      .push({
+        name: props.name,
+        description: props.description,
+        video: props.video,
+        preview: props.preview,
+        timer: '',
+        reps: props.reps,
+      })
+      .then(() => {
+        console.log('Test criado');
+        Alert.alert('Teste cadastrado');
+      });
+  }
 }
 
 export async function readTest(props) {
