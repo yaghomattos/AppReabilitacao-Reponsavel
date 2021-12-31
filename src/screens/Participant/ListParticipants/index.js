@@ -1,23 +1,33 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/native';
-import Parse from 'parse/react-native.js';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, TextInput, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
+import { database } from '../../../services/firebase';
 import styles from './styles';
-
-const parseQuery = new Parse.Query('Participant');
-parseQuery.ascending('name');
 
 export const ListParticipants = () => {
   const navigation = useNavigation();
 
   const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
 
-  const results = useParseQuery(parseQuery).results;
+  useEffect(() => {
+    async function getListParticipants() {
+      var li = [];
+      database.ref('participant').on('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            key: child.val().cpf,
+            name: child.val().name,
+          });
+        });
+      });
+      setResults(li);
+    }
 
-  Parse.User._clearCache();
+    getListParticipants();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -49,12 +59,11 @@ export const ListParticipants = () => {
         <FlatList
           numColumns={1}
           data={results}
-          keyExtractor={(item) => item.id}
-          ItemSeparatorComponent={() => <Divider />}
+          keyExtractor={(item) => item.key.toString()}
           renderItem={({ item }) => (
             <List.Item
               style={styles.item}
-              title={item.get('name')}
+              title={item.name}
               titleNumberOfLines={1}
               titleStyle={styles.itemTitle}
               onPress={() => navigation.navigate('ParticipantProfile', item)}
