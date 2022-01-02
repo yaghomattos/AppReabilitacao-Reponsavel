@@ -1,16 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import { deleteSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
+import { database } from '../../../services/firebase';
 import styles from './styles';
-
-const parseQuery = new Parse.Query('SelectOrientations');
-parseQuery.descending('createdAt');
 
 export const ListSelectOrientation = (props) => {
   const navigation = useNavigation();
@@ -22,37 +18,40 @@ export const ListSelectOrientation = (props) => {
 
   useEffect(() => {
     async function SearchTest() {
-      var testPointer = {
-        __type: 'Pointer',
-        className: 'Test',
-        objectId: id,
-      };
+      var li = [];
+      database.ref('selectOrientation').on('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          if (child.val().test == id) {
+            li.push({
+              orientation: child.val().orientation,
+              id: child.key,
+            });
+            console.log('id snapshot ? ', child.key);
+          }
+        });
+      });
 
-      parseQuery.equalTo('test', testPointer);
-      const results = await parseQuery.find();
-
-      setOrientation(results);
+      setOrientation(li);
     }
 
     async function SearchExercise() {
-      var exercisePointer = {
-        __type: 'Pointer',
-        className: 'Exercise',
-        objectId: id,
-      };
+      var li = [];
+      database.ref('selectOrientation').on('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          if (child.val().exercise == id) {
+            li.push({
+              orientation: child.val().orientation,
+            });
+          }
+        });
+      });
 
-      parseQuery.equalTo('exercise', exercisePointer);
-      const results = await parseQuery.find();
-
-      setOrientation(results);
+      setOrientation(li);
     }
 
     if (testOrExercise == 'test') SearchTest();
     else SearchExercise();
   }, []);
-
-  const results = useParseQuery(parseQuery).results;
-  Parse.User._clearCache();
 
   async function handleDelete(object_id) {
     deleteSelectOrientations(object_id);
@@ -89,7 +88,7 @@ export const ListSelectOrientation = (props) => {
                   style={{
                     flexDirection: 'row',
                     width: 360,
-                    height: item.get('orientation').get('text').length,
+                    height: item.orientation.length,
                     marginTop: 10,
                     borderRadius: 10,
                     justifyContent: 'space-evenly',
@@ -100,9 +99,9 @@ export const ListSelectOrientation = (props) => {
                   <List.Item
                     style={{
                       width: 320,
-                      height: item.get('orientation').get('text').length,
+                      height: item.orientation.length,
                     }}
-                    title={item.get('orientation').get('text')}
+                    title={item.orientation}
                     titleNumberOfLines={100}
                     titleStyle={styles.listItemTitle}
                   />
