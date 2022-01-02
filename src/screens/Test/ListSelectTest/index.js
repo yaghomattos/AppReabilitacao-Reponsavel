@@ -1,42 +1,34 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
+import { database } from '../../../services/firebase';
 import styles from './styles';
-
-const parseQuery = new Parse.Query('SelectTests');
-parseQuery.descending('createdAt');
 
 export const ListSelectTest = (props) => {
   const navigation = useNavigation();
 
   const participant = props.route.params;
 
-  const [test, setTest] = useState('');
+  const [test, setTest] = useState([]);
 
   useEffect(() => {
-    async function Search(participantId) {
-      var participantPointer = {
-        __type: 'Pointer',
-        className: 'Participant',
-        objectId: participantId,
-      };
-
-      parseQuery.equalTo('participant', participantPointer);
-      const results = await parseQuery.find();
-
-      setTest(results);
-    }
-
-    Search(participant);
-  }, [test]);
-
-  const results = useParseQuery(parseQuery).results;
-  Parse.User._clearCache();
+    var li = [];
+    database.ref('selectTest').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        if (child.val().participant == participant) {
+          li.push({
+            test: child.val().test,
+            name: child.val().name,
+            id: child.key,
+          });
+        }
+      });
+      setTest(li);
+    });
+  }, []);
 
   return (
     <>
@@ -68,7 +60,7 @@ export const ListSelectTest = (props) => {
                 <View style={styles.itemContainer}>
                   <List.Item
                     style={styles.item}
-                    title={item.get('test').get('name')}
+                    title={item.name}
                     titleNumberOfLines={1}
                     titleStyle={styles.itemTitle}
                   />
@@ -77,7 +69,7 @@ export const ListSelectTest = (props) => {
                     size={24}
                     style={styles.icon}
                     onPress={() => {
-                      navigation.navigate('TestSettings', item.get('test').id);
+                      navigation.navigate('TestSettings', item.test);
                     }}
                   />
                 </View>
@@ -86,7 +78,7 @@ export const ListSelectTest = (props) => {
           </View>
           <Button
             title="Selecionar Testes"
-            onPress="SelectTests"
+            onPress="SelectTest"
             props={participant}
           />
         </View>
