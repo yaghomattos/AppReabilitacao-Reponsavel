@@ -1,36 +1,33 @@
-import 'react-native-gesture-handler';
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import { Login } from '../screens/Login/index';
-import { Register } from '../screens/Register/index';
-import { Home } from '../screens/Home/index';
+import React from 'react';
 import { Chat } from '../screens/Chat/index';
 import { Educational } from '../screens/Educational/index';
-import { ParticipantRecord } from '../screens/Participant/RecordParticipant/index';
-import { DeleteParticipant } from '../screens/Participant/DeleteParticipant/index';
-import { UploadExercise } from '../screens/Exercise/UploadExercise/index';
-import { UploadTest } from '../screens/Test/UploadTest/index';
-import { ParticipantControl } from '../screens/Participant/ParticipantControl/index';
-import { ListParticipants } from '../screens/Participant/ListParticipants/index';
-import { ListParticipantRoute } from '../screens/Participant/ListParticipantRoute/index';
-import { ListTestRoute } from '../screens/Test/ListTestRoute/index';
-import { ListSelectExercise } from '../screens/Exercise/ListSelectExercise/index';
-import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
-import { ListSelectOrientation } from '../screens/Orientation/ListSelectOrientation/index';
-import { SelectExercise } from '../screens/Exercise/SelectExercise/index';
-import { SelectTest } from '../screens/Test/SelectTest/index';
-import { SelectOrientation } from '../screens/Orientation/SelectOrientation/index';
-import { ParticipantProfile } from '../screens/Participant/ParticipantProfile/index';
 import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
-import { TestSettings } from '../screens/Test/TestSettings/index';
-import { Monitoring } from '../screens/Monitoring/index';
-import { ViewForm } from '../screens/ViewForm/index';
-import { MenuOrientation } from '../screens/Orientation/MenuOrientation/index';
+import { ListSelectExercise } from '../screens/Exercise/ListSelectExercise/index';
 import { MenuTraining } from '../screens/Exercise/MenuTraining/index';
-import { MenuTest } from '../screens/Test/MenuTest';
+import { SelectExercise } from '../screens/Exercise/SelectExercise/index';
+import { UploadExercise } from '../screens/Exercise/UploadExercise/index';
+import { Home } from '../screens/Home/index';
+import { Login } from '../screens/Login/index';
+import { Monitoring } from '../screens/Monitoring/index';
+import { ListSelectOrientation } from '../screens/Orientation/ListSelectOrientation/index';
+import { MenuOrientation } from '../screens/Orientation/MenuOrientation/index';
 import { NewOrientation } from '../screens/Orientation/NewOrientation/index';
+import { SelectOrientation } from '../screens/Orientation/SelectOrientation/index';
+import { DeleteParticipant } from '../screens/Participant/DeleteParticipant/index';
+import { ListParticipantRoute } from '../screens/Participant/ListParticipantRoute/index';
+import { ListParticipants } from '../screens/Participant/ListParticipants/index';
+import { ParticipantControl } from '../screens/Participant/ParticipantControl/index';
+import { ParticipantProfile } from '../screens/Participant/ParticipantProfile/index';
+import { ParticipantRecord } from '../screens/Participant/RecordParticipant/index';
+import { Register } from '../screens/Register/index';
+import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
+import { MenuTest } from '../screens/Test/MenuTest';
+import { SelectTest } from '../screens/Test/SelectTest/index';
+import { TestSettings } from '../screens/Test/TestSettings/index';
+import { UploadTest } from '../screens/Test/UploadTest/index';
+import { ViewForm } from '../screens/ViewForm/index';
 
 const Stack = createStackNavigator();
 
@@ -65,7 +62,6 @@ export function AppRoutes() {
           name="ListParticipantRoute"
           component={ListParticipantRoute}
         />
-        <Stack.Screen name="ListTestRoute" component={ListTestRoute} />
         <Stack.Screen name="SelectExercise" component={SelectExercise} />
         <Stack.Screen name="SelectTest" component={SelectTest} />
         <Stack.Screen name="SelectOrientation" component={SelectOrientation} />
