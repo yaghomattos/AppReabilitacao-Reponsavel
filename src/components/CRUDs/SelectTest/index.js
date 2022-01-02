@@ -8,6 +8,7 @@ export async function createSelectTests(props) {
     .push({
       participant: props.participant,
       test: props.test,
+      name: props.name,
     })
     .then(() => {
       Alert.alert('Teste selecionado');
