@@ -37,11 +37,6 @@ export function Home() {
           <Button title="Treinamento" onPress="MenuTraining" />
           <Button title="Avaliação" onPress="MenuTest" />
           <Button
-            title="Monitoramento"
-            onPress="ListParticipantRoute"
-            props={'Monitoring'}
-          />
-          <Button
             title="Educacional"
             onPress="ListParticipantRoute"
             props={['Educational', id]}
