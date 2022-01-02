@@ -1,8 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
-import Parse from 'parse/react-native.js';
 import React, { useEffect, useState } from 'react';
 import {
   FlatList,
@@ -18,10 +16,10 @@ import styles from './styles';
 
 var date = new Date();
 
-const parseQueryTests = new Parse.Query('SelectTests');
-parseQueryTests.ascending('createdAt');
-const parseQuery = new Parse.Query('SelectExercises');
-parseQuery.ascending('createdAt');
+// const parseQueryTests = new Parse.Query('SelectTests');
+// parseQueryTests.ascending('createdAt');
+// const parseQuery = new Parse.Query('SelectExercises');
+// parseQuery.ascending('createdAt');
 
 function CaseBad() {
   return 'Ruim';
@@ -90,35 +88,35 @@ export function Monitoring(props) {
         objectId: participantId,
       };
 
-      parseQuery.equalTo('participant', participantPointer);
-      var resultParticipant = await parseQuery.find();
-      setTotalExercise(resultParticipant.length);
+      // parseQuery.equalTo('participant', participantPointer);
+      // var resultParticipant = await parseQuery.find();
+      // setTotalExercise(resultParticipant.length);
 
-      const query = new Parse.Query('SelectExercises');
-      query.ascending('createdAt');
-      query.equalTo('check', true);
+      // const query = new Parse.Query('SelectExercises');
+      // query.ascending('createdAt');
+      // query.equalTo('check', true);
 
-      var result = await query.find();
+      var result = ''; //await query.find();
       setExercise(result);
 
-      parseQueryTests.equalTo('participant', participantPointer);
-      var resultParticipantTest = await parseQueryTests.find();
-      setTotalTest(resultParticipantTest.length);
+      // parseQueryTests.equalTo('participant', participantPointer);
+      // var resultParticipantTest = await parseQueryTests.find();
+      // setTotalTest(resultParticipantTest.length);
 
-      const queryTest = new Parse.Query('SelectTests');
-      queryTest.ascending('createdAt');
-      queryTest.equalTo('check', true);
+      // const queryTest = new Parse.Query('SelectTests');
+      // queryTest.ascending('createdAt');
+      // queryTest.equalTo('check', true);
 
-      var resultTest = await queryTest.find();
+      var resultTest = ''; //await queryTest.find();
       setTest(resultTest);
     }
 
     if (participantId != '') Search(participantId);
   }, []);
 
-  const results = useParseQuery(parseQuery).results;
-  const resultsTest = useParseQuery(parseQueryTests).results;
-  Parse.User._clearCache();
+  const results = ''; //useParseQuery(parseQuery).results;
+  const resultsTest = ''; //useParseQuery(parseQueryTests).results;
+  // Parse.User._clearCache();
 
   return (
     <SafeAreaView style={styles.container}>
