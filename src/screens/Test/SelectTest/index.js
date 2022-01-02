@@ -1,26 +1,44 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { createSelectTests } from '../../../components/CRUDs/SelectTest/index';
+import { database } from '../../../services/firebase';
 import styles from './styles';
-
-const parseQuery = new Parse.Query('Test');
-parseQuery.ascending('createdAt');
 
 export const SelectTest = (props) => {
   const navigation = useNavigation();
 
-  const results = useParseQuery(parseQuery).results;
-  Parse.User._clearCache();
+  var participant = props.route.params;
 
-  async function HandleCreateSelectedTest(testId) {
-    var participantId = props.route.params;
+  const [results, setResults] = useState('');
 
-    createSelectTests(participantId, testId);
+  useEffect(() => {
+    var li = [];
+    database.ref('test').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        if (child.val().participant == participant) {
+          li.push({
+            name: child.val().name,
+            description: child.val().description,
+            id: child.key,
+          });
+        }
+      });
+      setResults(li);
+    });
+  }, []);
+
+  async function HandleCreateSelectedTest(test, name) {
+    console.log('name', name);
+    var property = {
+      participant: participant,
+      test: test,
+      name: name,
+    };
+
+    createSelectTests(property);
   }
 
   return (
@@ -45,20 +63,20 @@ export const SelectTest = (props) => {
             <List.Item
               style={{
                 width: 350,
-                height: item.get('description').lenght,
+                height: item.description.lenght,
                 marginBottom: 10,
                 borderRadius: 10,
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: '#6f6f6f',
               }}
-              title={item.get('name')}
-              description={item.get('description')}
+              title={item.name}
+              description={item.description}
               titleNumberOfLines={1}
               titleStyle={styles.itemTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={100}
-              onPress={() => HandleCreateSelectedTest(item.id)}
+              onPress={() => HandleCreateSelectedTest(item.id, item.name)}
             />
           )}
         />
