@@ -8,6 +8,7 @@ export async function createSelectExercises(props) {
     .push({
       participant: props.participant,
       exercise: props.exercise,
+      name: props.name,
     })
     .then(() => {
       Alert.alert('Exercício selecionado');

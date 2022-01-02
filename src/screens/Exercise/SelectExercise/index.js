@@ -1,26 +1,40 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
 import React from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { createSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
 import styles from './styles';
 
-const parseQuery = new Parse.Query('Exercise');
-parseQuery.ascending('createdAt');
-
 export const SelectExercise = (props) => {
   const navigation = useNavigation();
 
-  const results = useParseQuery(parseQuery).results;
-  Parse.User._clearCache();
+  const [results, setResults] = useState('');
 
-  async function HandleCreateSelectedExercise(exerciseId) {
-    var participantId = props.route.params;
+  useEffect(() => {
+    var li = [];
+    database.ref('exercise').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        if (child.val().participant == participant) {
+          li.push({
+            name: child.val().name,
+            description: child.val().description,
+            id: child.key,
+          });
+        }
+      });
+      setResults(li);
+    });
+  }, []);
 
-    createSelectExercises(participantId, exerciseId);
+  async function HandleCreateSelectedExercise(exercise, name) {
+    var property = {
+      participant: participant,
+      exercise: exercise,
+      name: name,
+    };
+
+    createSelectExercises(property);
   }
 
   return (
@@ -58,7 +72,7 @@ export const SelectExercise = (props) => {
               titleStyle={styles.itemTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={10}
-              onPress={() => HandleCreateSelectedExercise(item.id)}
+              onPress={() => HandleCreateSelectedExercise(item.id, item.name)}
             />
           )}
         />
