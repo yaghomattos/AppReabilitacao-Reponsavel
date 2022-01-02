@@ -13,20 +13,23 @@ export const ListParticipants = () => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    async function getListParticipants() {
-      var li = [];
-      database.ref('participant').on('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          li.push({
-            key: child.val().cpf,
-            name: child.val().name,
-          });
+    var li = [];
+    database.ref('participant').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        li.push({
+          name: child.val().name,
+          cpf: child.val().cpf,
+          age: child.val().age,
+          phone: child.val().phone,
+          diagnosis: child.val().diagnosis,
+          address: child.val().address,
+          height: child.val().height,
+          weight: child.val().weight,
+          id: child.key,
         });
       });
       setResults(li);
-    }
-
-    getListParticipants();
+    });
   }, []);
 
   return (
@@ -59,7 +62,7 @@ export const ListParticipants = () => {
         <FlatList
           numColumns={1}
           data={results}
-          keyExtractor={(item) => item.key.toString()}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <List.Item
               style={styles.item}

@@ -20,6 +20,8 @@ export function ParticipantProfile(props) {
   const [phone, setPhone] = useState('');
   const [diagnosis, setDiagnosis] = useState('');
   const [address, setAddress] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
 
   async function handleSave() {
     const participant = {
@@ -29,6 +31,8 @@ export function ParticipantProfile(props) {
       phone: phone,
       diagnosis: diagnosis,
       address: address,
+      weight: weight,
+      height: height,
       id: props.route.params.id,
     };
 
@@ -61,7 +65,7 @@ export function ParticipantProfile(props) {
         <TextInput
           style={styles.input}
           value={participantName}
-          placeholder={props.route.params.get('name')}
+          placeholder={props.route.params.name}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setParticipantName(text)
           }
@@ -72,7 +76,7 @@ export function ParticipantProfile(props) {
         <TextInput
           style={styles.input}
           value={CPF}
-          placeholder={props.route.params.get('CPF')}
+          placeholder={props.route.params.cpf}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setCPF(text)
           }
@@ -83,7 +87,7 @@ export function ParticipantProfile(props) {
         <TextInput
           style={styles.input}
           value={age}
-          placeholder={props.route.params.get('age')}
+          placeholder={props.route.params.age}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setAge(text)
           }
@@ -93,7 +97,7 @@ export function ParticipantProfile(props) {
         <TextInput
           style={styles.input}
           value={phone}
-          placeholder={props.route.params.get('phone')}
+          placeholder={props.route.params.phone}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setPhone(text)
           }
@@ -104,7 +108,7 @@ export function ParticipantProfile(props) {
         <TextInput
           style={styles.input}
           value={diagnosis}
-          placeholder={props.route.params.get('diagnosis')}
+          placeholder={props.route.params.diagnosis}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setDiagnosis(text)
           }
@@ -115,9 +119,31 @@ export function ParticipantProfile(props) {
         <TextInput
           style={styles.input}
           value={address}
-          placeholder={props.route.params.get('address')}
+          placeholder={props.route.params.address}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setAddress(text)
+          }
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
+        <Text style={styles.form}>{'Peso:'}</Text>
+        <TextInput
+          style={styles.input}
+          value={weight}
+          placeholder={props.route.params.weight}
+          onChangeText={(text) =>
+            text == null || text == '' ? '' : setWeight(text)
+          }
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
+        <Text style={styles.form}>{'Altura:'}</Text>
+        <TextInput
+          style={styles.input}
+          value={height}
+          placeholder={props.route.params.height}
+          onChangeText={(text) =>
+            text == null || text == '' ? '' : setHeight(text)
           }
           autoCapitalize={'none'}
           keyboardType={'email-address'}

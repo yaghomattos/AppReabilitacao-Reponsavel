@@ -51,7 +51,7 @@ export async function readParticipantWithCPF(props) {
     console.log('Participant does not exists.');
     return;
   } else {
-    return participantRef;
+    return participant;
   }
 }
 

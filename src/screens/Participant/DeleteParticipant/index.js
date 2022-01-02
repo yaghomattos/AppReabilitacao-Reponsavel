@@ -14,14 +14,15 @@ export function DeleteParticipant() {
   const [CPF, setCPF] = useState('');
 
   async function handleDelete() {
-    const participantFound = await readParticipantWithCPF(CPF);
-
-    if (participantFound) {
-      const id = participantFound.key;
-
-      deleteParticipant(id);
-      Alert.alert('Sucesso, Paciente deletado!');
-    } else Alert.alert('Erro, paciente não encotrado!');
+    const participantFound = await readParticipantWithCPF(CPF)
+      .then((response) => {
+        const id = response.key;
+        deleteParticipant(id);
+        Alert.alert('Sucesso, Paciente deletado!');
+      })
+      .catch(() => {
+        Alert.alert('Erro, paciente não encotrado!');
+      });
   }
 
   return (
