@@ -1,35 +1,47 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { createSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
+import { database } from '../../../services/firebase';
 import styles from './styles';
 
-const parseQuery = new Parse.Query('Orientation');
-parseQuery.ascending('createdAt');
-
 export const SelectOrientation = (props) => {
+  //salvar a orientação e não o id da orientação na guia "orientation"
   const navigation = useNavigation();
 
-  const [orientationId, setOrientationId] = useState('');
+  const [orientation, setOrientation] = useState('');
+  const [results, setResults] = useState([]);
 
-  const results = useParseQuery(parseQuery).results;
-  Parse.User._clearCache();
+  useEffect(() => {
+    async function getOrientations() {
+      var li = [];
+      database.ref('orientation').on('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            text: child.val().text,
+            id: child.key,
+          });
+        });
+      });
+      setResults(li);
+    }
+
+    getOrientations();
+  }, []);
 
   const testOrExerciseId = props.route.params[0];
   const className = props.route.params[1];
 
-  async function SaveItemId(id) {
-    setOrientationId(id);
+  async function SaveItem(text) {
+    setOrientation(text);
   }
 
   async function HandleCreateSelectedOrientation() {
     var props = {
       testOrExerciseId: testOrExerciseId,
-      orientationId: orientationId,
+      orientation: orientation,
       className: className,
     };
 
@@ -59,17 +71,17 @@ export const SelectOrientation = (props) => {
               <List.Item
                 style={{
                   width: 350,
-                  height: item.get('text').length,
+                  height: item.text.length,
                   marginBottom: 5,
                   borderRadius: 5,
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: '#6f6f6f',
                 }}
-                title={item.get('text')}
+                title={item.text}
                 titleNumberOfLines={100}
                 titleStyle={styles.itemTitle}
-                onPress={() => SaveItemId(item.id)}
+                onPress={() => SaveItem(item.id)}
               />
             </>
           )}
@@ -77,7 +89,7 @@ export const SelectOrientation = (props) => {
       </View>
       <View style={styles.extra}>
         <View>
-          {!orientationId ? (
+          {!orientation ? (
             <Text style={styles.warning}>{'Orientação não selecionada!'}</Text>
           ) : (
             <TouchableOpacity onPress={() => HandleCreateSelectedOrientation()}>
