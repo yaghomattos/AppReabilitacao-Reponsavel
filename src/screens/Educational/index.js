@@ -1,68 +1,58 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/native';
-import Parse from 'parse/react-native.js';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
 import { GiftedChat, Send } from 'react-native-gifted-chat';
 import { Avatar, IconButton } from 'react-native-paper';
-import { readParticipantWithId } from '../../components/CRUDs/Participant/index';
 import styles from './styles';
-
-const parseQuery = new Parse.Query('Educational');
-parseQuery.descending('createdAt');
-
-var participant = '';
-
-async function Search(props) {
-  readParticipantWithId(props).then((response) => {
-    participant = response.get('name');
-  });
-}
 
 export function Educational(props) {
   const navigation = useNavigation();
 
   const [messages, setMessages] = useState([]);
+  const [results, setResults] = useState([]);
 
-  var participantId = props.route.params.item.id;
-  var userId = props.route.params.adminId;
+  var user = props.route.params.user;
+  var participant = props.route.params.item.id;
+  var participantName = props.route.params.item.name;
 
-  Search(participantId);
-
-  var currentUser = {
-    __type: 'Pointer',
-    className: '_User',
-    objectId: userId,
-  };
-  var toParticipant = {
-    __type: 'Pointer',
-    className: 'Participant',
-    objectId: participantId,
-  };
-
-  parseQuery.equalTo('from', currentUser);
-  parseQuery.find();
-  parseQuery.equalTo('to', toParticipant);
-  const results = useParseQuery(parseQuery).results;
-
-  Parse.User._clearCache();
+  useEffect(() => {
+    var li = [];
+    database.ref('educational').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        if (
+          child.val().user == user &&
+          child.val().participant == participant
+        ) {
+          li.push({
+            key: child.key,
+            content: child.val().name,
+            participant: child.val.user,
+            user: child.val().user,
+            createdAt: child.val().created_at,
+            updatedAt: child.val().updated_at,
+          });
+        }
+      });
+      setResults(li);
+    });
+    console.log(results);
+  }, []);
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     );
 
-    const Message = new Parse.Object('Educational');
+    const chatRef = database.ref('educational');
 
-    Message.set('from', currentUser);
-    Message.set('to', toParticipant);
-    Message.set('content', messages[0].text);
-    try {
-      const result = Message.save();
-    } catch (error) {
-      console.error('Error while creating Educational: ', error);
-    }
+    chatRef.push({
+      content: messages[0].text,
+      participant: participant,
+      user: user,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    });
   }, []);
 
   function renderSend(props) {

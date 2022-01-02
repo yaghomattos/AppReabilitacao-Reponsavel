@@ -1,73 +1,65 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/native';
-import Parse from 'parse/react-native.js';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
 import { GiftedChat, Send } from 'react-native-gifted-chat';
 import { Avatar, IconButton } from 'react-native-paper';
-import { readParticipantWithId } from '../../components/CRUDs/Participant/index';
+import { database } from '../../services/firebase';
 import styles from './styles';
-
-const parseQuery = new Parse.Query('Chat');
-parseQuery.descending('createdAt');
-
-var participant = '';
-
-async function Search(props) {
-  readParticipantWithId(props).then((response) => {
-    participant = response.get('name');
-  });
-}
 
 export function Chat(props) {
   const navigation = useNavigation();
 
   const [messages, setMessages] = useState([]);
+  const [results, setResults] = useState([]);
 
-  var participantId = props.route.params.item.id;
-  var userId = props.route.params.adminId;
+  var user = props.route.params.user;
+  var participant = props.route.params.item.id;
+  var participantName = props.route.params.item.name;
 
-  Search(participantId);
-
-  var currentUser = {
-    __type: 'Pointer',
-    className: '_User',
-    objectId: userId,
-  };
-  var toParticipant = {
-    __type: 'Pointer',
-    className: 'Participant',
-    objectId: participantId,
-  };
-
-  parseQuery.equalTo('fromAdmin', currentUser);
-  parseQuery.find();
-  parseQuery.equalTo('fromParticipant', toParticipant);
-  const results = useParseQuery(parseQuery).results;
-
-  Parse.User._clearCache();
+  useEffect(() => {
+    var li = [];
+    database.ref('chat').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        if (
+          child.val().user == user &&
+          child.val().participant == participant
+        ) {
+          li.push({
+            key: child.key,
+            content: child.val().name,
+            participant: child.val.user,
+            user: child.val().user,
+            from: child.val().from,
+            createdAt: child.val().created_at,
+            updatedAt: child.val().updated_at,
+          });
+        }
+      });
+      setResults(li);
+    });
+    console.log(results);
+  }, []);
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     );
 
-    const Message = new Parse.Object('Chat');
+    const chatRef = database.ref('chat');
 
-    Message.set('fromAdmin', currentUser);
-    Message.set('fromParticipant', toParticipant);
-    Message.set('from', '1');
-    Message.set('content', messages[0].text);
-    try {
-      const result = Message.save();
-    } catch (error) {
-      console.error('Error while creating Chat: ', error);
-    }
+    chatRef.push({
+      content: messages[0].text,
+      participant: participant,
+      user: user,
+      from: '1',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    });
   }, []);
 
   function CheckRecipient(object) {
-    if (object.get('from') === '1') {
+    if (object.from == '1') {
       return 1;
     }
     return 2;
@@ -116,7 +108,7 @@ export function Chat(props) {
           />
         </View>
         <View style={styles.person}>
-          <Text style={styles.text}>{participant}</Text>
+          <Text style={styles.text}>{participantName}</Text>
           <View style={styles.viewCircle}>
             <View style={styles.circleCall}>
               <Ionicons
@@ -141,12 +133,12 @@ export function Chat(props) {
         messages={
           results &&
           results.map((liveMessage) => ({
-            _id: liveMessage.id,
-            text: liveMessage.get('content'),
-            createdAt: liveMessage.get('createdAt'),
+            _id: liveMessage.key,
+            text: liveMessage.content,
+            createdAt: liveMessage.createdAt,
             user: {
               _id: CheckRecipient(liveMessage),
-              name: participant,
+              name: participantName,
             },
           }))
         }
