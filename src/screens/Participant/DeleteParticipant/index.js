@@ -1,6 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {
@@ -18,13 +17,10 @@ export function DeleteParticipant() {
     const participantFound = await readParticipantWithCPF(CPF);
 
     if (participantFound) {
+      const id = participantFound.key;
+
+      deleteParticipant(id);
       Alert.alert('Sucesso, Paciente deletado!');
-
-      let query = new Parse.Query('Participant');
-      query.equalTo('CPF', CPF);
-      let result = await query.find();
-
-      deleteParticipant(result[0].id);
     } else Alert.alert('Erro, paciente não encotrado!');
   }
 
