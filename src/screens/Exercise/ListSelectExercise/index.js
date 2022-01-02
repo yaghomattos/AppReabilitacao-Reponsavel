@@ -1,15 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useParseQuery } from '@parse/react-native';
 import { useNavigation } from '@react-navigation/core';
-import Parse from 'parse/react-native.js';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import styles from './styles';
-
-const parseQuery = new Parse.Query('SelectExercises');
-parseQuery.descending('createdAt');
 
 export const ListSelectExercise = (props) => {
   const navigation = useNavigation();
@@ -19,24 +14,20 @@ export const ListSelectExercise = (props) => {
   const [exercise, setExercise] = useState('');
 
   useEffect(() => {
-    async function Search(participantId) {
-      var participantPointer = {
-        __type: 'Pointer',
-        className: 'Participant',
-        objectId: participantId,
-      };
-
-      parseQuery.equalTo('participant', participantPointer);
-      const results = await parseQuery.find();
-
-      setExercise(results);
-    }
-
-    Search(participant);
-  }, [exercise]);
-
-  const results = useParseQuery(parseQuery).results;
-  Parse.User._clearCache();
+    var li = [];
+    database.ref('selectExercise').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        if (child.val().participant == participant) {
+          li.push({
+            exercise: child.val().exercise,
+            name: child.val().name,
+            id: child.key,
+          });
+        }
+      });
+      setExercise(li);
+    });
+  }, []);
 
   return (
     <>
@@ -68,7 +59,7 @@ export const ListSelectExercise = (props) => {
                 <View style={styles.itemContainer}>
                   <List.Item
                     style={styles.item}
-                    title={item.get('exercise').get('name')}
+                    title={item.name}
                     titleNumberOfLines={1}
                     titleStyle={styles.itemTitle}
                   />
@@ -77,10 +68,7 @@ export const ListSelectExercise = (props) => {
                     size={24}
                     style={styles.icon}
                     onPress={() => {
-                      navigation.navigate(
-                        'ExerciseSettings',
-                        item.get('exercise').id
-                      );
+                      navigation.navigate('ExerciseSettings', item.exercise.id);
                     }}
                   />
                 </View>
