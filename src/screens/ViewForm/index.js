@@ -18,11 +18,11 @@ export function ViewForm(props) {
 
   async function update() {
     readForm(formId).then((response) => {
-      setReps(response.get('Reps'));
-      setFrequency(response.get('Frequency'));
-      setSaturation(response.get('Saturation'));
-      setDyspnea(response.get('Dyspnea'));
-      setFatigue(response.get('Fatique'));
+      setReps(response.Reps);
+      setFrequency(response.Frequency);
+      setSaturation(response.Saturation);
+      setDyspnea(response.Dyspnea);
+      setFatigue(response.Fatique);
     });
   }
 

@@ -5,7 +5,7 @@ export async function readForm(props) {
 
   if (!formRef.exists()) {
     console.log('Form does not exists.');
-    return;
+    return false;
   } else {
     return formRef;
   }
