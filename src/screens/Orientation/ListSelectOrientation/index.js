@@ -11,13 +11,13 @@ import styles from './styles';
 export const ListSelectOrientation = (props) => {
   const navigation = useNavigation();
 
-  const id = props.route.params[0];
-  const testOrExercise = props.route.params[1];
+  const id = props.route.params.id;
+  const testOrExercise = props.route.className;
 
   const [orientation, setOrientation] = useState('');
 
   useEffect(() => {
-    async function SearchTest() {
+    if (testOrExercise == 'test') {
       var li = [];
       database.ref('selectOrientation').on('value', (snapshot) => {
         snapshot.forEach((child) => {
@@ -29,12 +29,9 @@ export const ListSelectOrientation = (props) => {
             console.log('id snapshot ? ', child.key);
           }
         });
+        setOrientation(li);
       });
-
-      setOrientation(li);
-    }
-
-    async function SearchExercise() {
+    } else {
       var li = [];
       database.ref('selectOrientation').on('value', (snapshot) => {
         snapshot.forEach((child) => {
@@ -44,13 +41,9 @@ export const ListSelectOrientation = (props) => {
             });
           }
         });
+        setOrientation(li);
       });
-
-      setOrientation(li);
     }
-
-    if (testOrExercise == 'test') SearchTest();
-    else SearchExercise();
   }, []);
 
   async function handleDelete(object_id) {
@@ -119,8 +112,8 @@ export const ListSelectOrientation = (props) => {
           </View>
           <Button
             title="Selecionar Orientações"
-            onPress="SelectOrientations"
-            props={[id, testOrExercise]}
+            onPress="SelectOrientation"
+            props={props.route.params}
           />
         </View>
       </View>

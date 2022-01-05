@@ -138,7 +138,7 @@ export function TestSettings(props) {
         <Button
           title="Orientações"
           onPress="MenuOrientation"
-          props={[testId, 'test']}
+          props={props.route.params}
         />
 
         {(minutes != '' || seconds != '' || numReps != '') && (

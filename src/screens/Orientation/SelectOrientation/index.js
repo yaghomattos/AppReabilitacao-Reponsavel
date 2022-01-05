@@ -31,8 +31,8 @@ export const SelectOrientation = (props) => {
     getOrientations();
   }, []);
 
-  const testOrExerciseId = props.route.params[0];
-  const className = props.route.params[1];
+  const testOrExerciseId = props.route.params.id;
+  const className = props.route.params.className;
 
   async function SaveItem(text) {
     setOrientation(text);

@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Button } from '../../../components/Button/index';
 import { createExercise } from '../../../components/CRUDs/Exercise/index';
 import { storage } from '../../../services/firebase';
 import styles from './styles';
@@ -166,8 +165,6 @@ export function UploadExercise() {
               <Image source={{ uri: preview.uri }} style={styles.image} />
             )}
           </View>
-
-          <Button title="Orientações" onPress="MenuOrientation" />
 
           {video && (
             <TouchableOpacity style={styles.send} onPress={upload}>
