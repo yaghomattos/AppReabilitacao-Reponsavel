@@ -7,7 +7,7 @@ export async function createSelectOrientations(props) {
   if (props.className == 'exercise') {
     selectOrientationRef
       .push({
-        orientation: props.orientationId,
+        orientation: props.orientation,
         exercise: props.testOrExerciseId,
       })
       .then(() => {
@@ -19,7 +19,7 @@ export async function createSelectOrientations(props) {
   } else {
     selectOrientationRef
       .push({
-        orientation: props.orientationId,
+        orientation: props.orientation,
         test: props.testOrExerciseId,
       })
       .then(() => {
