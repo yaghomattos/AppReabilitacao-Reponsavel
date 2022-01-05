@@ -32,14 +32,19 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   item: {
+    flexDirection: 'row',
     width: '85%',
     height: 80,
     marginTop: 20,
     marginEnd: 20,
     marginStart: 30,
     borderRadius: 15,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     backgroundColor: '#f8f8f8',
+  },
+  itemText: {
+    width: '80%',
   },
   itemTitle: {
     fontSize: 22,

@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, TextInput, View } from 'react-native';
 import { List } from 'react-native-paper';
+import { deleteParticipant } from '../../../components/CRUDs/Participant/index';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -31,6 +32,10 @@ export const ListParticipants = () => {
       setResults(li);
     });
   }, []);
+
+  async function handleDelete(participant) {
+    deleteParticipant(participant);
+  }
 
   return (
     <View style={styles.container}>
@@ -64,13 +69,23 @@ export const ListParticipants = () => {
           data={results}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <List.Item
-              style={styles.item}
-              title={item.name}
-              titleNumberOfLines={1}
-              titleStyle={styles.itemTitle}
-              onPress={() => navigation.navigate('ParticipantProfile', item)}
-            />
+            <View style={styles.item}>
+              <List.Item
+                style={styles.itemText}
+                title={item.name}
+                titleNumberOfLines={1}
+                titleStyle={styles.itemTitle}
+                onPress={() => navigation.navigate('ParticipantProfile', item)}
+              />
+              <Ionicons
+                name="trash"
+                size={24}
+                style={styles.deleteButton}
+                onPress={() => {
+                  handleDelete(item.id);
+                }}
+              />
+            </View>
           )}
         />
       </View>
