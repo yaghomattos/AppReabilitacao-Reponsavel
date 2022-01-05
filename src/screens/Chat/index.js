@@ -27,7 +27,7 @@ export function Chat(props) {
         ) {
           li.push({
             key: child.key,
-            content: child.val().name,
+            content: child.val().content,
             participant: child.val.user,
             user: child.val().user,
             from: child.val().from,
@@ -38,7 +38,6 @@ export function Chat(props) {
       });
       setResults(li);
     });
-    console.log(results);
   }, []);
 
   const onSend = useCallback((messages = []) => {
