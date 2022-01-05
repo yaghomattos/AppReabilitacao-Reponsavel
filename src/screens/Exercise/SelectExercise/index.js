@@ -9,29 +9,34 @@ import styles from './styles';
 export const SelectExercise = (props) => {
   const navigation = useNavigation();
 
+  var participant = props.route.params;
+
   const [results, setResults] = useState('');
 
   useEffect(() => {
     var li = [];
     database.ref('exercise').on('value', (snapshot) => {
       snapshot.forEach((child) => {
-        if (child.val().participant == participant) {
-          li.push({
-            name: child.val().name,
-            description: child.val().description,
-            id: child.key,
-          });
-        }
+        li.push({
+          name: child.val().name,
+          description: child.val().description,
+          video: child.val().video,
+          preview: child.val().preview,
+          id: child.key,
+        });
       });
       setResults(li);
     });
   }, []);
 
-  async function HandleCreateSelectedExercise(exercise, name) {
+  async function HandleCreateSelectedExercise(item) {
     var property = {
       participant: participant,
-      exercise: exercise,
-      name: name,
+      exercise: item.id,
+      name: item.name,
+      description: item.description,
+      video: item.video,
+      preview: item.preview,
     };
 
     createSelectExercises(property);
@@ -72,7 +77,7 @@ export const SelectExercise = (props) => {
               titleStyle={styles.itemTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={10}
-              onPress={() => HandleCreateSelectedExercise(item.id, item.name)}
+              onPress={() => HandleCreateSelectedExercise(item)}
             />
           )}
         />

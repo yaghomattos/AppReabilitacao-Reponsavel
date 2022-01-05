@@ -9,6 +9,14 @@ export async function createSelectExercises(props) {
       participant: props.participant,
       exercise: props.exercise,
       name: props.name,
+      timer: '',
+      sets: '',
+      reps: '',
+      check: false,
+      frequency: false,
+      saturation: false,
+      dyspnea: false,
+      fatique: false,
     })
     .then(() => {
       Alert.alert('Exercício selecionado');
