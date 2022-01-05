@@ -9,6 +9,17 @@ export async function createSelectTests(props) {
       participant: props.participant,
       test: props.test,
       name: props.name,
+      description: props.description,
+      video: props.video,
+      preview: props.preview,
+      timer: '',
+      numReps: '',
+      reps: false,
+      check: false,
+      frequency: false,
+      saturation: false,
+      dyspnea: false,
+      fatique: false,
     })
     .then(() => {
       Alert.alert('Teste selecionado');

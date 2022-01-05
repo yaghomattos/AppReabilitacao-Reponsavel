@@ -18,24 +18,26 @@ export const SelectTest = (props) => {
     var li = [];
     database.ref('test').on('value', (snapshot) => {
       snapshot.forEach((child) => {
-        if (child.val().participant == participant) {
-          li.push({
-            name: child.val().name,
-            description: child.val().description,
-            id: child.key,
-          });
-        }
+        li.push({
+          name: child.val().name,
+          description: child.val().description,
+          video: child.val().video,
+          preview: child.val().preview,
+          id: child.key,
+        });
       });
       setResults(li);
     });
   }, []);
 
-  async function HandleCreateSelectedTest(test, name) {
-    console.log('name', name);
+  async function HandleCreateSelectedTest(item) {
     var property = {
       participant: participant,
-      test: test,
-      name: name,
+      test: item.id,
+      name: item.name,
+      description: item.description,
+      video: item.video,
+      preview: item.preview,
     };
 
     createSelectTests(property);
@@ -76,7 +78,7 @@ export const SelectTest = (props) => {
               titleStyle={styles.itemTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={100}
-              onPress={() => HandleCreateSelectedTest(item.id, item.name)}
+              onPress={() => HandleCreateSelectedTest(item)}
             />
           )}
         />
