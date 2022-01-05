@@ -16,19 +16,22 @@ export const SelectTest = (props) => {
 
   useEffect(() => {
     var li = [];
-    database.ref('test').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        li.push({
-          name: child.val().name,
-          description: child.val().description,
-          video: child.val().video,
-          preview: child.val().preview,
-          id: child.key,
+    database
+      .ref('test')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            name: child.val().name,
+            description: child.val().description,
+            video: child.val().video,
+            preview: child.val().preview,
+            id: child.key,
+          });
         });
+        setResults(li);
       });
-      setResults(li);
-    });
-  }, []);
+  }, [results]);
 
   async function HandleCreateSelectedTest(item) {
     var property = {

@@ -17,19 +17,22 @@ export const SelectOrientation = (props) => {
   useEffect(() => {
     async function getOrientations() {
       var li = [];
-      database.ref('orientation').on('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          li.push({
-            text: child.val().text,
-            id: child.key,
+      database
+        .ref('orientation')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((child) => {
+            li.push({
+              text: child.val().text,
+              id: child.key,
+            });
           });
         });
-      });
       setResults(li);
     }
 
     getOrientations();
-  }, []);
+  }, [orientation]);
 
   const testOrExerciseId = props.route.params.id;
   const className = props.route.params.className;

@@ -15,19 +15,22 @@ export const SelectExercise = (props) => {
 
   useEffect(() => {
     var li = [];
-    database.ref('exercise').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        li.push({
-          name: child.val().name,
-          description: child.val().description,
-          video: child.val().video,
-          preview: child.val().preview,
-          id: child.key,
+    database
+      .ref('exercise')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            name: child.val().name,
+            description: child.val().description,
+            video: child.val().video,
+            preview: child.val().preview,
+            id: child.key,
+          });
         });
+        setResults(li);
       });
-      setResults(li);
-    });
-  }, []);
+  }, [results]);
 
   async function HandleCreateSelectedExercise(item) {
     var property = {

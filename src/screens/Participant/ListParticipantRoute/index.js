@@ -14,17 +14,20 @@ export const ListParticipantRoute = (props) => {
 
   useEffect(() => {
     var li = [];
-    database.ref('participant').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        li.push({
-          key: child.val().cpf,
-          name: child.val().name,
-          id: child.key,
+    database
+      .ref('participant')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            key: child.val().cpf,
+            name: child.val().name,
+            id: child.key,
+          });
         });
+        setResults(li);
       });
-      setResults(li);
-    });
-  }, []);
+  }, [results]);
 
   var route = props.route.params;
   var user = '';

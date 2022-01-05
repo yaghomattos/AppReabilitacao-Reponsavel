@@ -18,26 +18,29 @@ export function Educational(props) {
 
   useEffect(() => {
     var li = [];
-    database.ref('educational').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        if (
-          child.val().user == user &&
-          child.val().participant == participant
-        ) {
-          li.push({
-            key: child.key,
-            content: child.val().name,
-            participant: child.val.user,
-            user: child.val().user,
-            createdAt: child.val().created_at,
-            updatedAt: child.val().updated_at,
-          });
-        }
+    database
+      .ref('educational')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          if (
+            child.val().user == user &&
+            child.val().participant == participant
+          ) {
+            li.push({
+              key: child.key,
+              content: child.val().name,
+              participant: child.val.user,
+              user: child.val().user,
+              createdAt: child.val().created_at,
+              updatedAt: child.val().updated_at,
+            });
+          }
+        });
+        setResults(li);
       });
-      setResults(li);
-    });
     console.log(results);
-  }, []);
+  }, [results]);
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>

@@ -15,23 +15,26 @@ export const ListParticipants = () => {
 
   useEffect(() => {
     var li = [];
-    database.ref('participant').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        li.push({
-          name: child.val().name,
-          cpf: child.val().cpf,
-          age: child.val().age,
-          phone: child.val().phone,
-          diagnosis: child.val().diagnosis,
-          address: child.val().address,
-          height: child.val().height,
-          weight: child.val().weight,
-          id: child.key,
+    database
+      .ref('participant')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            name: child.val().name,
+            cpf: child.val().cpf,
+            age: child.val().age,
+            phone: child.val().phone,
+            diagnosis: child.val().diagnosis,
+            address: child.val().address,
+            height: child.val().height,
+            weight: child.val().weight,
+            id: child.key,
+          });
         });
+        setResults(li);
       });
-      setResults(li);
-    });
-  }, []);
+  }, [results]);
 
   async function handleDelete(participant) {
     deleteParticipant(participant);

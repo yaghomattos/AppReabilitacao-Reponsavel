@@ -19,26 +19,29 @@ export function Chat(props) {
 
   useEffect(() => {
     var li = [];
-    database.ref('chat').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        if (
-          child.val().user == user &&
-          child.val().participant == participant
-        ) {
-          li.push({
-            key: child.key,
-            content: child.val().content,
-            participant: child.val.user,
-            user: child.val().user,
-            from: child.val().from,
-            createdAt: child.val().created_at,
-            updatedAt: child.val().updated_at,
-          });
-        }
+    database
+      .ref('chat')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          if (
+            child.val().user == user &&
+            child.val().participant == participant
+          ) {
+            li.push({
+              key: child.key,
+              content: child.val().content,
+              participant: child.val.user,
+              user: child.val().user,
+              from: child.val().from,
+              createdAt: child.val().created_at,
+              updatedAt: child.val().updated_at,
+            });
+          }
+        });
+        setResults(li);
       });
-      setResults(li);
-    });
-  }, []);
+  }, [results]);
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>

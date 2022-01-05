@@ -19,32 +19,38 @@ export const ListSelectOrientation = (props) => {
   useEffect(() => {
     if (testOrExercise == 'test') {
       var li = [];
-      database.ref('selectOrientation').on('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          if (child.val().test == id) {
-            li.push({
-              orientation: child.val().orientation,
-              id: child.key,
-            });
-            console.log('id snapshot ? ', child.key);
-          }
+      database
+        .ref('selectOrientation')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((child) => {
+            if (child.val().test == id) {
+              li.push({
+                orientation: child.val().orientation,
+                id: child.key,
+              });
+              console.log('id snapshot ? ', child.key);
+            }
+          });
+          setOrientation(li);
         });
-        setOrientation(li);
-      });
     } else {
       var li = [];
-      database.ref('selectOrientation').on('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          if (child.val().exercise == id) {
-            li.push({
-              orientation: child.val().orientation,
-            });
-          }
+      database
+        .ref('selectOrientation')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((child) => {
+            if (child.val().exercise == id) {
+              li.push({
+                orientation: child.val().orientation,
+              });
+            }
+          });
+          setOrientation(li);
         });
-        setOrientation(li);
-      });
     }
-  }, []);
+  }, [orientation]);
 
   async function handleDelete(object_id) {
     deleteSelectOrientations(object_id);

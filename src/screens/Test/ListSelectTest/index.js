@@ -16,19 +16,22 @@ export const ListSelectTest = (props) => {
 
   useEffect(() => {
     var li = [];
-    database.ref('selectTest').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        if (child.val().participant == participant) {
-          li.push({
-            test: child.val().test,
-            name: child.val().name,
-            id: child.key,
-          });
-        }
+    database
+      .ref('selectTest')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          if (child.val().participant == participant) {
+            li.push({
+              test: child.val().test,
+              name: child.val().name,
+              id: child.key,
+            });
+          }
+        });
+        setTest(li);
       });
-      setTest(li);
-    });
-  }, []);
+  }, [test]);
 
   return (
     <>
