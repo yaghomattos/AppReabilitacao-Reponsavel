@@ -89,10 +89,11 @@ export async function updateParticipant(props) {
     participantRef.update({
       weight: props.weight,
     });
-  console.log('participant updated');
+  Alert.alert('Dados do Participante atualizados!');
 }
 
 export async function deleteParticipant(props) {
   const participantRef = database.ref('participant/' + props);
   participantRef.remove();
+  Alert.alert('Participante deletado!');
 }
