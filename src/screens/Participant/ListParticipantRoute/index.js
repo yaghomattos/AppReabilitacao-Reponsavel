@@ -82,8 +82,8 @@ export const ListParticipantRoute = (props) => {
                   case 'ListSelectTest':
                     navigation.navigate('ListSelectTest', item.id);
                     break;
-                  case 'ListSelectExercises':
-                    navigation.navigate('ListSelectExercises', item.id);
+                  case 'ListSelectExercise':
+                    navigation.navigate('ListSelectExercise', item.id);
                     break;
                   case 'ListSelectOrientations':
                     navigation.navigate('ListSelectOrientations', item.id);
