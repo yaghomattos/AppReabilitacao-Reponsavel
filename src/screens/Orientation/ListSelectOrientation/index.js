@@ -11,14 +11,14 @@ import styles from './styles';
 export const ListSelectOrientation = (props) => {
   const navigation = useNavigation();
 
-  const id = props.route.params.id;
   const testOrExercise = props.route.className;
 
   const [orientation, setOrientation] = useState('');
 
   useEffect(() => {
+    var li = [];
     if (testOrExercise == 'test') {
-      var li = [];
+      const id = props.route.params.test;
       database
         .ref('selectOrientation')
         .get()
@@ -29,13 +29,12 @@ export const ListSelectOrientation = (props) => {
                 orientation: child.val().orientation,
                 id: child.key,
               });
-              console.log('id snapshot ? ', child.key);
             }
           });
           setOrientation(li);
         });
     } else {
-      var li = [];
+      const id = props.route.params.exercise;
       database
         .ref('selectOrientation')
         .get()
@@ -44,6 +43,7 @@ export const ListSelectOrientation = (props) => {
             if (child.val().exercise == id) {
               li.push({
                 orientation: child.val().orientation,
+                id: child.key,
               });
             }
           });
@@ -87,10 +87,11 @@ export const ListSelectOrientation = (props) => {
                   style={{
                     flexDirection: 'row',
                     width: 360,
-                    height: item.orientation.length,
+                    height: item.orientation.length * 1.2,
+                    minHeight: 40,
                     marginTop: 10,
                     borderRadius: 10,
-                    justifyContent: 'space-evenly',
+                    justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: '#afafaf',
                   }}
@@ -98,7 +99,8 @@ export const ListSelectOrientation = (props) => {
                   <List.Item
                     style={{
                       width: 320,
-                      height: item.orientation.length,
+                      height: item.orientation.length * 1.2,
+                      minHeight: 40,
                     }}
                     title={item.orientation}
                     titleNumberOfLines={100}

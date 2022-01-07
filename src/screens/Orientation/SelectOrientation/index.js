@@ -8,34 +8,29 @@ import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const SelectOrientation = (props) => {
-  //salvar a orientação e não o id da orientação na guia "orientation"
   const navigation = useNavigation();
 
   const [orientation, setOrientation] = useState('');
   const [results, setResults] = useState([]);
 
-  useEffect(() => {
-    async function getOrientations() {
-      var li = [];
-      database
-        .ref('orientation')
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((child) => {
-            li.push({
-              text: child.val().text,
-              id: child.key,
-            });
-          });
-        });
-      setResults(li);
-    }
-
-    getOrientations();
-  }, [orientation]);
-
   const testOrExerciseId = props.route.params.id;
   const className = props.route.params.className;
+
+  useEffect(() => {
+    var li = [];
+    database
+      .ref('orientation')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            text: child.val().text,
+            id: child.key,
+          });
+        });
+        setResults(li);
+      });
+  }, [results]);
 
   async function SaveItem(text) {
     setOrientation(text);
@@ -75,6 +70,7 @@ export const SelectOrientation = (props) => {
                 style={{
                   width: 350,
                   height: item.text.length,
+                  minHeight: 40,
                   marginBottom: 5,
                   borderRadius: 5,
                   alignItems: 'center',
@@ -84,7 +80,7 @@ export const SelectOrientation = (props) => {
                 title={item.text}
                 titleNumberOfLines={100}
                 titleStyle={styles.itemTitle}
-                onPress={() => SaveItem(item.id)}
+                onPress={() => SaveItem(item.text)}
               />
             </>
           )}

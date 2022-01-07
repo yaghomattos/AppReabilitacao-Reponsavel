@@ -26,6 +26,7 @@ export const ListSelectTest = (props) => {
               test: child.val().test,
               name: child.val().name,
               id: child.key,
+              className: 'test',
             });
           }
         });
@@ -72,7 +73,7 @@ export const ListSelectTest = (props) => {
                     size={24}
                     style={styles.icon}
                     onPress={() => {
-                      navigation.navigate('TestSettings', item.test);
+                      navigation.navigate('TestSettings', item);
                     }}
                   />
                 </View>
