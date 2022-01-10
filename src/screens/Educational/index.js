@@ -1,9 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
 import { GiftedChat, Send } from 'react-native-gifted-chat';
 import { Avatar, IconButton } from 'react-native-paper';
+import { database } from '../../services/firebase';
 import styles from './styles';
 
 export function Educational(props) {
@@ -39,7 +40,6 @@ export function Educational(props) {
         });
         setResults(li);
       });
-    console.log(results);
   }, [results]);
 
   const onSend = useCallback((messages = []) => {
@@ -109,7 +109,7 @@ export function Educational(props) {
           />
         </View>
         <View style={styles.person}>
-          <Text style={styles.text}>{participant}</Text>
+          <Text style={styles.text}>{participantName}</Text>
           <View style={styles.viewCircle}>
             <View style={styles.circleMic}>
               <Ionicons name="mic" size={24} color="#fff" />
@@ -125,11 +125,11 @@ export function Educational(props) {
           results &&
           results.map((liveMessage) => ({
             _id: liveMessage.id,
-            text: liveMessage.get('content'),
-            createdAt: liveMessage.get('createdAt'),
+            text: liveMessage.content,
+            createdAt: liveMessage.createdAt,
             user: {
               _id: 1,
-              name: participant,
+              name: participantName,
             },
           }))
         }
