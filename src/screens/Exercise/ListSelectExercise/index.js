@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
+import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const ListSelectExercise = (props) => {
@@ -71,7 +72,7 @@ export const ListSelectExercise = (props) => {
                     size={24}
                     style={styles.icon}
                     onPress={() => {
-                      navigation.navigate('ExerciseSettings', item.exercise.id);
+                      navigation.navigate('ExerciseSettings', item);
                     }}
                   />
                 </View>
@@ -80,7 +81,7 @@ export const ListSelectExercise = (props) => {
           </View>
           <Button
             title="Selecionar Exercício"
-            onPress="SelectExercises"
+            onPress="SelectExercise"
             props={participant}
           />
         </View>
