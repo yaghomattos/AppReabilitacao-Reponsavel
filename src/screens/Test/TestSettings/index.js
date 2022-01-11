@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import { updateSelectTests } from '../../../components/CRUDs/SelectTest';
+import Header from '../../../components/Header';
 import styles from './styles';
 
 export function TestSettings(props) {
@@ -42,17 +42,7 @@ export function TestSettings(props) {
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.back}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Ajuste de Métricas'}</Text>
-        </View>
-      </View>
+      <Header title="Ajuste de Métricas" />
       <View style={styles.container}>
         <Text style={styles.title}>{'Cronômetro'}</Text>
         <View style={styles.form}>

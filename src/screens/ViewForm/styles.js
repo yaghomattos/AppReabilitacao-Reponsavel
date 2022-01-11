@@ -5,26 +5,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0065A4',
   },
-  header: {
-    backgroundColor: '#3E9ACD',
-    alignItems: 'center',
-    height: 100,
-  },
-  backView: {
-    width: '100%',
-    paddingStart: 20,
-    margin: 30,
-  },
-  back: {
-    color: '#fff',
-  },
-  header_text: {
-    color: '#fff',
-    fontSize: 18,
-    paddingLeft: '10%',
-    paddingTop: 14,
-    fontWeight: 'bold',
-  },
   container: {
     flex: 1,
     paddingBottom: 50,

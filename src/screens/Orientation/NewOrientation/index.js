@@ -1,8 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createOrientation } from '../../../components/CRUDs/Orientation/index';
+import Header from '../../../components/Header';
 import styles from './styles';
 
 export function NewOrientation() {
@@ -16,17 +16,7 @@ export function NewOrientation() {
 
   return (
     <>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.back}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Adicionar nova Orientação'}</Text>
-        </View>
-      </View>
+      <Header title="Adicionar nova Orientação" />
       <View style={styles.container}>
         <View style={styles.form}>
           <Text style={styles.inputName}>{'Descrição'}</Text>

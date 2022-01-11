@@ -1,8 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { readForm } from '../../components/CRUDs/Form/index';
+import Header from '../../components/Header';
 import styles from './styles';
 
 export function ViewForm(props) {
@@ -33,17 +33,7 @@ export function ViewForm(props) {
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.back}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Formulário'}</Text>
-        </View>
-      </View>
+      <Header title="Formulário" />
       <View style={styles.container}>
         <View style={styles.form}>
           <Text style={styles.title}>

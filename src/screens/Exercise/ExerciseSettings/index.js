@@ -1,12 +1,9 @@
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-
-import { updateSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
 import { Button } from '../../../components/Button/index';
-
-import { Ionicons } from '@expo/vector-icons';
-
+import { updateSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
+import Header from '../../../components/Header';
 import styles from './styles';
 
 export function ExerciseSettings(props) {
@@ -31,17 +28,7 @@ export function ExerciseSettings(props) {
 
   return (
     <>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.back}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Ajuste de Métricas'}</Text>
-        </View>
-      </View>
+      <Header title="Ajuste de Métricas" />
       <View style={styles.container}>
         <View style={styles.form}>
           <Text style={styles.inputName}>{'Séries'}</Text>
