@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, TextInput, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -61,7 +61,6 @@ export const ListParticipantRoute = (props) => {
           numColumns={1}
           data={results}
           keyExtractor={(item) => item.key.toString()}
-          ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <List.Item
               style={styles.item}
