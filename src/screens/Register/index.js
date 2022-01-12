@@ -1,35 +1,42 @@
-import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useState } from 'react';
 import {
+  Alert,
+  KeyboardAvoidingView,
   StatusBar,
   Text,
-  View,
-  TouchableOpacity,
   TextInput,
-  KeyboardAvoidingView,
-  Alert,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
+import { AuthContext } from '../../context/Auth';
 import { auth } from '../../services/firebase';
-
 import styles from './styles';
 
 export function Register() {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+
+  const { isSignedIn, setSignedIn } = useContext(AuthContext);
 
   const adminSignUp = async function () {
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        Alert.alert(`${user.user.email}, cadastro realizado com sucesso!`);
-        navigation.navigate('Home');
+      .then(function (result) {
+        Alert.alert(`${result.user.email}, cadastro realizado com sucesso!`);
+
+        return result.user.updateProfile({
+          displayName: name,
+        });
       })
       .catch(() => {
         Alert.alert('Erro! Email já cadastrado');
       });
+
+    setSignedIn(true);
   };
 
   return (
@@ -47,8 +54,16 @@ export function Register() {
         <View style={styles.form}>
           <TextInput
             style={styles.input}
+            value={name}
+            placeholder={'Nome'}
+            onChangeText={(text) => setName(text)}
+            autoCapitalize={'none'}
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            style={styles.input}
             value={email}
-            placeholder={'Usuário'}
+            placeholder={'Email'}
             onChangeText={(text) => setEmail(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
