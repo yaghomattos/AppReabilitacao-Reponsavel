@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useState } from 'react';
 import {
   Alert,
+  KeyboardAvoidingView,
+  StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  StatusBar,
-  KeyboardAvoidingView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
+import { AuthContext } from '../../context/Auth';
 import { auth } from '../../services/firebase';
-
 import styles from './styles';
 
 export const Login = () => {
@@ -20,11 +19,13 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { isSignedIn, setSignedIn } = useContext(AuthContext);
+
   const doUserLogin = async function () {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
-        navigation.navigate('Home');
+        setSignedIn(true);
       })
       .catch(() => {
         Alert.alert('Email/Senha inválidos');

@@ -1,12 +1,17 @@
+import React, { useState } from 'react';
 import 'react-native-gesture-handler';
-import React from 'react';
-
+import { AuthContext } from './src/context/Auth';
+import { AuthRouter, FlowRouter } from './src/routes/app.routes';
 import './src/services/firebase';
 
-import { AppRoutes } from './src/routes/app.routes';
-
 const App = () => {
-  return <AppRoutes />;
+  const [isSignedIn, setSignedIn] = useState(false);
+
+  return (
+    <AuthContext.Provider value={{ isSignedIn, setSignedIn }}>
+      {!isSignedIn ? <AuthRouter /> : <FlowRouter />}
+    </AuthContext.Provider>
+  );
 };
 
 export default App;
