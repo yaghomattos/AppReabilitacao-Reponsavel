@@ -1,8 +1,12 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import styles from './styles';
 
 const Header = ({ title }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.header}>
       <View style={styles.backView}>
