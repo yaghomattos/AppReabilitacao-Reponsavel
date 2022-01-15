@@ -1,9 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createParticipant } from '../../../components/CRUDs/Participant/index';
 import { CurrentUser } from '../../../components/CRUDs/User/index';
+import { auth } from '../../../services/firebase';
 import styles from './styles';
 
 export function ParticipantRecord() {
@@ -19,6 +20,7 @@ export function ParticipantRecord() {
   const [height, setHeight] = useState('');
 
   var user = '';
+  const password = '123456';
 
   CurrentUser().then((currentUser) => {
     user = currentUser;
@@ -37,7 +39,18 @@ export function ParticipantRecord() {
       id: user.id,
     };
 
-    createParticipant(participant);
+    auth
+      .createUserWithEmailAndPassword(`${CPF}@participant.com`, password)
+      .then(function (result) {
+        createParticipant(participant);
+
+        return result.user.updateProfile({
+          displayName: CPF,
+        });
+      })
+      .catch(() => {
+        Alert.alert('Erro! CPF já cadastrado.');
+      });
   }
 
   return (
