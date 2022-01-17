@@ -41,7 +41,6 @@ export function UploadTest() {
   }, []);
 
   async function upload() {
-    var check = false;
     var storageRef = storage.ref();
 
     var previewRef = storageRef.child(`test/preview/${name}.jpg`);
@@ -52,8 +51,6 @@ export function UploadTest() {
 
     const videoPreview = await fetch(video.uri);
     const blobVideo = await videoPreview.blob();
-
-    Alert.alert('Fazendo upload das informações, aguarde!');
 
     previewRef.put(blobPreview).then((snapshot) => {
       console.log('Uploaded a blob preview!');
@@ -74,23 +71,21 @@ export function UploadTest() {
           setVideoURL(url);
         })
         .catch((e) => console.log('getting downloadURL of video error => ', e));
-      setTimeout(function () {
-        createData();
-      }, 100);
     });
+    Alert.alert('Upload das informações concluído!');
+  }
 
-    async function createData() {
-      var test = {
-        video: videoURL,
-        preview: previewURL,
-        name: name,
-        description: description,
-        timer: timer,
-        reps: reps,
-      };
+  async function createData() {
+    var test = {
+      video: videoURL,
+      preview: previewURL,
+      name: name,
+      description: description,
+      timer: timer,
+      reps: reps,
+    };
 
-      createTest(test);
-    }
+    createTest(test);
   }
 
   const pickFile = async () => {
@@ -191,8 +186,14 @@ export function UploadTest() {
           </View>
 
           {video && preview && (
-            <TouchableOpacity style={styles.send} onPress={upload}>
-              <Text style={styles.text_button}>{'Cadastrar'}</Text>
+            <TouchableOpacity style={styles.upload} onPress={upload}>
+              <Text style={styles.text_button}>{'Upload'}</Text>
+            </TouchableOpacity>
+          )}
+
+          {video && preview && (
+            <TouchableOpacity style={styles.send} onPress={createData}>
+              <Text style={styles.text_button}>{'Finalizar Cadastro'}</Text>
             </TouchableOpacity>
           )}
         </View>

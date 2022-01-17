@@ -38,7 +38,6 @@ export function UploadExercise() {
   }, []);
 
   async function upload() {
-    var check = false;
     var storageRef = storage.ref();
 
     var previewRef = storageRef.child(`exercise/preview/${name}.jpg`);
@@ -69,21 +68,19 @@ export function UploadExercise() {
           setVideoURL(url);
         })
         .catch((e) => console.log('getting downloadURL of video error => ', e));
-      setTimeout(function () {
-        createData();
-      }, 100);
     });
+    Alert.alert('Upload das informações concluído!');
+  }
 
-    async function createData() {
-      var exercise = {
-        video: videoURL,
-        preview: previewURL,
-        name: name,
-        description: description,
-      };
+  async function createData() {
+    var exercise = {
+      video: videoURL,
+      preview: previewURL,
+      name: name,
+      description: description,
+    };
 
-      createExercise(exercise);
-    }
+    createExercise(exercise);
   }
 
   const pickFile = async () => {
@@ -166,9 +163,15 @@ export function UploadExercise() {
             )}
           </View>
 
-          {video && (
-            <TouchableOpacity style={styles.send} onPress={upload}>
-              <Text style={styles.text_label}>{'Cadastrar'}</Text>
+          {video && preview && (
+            <TouchableOpacity style={styles.upload} onPress={upload}>
+              <Text style={styles.text_button}>{'Upload'}</Text>
+            </TouchableOpacity>
+          )}
+
+          {video && preview && (
+            <TouchableOpacity style={styles.send} onPress={createData}>
+              <Text style={styles.text_button}>{'Finalizar Cadastro'}</Text>
             </TouchableOpacity>
           )}
         </View>
