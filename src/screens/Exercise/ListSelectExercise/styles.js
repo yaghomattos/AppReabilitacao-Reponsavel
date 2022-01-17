@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#fff',
   },
+  button: {
+    color: '#fff',
+    margin: 15,
+  },
 });
 
 export default styles;

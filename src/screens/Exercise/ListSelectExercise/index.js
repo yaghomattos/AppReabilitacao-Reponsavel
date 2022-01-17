@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
+import { deleteSelectExercises } from '../../../components/CRUDs/SelectExercise';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -32,6 +33,10 @@ export const ListSelectExercise = (props) => {
         setExercise(li);
       });
   }, [exercise]);
+
+  async function handleDelete(selectExercise) {
+    deleteSelectExercises(selectExercise);
+  }
 
   return (
     <>
@@ -70,9 +75,17 @@ export const ListSelectExercise = (props) => {
                   <Ionicons
                     name="build"
                     size={24}
-                    style={styles.icon}
+                    style={styles.button}
                     onPress={() => {
                       navigation.navigate('ExerciseSettings', item);
+                    }}
+                  />
+                  <Ionicons
+                    name="trash"
+                    size={24}
+                    style={styles.button}
+                    onPress={() => {
+                      handleDelete(item.id);
                     }}
                   />
                 </View>
