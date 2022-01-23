@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Checkbox } from 'react-native-paper';
@@ -8,8 +7,6 @@ import Header from '../../../components/Header';
 import styles from './styles';
 
 export function TestSettings(props) {
-  const navigation = useNavigation();
-
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
   const [numReps, setNumReps] = useState('');

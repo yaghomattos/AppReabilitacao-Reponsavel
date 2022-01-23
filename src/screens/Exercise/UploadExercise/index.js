@@ -1,5 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
 import {
@@ -16,8 +14,6 @@ import { storage } from '../../../services/firebase';
 import styles from './styles';
 
 export function UploadExercise() {
-  const navigation = useNavigation();
-
   const [video, setVideo] = useState(false);
   const [preview, setPreview] = useState(false);
   const [videoURL, setVideoURL] = useState('');
@@ -105,23 +101,7 @@ export function UploadExercise() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Cadastro de Exercício'}</Text>
-          <Ionicons
-            name="home"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.navigate('Home')}
-          />
-        </View>
-      </View>
+      <HeaderHome title="Cadastro de Exercício" />
       <ScrollView style={styles.scrollView}>
         <View style={styles.background}>
           <TextInput

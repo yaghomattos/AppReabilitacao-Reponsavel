@@ -1,5 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import {
   StatusBar,
@@ -9,11 +7,10 @@ import {
   View,
 } from 'react-native';
 import { updateParticipant } from '../../../components/CRUDs/Participant/index';
+import HeaderHome from '../../../components/HeaderHome';
 import styles from './styles';
 
 export function ParticipantProfile(props) {
-  const navigation = useNavigation();
-
   const [participantName, setParticipantName] = useState('');
   const [CPF, setCPF] = useState('');
   const [age, setAge] = useState('');
@@ -42,24 +39,7 @@ export function ParticipantProfile(props) {
   return (
     <View style={styles.container}>
       <StatusBar />
-
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Perfil do Participante'}</Text>
-          <Ionicons
-            name="home"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.navigate('Home')}
-          />
-        </View>
-      </View>
+      <HeaderHome title="Perfil do Participante" />
       <View style={styles.background}>
         <Text style={styles.form}>{'Nome:'}</Text>
         <TextInput

@@ -6,25 +6,6 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#3E9ACD',
   },
-  header: {
-    alignItems: 'center',
-    height: '20%',
-  },
-  backView: {
-    width: '100%',
-    paddingStart: 20,
-    margin: 30,
-  },
-  back: {
-    color: '#fff',
-  },
-  header_text: {
-    color: '#fff',
-    fontSize: 18,
-    paddingLeft: '10%',
-    paddingTop: '4%',
-    fontWeight: 'bold',
-  },
   viewList: {
     flex: 1,
     paddingTop: 20,

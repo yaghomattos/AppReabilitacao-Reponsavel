@@ -1,15 +1,12 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { createSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
+import Header from '../../../components/Header';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const SelectOrientation = (props) => {
-  const navigation = useNavigation();
-
   const [orientation, setOrientation] = useState('');
   const [results, setResults] = useState([]);
 
@@ -48,17 +45,7 @@ export const SelectOrientation = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.back}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Selecionar Orientações'}</Text>
-        </View>
-      </View>
+      <Header title="Selecionar Orientações" />
       <View style={styles.viewList}>
         <FlatList
           data={results}

@@ -1,15 +1,12 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createParticipant } from '../../../components/CRUDs/Participant/index';
 import { CurrentUser } from '../../../components/CRUDs/User/index';
+import HeaderHome from '../../../components/HeaderHome';
 import { auth } from '../../../services/firebase';
 import styles from './styles';
 
 export function ParticipantRecord() {
-  const navigation = useNavigation();
-
   const [name, setName] = useState('');
   const [CPF, setCPF] = useState('');
   const [age, setAge] = useState('');
@@ -55,23 +52,7 @@ export function ParticipantRecord() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Cadastro de Participante'}</Text>
-          <Ionicons
-            name="home"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.navigate('Home')}
-          />
-        </View>
-      </View>
+      <HeaderHome title="Cadastro de Participante" />
       <View style={styles.form}>
         <TextInput
           style={styles.input}

@@ -1,16 +1,13 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {
   deleteParticipant,
   readParticipantWithCPF,
 } from '../../../components/CRUDs/Participant/index';
+import Header from '../../../components/Header';
 import styles from './styles';
 
 export function DeleteParticipant() {
-  const navigation = useNavigation();
-
   const [CPF, setCPF] = useState('');
 
   async function handleDelete() {
@@ -27,17 +24,7 @@ export function DeleteParticipant() {
 
   return (
     <>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.back}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.header_text}>{'Deletar paciente'}</Text>
-        </View>
-      </View>
+      <Header title="Deletar paciente" />
       <View style={styles.wrapper}>
         <View style={styles.form}>
           <TextInput

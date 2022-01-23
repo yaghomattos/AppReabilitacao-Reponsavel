@@ -1,16 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import { deleteSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
+import HeaderHome from '../../../components/HeaderHome';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const ListSelectOrientation = (props) => {
-  const navigation = useNavigation();
-
   const testOrExercise = props.route.className;
 
   const [orientation, setOrientation] = useState('');
@@ -59,23 +57,7 @@ export const ListSelectOrientation = (props) => {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.backView}>
-            <Ionicons
-              name="arrow-back"
-              size={24}
-              style={styles.icon}
-              onPress={() => navigation.goBack()}
-            />
-            <Text style={styles.header_text}>{'Orientações selecionadas'}</Text>
-            <Ionicons
-              name="home"
-              size={24}
-              style={styles.icon}
-              onPress={() => navigation.navigate('Home')}
-            />
-          </View>
-        </View>
+        <HeaderHome title="Orientações selecionadas" />
         <View style={styles.backgroundList}>
           <View style={styles.viewList}>
             <FlatList

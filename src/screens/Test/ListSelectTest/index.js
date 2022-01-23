@@ -1,10 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import { deleteSelectTests } from '../../../components/CRUDs/SelectTest';
+import HeaderHome from '../../../components/HeaderHome';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -42,23 +43,7 @@ export const ListSelectTest = (props) => {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.backView}>
-            <Ionicons
-              name="arrow-back"
-              size={24}
-              style={styles.icon}
-              onPress={() => navigation.goBack()}
-            />
-            <Text style={styles.header_text}>{'Testes selecionados'}</Text>
-            <Ionicons
-              name="home"
-              size={24}
-              style={styles.icon}
-              onPress={() => navigation.navigate('Home')}
-            />
-          </View>
-        </View>
+        <HeaderHome title="Testes selecionados" />
         <View style={styles.background}>
           <View style={styles.viewList}>
             <FlatList

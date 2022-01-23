@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
@@ -8,8 +7,6 @@ import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const SelectTest = (props) => {
-  const navigation = useNavigation();
-
   var participant = props.route.params;
 
   const [results, setResults] = useState('');

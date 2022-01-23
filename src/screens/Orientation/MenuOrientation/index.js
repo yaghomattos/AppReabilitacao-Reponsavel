@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { SafeAreaView, StatusBar, View } from 'react-native';
 import { Button } from '../../../components/Button/index';
@@ -6,8 +5,6 @@ import Header from '../../../components/Header';
 import styles from './styles';
 
 export function MenuOrientation(props) {
-  const navigation = useNavigation();
-
   return (
     <>
       <StatusBar />
