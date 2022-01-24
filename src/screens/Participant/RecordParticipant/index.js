@@ -73,7 +73,7 @@ export function ParticipantRecord() {
         <TextInput
           style={styles.input}
           value={age}
-          placeholder={'Idade'}
+          placeholder={'Data de Nascimento'}
           onChangeText={(text) => setAge(text)}
           keyboardType={'numeric'}
           maxLength={2}

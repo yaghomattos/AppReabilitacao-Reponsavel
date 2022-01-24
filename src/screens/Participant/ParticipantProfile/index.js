@@ -63,7 +63,7 @@ export function ParticipantProfile(props) {
           autoCapitalize={'none'}
           keyboardType={'email-address'}
         />
-        <Text style={styles.form}>{'Idade:'}</Text>
+        <Text style={styles.form}>{'Data de Nascimento:'}</Text>
         <TextInput
           style={styles.input}
           value={age}
