@@ -7,8 +7,10 @@ import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const SelectOrientation = (props) => {
-  const [orientation, setOrientation] = useState('');
+  const [orientation, setOrientation] = useState([]);
   const [results, setResults] = useState([]);
+
+  var listSave = [];
 
   const testOrExerciseId = props.route.params.id;
   const className = props.route.params.className;
@@ -30,13 +32,14 @@ export const SelectOrientation = (props) => {
   }, [results]);
 
   async function SaveItem(text) {
-    setOrientation(text);
+    listSave.push(text);
+    setOrientation(listSave);
   }
 
-  async function HandleCreateSelectedOrientation() {
+  async function HandleCreateSelectedOrientation(element) {
     var props = {
       testOrExerciseId: testOrExerciseId,
-      orientation: orientation,
+      orientation: element,
       className: className,
     };
 
@@ -67,6 +70,7 @@ export const SelectOrientation = (props) => {
                 title={item.text}
                 titleNumberOfLines={100}
                 titleStyle={styles.itemTitle}
+                onChe
                 onPress={() => SaveItem(item.text)}
               />
             </>
@@ -78,7 +82,11 @@ export const SelectOrientation = (props) => {
           {!orientation ? (
             <Text style={styles.warning}>{'Orientação não selecionada!'}</Text>
           ) : (
-            <TouchableOpacity onPress={() => HandleCreateSelectedOrientation()}>
+            <TouchableOpacity
+              onPress={() =>
+                orientation.forEach(HandleCreateSelectedOrientation)
+              }
+            >
               <View style={styles.button}>
                 <Text style={styles.text_label}>{'Confirmar'}</Text>
               </View>
