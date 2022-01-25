@@ -17,6 +17,11 @@ export function MenuTraining() {
               onPress="ListParticipantRoute"
               props={'ListSelectExercise'}
             />
+            <Button
+              title="Monitoramento"
+              onPress="ListParticipantRoute"
+              props={'ExerciseMonitoring'}
+            />
             <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
           </View>
         </View>

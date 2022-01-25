@@ -72,8 +72,11 @@ export const ListParticipantRoute = (props) => {
                   case 'Chat':
                     navigation.navigate('Chat', { item, user });
                     break;
-                  case 'Monitoring':
-                    navigation.navigate('Monitoring', { item, user });
+                  case 'TestMonitoring':
+                    navigation.navigate('Monitoring', [item.id, 'test']);
+                    break;
+                  case 'ExerciseMonitoring':
+                    navigation.navigate('Monitoring', [item.id, 'exercise']);
                     break;
                   case 'Educational':
                     navigation.navigate('Educational', { item, user });

@@ -17,6 +17,11 @@ export function MenuTest() {
               onPress="ListParticipantRoute"
               props={'ListSelectTest'}
             />
+            <Button
+              title="Monitoramento"
+              onPress="ListParticipantRoute"
+              props={'TestMonitoring'}
+            />
             <Button title="Cadastrar Novo Teste" onPress="UploadTest" />
           </View>
         </View>

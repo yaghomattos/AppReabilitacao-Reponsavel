@@ -12,14 +12,11 @@ import {
   View,
 } from 'react-native';
 import { Divider, List } from 'react-native-paper';
+import { database } from '../../services/firebase';
+import { CurrentDate } from '../../utils/CurrentDate';
 import styles from './styles';
 
 var date = new Date();
-
-// const parseQueryTests = new Parse.Query('SelectTests');
-// parseQueryTests.ascending('createdAt');
-// const parseQuery = new Parse.Query('SelectExercises');
-// parseQuery.ascending('createdAt');
 
 function CaseBad() {
   return 'Ruim';
@@ -40,83 +37,68 @@ function Productivy(props) {
   else return <CaseGreat />;
 }
 
-function getCurrentDate(data) {
-  var date = data.getDate();
-  var month = data.getMonth();
-  var year = data.getFullYear();
-
-  var monthName;
-  monthName = new Array(
-    'janeiro',
-    'fevereiro',
-    'março',
-    'abril',
-    'Maio',
-    'junho',
-    'julho',
-    'agosto',
-    'setembro',
-    'outubro',
-    'novembro',
-    'dezembro'
-  );
-  return date + ' de ' + monthName[month] + ', ' + year;
-}
-
 const displayDate = () => {
-  return <Text style={styles.date}>{getCurrentDate(date)}</Text>;
+  return <Text style={styles.date}>{CurrentDate()}</Text>;
 };
 
 export function Monitoring(props) {
   const navigation = useNavigation();
 
   const [show, setShow] = useState(false);
-  const [exercise, setExercise] = useState('');
-  const [test, setTest] = useState('');
-  const [totalExercise, setTotalExercise] = useState(0);
+  const [preForm, setPreForm] = useState([]);
+  const [postForm, setPostForm] = useState([]);
   const [totalTest, setTotalTest] = useState(0);
 
-  const participantId = props.route.params;
+  const participant = props.route.params[0];
+  const provider = props.route.params[1];
 
   const lastDate = new Date();
 
   useEffect(() => {
-    async function Search(participantId) {
-      var participantPointer = {
-        __type: 'Pointer',
-        className: 'Participant',
-        objectId: participantId,
-      };
+    var liPre = [];
+    var liPost = [];
+    database
+      .ref('participantPreForm')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          if (
+            child.val().participant == participant &&
+            (provider == 'test'
+              ? child.val().exercise == ''
+              : child.val().test == '')
+          ) {
+            liPre.push({
+              name: child.val().test,
+              preForm: child.val().form,
+              id: child.key,
+            });
+          }
+        });
+        setPreForm(liPre);
+      });
 
-      // parseQuery.equalTo('participant', participantPointer);
-      // var resultParticipant = await parseQuery.find();
-      // setTotalExercise(resultParticipant.length);
-
-      // const query = new Parse.Query('SelectExercises');
-      // query.ascending('createdAt');
-      // query.equalTo('check', true);
-
-      var result = ''; //await query.find();
-      setExercise(result);
-
-      // parseQueryTests.equalTo('participant', participantPointer);
-      // var resultParticipantTest = await parseQueryTests.find();
-      // setTotalTest(resultParticipantTest.length);
-
-      // const queryTest = new Parse.Query('SelectTests');
-      // queryTest.ascending('createdAt');
-      // queryTest.equalTo('check', true);
-
-      var resultTest = ''; //await queryTest.find();
-      setTest(resultTest);
-    }
-
-    if (participantId != '') Search(participantId);
-  }, []);
-
-  const results = ''; //useParseQuery(parseQuery).results;
-  const resultsTest = ''; //useParseQuery(parseQueryTests).results;
-  // Parse.User._clearCache();
+    database
+      .ref('participantPostForm')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          if (
+            child.val().participant == participant &&
+            (provider == 'test'
+              ? child.val().exercise == ''
+              : child.val().test == '')
+          ) {
+            liPost.push({
+              name: child.val().test,
+              postForm: child.val().form,
+              id: child.key,
+            });
+          }
+        });
+        setPostForm(liPost);
+      });
+  }, [preForm, postForm]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -167,56 +149,36 @@ export function Monitoring(props) {
       <ScrollView horizontal={false}>
         <ScrollView horizontal={true}>
           <View style={styles.exerciseBox}>
-            <Text style={styles.subTitle}>{'Exercícios:'}</Text>
-            <View style={styles.exerciseContainer}>
-              <FlatList
-                nestedScrollEnabled={true}
-                data={exercise}
-                keyExtractor={(item) => item.id}
-                ItemSeparatorComponent={() => <Divider />}
-                renderItem={({ item }) => (
-                  <List.Item
-                    title={item.get('exercise').get('name')}
-                    titleNumberOfLines={1}
-                    titleStyle={styles.description}
-                    onPress={() =>
-                      navigation.navigate('ViewForm', item.get('form'))
-                    }
-                  />
-                )}
-              />
-            </View>
-            <View>
-              <Text style={styles.subTitle}>{'Quantidade:'}</Text>
-              <View>
-                <Text style={styles.feedback}>
-                  {' '}
-                  {exercise.length +
-                    ` de ${totalExercise} exercícios concluídos`}
-                </Text>
-              </View>
-              <Text style={styles.subTitle}>{'Produtividade:'}</Text>
-              <View>
-                <Text style={styles.feedback}>
-                  {Productivy(exercise.length / totalExercise)}
-                </Text>
-              </View>
-            </View>
-            <Text style={styles.subTitle}>{'Testes:'}</Text>
+            <Text style={styles.subTitle}>{'Informações Iniciais:'}</Text>
             <View style={styles.exerciseContainer}>
               <FlatList
                 nestedScrollEnabled
-                data={test}
+                data={preForm}
                 keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={() => <Divider />}
                 renderItem={({ item }) => (
                   <List.Item
-                    title={item.get('test').get('name')}
+                    title={item.name}
                     titleNumberOfLines={1}
                     titleStyle={styles.description}
-                    onPress={() =>
-                      navigation.navigate('ViewForm', item.get('form'))
-                    }
+                    onPress={() => navigation.navigate('ViewForm', item.form)}
+                  />
+                )}
+              />
+            </View>
+            <Text style={styles.subTitle}>{'Informações Finais:'}</Text>
+            <View style={styles.exerciseContainer}>
+              <FlatList
+                nestedScrollEnabled
+                data={postForm}
+                keyExtractor={(item) => item.id}
+                ItemSeparatorComponent={() => <Divider />}
+                renderItem={({ item }) => (
+                  <List.Item
+                    title={item.name}
+                    titleNumberOfLines={1}
+                    titleStyle={styles.description}
+                    onPress={() => navigation.navigate('ViewForm', item.form)}
                   />
                 )}
               />
@@ -225,14 +187,13 @@ export function Monitoring(props) {
               <Text style={styles.subTitle}>{'Quantidade:'}</Text>
               <View>
                 <Text style={styles.feedback}>
-                  {' '}
-                  {test.length + ` de ${totalTest} testes concluídos`}
+                  {preForm.length + ` de ${preForm.length} testes concluídos`}
                 </Text>
               </View>
               <Text style={styles.subTitle}>{'Produtividade:'}</Text>
               <View>
                 <Text style={styles.feedback}>
-                  {Productivy(test.length / totalTest)}
+                  {Productivy(preForm.length)}
                 </Text>
               </View>
             </View>
