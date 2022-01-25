@@ -1,4 +1,4 @@
-function CurrentDate() {
+export function CurrentDate() {
   var date = data.getDate();
   var month = data.getMonth();
   var year = data.getFullYear();
