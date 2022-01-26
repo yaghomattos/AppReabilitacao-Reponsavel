@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { createSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
 import Header from '../../../components/Header';
@@ -31,15 +31,10 @@ export const SelectOrientation = (props) => {
       });
   }, [results]);
 
-  async function SaveItem(text) {
-    listSave.push(text);
-    setOrientation(listSave);
-  }
-
-  async function HandleCreateSelectedOrientation(element) {
+  async function HandleCreateSelectedOrientation(text) {
     var props = {
       testOrExerciseId: testOrExerciseId,
-      orientation: element,
+      orientation: text,
       className: className,
     };
 
@@ -71,28 +66,11 @@ export const SelectOrientation = (props) => {
                 titleNumberOfLines={100}
                 titleStyle={styles.itemTitle}
                 onChe
-                onPress={() => SaveItem(item.text)}
+                onPress={() => HandleCreateSelectedOrientation(item.text)}
               />
             </>
           )}
         />
-      </View>
-      <View style={styles.extra}>
-        <View>
-          {!orientation ? (
-            <Text style={styles.warning}>{'Orientação não selecionada!'}</Text>
-          ) : (
-            <TouchableOpacity
-              onPress={() =>
-                orientation.forEach(HandleCreateSelectedOrientation)
-              }
-            >
-              <View style={styles.button}>
-                <Text style={styles.text_label}>{'Confirmar'}</Text>
-              </View>
-            </TouchableOpacity>
-          )}
-        </View>
       </View>
     </View>
   );
