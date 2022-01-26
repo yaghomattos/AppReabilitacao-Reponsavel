@@ -28,6 +28,7 @@ export const ListSelectExercise = (props) => {
               exercise: child.val().exercise,
               name: child.val().name,
               id: child.key,
+              className: 'exercise',
             });
           }
         });
