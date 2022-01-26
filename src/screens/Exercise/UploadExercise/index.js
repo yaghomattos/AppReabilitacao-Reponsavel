@@ -1,6 +1,7 @@
 import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Image,
   Platform,
   ScrollView,
@@ -10,6 +11,7 @@ import {
   View,
 } from 'react-native';
 import { createExercise } from '../../../components/CRUDs/Exercise/index';
+import HeaderHome from '../../../components/HeaderHome';
 import { storage } from '../../../services/firebase';
 import styles from './styles';
 
