@@ -32,6 +32,18 @@ export const Login = () => {
       });
   };
 
+  async function resetPassword() {
+    auth
+      .sendPasswordResetEmail(email)
+      .then((response) => {
+        Alert.alert(
+          'Informações para alteração de senha enviadas para:',
+          email
+        );
+      })
+      .catch();
+  }
+
   return (
     <KeyboardAvoidingView
       behavior="height"
@@ -71,6 +83,11 @@ export const Login = () => {
               {'Não possui conta? '}
               <Text style={styles.footer_link}>{'Registre-se'}</Text>
             </Text>
+          </TouchableOpacity>
+        </>
+        <>
+          <TouchableOpacity onPress={() => resetPassword()}>
+            <Text style={styles.footer_recovery}>{'Esqueci minha Senha'}</Text>
           </TouchableOpacity>
         </>
       </View>

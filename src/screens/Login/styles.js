@@ -56,6 +56,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
   },
+  footer_recovery: {
+    paddingTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    fontSize: 18,
+    color: '#fff',
+  },
 });
 
 export default styles;
