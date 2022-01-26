@@ -13,11 +13,11 @@ export function ExerciseSettings(props) {
   const [reps, setReps] = useState('');
   const [timer, setTimer] = useState('');
 
-  var exerciseId = props.route.params;
+  var selectExercise = props.route.params.id;
 
   async function handleSettings() {
     var exercise = {
-      id: exerciseId,
+      id: selectExercise,
       sets: sets,
       reps: reps,
       timer: timer,
