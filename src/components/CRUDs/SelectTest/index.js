@@ -32,13 +32,17 @@ export async function createSelectTests(props) {
 export async function updateSelectTests(props) {
   const selectTestRef = database.ref('selectTest/' + props.id);
 
-  if (props.timer != '')
+  console.log(props);
+
+  if (props.timer)
     selectTestRef.update({
       timer: props.timer,
+      numReps: '',
     });
   else
     selectTestRef.update({
       numReps: props.numReps,
+      timer: '',
     });
 
   if (props.reps)
@@ -57,9 +61,9 @@ export async function updateSelectTests(props) {
     selectTestRef.update({
       dyspnea: true,
     });
-  if (props.fatique)
+  if (props.fatigue)
     selectTestRef.update({
-      fatique: true,
+      fatigue: true,
     });
   console.log('test updated');
 }

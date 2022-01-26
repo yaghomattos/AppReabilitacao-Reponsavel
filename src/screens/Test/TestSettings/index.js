@@ -17,15 +17,18 @@ export function TestSettings(props) {
   const [dyspnea, setDyspnea] = useState(false);
   const [fatigue, setFatigue] = useState(false);
 
-  var testId = props.route.params;
+  var selectTest = props.route.params.id;
 
   async function handleSettings() {
     if (minutes == '') setMinutes('');
     if (seconds == '') setSeconds('');
 
     const object = {
-      testId: testId,
-      timer: parseInt(minutes) * 60 + parseInt(seconds),
+      id: selectTest,
+      timer:
+        minutes != '' || seconds != ''
+          ? parseInt(minutes) * 60 + parseInt(seconds)
+          : '',
       numReps: numReps,
       reps: reps,
       frequency: frequency,
