@@ -32,7 +32,7 @@ export function Home() {
           />
           <Button
             title="Cadastro de Participantes"
-            onPress="ParticipantControl"
+            onPress="ListParticipants"
           />
           <Button title="Treinamento" onPress="MenuTraining" />
           <Button title="Avaliação" onPress="MenuTest" />

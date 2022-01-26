@@ -17,7 +17,6 @@ import { NewOrientation } from '../screens/Orientation/NewOrientation/index';
 import { SelectOrientation } from '../screens/Orientation/SelectOrientation/index';
 import { ListParticipantRoute } from '../screens/Participant/ListParticipantRoute/index';
 import { ListParticipants } from '../screens/Participant/ListParticipants/index';
-import { ParticipantControl } from '../screens/Participant/ParticipantControl/index';
 import { ParticipantProfile } from '../screens/Participant/ParticipantProfile/index';
 import { ParticipantRecord } from '../screens/Participant/RecordParticipant/index';
 import { Register } from '../screens/Register/index';
@@ -49,10 +48,7 @@ export function FlowRouter() {
         <FlowStack.Screen name="Home" component={Home} />
         <FlowStack.Screen name="Chat" component={Chat} />
         <FlowStack.Screen name="Educational" component={Educational} />
-        <FlowStack.Screen
-          name="ParticipantControl"
-          component={ParticipantControl}
-        />
+
         <FlowStack.Screen
           name="ParticipantRecord"
           component={ParticipantRecord}

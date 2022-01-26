@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     width: '85%',
-    height: 80,
+    height: 70,
     marginTop: 20,
     marginEnd: 20,
     marginStart: 30,
@@ -44,11 +44,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8',
   },
   itemText: {
-    width: '80%',
+    width: '60%',
   },
   itemTitle: {
     fontSize: 22,
     color: '#000',
+  },
+  deleteButton: {
+    paddingRight: 50,
+  },
+  add: {
+    height: 60,
+    width: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: '85%',
+    left: '80%',
+    borderRadius: 15,
+    backgroundColor: '#f8f8f8',
   },
 });
 
