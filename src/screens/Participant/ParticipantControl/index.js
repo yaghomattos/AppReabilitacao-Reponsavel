@@ -13,7 +13,6 @@ export function ParticipantControl() {
         <View style={styles.background}>
           <View style={styles.buttons}>
             <Button title="Novo Participante" onPress="ParticipantRecord" />
-            <Button title="Deletar Participante" onPress="DeleteParticipant" />
             <Button title="Lista de Participantes" onPress="ListParticipants" />
           </View>
         </View>
