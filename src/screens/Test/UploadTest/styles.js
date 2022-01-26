@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    height: '100%',
+    height: 650,
     paddingTop: 30,
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
