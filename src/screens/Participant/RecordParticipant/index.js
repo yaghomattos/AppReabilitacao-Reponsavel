@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { createParticipant } from '../../../components/CRUDs/Participant/index';
 import { CurrentUser } from '../../../components/CRUDs/User/index';
 import HeaderHome from '../../../components/HeaderHome';
@@ -53,81 +60,83 @@ export function ParticipantRecord() {
   return (
     <View style={styles.container}>
       <HeaderHome title="Cadastro de Participante" />
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          value={name}
-          placeholder={'Nome'}
-          onChangeText={(text) => setName(text)}
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
-        />
-        <TextInput
-          style={styles.input}
-          value={CPF}
-          placeholder={'CPF'}
-          onChangeText={(text) => setCPF(text)}
-          keyboardType={'numeric'}
-          maxLength={12}
-        />
-        <TextInput
-          style={styles.input}
-          value={age}
-          placeholder={'Data de Nascimento'}
-          onChangeText={(text) => setAge(text)}
-          keyboardType={'numeric'}
-          maxLength={2}
-        />
-        <TextInput
-          style={styles.input}
-          value={phone}
-          placeholder={'Telefone'}
-          onChangeText={(text) => setPhone(text)}
-          autoCapitalize={'none'}
-          keyboardType={'numeric'}
-        />
-        <TextInput
-          editable
-          multiline
-          style={styles.input}
-          value={diagnosis}
-          placeholder={'Diagnóstico'}
-          onChangeText={(text) => setDiagnosis(text)}
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
-        />
-        <TextInput
-          editable
-          multiline
-          style={styles.input}
-          value={address}
-          placeholder={'Endereço'}
-          onChangeText={(text) => setAddress(text)}
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
-        />
-        <TextInput
-          style={styles.input}
-          value={height}
-          placeholder={'Altura'}
-          onChangeText={(text) => setHeight(text)}
-          autoCapitalize={'none'}
-          keyboardType={'numeric'}
-        />
-        <TextInput
-          style={styles.input}
-          value={weight}
-          placeholder={'Peso'}
-          onChangeText={(text) => setWeight(text)}
-          autoCapitalize={'none'}
-          keyboardType={'numeric'}
-        />
-        <TouchableOpacity onPress={() => handleCreateParticipant()}>
-          <View style={styles.button}>
-            <Text style={styles.text_label}>{'Cadastrar'}</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            value={name}
+            placeholder={'Nome'}
+            onChangeText={(text) => setName(text)}
+            autoCapitalize={'none'}
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            style={styles.input}
+            value={CPF}
+            placeholder={'CPF'}
+            onChangeText={(text) => setCPF(text)}
+            keyboardType={'numeric'}
+            maxLength={12}
+          />
+          <TextInput
+            style={styles.input}
+            value={age}
+            placeholder={'Data de Nascimento'}
+            onChangeText={(text) => setAge(text)}
+            keyboardType={'numeric'}
+            maxLength={2}
+          />
+          <TextInput
+            style={styles.input}
+            value={phone}
+            placeholder={'Telefone'}
+            onChangeText={(text) => setPhone(text)}
+            autoCapitalize={'none'}
+            keyboardType={'numeric'}
+          />
+          <TextInput
+            editable
+            multiline
+            style={styles.input}
+            value={diagnosis}
+            placeholder={'Diagnóstico'}
+            onChangeText={(text) => setDiagnosis(text)}
+            autoCapitalize={'none'}
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            editable
+            multiline
+            style={styles.input}
+            value={address}
+            placeholder={'Endereço'}
+            onChangeText={(text) => setAddress(text)}
+            autoCapitalize={'none'}
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            style={styles.input}
+            value={height}
+            placeholder={'Altura'}
+            onChangeText={(text) => setHeight(text)}
+            autoCapitalize={'none'}
+            keyboardType={'numeric'}
+          />
+          <TextInput
+            style={styles.input}
+            value={weight}
+            placeholder={'Peso'}
+            onChangeText={(text) => setWeight(text)}
+            autoCapitalize={'none'}
+            keyboardType={'numeric'}
+          />
+          <TouchableOpacity onPress={() => handleCreateParticipant()}>
+            <View style={styles.button}>
+              <Text style={styles.text_label}>{'Cadastrar'}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 }
