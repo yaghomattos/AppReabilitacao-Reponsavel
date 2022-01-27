@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, Image, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { createSelectTests } from '../../../components/CRUDs/SelectTest/index';
 import Header from '../../../components/Header';
@@ -69,6 +69,12 @@ export const SelectTest = (props) => {
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={100}
               onPress={() => HandleCreateSelectedTest(item)}
+              left={() => (
+                <Image
+                  style={{ width: '20%', height: '100%', marginRight: 5 }}
+                  source={{ uri: item.preview }}
+                />
+              )}
             />
           )}
         />

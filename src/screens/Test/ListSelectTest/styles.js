@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     width: 340,
-    height: 50,
+    height: 60,
     marginTop: 10,
     borderRadius: 10,
     justifyContent: 'space-evenly',

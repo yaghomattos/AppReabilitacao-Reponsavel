@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, Image, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import { deleteSelectTests } from '../../../components/CRUDs/SelectTest';
@@ -27,6 +27,7 @@ export const ListSelectTest = (props) => {
             li.push({
               test: child.val().test,
               name: child.val().name,
+              preview: child.val().preview,
               id: child.key,
               className: 'test',
             });
@@ -57,7 +58,18 @@ export const ListSelectTest = (props) => {
                     title={item.name}
                     titleNumberOfLines={1}
                     titleStyle={styles.itemTitle}
+                    left={() => (
+                      <Image
+                        style={{
+                          width: '20%',
+                          height: 50,
+                          marginLeft: 10,
+                        }}
+                        source={{ uri: item.preview }}
+                      />
+                    )}
                   />
+
                   <Ionicons
                     name="build"
                     size={24}
