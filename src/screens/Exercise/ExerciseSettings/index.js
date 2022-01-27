@@ -62,7 +62,7 @@ export function ExerciseSettings(props) {
           <Button
             title="Orientações"
             onPress="MenuOrientation"
-            props={[exerciseId, 'exercise']}
+            props={props.route.params}
           />
 
           <TouchableOpacity onPress={() => handleSettings()}>
