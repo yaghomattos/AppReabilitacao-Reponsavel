@@ -48,13 +48,12 @@ const styles = StyleSheet.create({
   preview: {
     flexDirection: 'row',
     width: '80%',
-    marginTop: 10,
     justifyContent: 'space-evenly',
+    alignItems: 'flex-end',
   },
   image: {
-    backgroundColor: '#b7b',
-    width: 90,
-    height: 90,
+    width: 60,
+    height: 60,
     borderRadius: 10,
   },
   button: {
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 180,
     height: 60,
-    marginTop: '4%',
+    marginTop: 20,
     borderRadius: 10,
     backgroundColor: '#384955',
   },
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 180,
     height: 60,
+    marginTop: 20,
     borderRadius: 10,
     backgroundColor: '#384955',
   },

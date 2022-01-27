@@ -22,6 +22,7 @@ export function UploadExercise() {
   const [previewURL, setPreviewURL] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [uploaded, setUploaded] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -68,6 +69,8 @@ export function UploadExercise() {
         .catch((e) => console.log('getting downloadURL of video error => ', e));
     });
     Alert.alert('Upload das informações concluído!');
+
+    setUploaded(true);
   }
 
   async function createData() {
@@ -109,7 +112,7 @@ export function UploadExercise() {
           <TextInput
             style={styles.input}
             value={name}
-            placeholder={'nome do exercício'}
+            placeholder={'Nome'}
             onChangeText={(text) => setName(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
@@ -119,39 +122,39 @@ export function UploadExercise() {
             multiline
             style={styles.input}
             value={description}
-            placeholder={'descrição do exercício'}
+            placeholder={'Descrição'}
             onChangeText={(text) => setDescription(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
           />
+
+          <View style={styles.preview}>
+            <TouchableOpacity style={styles.button} onPress={pickPhoto}>
+              <Text style={styles.text_button}>{'Selecionar ícone'}</Text>
+            </TouchableOpacity>
+            {preview && (
+              <Image source={{ uri: preview.uri }} style={styles.image} />
+            )}
+          </View>
           <View style={styles.preview}>
             <TouchableOpacity
               style={video ? styles.button : styles.button2}
               onPress={pickFile}
             >
               <Text style={styles.text_button}>{'Selecionar vídeo'}</Text>
-              <Text style={styles.text_button}>{'ou imagem'}</Text>
             </TouchableOpacity>
             {video && (
               <Image source={{ uri: video.uri }} style={styles.image} />
             )}
           </View>
-          <View style={styles.preview}>
-            <TouchableOpacity style={styles.button} onPress={pickPhoto}>
-              <Text style={styles.text_button}>{'Definir ícone'}</Text>
-            </TouchableOpacity>
-            {preview && (
-              <Image source={{ uri: preview.uri }} style={styles.image} />
-            )}
-          </View>
 
-          {video && preview && (
+          {video && preview && !uploaded && (
             <TouchableOpacity style={styles.upload} onPress={upload}>
               <Text style={styles.text_button}>{'Upload'}</Text>
             </TouchableOpacity>
           )}
 
-          {video && preview && (
+          {uploaded && (
             <TouchableOpacity style={styles.send} onPress={createData}>
               <Text style={styles.text_button}>{'Finalizar Cadastro'}</Text>
             </TouchableOpacity>
