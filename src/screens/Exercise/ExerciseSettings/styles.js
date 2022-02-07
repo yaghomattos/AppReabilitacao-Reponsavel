@@ -1,31 +1,54 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
-    paddingBottom: 50,
-    justifyContent: 'center',
     backgroundColor: '#3E9ACD',
   },
-  form: {
+  container: {
+    paddingTop: 80,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  inputName: {
+  title: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 18,
+  },
+  form: {
+    width: '20%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   input: {
-    width: '40%',
-    height: 40,
-    paddingHorizontal: 20,
-    marginBottom: '5%',
-    backgroundColor: '#F4F4F4',
-    borderRadius: 10,
+    width: 30,
+    height: 30,
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    borderColor: '#F4F4F4',
+    color: '#FFFFFF',
+    fontSize: 18,
+  },
+  inputReps: {
+    width: 90,
+    height: 30,
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    borderColor: '#F4F4F4',
+    color: '#FFFFFF',
+    fontSize: 18,
+  },
+  inputText: {
+    color: '#fff',
+    fontSize: 28,
+    paddingBottom: 15,
   },
   button: {
     width: 100,
     height: 50,
-    marginTop: '5%',
+    marginTop: 30,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
