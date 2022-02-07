@@ -30,7 +30,7 @@ export function Educational(props) {
           ) {
             li.push({
               key: child.key,
-              content: child.val().name,
+              content: child.val().content,
               participant: child.val.user,
               user: child.val().user,
               createdAt: child.val().created_at,
@@ -124,7 +124,7 @@ export function Educational(props) {
         messages={
           results &&
           results.map((liveMessage) => ({
-            _id: liveMessage.id,
+            _id: liveMessage.key,
             text: liveMessage.content,
             createdAt: liveMessage.createdAt,
             user: {
