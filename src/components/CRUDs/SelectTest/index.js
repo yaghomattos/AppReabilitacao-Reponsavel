@@ -13,8 +13,7 @@ export async function createSelectTests(props) {
       video: props.video,
       preview: props.preview,
       timer: '',
-      numReps: '',
-      reps: false,
+      reps: '',
       check: false,
       frequency: false,
       saturation: false,
@@ -37,18 +36,14 @@ export async function updateSelectTests(props) {
   if (props.timer)
     selectTestRef.update({
       timer: props.timer,
-      numReps: '',
+      reps: '',
     });
   else
     selectTestRef.update({
-      numReps: props.numReps,
+      reps: props.reps,
       timer: '',
     });
 
-  if (props.reps)
-    selectTestRef.update({
-      reps: true,
-    });
   if (props.frequency)
     selectTestRef.update({
       frequency: true,

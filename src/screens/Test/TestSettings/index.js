@@ -9,9 +9,8 @@ import styles from './styles';
 export function TestSettings(props) {
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
-  const [numReps, setNumReps] = useState('');
+  const [reps, setReps] = useState('');
 
-  const [reps, setReps] = useState(false);
   const [frequency, setFrequency] = useState(false);
   const [saturation, setSaturation] = useState(false);
   const [dyspnea, setDyspnea] = useState(false);
@@ -29,7 +28,6 @@ export function TestSettings(props) {
         minutes != '' || seconds != ''
           ? parseInt(minutes) * 60 + parseInt(seconds)
           : '',
-      numReps: numReps,
       reps: reps,
       frequency: frequency,
       saturation: saturation,
@@ -69,24 +67,15 @@ export function TestSettings(props) {
         <View style={styles.form}>
           <TextInput
             style={styles.inputReps}
-            value={numReps}
+            value={reps}
             placeholder={'Repetições'}
-            onChangeText={(text) => setNumReps(text)}
+            onChangeText={(text) => setReps(text)}
             autoCapitalize={'none'}
             keyboardType={'numeric'}
           />
         </View>
         <View style={styles.wrapperCheckbox}>
           <Text style={styles.title}>{'Dados do formulário'}</Text>
-          <View style={styles.checkboxContainer}>
-            <Checkbox
-              status={reps ? 'checked' : 'unchecked'}
-              onPress={() => {
-                setReps(!reps);
-              }}
-            />
-            <Text style={styles.text_checkbox}>Número de repetições</Text>
-          </View>
           <View style={styles.checkboxContainer}>
             <Checkbox
               status={frequency ? 'checked' : 'unchecked'}
@@ -131,7 +120,7 @@ export function TestSettings(props) {
           props={props.route.params}
         />
 
-        {(minutes != '' || seconds != '' || numReps != '') && (
+        {(minutes != '' || seconds != '' || reps != '') && (
           <TouchableOpacity onPress={() => handleSettings()}>
             <View style={styles.button}>
               <Text style={styles.text_label}>{'Salvar'}</Text>
