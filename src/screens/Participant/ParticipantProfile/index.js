@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text';
 import { updateParticipant } from '../../../components/CRUDs/Participant/index';
 import HeaderHome from '../../../components/HeaderHome';
 import styles from './styles';
@@ -53,36 +54,42 @@ export function ParticipantProfile(props) {
           keyboardType={'email-address'}
         />
         <Text style={styles.form}>{'CPF:'}</Text>
-        <TextInput
+        <TextInputMask
           style={styles.input}
-          value={CPF}
+          type={'cpf'}
           placeholder={props.route.params.cpf}
+          value={CPF}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setCPF(text)
           }
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
         />
         <Text style={styles.form}>{'Data de Nascimento:'}</Text>
-        <TextInput
+        <TextInputMask
           style={styles.input}
-          value={age}
+          type={'datetime'}
           placeholder={props.route.params.age}
+          options={{
+            format: 'DD/MM/YYYY',
+          }}
+          value={age}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setAge(text)
           }
-          keyboardType={'numeric'}
         />
         <Text style={styles.form}>{'Telefone:'}</Text>
-        <TextInput
+        <TextInputMask
           style={styles.input}
-          value={phone}
+          type={'cel-phone'}
+          options={{
+            maskType: 'BRL',
+            withDDD: true,
+            dddMask: '(99) ',
+          }}
           placeholder={props.route.params.phone}
+          value={phone}
           onChangeText={(text) =>
             text == null || text == '' ? '' : setPhone(text)
           }
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
         />
         <Text style={styles.form}>{'Diagnóstico:'}</Text>
         <TextInput

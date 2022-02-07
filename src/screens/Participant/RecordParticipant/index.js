@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Alert,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import { TextInputMask } from 'react-native-masked-text';
 import { createParticipant } from '../../../components/CRUDs/Participant/index';
 import { CurrentUser } from '../../../components/CRUDs/User/index';
 import HeaderHome from '../../../components/HeaderHome';
@@ -70,29 +65,36 @@ export function ParticipantRecord() {
             autoCapitalize={'none'}
             keyboardType={'email-address'}
           />
-          <TextInput
+          <TextInputMask
             style={styles.input}
-            value={CPF}
+            type={'cpf'}
             placeholder={'CPF'}
+            value={CPF}
             onChangeText={(text) => setCPF(text)}
-            keyboardType={'numeric'}
-            maxLength={12}
           />
-          <TextInput
+          <TextInputMask
             style={styles.input}
-            value={age}
+            type={'datetime'}
             placeholder={'Data de Nascimento'}
-            onChangeText={(text) => setAge(text)}
-            keyboardType={'numeric'}
-            maxLength={2}
+            options={{
+              format: 'DD/MM/YYYY',
+            }}
+            value={age}
+            onChangeText={(text) => {
+              setAge(text);
+            }}
           />
-          <TextInput
+          <TextInputMask
             style={styles.input}
-            value={phone}
+            type={'cel-phone'}
+            options={{
+              maskType: 'BRL',
+              withDDD: true,
+              dddMask: '(99) ',
+            }}
             placeholder={'Telefone'}
+            value={phone}
             onChangeText={(text) => setPhone(text)}
-            autoCapitalize={'none'}
-            keyboardType={'numeric'}
           />
           <TextInput
             editable
