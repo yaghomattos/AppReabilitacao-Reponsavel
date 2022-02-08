@@ -83,7 +83,7 @@ export function TestSettings(props) {
                 setFrequency(!frequency);
               }}
             />
-            <Text style={styles.text_checkbox}>Frequência Cardíaca</Text>
+            <Text style={styles.text_checkbox}>{'Frequência Cardíaca'}</Text>
           </View>
           <View style={styles.checkboxContainer}>
             <Checkbox
@@ -92,7 +92,7 @@ export function TestSettings(props) {
                 setSaturation(!saturation);
               }}
             />
-            <Text style={styles.text_checkbox}>Saturação</Text>
+            <Text style={styles.text_checkbox}>{'Saturação'}</Text>
           </View>
           <View style={styles.checkboxContainer}>
             <Checkbox
@@ -101,7 +101,7 @@ export function TestSettings(props) {
                 setDyspnea(!dyspnea);
               }}
             />
-            <Text style={styles.text_checkbox}>Falta de ar</Text>
+            <Text style={styles.text_checkbox}>{'Falta de ar'}</Text>
           </View>
           <View style={styles.checkboxContainer}>
             <Checkbox
@@ -110,7 +110,7 @@ export function TestSettings(props) {
                 setFatigue(!fatigue);
               }}
             />
-            <Text style={styles.text_checkbox}>Cansaço</Text>
+            <Text style={styles.text_checkbox}>{'Cansaço'}</Text>
           </View>
         </View>
 
