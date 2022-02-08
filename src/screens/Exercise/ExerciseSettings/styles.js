@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3E9ACD',
   },
   container: {
-    paddingTop: 80,
+    paddingTop: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -43,7 +43,18 @@ const styles = StyleSheet.create({
   inputText: {
     color: '#fff',
     fontSize: 28,
-    paddingBottom: 15,
+    paddingBottom: 5,
+  },
+  wrapperCheckbox: {
+    marginTop: 0,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+  },
+  text_checkbox: {
+    color: '#fff',
+    fontSize: 15,
+    marginTop: 8,
   },
   button: {
     width: 100,
