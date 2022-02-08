@@ -31,19 +31,37 @@ export async function createSelectExercises(props) {
 
 export async function updateSelectExercises(props) {
   const selectExerciseRef = database.ref('selectExercise/' + props.id);
-  if (props.sets != '')
-    selectExerciseRef.update({
-      sets: props.sets,
-    });
-  if (props.reps != '')
-    selectExerciseRef.update({
-      reps: props.reps,
-    });
-  if (props.timer != '')
+
+  if (props.timer)
     selectExerciseRef.update({
       timer: props.timer,
+      reps: '',
+      sets: '',
     });
-  console.log('exercise updated');
+  else
+    selectExerciseRef.update({
+      reps: props.reps,
+      sets: props.sets,
+      timer: '',
+    });
+
+  if (props.frequency)
+    selectExerciseRef.update({
+      frequency: true,
+    });
+  if (props.saturation)
+    selectExerciseRef.update({
+      saturation: true,
+    });
+  if (props.dyspnea)
+    selectExerciseRef.update({
+      dyspnea: true,
+    });
+  if (props.fatigue)
+    selectExerciseRef.update({
+      fatigue: true,
+    });
+  Alert.alert('Exercício atualizado!');
 }
 
 export async function deleteSelectExercises(props) {

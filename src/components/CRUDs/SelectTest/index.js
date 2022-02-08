@@ -31,8 +31,6 @@ export async function createSelectTests(props) {
 export async function updateSelectTests(props) {
   const selectTestRef = database.ref('selectTest/' + props.id);
 
-  console.log(props);
-
   if (props.timer)
     selectTestRef.update({
       timer: props.timer,
@@ -60,7 +58,7 @@ export async function updateSelectTests(props) {
     selectTestRef.update({
       fatigue: true,
     });
-  console.log('test updated');
+  Alert.alert('Teste atualizado!');
 }
 
 export async function deleteSelectTests(props) {
