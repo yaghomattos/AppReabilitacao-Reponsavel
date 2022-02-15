@@ -17,12 +17,12 @@ export function MenuTraining() {
               onPress="ListParticipantRoute"
               props={'ListSelectExercise'}
             />
-            {/* <Button
+            <Button
               title="Monitoramento"
               onPress="ListParticipantRoute"
               props={'ExerciseMonitoring'}
-            /> */}
-            <Button title="Cadastrar Novo Exercício" onPress="UploadExercise" />
+            />
+            <Button title="Cadastro de exercício" onPress="ListExercises" />
           </View>
         </View>
       </SafeAreaView>

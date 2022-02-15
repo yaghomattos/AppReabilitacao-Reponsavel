@@ -4,6 +4,7 @@ import React from 'react';
 import { Chat } from '../screens/Chat/index';
 import { Educational } from '../screens/Educational/index';
 import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
+import { ListExercises } from '../screens/Exercise/ListExercises/index';
 import { ListSelectExercise } from '../screens/Exercise/ListSelectExercise/index';
 import { MenuTraining } from '../screens/Exercise/MenuTraining/index';
 import { SelectExercise } from '../screens/Exercise/SelectExercise/index';
@@ -21,7 +22,7 @@ import { ParticipantProfile } from '../screens/Participant/ParticipantProfile/in
 import { ParticipantRecord } from '../screens/Participant/RecordParticipant/index';
 import { Register } from '../screens/Register/index';
 import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
-import { ListTests } from '../screens/Test/ListTests';
+import { ListTests } from '../screens/Test/ListTests/index';
 import { MenuTest } from '../screens/Test/MenuTest';
 import { SelectTest } from '../screens/Test/SelectTest/index';
 import { TestSettings } from '../screens/Test/TestSettings/index';
@@ -74,6 +75,7 @@ export function FlowRouter() {
           component={ListParticipantRoute}
         />
         <FlowStack.Screen name="ListTests" component={ListTests} />
+        <FlowStack.Screen name="ListExercises" component={ListExercises} />
         <FlowStack.Screen name="SelectExercise" component={SelectExercise} />
         <FlowStack.Screen name="SelectTest" component={SelectTest} />
         <FlowStack.Screen
