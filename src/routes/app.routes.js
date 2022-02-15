@@ -21,6 +21,7 @@ import { ParticipantProfile } from '../screens/Participant/ParticipantProfile/in
 import { ParticipantRecord } from '../screens/Participant/RecordParticipant/index';
 import { Register } from '../screens/Register/index';
 import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
+import { ListTests } from '../screens/Test/ListTests';
 import { MenuTest } from '../screens/Test/MenuTest';
 import { SelectTest } from '../screens/Test/SelectTest/index';
 import { TestSettings } from '../screens/Test/TestSettings/index';
@@ -72,6 +73,7 @@ export function FlowRouter() {
           name="ListParticipantRoute"
           component={ListParticipantRoute}
         />
+        <FlowStack.Screen name="ListTests" component={ListTests} />
         <FlowStack.Screen name="SelectExercise" component={SelectExercise} />
         <FlowStack.Screen name="SelectTest" component={SelectTest} />
         <FlowStack.Screen
