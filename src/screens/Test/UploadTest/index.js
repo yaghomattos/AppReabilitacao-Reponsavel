@@ -36,7 +36,11 @@ export function UploadTest() {
         }
       }
     })();
-  }, []);
+
+    if (uploaded) {
+      createData();
+    }
+  }, [uploaded]);
 
   async function upload() {
     var storageRef = storage.ref();
@@ -52,27 +56,32 @@ export function UploadTest() {
 
     previewRef.put(blobPreview).then((snapshot) => {
       console.log('Uploaded a blob preview!');
-      previewRef
-        .getDownloadURL()
-        .then((url) => {
-          setPreviewURL(url);
-        })
-        .catch((e) =>
-          console.log('getting downloadURL of preview error => ', e)
-        );
     });
     videoRef.put(blobVideo).then((snapshot) => {
       console.log('Uploaded a blob video!');
-      videoRef
-        .getDownloadURL()
-        .then((url) => {
-          setVideoURL(url);
-        })
-        .catch((e) => console.log('getting downloadURL of video error => ', e));
     });
-    Alert.alert('Upload das informações concluído!');
 
-    setUploaded(true);
+    previewRef
+      .getDownloadURL()
+      .then((url) => {
+        setPreviewURL(url);
+        console.log(previewURL);
+      })
+      .catch((e) => console.log('getting downloadURL of preview error => ', e));
+
+    videoRef
+      .getDownloadURL()
+      .then((url) => {
+        setVideoURL(url);
+        console.log(videoURL);
+      })
+      .catch((e) => console.log('getting downloadURL of video error => ', e));
+
+    setTimeout(() => {
+      setUploaded(true);
+    }, 3000);
+
+    Alert.alert('Fazendo Upload das informações, Aguarde!');
   }
 
   async function createData() {
@@ -86,6 +95,8 @@ export function UploadTest() {
     };
 
     createTest(test);
+
+    setUploaded(false);
   }
 
   const pickFile = async () => {
@@ -173,13 +184,7 @@ export function UploadTest() {
 
           {video && preview && !uploaded && (
             <TouchableOpacity style={styles.upload} onPress={upload}>
-              <Text style={styles.text_button}>{'Upload'}</Text>
-            </TouchableOpacity>
-          )}
-
-          {uploaded && (
-            <TouchableOpacity style={styles.send} onPress={createData}>
-              <Text style={styles.text_button}>{'Finalizar Cadastro'}</Text>
+              <Text style={styles.text_button}>{'Finalizar cadastro'}</Text>
             </TouchableOpacity>
           )}
         </View>
