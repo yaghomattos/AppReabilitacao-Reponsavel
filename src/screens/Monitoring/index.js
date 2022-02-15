@@ -1,22 +1,11 @@
-import { Ionicons } from '@expo/vector-icons';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import { FlatList, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
+import HeaderHome from '../../components/HeaderHome/index';
 import { database } from '../../services/firebase';
 import { CurrentDate } from '../../utils/CurrentDate';
 import styles from './styles';
-
-var date = new Date();
 
 function CaseBad() {
   return 'Ruim';
@@ -47,7 +36,7 @@ export function Monitoring(props) {
   const [show, setShow] = useState(false);
   const [preForm, setPreForm] = useState([]);
   const [postForm, setPostForm] = useState([]);
-  const [totalTest, setTotalTest] = useState(0);
+  const [date, setDate] = useState(new Date());
 
   const participant = props.route.params[0];
   const provider = props.route.params[1];
@@ -57,6 +46,7 @@ export function Monitoring(props) {
   useEffect(() => {
     var liPre = [];
     var liPost = [];
+
     database
       .ref('participantPreForm')
       .get()
@@ -64,13 +54,14 @@ export function Monitoring(props) {
         snapshot.forEach((child) => {
           if (
             child.val().participant == participant &&
-            (provider == 'test'
-              ? child.val().exercise == ''
-              : child.val().test == '')
+            child.val().className == provider
           ) {
             liPre.push({
-              name: child.val().test,
-              preForm: child.val().form,
+              name: child.val().name,
+              form: child.val().form,
+              participant: child.val().participant,
+              createdAt: child.val().createdAt,
+              type: 'preForm',
               id: child.key,
             });
           }
@@ -85,121 +76,79 @@ export function Monitoring(props) {
         snapshot.forEach((child) => {
           if (
             child.val().participant == participant &&
-            (provider == 'test'
-              ? child.val().exercise == ''
-              : child.val().test == '')
+            child.val().className == provider
           ) {
             liPost.push({
-              name: child.val().test,
-              postForm: child.val().form,
+              name: child.val().name,
+              form: child.val().form,
+              participant: child.val().participant,
+              createdAt: child.val().createdAt,
+              type: 'postForm',
               id: child.key,
             });
           }
         });
         setPostForm(liPost);
       });
-  }, [preForm, postForm]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar />
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.goBack()}
-          />
-          <TouchableHighlight
-            style={styles.highlight}
-            activeOpacity={0}
-            onPress={() => {
-              setShow(true);
-            }}
-          >
-            {displayDate()}
-          </TouchableHighlight>
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode="date"
-              display="calendar"
-              maximumDate={lastDate}
-              onChange={(dateString) => {
-                const newDate = new Date(dateString.nativeEvent.timestamp);
-                date = newDate;
-                setShow(false);
-              }}
-            />
-          )}
-          <Ionicons
-            name="home"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.navigate('Home')}
-          />
-        </View>
-      </View>
+      <HeaderHome title="Monitoramento" />
       <View style={styles.today}>
-        <Text style={styles.title}>{'Feito Hoje'}</Text>
+        <Text style={styles.title}>{'Concluídos'}</Text>
       </View>
       <Divider style={styles.divider} />
-      <ScrollView horizontal={false}>
-        <ScrollView horizontal={true}>
-          <View style={styles.exerciseBox}>
-            <Text style={styles.subTitle}>{'Informações Iniciais:'}</Text>
-            <View style={styles.exerciseContainer}>
-              <FlatList
-                nestedScrollEnabled
-                data={preForm}
-                keyExtractor={(item) => item.id}
-                ItemSeparatorComponent={() => <Divider />}
-                renderItem={({ item }) => (
-                  <List.Item
-                    title={item.name}
-                    titleNumberOfLines={1}
-                    titleStyle={styles.description}
-                    onPress={() => navigation.navigate('ViewForm', item.form)}
-                  />
-                )}
-              />
-            </View>
-            <Text style={styles.subTitle}>{'Informações Finais:'}</Text>
-            <View style={styles.exerciseContainer}>
-              <FlatList
-                nestedScrollEnabled
-                data={postForm}
-                keyExtractor={(item) => item.id}
-                ItemSeparatorComponent={() => <Divider />}
-                renderItem={({ item }) => (
-                  <List.Item
-                    title={item.name}
-                    titleNumberOfLines={1}
-                    titleStyle={styles.description}
-                    onPress={() => navigation.navigate('ViewForm', item.form)}
-                  />
-                )}
-              />
-            </View>
-            <View>
-              <Text style={styles.subTitle}>{'Quantidade:'}</Text>
-              <View>
-                <Text style={styles.feedback}>
-                  {preForm.length + ` de ${preForm.length} testes concluídos`}
-                </Text>
+      <View style={styles.wrapper}>
+        <ScrollView horizontal={false}>
+          <ScrollView horizontal={true}>
+            <View style={styles.formBox}>
+              <Text style={styles.subTitle}>{'Informações Iniciais:'}</Text>
+              <View style={styles.formContainer}>
+                <FlatList
+                  nestedScrollEnabled
+                  data={preForm}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => (
+                    <List.Item
+                      title={item.name}
+                      titleNumberOfLines={1}
+                      titleStyle={styles.description}
+                      onPress={() => navigation.navigate('ViewForm', item)}
+                      right={() => (
+                        <View style={styles.date}>
+                          <Text style={styles.textDate}>{item.createdAt}</Text>
+                        </View>
+                      )}
+                    />
+                  )}
+                />
               </View>
-              <Text style={styles.subTitle}>{'Produtividade:'}</Text>
-              <View>
-                <Text style={styles.feedback}>
-                  {Productivy(preForm.length)}
-                </Text>
+              <Text style={styles.subTitle}>{'Informações Finais:'}</Text>
+              <View style={styles.formContainer}>
+                <FlatList
+                  nestedScrollEnabled
+                  data={postForm}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => (
+                    <List.Item
+                      title={item.name}
+                      titleNumberOfLines={1}
+                      titleStyle={styles.description}
+                      onPress={() => navigation.navigate('ViewForm', item)}
+                      right={() => (
+                        <View style={styles.date}>
+                          <Text style={styles.textDate}>{item.createdAt}</Text>
+                        </View>
+                      )}
+                    />
+                  )}
+                />
               </View>
             </View>
-          </View>
+          </ScrollView>
         </ScrollView>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }

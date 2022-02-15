@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +47,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  exerciseBox: {
+  wrapper: {
+    backgroundColor: '#fff',
+    height: '100%',
+  },
+  formBox: {
     width: Dimensions.get('window').width,
     backgroundColor: '#fff',
     paddingTop: 15,
@@ -59,8 +63,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingBottom: 10,
   },
-  exerciseContainer: {
-    height: 160,
+  formContainer: {
+    height: 180,
     paddingTop: 5,
     marginBottom: 20,
     borderRadius: 4,
@@ -72,15 +76,12 @@ const styles = StyleSheet.create({
     paddingRight: '2%',
     color: '#000',
   },
-  feedback: {
-    height: 30,
-    paddingTop: '1%',
-    paddingLeft: '5%',
-    marginBottom: 30,
-    borderRadius: 4,
-    fontSize: 16,
+  date: {
+    justifyContent: 'center',
+  },
+  textDate: {
+    fontSize: 13,
     color: '#000',
-    backgroundColor: '#C4C4C4',
   },
 });
 
