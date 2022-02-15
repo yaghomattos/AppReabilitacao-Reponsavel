@@ -1,60 +1,108 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { readForm } from '../../components/CRUDs/Form/index';
+import { readPostForm, readPreForm } from '../../components/CRUDs/Form/index';
 import Header from '../../components/Header';
+import { CalcPerformance } from '../../utils/CalcPerformance';
 import styles from './styles';
 
 export function ViewForm(props) {
   const navigation = useNavigation();
 
-  const [reps, setReps] = useState('');
-  const [frequency, setFrequency] = useState('');
-  const [saturation, setSaturation] = useState('');
-  const [dyspnea, setDyspnea] = useState('');
-  const [fatigue, setFatigue] = useState('');
+  const [form, setForm] = useState('');
+  const [performance, setPerformance] = useState('');
 
-  const formId = props.route.params.id;
-
-  async function update() {
-    readForm(formId).then((response) => {
-      setReps(response.reps);
-      setFrequency(response.frequency);
-      setSaturation(response.saturation);
-      setDyspnea(response.dyspnea);
-      setFatigue(response.fatique);
-    });
-  }
-
-  update();
+  const formId = props.route.params.form;
+  const type = props.route.params.type;
+  const participant = props.route.params.participant;
 
   var test = false;
-  if (reps != undefined && reps != '') test = true;
+
+  useEffect(() => {
+    if (type == 'preForm') {
+      readPreForm(formId).then((response) => {
+        setForm(response.val());
+      });
+    } else {
+      readPostForm(formId).then((response) => {
+        setForm(response.val());
+      });
+    }
+    HandleCalcPerformance();
+  }, []);
+
+  if (form.reps != null || form.timer != null) test = true;
+
+  async function HandleCalcPerformance() {
+    if (form.reps != null) {
+      setPerformance(
+        await CalcPerformance({
+          name: form.name,
+          participant: participant,
+          reps: form.reps,
+        })
+      );
+    } else {
+      setPerformance(
+        await CalcPerformance({
+          name: form.name,
+          participant: participant,
+          timer: form.timer,
+        })
+      );
+    }
+  }
 
   return (
     <View style={styles.wrapper}>
       <Header title="Formulário" />
       <View style={styles.container}>
         <View style={styles.form}>
-          <Text style={styles.title}>
-            {test ? 'Número de repetições' : null}
-          </Text>
-          <Text style={styles.label}>{test ? reps : null}</Text>
+          {type != 'preForm' && test && (
+            <>
+              <Text style={styles.title}>
+                {form.timer != null ? 'Tempo' : 'Número de repetições'}
+              </Text>
+              <Text style={styles.label}>
+                {form.timer != null ? form.timer + ' segundos' : form.reps}
+              </Text>
+            </>
+          )}
 
-          <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
-          <Text style={styles.label}>{frequency}</Text>
+          {form.frequency != null && (
+            <>
+              <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
+              <Text style={styles.label}>{form.frequency}</Text>
+            </>
+          )}
 
-          <Text style={styles.title}>{'Saturação'}</Text>
-          <Text style={styles.label}>{saturation}</Text>
+          {form.saturation != null && (
+            <>
+              <Text style={styles.title}>{'Saturação'}</Text>
+              <Text style={styles.label}>{form.saturation}</Text>
+            </>
+          )}
 
-          <Text style={styles.title}>{'Falta de Ar'}</Text>
-          <Text style={styles.label}>{dyspnea}</Text>
+          {form.dyspnea != null && (
+            <>
+              <Text style={styles.title}>{'Falta de Ar'}</Text>
+              <Text style={styles.label}>{form.dyspnea}</Text>
+            </>
+          )}
 
-          <Text style={styles.title}>{'Cansaço'}</Text>
-          <Text style={styles.label}>{fatigue}</Text>
+          {form.fatigue != null && (
+            <>
+              <Text style={styles.title}>{'Cansaço'}</Text>
+              <Text style={styles.label}>{form.fatigue}</Text>
+            </>
+          )}
 
-          <Text style={styles.title}>{'Desempenho'}</Text>
-          <Text style={styles.label}>{'0 %'}</Text>
+          {type != 'preForm' && (
+            <>
+              <Text style={styles.title}>{'Desempenho'}</Text>
+              <Text style={styles.label}>{'0 %'}</Text>
+            </>
+          )}
 
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <View style={styles.button}>
