@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
-import { GiftedChat, Send } from 'react-native-gifted-chat';
+import { Bubble, GiftedChat, Send } from 'react-native-gifted-chat';
 import { Avatar, IconButton } from 'react-native-paper';
 import { database } from '../../services/firebase';
 import styles from './styles';
@@ -34,8 +34,8 @@ export function Chat(props) {
               participant: child.val.user,
               user: child.val().user,
               from: child.val().from,
-              createdAt: child.val().created_at,
-              updatedAt: child.val().updated_at,
+              createdAt: child.val().createdAt,
+              updatedAt: child.val().updatedAt,
             });
           }
         });
@@ -51,13 +51,16 @@ export function Chat(props) {
 
     const chatRef = database.ref('chat');
 
+    const date = new Date();
+    const brazilianDate = date.toLocaleString();
+
     chatRef.push({
       content: messages[0].text,
       participant: participant,
       user: user,
       from: '1',
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
+      createdAt: brazilianDate,
+      updatedAt: brazilianDate,
     });
   }, []);
 
@@ -94,15 +97,39 @@ export function Chat(props) {
     );
   }
 
+  function renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#3E9ACD',
+          },
+          left: {
+            backgroundColor: '#fff',
+          },
+        }}
+      />
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Ionicons
-          name="arrow-back"
-          size={24}
-          style={styles.back}
-          onPress={() => navigation.goBack()}
-        />
+        <View style={styles.headerNavigator}>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            style={styles.icon}
+            onPress={() => navigation.goBack()}
+          />
+          <Ionicons
+            name="home"
+            size={24}
+            style={styles.icon}
+            onPress={() => navigation.navigate('Home')}
+          />
+        </View>
         <View style={styles.avatarContainer}>
           <Avatar.Image
             size={100}
@@ -112,24 +139,6 @@ export function Chat(props) {
         </View>
         <View style={styles.person}>
           <Text style={styles.text}>{participantName}</Text>
-          <View style={styles.viewCircle}>
-            <View style={styles.circleCall}>
-              <Ionicons
-                name="call-sharp"
-                size={24}
-                color="#fff"
-                style={styles.call}
-              />
-            </View>
-            <View style={styles.circleVideo}>
-              <Ionicons
-                name="videocam-sharp"
-                size={24}
-                color="#fff"
-                style={styles.video}
-              />
-            </View>
-          </View>
         </View>
       </View>
       <GiftedChat
@@ -154,6 +163,7 @@ export function Chat(props) {
         renderSend={renderSend}
         scrollToBottomComponent={scrollToBottomComponent}
         renderLoading={renderLoading}
+        renderBubble={renderBubble}
       />
     </SafeAreaView>
   );

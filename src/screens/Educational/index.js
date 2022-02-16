@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
-import { GiftedChat, Send } from 'react-native-gifted-chat';
+import { Bubble, GiftedChat, Send } from 'react-native-gifted-chat';
 import { Avatar, IconButton } from 'react-native-paper';
 import { database } from '../../services/firebase';
 import styles from './styles';
@@ -33,8 +33,8 @@ export function Educational(props) {
               content: child.val().content,
               participant: child.val.user,
               user: child.val().user,
-              createdAt: child.val().created_at,
-              updatedAt: child.val().updated_at,
+              createdAt: child.val().createdAt,
+              updatedAt: child.val().updatedAt,
             });
           }
         });
@@ -50,12 +50,15 @@ export function Educational(props) {
 
     const chatRef = database.ref('educational');
 
+    const date = new Date();
+    const brazilianDate = date.toLocaleString();
+
     chatRef.push({
       content: messages[0].text,
       participant: participant,
       user: user,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
+      createdAt: brazilianDate,
+      updatedAt: brazilianDate,
     });
   }, []);
 
@@ -85,6 +88,22 @@ export function Educational(props) {
     );
   }
 
+  function renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#3E9ACD',
+          },
+          left: {
+            backgroundColor: '#fff',
+          },
+        }}
+      />
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -111,14 +130,6 @@ export function Educational(props) {
         </View>
         <View style={styles.person}>
           <Text style={styles.text}>{participantName}</Text>
-          <View style={styles.viewCircle}>
-            <View style={styles.circleMic}>
-              <Ionicons name="mic" size={24} color="#fff" />
-            </View>
-            <View style={styles.circleFile}>
-              <Ionicons name="images" size={24} color="#fff" />
-            </View>
-          </View>
         </View>
       </View>
       <GiftedChat
@@ -143,6 +154,7 @@ export function Educational(props) {
         renderSend={renderSend}
         scrollToBottomComponent={scrollToBottomComponent}
         renderLoading={renderLoading}
+        renderBubble={renderBubble}
       />
     </SafeAreaView>
   );

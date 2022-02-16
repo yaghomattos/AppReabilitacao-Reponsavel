@@ -8,9 +8,14 @@ const styles = StyleSheet.create({
     paddingBottom: '2%',
     backgroundColor: '#3E9ACD',
   },
-  back: {
-    paddingTop: '8%',
-    paddingLeft: '6%',
+  headerNavigator: {
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 30,
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+  },
+  icon: {
     color: '#fff',
   },
   avatarContainer: {
