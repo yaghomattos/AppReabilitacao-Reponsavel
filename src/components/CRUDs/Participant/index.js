@@ -17,6 +17,7 @@ export async function createParticipant(props) {
       height: props.height,
       weight: props.weight,
       user: props.id,
+      userName: props.userName,
     })
     .then(() => {
       Alert.alert('Participante cadastrado');
