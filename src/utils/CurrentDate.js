@@ -1,7 +1,11 @@
-export function CurrentDate() {
-  var date = data.getDate();
-  var month = data.getMonth();
-  var year = data.getFullYear();
+import React from 'react';
+import { Text } from 'react-native';
+
+export const CurrentDate = (props) => {
+  var today = new Date();
+  var day = today.getDate();
+  var month = today.getMonth();
+  var year = today.getFullYear();
 
   var monthName;
   monthName = new Array(
@@ -18,5 +22,6 @@ export function CurrentDate() {
     'novembro',
     'dezembro'
   );
-  return date + ' de ' + monthName[month] + ', ' + year;
-}
+
+  return <Text>{day + ' de ' + monthName[month] + ', ' + year}</Text>;
+};
