@@ -54,16 +54,16 @@ export function UploadTest() {
     const videoPreview = await fetch(video.uri);
     const blobVideo = await videoPreview.blob();
 
-    previewRef.put(blobPreview).then((snapshot) => {
+    previewRef.put(blobPreview).then(() => {
       console.log('Uploaded a blob preview!');
     });
-    videoRef.put(blobVideo).then((snapshot) => {
+    videoRef.put(blobVideo).then(() => {
       console.log('Uploaded a blob video!');
     });
 
     previewRef
       .getDownloadURL()
-      .then((url) => {
+      .then(function (url) {
         setPreviewURL(url);
         console.log(previewURL);
       })
@@ -71,7 +71,7 @@ export function UploadTest() {
 
     videoRef
       .getDownloadURL()
-      .then((url) => {
+      .then(function (url) {
         setVideoURL(url);
         console.log(videoURL);
       })

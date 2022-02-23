@@ -61,7 +61,7 @@ export function UploadExercise() {
 
     previewRef
       .getDownloadURL()
-      .then((url) => {
+      .then(function (url) {
         setPreviewURL(url);
         console.log(previewURL);
       })
@@ -69,7 +69,7 @@ export function UploadExercise() {
 
     videoRef
       .getDownloadURL()
-      .then((url) => {
+      .then(function (url) {
         setVideoURL(url);
         console.log(videoURL);
       })
