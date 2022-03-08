@@ -31,7 +31,6 @@ export async function readParticipantWithId(props) {
   const participantRef = await database.ref(`participant/${props}`).get();
 
   if (!participantRef.exists()) {
-    console.log('Participant does not exists.');
     return;
   } else {
     return participantRef;
@@ -49,7 +48,6 @@ export async function readParticipantWithCPF(props) {
     });
 
   if (!participant) {
-    console.log('Participant does not exists.');
     return;
   } else {
     return participant;

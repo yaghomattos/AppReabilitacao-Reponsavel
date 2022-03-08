@@ -12,7 +12,6 @@ export async function createExercise(props) {
       preview: props.preview,
     })
     .then(() => {
-      console.log('Video criado');
       Alert.alert('Video cadastrado');
     });
 }
@@ -28,7 +27,6 @@ export async function readExercise(props) {
     });
 
   if (!exercise) {
-    console.log('Exercise does not exists.');
     return;
   } else {
     return exerciseRef;

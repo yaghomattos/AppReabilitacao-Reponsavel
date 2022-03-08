@@ -20,7 +20,6 @@ export async function readOrientation(props) {
   const orientationRef = await database.ref(`orientation/${props}`).get();
 
   if (!orientationRef.exists()) {
-    console.log('Orientation does not exists.');
     return;
   } else {
     return orientationRef;

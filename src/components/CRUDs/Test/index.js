@@ -15,7 +15,6 @@ export async function createTest(props) {
         reps: '',
       })
       .then(() => {
-        console.log('Test criado');
         Alert.alert('Teste cadastrado');
       });
   } else {
@@ -29,7 +28,6 @@ export async function createTest(props) {
         reps: props.reps,
       })
       .then(() => {
-        console.log('Test criado');
         Alert.alert('Teste cadastrado');
       });
   }
@@ -46,7 +44,6 @@ export async function readTest(props) {
     });
 
   if (!test) {
-    console.log('Test does not exists.');
     return;
   } else {
     return testRef;
