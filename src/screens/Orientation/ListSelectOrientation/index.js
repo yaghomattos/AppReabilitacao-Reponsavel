@@ -9,14 +9,14 @@ import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const ListSelectOrientation = (props) => {
-  const testOrExercise = props.route.className;
+  const testOrExercise = props.route.params.className;
+  const id = props.route.params.id;
 
   const [orientation, setOrientation] = useState('');
 
   useEffect(() => {
     var li = [];
     if (testOrExercise == 'test') {
-      const id = props.route.params.test;
       database
         .ref('selectOrientation')
         .get()
@@ -32,7 +32,6 @@ export const ListSelectOrientation = (props) => {
           setOrientation(li);
         });
     } else {
-      const id = props.route.params.exercise;
       database
         .ref('selectOrientation')
         .get()
@@ -63,26 +62,21 @@ export const ListSelectOrientation = (props) => {
             <FlatList
               data={orientation}
               keyExtractor={(item) => item.id}
-              ItemSeparatorComponent={() => <Divider />}
+              ItemSeparatorComponent={() => <Divider style={styles.divider} />}
               renderItem={({ item }) => (
                 <View
                   style={{
+                    width: 350,
+                    borderRadius: 5,
                     flexDirection: 'row',
-                    width: 360,
-                    height: item.orientation.length * 1.2,
-                    minHeight: 40,
-                    marginTop: 10,
-                    borderRadius: 10,
-                    justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: '#afafaf',
+                    justifyContent: 'center',
+                    backgroundColor: '#6f6f6f',
                   }}
                 >
                   <List.Item
                     style={{
                       width: 320,
-                      height: item.orientation.length * 1.2,
-                      minHeight: 40,
                     }}
                     title={item.orientation}
                     titleNumberOfLines={100}

@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
   },
+  divider: {
+    height: 3,
+    backgroundColor: '#fff',
+  },
   item: {
     flexDirection: 'row',
     width: 350,

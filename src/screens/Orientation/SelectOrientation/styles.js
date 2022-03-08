@@ -6,13 +6,16 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#3E9ACD',
   },
-  viewList: {
-    flex: 1,
-    paddingTop: 20,
+  wrapper: {
+    height: '100%',
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
-    alignItems: 'center',
     backgroundColor: '#fff',
+  },
+  viewList: {
+    height: '82%',
+    paddingTop: 20,
+    alignItems: 'center',
   },
   item: {
     width: 350,
@@ -22,6 +25,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#6f6f6f',
+  },
+  divider: {
+    height: 3,
+    backgroundColor: '#fff',
   },
   itemTitle: {
     fontSize: 18,
