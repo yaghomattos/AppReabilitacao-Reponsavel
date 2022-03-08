@@ -36,7 +36,7 @@ export function ParticipantRecord() {
       weight: weight,
       height: height,
       id: user.id,
-      userName: user.name,
+      userName: user.username,
     };
 
     auth
