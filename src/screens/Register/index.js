@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   KeyboardAvoidingView,
@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { AuthContext } from '../../context/Auth';
 import { auth } from '../../services/firebase';
 import styles from './styles';
 
@@ -20,23 +19,21 @@ export function Register() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
-  const { isSignedIn, setSignedIn } = useContext(AuthContext);
-
   const adminSignUp = async function () {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then(function (result) {
         Alert.alert(`${result.user.email}, cadastro realizado com sucesso!`);
 
-        return result.user.updateProfile({
-          displayName: name,
-        });
+        return (
+          result.user.updateProfile({
+            displayName: name,
+          }) && navigation.navigate('Login')
+        );
       })
       .catch(() => {
-        Alert.alert('Erro! Email já cadastrado');
+        Alert.alert('Erro! Email inválido ou senha menor que 6 digitos');
       });
-
-    setSignedIn(true);
   };
 
   return (
