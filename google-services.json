@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "718914903263",
+    "firebase_url": "https://reabilitacao-50b31-default-rtdb.firebaseio.com",
+    "project_id": "reabilitacao-50b31",
+    "storage_bucket": "reabilitacao-50b31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718914903263:android:534328627f8d2c6f621d6a",
+        "android_client_info": {
+          "package_name": "com.ufjf.reabilitacao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718914903263-nmssof5741uf4571embuiodh640cqc7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiGeqoTF7xIbNuTZfqqKOfbP9GjjbjTII"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718914903263-nmssof5741uf4571embuiodh640cqc7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

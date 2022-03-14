@@ -13,24 +13,26 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+      "package": "com.ufjf.reabiltiacao",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyCT87Nqs6wQy9HjvhcPD1zG7dFu19Mo16U",
+          "projectId": "reabilitacao-50b31",
+          "appId": "1:718914903263:web:1e010dd1f7016fc6621d6a",
+          "measurementId": "G-1Z9V8BB6L8"
+        }
+      }
     },
-    "plugins": [
-      "expo-image-picker"
-    ],
+    "plugins": ["expo-image-picker"],
     "description": ""
   }
 }
