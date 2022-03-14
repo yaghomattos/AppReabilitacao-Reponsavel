@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import * as Analytics from 'expo-firebase-analytics';
 import React from 'react';
 import { Chat } from '../screens/Chat/index';
 import { Educational } from '../screens/Educational/index';
@@ -33,9 +34,28 @@ const AuthStack = createStackNavigator();
 const FlowStack = createStackNavigator();
 
 export function AuthRouter() {
+  const navigationRef = React.useRef();
+  const routeNameRef = React.useRef();
   return (
-    <NavigationContainer initialRouteName="login">
-      <AuthStack.Navigator headerMode="none">
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+      }}
+      onStateChange={async () => {
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+        if (previousRouteName !== currentRouteName) {
+          await Analytics.logEvent('screen_view', {
+            screen_name: currentRouteName,
+          });
+        }
+
+        routeNameRef.current = currentRouteName;
+      }}
+    >
+      <AuthStack.Navigator headerMode="none" initialRouteName="Login">
         <AuthStack.Screen name="Login" component={Login} />
         <AuthStack.Screen name="Register" component={Register} />
       </AuthStack.Navigator>
@@ -44,8 +64,27 @@ export function AuthRouter() {
 }
 
 export function FlowRouter() {
+  const navigationRef = React.useRef();
+  const routeNameRef = React.useRef();
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+      }}
+      onStateChange={async () => {
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+        if (previousRouteName !== currentRouteName) {
+          await Analytics.logEvent('screen_view', {
+            screen_name: currentRouteName,
+          });
+        }
+
+        routeNameRef.current = currentRouteName;
+      }}
+    >
       <FlowStack.Navigator headerMode="none" initialRouteName="Home">
         <FlowStack.Screen name="Home" component={Home} />
         <FlowStack.Screen name="Chat" component={Chat} />
