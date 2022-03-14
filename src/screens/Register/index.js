@@ -1,17 +1,18 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
   Alert,
+  Image,
   KeyboardAvoidingView,
   StatusBar,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import { auth } from '../../services/firebase';
 import styles from './styles';
-
 export function Register() {
   const navigation = useNavigation();
 
@@ -42,38 +43,49 @@ export function Register() {
       keyboardVerticalOffset="-140"
       style={styles.keyboard}
     >
-      <StatusBar barStyle="dark-content" backgroundColor="#0065A4" />
+      <StatusBar barStyle="dark-content" backgroundColor="#76BCAA" />
       <View style={styles.wrapper}>
         <View style={styles.logo}>
-          <Text style={styles.text_label}>{'App Reabilitação'}</Text>
+          <Image
+            style={styles.icon}
+            source={require('../../assets/icon.png')}
+          />
+          <Text style={styles.name}>{'App Reabilitação'}</Text>
         </View>
 
         <View style={styles.form}>
           <TextInput
             style={styles.input}
+            placeholderTextColor={'#222222'}
             value={name}
             placeholder={'Nome'}
             onChangeText={(text) => setName(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
+            left={<TextInput.Icon name="account" color={'#222222'} />}
           />
           <TextInput
             style={styles.input}
+            placeholderTextColor={'#222222'}
             value={email}
             placeholder={'Email'}
             onChangeText={(text) => setEmail(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
+            left={<TextInput.Icon name="email" color={'#222222'} />}
           />
           <TextInput
             style={styles.input}
+            placeholderTextColor={'#222222'}
             value={password}
             placeholder={'Senha'}
             secureTextEntry
             onChangeText={(text) => setPassword(text)}
+            left={<TextInput.Icon name="key" color={'#222222'} />}
           />
           <TouchableOpacity onPress={() => adminSignUp()}>
             <View style={styles.button}>
+              <Ionicons name="person-add-outline" size={24} color="#fefefe" />
               <Text style={styles.text_label}>{'Registrar'}</Text>
             </View>
           </TouchableOpacity>
