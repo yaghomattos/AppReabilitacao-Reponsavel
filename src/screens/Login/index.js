@@ -1,14 +1,16 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
 import {
   Alert,
+  Image,
   KeyboardAvoidingView,
   StatusBar,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import { AuthContext } from '../../context/Auth';
 import { auth } from '../../services/firebase';
 import styles from './styles';
@@ -50,29 +52,38 @@ export const Login = () => {
       keyboardVerticalOffset="-140"
       style={styles.keyboard}
     >
-      <StatusBar barStyle="dark-content" backgroundColor="#0065A4" />
+      <StatusBar barStyle="dark-content" backgroundColor="#76BCAA" />
       <View style={styles.wrapper}>
         <View style={styles.logo}>
-          <Text style={styles.text_label}>{'App Reabilitação'}</Text>
+          <Image
+            style={styles.icon}
+            source={require('../../assets/icon.png')}
+          />
+          <Text style={styles.name}>{'App Reabilitação'}</Text>
         </View>
         <View style={styles.form}>
           <TextInput
             style={styles.input}
+            placeholderTextColor={'#222222'}
             value={email}
             placeholder={'Email'}
             onChangeText={(text) => setEmail(text)}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
+            left={<TextInput.Icon name="email" color={'#222222'} />}
           />
           <TextInput
             style={styles.input}
+            placeholderTextColor={'#222222'}
             value={password}
             placeholder={'Senha'}
             secureTextEntry
             onChangeText={(text) => setPassword(text)}
+            left={<TextInput.Icon name="key" color={'#222222'} />}
           />
           <TouchableOpacity onPress={() => doUserLogin()}>
             <View style={styles.button}>
+              <MaterialIcons name="login" size={24} color="#fefefe" />
               <Text style={styles.text_label}>{'Entrar'}</Text>
             </View>
           </TouchableOpacity>
