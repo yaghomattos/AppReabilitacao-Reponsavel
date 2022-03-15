@@ -23,6 +23,7 @@ export const SelectTest = (props) => {
             description: child.val().description,
             video: child.val().video,
             preview: child.val().preview,
+            sets: props.sets,
             reps: child.val().reps,
             timer: child.val().timer,
             id: child.key,
@@ -41,6 +42,8 @@ export const SelectTest = (props) => {
       video: item.video,
       preview: item.preview,
       timer: item.timer,
+      sets: props.sets,
+      reps: item.reps,
     };
 
     createSelectTests(property);
