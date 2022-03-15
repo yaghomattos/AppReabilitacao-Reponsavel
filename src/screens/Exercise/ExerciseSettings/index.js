@@ -7,10 +7,10 @@ import Header from '../../../components/Header';
 import styles from './styles';
 
 export function ExerciseSettings(props) {
-  const [sets, setSets] = useState(0);
-  const [reps, setReps] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  const [sets, setSets] = useState('');
+  const [reps, setReps] = useState('');
+  const [minutes, setMinutes] = useState('');
+  const [seconds, setSeconds] = useState('');
 
   const [frequency, setFrequency] = useState(false);
   const [saturation, setSaturation] = useState(false);
