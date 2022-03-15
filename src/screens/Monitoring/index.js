@@ -4,44 +4,16 @@ import { FlatList, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import HeaderHome from '../../components/HeaderHome/index';
 import { database } from '../../services/firebase';
-import { CurrentDate } from '../../utils/CurrentDate';
 import styles from './styles';
-
-function CaseBad() {
-  return 'Ruim';
-}
-
-function CaseOkay() {
-  return 'Bom';
-}
-
-function CaseGreat() {
-  return 'Excelente';
-}
-
-function Productivy(props) {
-  const percent = props;
-  if (percent <= 0.34) return <CaseBad />;
-  else if (percent > 0.33 && percent <= 0.67) return <CaseOkay />;
-  else return <CaseGreat />;
-}
-
-const displayDate = () => {
-  return <Text style={styles.date}>{CurrentDate()}</Text>;
-};
 
 export function Monitoring(props) {
   const navigation = useNavigation();
 
-  const [show, setShow] = useState(false);
   const [preForm, setPreForm] = useState([]);
   const [postForm, setPostForm] = useState([]);
-  const [date, setDate] = useState(new Date());
 
   const participant = props.route.params[0];
   const provider = props.route.params[1];
-
-  const lastDate = new Date();
 
   useEffect(() => {
     var liPre = [];
