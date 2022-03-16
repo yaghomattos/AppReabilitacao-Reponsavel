@@ -23,7 +23,6 @@ import { ParticipantRecord } from '../screens/Participant/RecordParticipant/inde
 import { Register } from '../screens/Register/index';
 import { ListSelectTest } from '../screens/Test/ListSelectTest/index';
 import { ListTests } from '../screens/Test/ListTests/index';
-import { MenuTest } from '../screens/Test/MenuTest';
 import { SelectTest } from '../screens/Test/SelectTest/index';
 import { TestSettings } from '../screens/Test/TestSettings/index';
 import { UploadTest } from '../screens/Test/UploadTest/index';
@@ -132,8 +131,6 @@ export function FlowRouter() {
         <FlowStack.Screen name="Monitoring" component={Monitoring} />
         <FlowStack.Screen name="ViewForm" component={ViewForm} />
         <FlowStack.Screen name="MenuOrientation" component={MenuOrientation} />
-
-        <FlowStack.Screen name="MenuTest" component={MenuTest} />
         <FlowStack.Screen name="NewOrientation" component={NewOrientation} />
       </FlowStack.Navigator>
     </NavigationContainer>
