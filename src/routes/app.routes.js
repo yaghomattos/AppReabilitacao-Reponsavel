@@ -7,7 +7,6 @@ import { Educational } from '../screens/Educational/index';
 import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
 import { ListExercises } from '../screens/Exercise/ListExercises/index';
 import { ListSelectExercise } from '../screens/Exercise/ListSelectExercise/index';
-import { MenuTraining } from '../screens/Exercise/MenuTraining/index';
 import { SelectExercise } from '../screens/Exercise/SelectExercise/index';
 import { UploadExercise } from '../screens/Exercise/UploadExercise/index';
 import { Home } from '../screens/Home/index';
@@ -133,7 +132,7 @@ export function FlowRouter() {
         <FlowStack.Screen name="Monitoring" component={Monitoring} />
         <FlowStack.Screen name="ViewForm" component={ViewForm} />
         <FlowStack.Screen name="MenuOrientation" component={MenuOrientation} />
-        <FlowStack.Screen name="MenuTraining" component={MenuTraining} />
+
         <FlowStack.Screen name="MenuTest" component={MenuTest} />
         <FlowStack.Screen name="NewOrientation" component={NewOrientation} />
       </FlowStack.Navigator>

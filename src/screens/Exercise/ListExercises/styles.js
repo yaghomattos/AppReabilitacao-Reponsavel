@@ -3,40 +3,32 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3E9ACD',
+    backgroundColor: '#76BCAA',
   },
   background: {
     flex: 1,
-    borderTopStartRadius: 15,
-    borderTopEndRadius: 15,
-    backgroundColor: '#f5f5f5',
   },
   viewList: {
-    height: '80%',
-    paddingTop: 10,
+    height: '100%',
     alignItems: 'center',
-    borderTopStartRadius: 15,
-    borderTopEndRadius: 15,
   },
   itemContainer: {
     flexDirection: 'row',
-    width: 340,
-    height: 60,
-    marginTop: 10,
-    borderRadius: 10,
+    width: 342,
+    height: 80,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: '#afafaf',
+    marginBottom: 10,
   },
   item: {
     width: 280,
   },
   itemTitle: {
     fontSize: 20,
-    color: '#fff',
+    color: '#222222',
   },
   button: {
-    color: '#fff',
+    color: '#222222',
     margin: 15,
   },
   add: {
@@ -47,8 +39,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '85%',
     left: '80%',
-    borderRadius: 15,
-    backgroundColor: '#afafaf',
+    borderRadius: 20,
+    backgroundColor: '#222222',
   },
 });
 
