@@ -11,7 +11,7 @@ export const TabExercise = () => {
     <View style={styles.footer}>
       <TouchableOpacity
         style={styles.tab}
-        onPress={() => navigation.navigate('ListExercises')}
+        onPress={() => navigation.push('ListExercises')}
       >
         <Ionicons name="list" size={24} color="black" />
         <Text style={styles.header_text}>{'Exercícios'}</Text>
@@ -19,7 +19,7 @@ export const TabExercise = () => {
       <TouchableOpacity
         style={styles.tab}
         onPress={() =>
-          navigation.navigate('ListParticipantRoute', 'ListSelectExercise')
+          navigation.push('ListParticipantRoute', 'ListSelectExercise')
         }
       >
         <Ionicons name="checkbox-outline" size={24} color="black" />
@@ -28,11 +28,18 @@ export const TabExercise = () => {
       <TouchableOpacity
         style={styles.tab}
         onPress={() =>
-          navigation.navigate('ListParticipantRoute', 'ExerciseMonitoring')
+          navigation.push('ListParticipantRoute', 'ExerciseMonitoring')
         }
       >
         <Feather name="activity" size={24} color="black" />
         <Text style={styles.header_text}>{'Monitoramento'}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tab}
+        onPress={() => navigation.push('Home')}
+      >
+        <Ionicons name="home" size={24} color="black" />
+        <Text style={styles.header_text}>{'Home'}</Text>
       </TouchableOpacity>
     </View>
   );
