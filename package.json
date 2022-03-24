@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/helper-validator-identifier": "^7.15.7",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-native-picker/picker": "^2.4.0",
     "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/stack": "^5.14.5",
