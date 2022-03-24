@@ -13,7 +13,6 @@ export async function createSelectTests(props) {
       video: props.video,
       preview: props.preview,
       timer: props.timer,
-      sets: props.sets,
       reps: props.reps,
       check: false,
       frequency: false,
