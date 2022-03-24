@@ -16,6 +16,7 @@ export async function createParticipant(props) {
       address: props.address,
       height: props.height,
       weight: props.weight,
+      gender: props.gender,
       user: props.id,
       userName: props.userName,
     })
@@ -87,6 +88,10 @@ export async function updateParticipant(props) {
   if (props.weight != '')
     participantRef.update({
       weight: props.weight,
+    });
+  if (props.gender != '')
+    participantRef.update({
+      gender: props.gender,
     });
   Alert.alert('Dados do Participante atualizados!');
 }

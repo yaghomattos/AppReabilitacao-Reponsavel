@@ -1,15 +1,17 @@
+import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import { Button } from '../../../components/Button/index';
 import { updateSelectTests } from '../../../components/CRUDs/SelectTest';
-import Header from '../../../components/Header';
+import HeaderHome from '../../../components/HeaderHome';
 import styles from './styles';
 
 export function TestSettings(props) {
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
   const [reps, setReps] = useState('');
+  const [reference, setReference] = useState('');
 
   const [frequency, setFrequency] = useState(false);
   const [saturation, setSaturation] = useState(false);
@@ -40,7 +42,7 @@ export function TestSettings(props) {
 
   return (
     <View style={styles.wrapper}>
-      <Header title="Ajuste de Métricas" />
+      <HeaderHome title="Ajuste de Métricas" />
       <View style={styles.container}>
         <Text style={styles.title}>{'Cronômetro'}</Text>
         <View style={styles.form}>
@@ -112,21 +114,47 @@ export function TestSettings(props) {
             />
             <Text style={styles.text_checkbox}>{'Cansaço'}</Text>
           </View>
+          <Picker
+            selectedValue={reference}
+            style={styles.picker}
+            onValueChange={(itemValue, itemIndex) => setReference(itemValue)}
+          >
+            <Picker.Item
+              label="Teste senta e levanta de 5 repetições"
+              value="TSL_5Reps"
+            />
+            <Picker.Item
+              label="Teste senta e levanta de 30 segundos"
+              value="TSL_30Seconds"
+            />
+            <Picker.Item
+              label="Teste senta e levanta de 1 minuto"
+              value="TSL_1Minute"
+            />
+            <Picker.Item label="TUG – Velocidade usual" value="TUG_Normal" />
+            <Picker.Item label="TUG – Velocidade máxima" value="TUG_Maximum" />
+            <Picker.Item
+              label="4MGS - Velocidade usual"
+              value="FourMGS_Normal"
+            />
+            <Picker.Item
+              label="4MGS - Velocidade máxima"
+              value="FourMGS_Maximum"
+            />
+            <Picker.Item label="Teste do degrau de 6 minutos" value="TD6" />
+            <Picker.Item label="Teste do degrau incremental" value="TDIM" />
+          </Picker>
         </View>
-
         <Button
           title="Orientações"
           onPress="MenuOrientation"
           props={props.route.params}
         />
-
-        {(minutes != '' || seconds != '' || reps != '') && (
-          <TouchableOpacity onPress={() => handleSettings()}>
-            <View style={styles.button}>
-              <Text style={styles.text_label}>{'Salvar'}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity onPress={() => handleSettings()}>
+          <View style={styles.button}>
+            <Text style={styles.text_label}>{'Salvar'}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

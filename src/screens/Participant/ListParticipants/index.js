@@ -29,6 +29,7 @@ export const ListParticipants = () => {
             address: child.val().address,
             height: child.val().height,
             weight: child.val().weight,
+            gender: child.val().gender,
             id: child.key,
           });
         });
@@ -42,7 +43,7 @@ export const ListParticipants = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderHome title="Cadastro de participantes" />
+      <HeaderHome title="Participantes" />
       <View style={styles.viewList}>
         <FlatList
           numColumns={1}
@@ -72,8 +73,8 @@ export const ListParticipants = () => {
       <View style={styles.add}>
         <Ionicons
           name="add-outline"
-          size={38}
-          color={'black'}
+          size={24}
+          color={'#fefefe'}
           onPress={() => {
             navigation.navigate('ParticipantRecord');
           }}

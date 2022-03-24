@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { readPostForm, readPreForm } from '../../components/CRUDs/Form/index';
-import Header from '../../components/Header';
+import HeaderHome from '../../components/HeaderHome';
 import { CalcPerformance } from '../../utils/CalcPerformance';
 import styles from './styles';
 
@@ -37,7 +37,7 @@ export function ViewForm(props) {
     if (form.reps != null) {
       setPerformance(
         await CalcPerformance({
-          name: form.name,
+          reference: form.reference,
           participant: participant,
           reps: form.reps,
         })
@@ -45,7 +45,7 @@ export function ViewForm(props) {
     } else {
       setPerformance(
         await CalcPerformance({
-          name: form.name,
+          reference: form.reference,
           participant: participant,
           timer: form.timer,
         })
@@ -55,7 +55,7 @@ export function ViewForm(props) {
 
   return (
     <View style={styles.wrapper}>
-      <Header title="Formulário" />
+      <HeaderHome title="Formulário" />
       <View style={styles.container}>
         <View style={styles.form}>
           {type != 'preForm' && test && (
@@ -100,7 +100,7 @@ export function ViewForm(props) {
           {type != 'preForm' && (
             <>
               <Text style={styles.title}>{'Desempenho'}</Text>
-              <Text style={styles.label}>{'0 %'}</Text>
+              <Text style={styles.label}>{`${performance}%`}</Text>
             </>
           )}
 

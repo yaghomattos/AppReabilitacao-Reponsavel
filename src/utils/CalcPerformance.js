@@ -2,7 +2,7 @@ import { readParticipantWithId } from '../components/CRUDs/Participant/index';
 import * as referenceValues from './ReferenceValues';
 
 export async function CalcPerformance(params) {
-  const name = params.name;
+  const name = params.reference;
   const participantId = params.participant;
   var participant = '';
   var reps = '';
@@ -15,7 +15,7 @@ export async function CalcPerformance(params) {
   participant = await readParticipantWithId(participantId);
 
   switch (name) {
-    case 'Teste Senta e levanta de 5 repetições':
+    case 'TSL_5Reps':
       return (
         timer /
         referenceValues.TSL_5Reps({
@@ -23,7 +23,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case 'Teste Senta e Levanta de 30 segundos':
+    case 'TSL_30Seconds':
       return (
         reps /
         referenceValues.TSL_30Seconds({
@@ -31,7 +31,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case 'Teste Senta e levanta de 1 minuto':
+    case 'TSL_1Minute':
       return (
         reps /
         referenceValues.TSL_1Minute({
@@ -39,7 +39,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case 'TUG – VELOCIDADE USUAL':
+    case 'TUG_Normal':
       return (
         timer /
         referenceValues.TUG_Normal({
@@ -47,7 +47,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case 'TUG - VELOCIDADE MÁXIMA':
+    case 'TUG_Maximum':
       return (
         timer /
         referenceValues.TUG_Maximum({
@@ -55,7 +55,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case '4MGS - VELOCIDADE USUAL':
+    case 'FourMGS_Normal':
       return (
         timer /
         referenceValues.FourMGS_Normal({
@@ -63,7 +63,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case '4MGS - VELOCIDADE MÁXIMA':
+    case 'FourMGS_Maximum':
       return (
         timer /
         referenceValues.FourMGS_Maximum({
@@ -71,7 +71,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case 'TESTE DO DEGRAU DE 6 MINUTOS':
+    case 'TD6':
       return (
         reps /
         referenceValues.TD6({
@@ -79,7 +79,7 @@ export async function CalcPerformance(params) {
           gender: participant.gender,
         })
       );
-    case 'TESTE DO DEGRAU INCREMENTAL':
+    case 'TDIM':
       return (
         timer /
         referenceValues.TDIM({
