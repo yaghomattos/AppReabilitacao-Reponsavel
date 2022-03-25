@@ -35,6 +35,7 @@ export function TestSettings(props) {
       saturation: saturation,
       dyspnea: dyspnea,
       fatigue: fatigue,
+      reference: reference,
     };
 
     updateSelectTests(object);

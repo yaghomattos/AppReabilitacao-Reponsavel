@@ -58,6 +58,10 @@ export async function updateSelectTests(props) {
     selectTestRef.update({
       fatigue: true,
     });
+  if (props.referece)
+    selectTestRef.update({
+      referece: props.referece,
+    });
   Alert.alert('Teste atualizado!');
 }
 
