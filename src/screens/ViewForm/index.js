@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { readPostForm, readPreForm } from '../../components/CRUDs/Form/index';
 import HeaderHome from '../../components/HeaderHome';
-import { CalcPerformance } from '../../utils/CalcPerformance';
+import { Performance } from '../../components/Performance';
 import styles from './styles';
 
 export function ViewForm(props) {
@@ -15,6 +15,7 @@ export function ViewForm(props) {
   const formId = props.route.params.form;
   const type = props.route.params.type;
   const participant = props.route.params.participant;
+  const reference = props.route.params.reference;
 
   var test = false;
 
@@ -28,30 +29,9 @@ export function ViewForm(props) {
         setForm(response.val());
       });
     }
-    HandleCalcPerformance();
   }, []);
 
-  if (form.reps != null || form.timer != null) test = true;
-
-  async function HandleCalcPerformance() {
-    if (form.reps != null) {
-      setPerformance(
-        await CalcPerformance({
-          reference: form.reference,
-          participant: participant,
-          reps: form.reps,
-        })
-      );
-    } else {
-      setPerformance(
-        await CalcPerformance({
-          reference: form.reference,
-          participant: participant,
-          timer: form.timer,
-        })
-      );
-    }
-  }
+  if (form.reps != '' || form.timer != '') test = true;
 
   return (
     <View style={styles.wrapper}>
@@ -61,36 +41,36 @@ export function ViewForm(props) {
           {type != 'preForm' && test && (
             <>
               <Text style={styles.title}>
-                {form.timer != null ? 'Tempo' : 'Número de repetições'}
+                {form.timer != '' ? 'Tempo' : 'Número de repetições'}
               </Text>
               <Text style={styles.label}>
-                {form.timer != null ? form.timer + ' segundos' : form.reps}
+                {form.timer != '' ? form.timer + ' segundos' : form.reps}
               </Text>
             </>
           )}
 
-          {form.frequency != null && (
+          {form.frequency != '' && (
             <>
               <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
               <Text style={styles.label}>{form.frequency}</Text>
             </>
           )}
 
-          {form.saturation != null && (
+          {form.saturation != '' && (
             <>
               <Text style={styles.title}>{'Saturação'}</Text>
               <Text style={styles.label}>{form.saturation}</Text>
             </>
           )}
 
-          {form.dyspnea != null && (
+          {form.dyspnea != '' && (
             <>
               <Text style={styles.title}>{'Falta de Ar'}</Text>
               <Text style={styles.label}>{form.dyspnea}</Text>
             </>
           )}
 
-          {form.fatigue != null && (
+          {form.fatigue != '' && (
             <>
               <Text style={styles.title}>{'Cansaço'}</Text>
               <Text style={styles.label}>{form.fatigue}</Text>
@@ -98,10 +78,13 @@ export function ViewForm(props) {
           )}
 
           {type != 'preForm' && (
-            <>
-              <Text style={styles.title}>{'Desempenho'}</Text>
-              <Text style={styles.label}>{`${performance}%`}</Text>
-            </>
+            <Performance
+              props={{
+                reference: reference,
+                participantId: participant,
+                reps: form.reps,
+              }}
+            />
           )}
 
           <TouchableOpacity onPress={() => navigation.goBack()}>
