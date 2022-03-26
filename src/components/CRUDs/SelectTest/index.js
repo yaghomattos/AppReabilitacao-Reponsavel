@@ -14,7 +14,7 @@ export async function createSelectTests(props) {
       preview: props.preview,
       timer: props.timer,
       reps: props.reps,
-      check: false,
+      reference: '',
       frequency: false,
       saturation: false,
       dyspnea: false,
@@ -30,6 +30,7 @@ export async function createSelectTests(props) {
 
 export async function updateSelectTests(props) {
   const selectTestRef = database.ref('selectTest/' + props.id);
+  console.log(props);
 
   if (props.timer)
     selectTestRef.update({
@@ -42,26 +43,25 @@ export async function updateSelectTests(props) {
       timer: '',
     });
 
-  if (props.frequency)
-    selectTestRef.update({
-      frequency: true,
-    });
-  if (props.saturation)
-    selectTestRef.update({
-      saturation: true,
-    });
-  if (props.dyspnea)
-    selectTestRef.update({
-      dyspnea: true,
-    });
-  if (props.fatigue)
-    selectTestRef.update({
-      fatigue: true,
-    });
-  if (props.referece)
-    selectTestRef.update({
-      referece: props.referece,
-    });
+  selectTestRef.update({
+    frequency: props.frequency,
+  });
+
+  selectTestRef.update({
+    saturation: props.saturation,
+  });
+
+  selectTestRef.update({
+    dyspnea: props.dyspnea,
+  });
+
+  selectTestRef.update({
+    fatique: props.fatique,
+  });
+
+  selectTestRef.update({
+    reference: props.reference,
+  });
   Alert.alert('Teste atualizado!');
 }
 
