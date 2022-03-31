@@ -10,13 +10,14 @@ const Header = ({ title }) => {
   return (
     <View style={styles.header}>
       <View style={styles.backView}>
-        <Ionicons
-          name="arrow-back"
-          size={24}
-          style={styles.back}
-          onPress={() => navigation.goBack()}
-        />
+        <Ionicons name="home" size={24} color="transparent" />
         <Text style={styles.header_text}>{title}</Text>
+        <Ionicons
+          name="home"
+          size={24}
+          style={styles.icon}
+          onPress={() => navigation.push('Home')}
+        />
       </View>
     </View>
   );

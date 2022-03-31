@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import {
   Alert,
   Image,
-  KeyboardAvoidingView,
+  ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
@@ -30,78 +30,81 @@ export const Login = () => {
         setSignedIn(true);
       })
       .catch(() => {
-        Alert.alert('Email/Senha inválidos');
+        Alert.alert('Email ou Senha inválido');
       });
   };
 
   async function resetPassword() {
-    auth
-      .sendPasswordResetEmail(email)
-      .then((response) => {
-        Alert.alert(
-          'Informações para alteração de senha enviadas para:',
-          email
-        );
-      })
-      .catch();
+    if (email == '') Alert.alert('Digite seu email!');
+    else {
+      auth
+        .sendPasswordResetEmail(email)
+        .then((response) => {
+          Alert.alert(
+            'Informações para alteração de senha enviadas para:',
+            email
+          );
+        })
+        .catch();
+    }
   }
 
   return (
-    <KeyboardAvoidingView
-      behavior="height"
-      keyboardVerticalOffset="-140"
-      style={styles.keyboard}
-    >
-      <StatusBar barStyle="dark-content" backgroundColor="#76BCAA" />
-      <View style={styles.wrapper}>
-        <View style={styles.logo}>
-          <Image
-            style={styles.icon}
-            source={require('../../assets/icon.png')}
-          />
-          <Text style={styles.name}>{'App Reabilitação'}</Text>
+    <View style={styles.container}>
+      <ScrollView>
+        <StatusBar barStyle="dark-content" backgroundColor="#76BCAA" />
+        <View style={styles.wrapper}>
+          <View style={styles.logo}>
+            <Image
+              style={styles.icon}
+              source={require('../../assets/icon.png')}
+            />
+            <Text style={styles.name}>{'App Reabilitação'}</Text>
+          </View>
+          <View style={styles.form}>
+            <TextInput
+              style={styles.input}
+              placeholderTextColor={'#000'}
+              value={email}
+              placeholder={'Email'}
+              onChangeText={(text) => setEmail(text)}
+              autoCapitalize={'none'}
+              keyboardType={'email-address'}
+              left={<TextInput.Icon name="email" color={'#000'} />}
+            />
+            <TextInput
+              style={styles.input}
+              placeholderTextColor={'#000'}
+              value={password}
+              placeholder={'Senha'}
+              secureTextEntry
+              onChangeText={(text) => setPassword(text)}
+              left={<TextInput.Icon name="key" color={'#000'} />}
+            />
+            <TouchableOpacity onPress={() => doUserLogin()}>
+              <View style={styles.button}>
+                <MaterialIcons name="login" size={24} color="#fefefe" />
+                <Text style={styles.text_label}>{'Entrar'}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+              <Text style={styles.footer_text}>
+                {'Não possui conta? '}
+                <Text style={styles.footer_link}>{'Registre-se'}</Text>
+              </Text>
+            </TouchableOpacity>
+          </>
+          <>
+            <TouchableOpacity onPress={() => resetPassword()}>
+              <Text style={styles.footer_recovery}>
+                {'Esqueci minha Senha'}
+              </Text>
+            </TouchableOpacity>
+          </>
         </View>
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholderTextColor={'#222222'}
-            value={email}
-            placeholder={'Email'}
-            onChangeText={(text) => setEmail(text)}
-            autoCapitalize={'none'}
-            keyboardType={'email-address'}
-            left={<TextInput.Icon name="email" color={'#222222'} />}
-          />
-          <TextInput
-            style={styles.input}
-            placeholderTextColor={'#222222'}
-            value={password}
-            placeholder={'Senha'}
-            secureTextEntry
-            onChangeText={(text) => setPassword(text)}
-            left={<TextInput.Icon name="key" color={'#222222'} />}
-          />
-          <TouchableOpacity onPress={() => doUserLogin()}>
-            <View style={styles.button}>
-              <MaterialIcons name="login" size={24} color="#fefefe" />
-              <Text style={styles.text_label}>{'Entrar'}</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <>
-          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.footer_text}>
-              {'Não possui conta? '}
-              <Text style={styles.footer_link}>{'Registre-se'}</Text>
-            </Text>
-          </TouchableOpacity>
-        </>
-        <>
-          <TouchableOpacity onPress={() => resetPassword()}>
-            <Text style={styles.footer_recovery}>{'Esqueci minha Senha'}</Text>
-          </TouchableOpacity>
-        </>
-      </View>
-    </KeyboardAvoidingView>
+      </ScrollView>
+    </View>
   );
 };

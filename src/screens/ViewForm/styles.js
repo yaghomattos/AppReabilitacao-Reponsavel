@@ -1,40 +1,38 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#0065A4',
+    backgroundColor: '#76BCAA',
   },
   container: {
     flex: 1,
     paddingBottom: 50,
     justifyContent: 'center',
-    backgroundColor: '#3E9ACD',
   },
   form: {
     alignItems: 'center',
   },
   title: {
-    color: '#fff',
+    color: '#000',
     fontSize: 15,
   },
   label: {
-    color: '#fff',
+    color: '#000',
     fontSize: 15,
     fontWeight: 'bold',
     paddingBottom: 10,
   },
   button: {
-    width: 100,
-    height: 50,
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.07,
     marginTop: 20,
-    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#384955',
+    backgroundColor: '#000',
   },
   text_label: {
-    color: '#fff',
+    color: '#fefefe',
     fontSize: 15,
   },
 });

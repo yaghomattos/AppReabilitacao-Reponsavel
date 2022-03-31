@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import { createSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
-import Header from '../../../components/Header';
+import HeaderHome from '../../../components/HeaderHome';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -40,30 +40,23 @@ export const SelectOrientation = (props) => {
 
   return (
     <View style={styles.container}>
-      <Header title="Selecionar Orientações" />
+      <HeaderHome title="Selecionar Orientações" />
       <View style={styles.wrapper}>
         <View style={styles.viewList}>
           <FlatList
             data={results}
             keyExtractor={(item) => item.id}
-            ItemSeparatorComponent={() => <Divider style={styles.divider} />}
             renderItem={({ item }) => (
-              <>
+              <View style={styles.item}>
                 <List.Item
-                  style={{
-                    width: 350,
-                    borderRadius: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: '#6f6f6f',
-                  }}
+                  style={styles.itemText}
                   title={item.text}
                   titleNumberOfLines={100}
                   titleStyle={styles.itemTitle}
                   onChe
                   onPress={() => HandleCreateSelectedOrientation(item.text)}
                 />
-              </>
+              </View>
             )}
           />
         </View>

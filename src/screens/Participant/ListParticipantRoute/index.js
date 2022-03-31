@@ -1,8 +1,9 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, TextInput, View } from 'react-native';
 import { List } from 'react-native-paper';
+import { CurrentUser } from '../../../components/CRUDs/User';
+import HeaderHome from '../../../components/HeaderHome';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -12,6 +13,12 @@ export const ListParticipantRoute = (props) => {
   const [search, setSearch] = useState('');
   const [results, setResults] = useState('');
 
+  const [id, setId] = useState('');
+
+  CurrentUser().then((currentUser) => {
+    setId(currentUser.id);
+  });
+
   useEffect(() => {
     var li = [];
     database
@@ -19,11 +26,13 @@ export const ListParticipantRoute = (props) => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((child) => {
+          // if (child.val().user == id) {
           li.push({
             key: child.val().cpf,
             name: child.val().name,
             id: child.key,
           });
+          //}
         });
         setResults(li);
       });
@@ -31,22 +40,17 @@ export const ListParticipantRoute = (props) => {
 
   var route = props.route.params;
   var user = '';
-  if (props.route.params[1].length > 1) {
+  if (props.route.params.hasOwnProperty('route'))
+    route = props.route.params.route;
+  else if (props.route.params[1] != undefined) {
     route = props.route.params[0];
     user = props.route.params[1];
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backView}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.back}
-            onPress={() => navigation.goBack()}
-          />
-        </View>
+      <HeaderHome title="Participantes" />
+      <View style={styles.search}>
         <TextInput
           style={styles.input}
           value={search}

@@ -1,13 +1,10 @@
-import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createOrientation } from '../../../components/CRUDs/Orientation/index';
-import Header from '../../../components/Header';
+import HeaderHome from '../../../components/HeaderHome';
 import styles from './styles';
 
 export function NewOrientation() {
-  const navigation = useNavigation();
-
   const [text, setText] = useState('');
 
   async function handleCreateOrientation() {
@@ -15,9 +12,9 @@ export function NewOrientation() {
   }
 
   return (
-    <>
-      <Header title="Adicionar nova Orientação" />
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <HeaderHome title="Adicionar nova Orientação" />
+      <View style={styles.wrapper}>
         <View style={styles.form}>
           <Text style={styles.inputName}>{'Descrição'}</Text>
           <TextInput
@@ -35,6 +32,6 @@ export function NewOrientation() {
           </TouchableOpacity>
         </View>
       </View>
-    </>
+    </View>
   );
 }

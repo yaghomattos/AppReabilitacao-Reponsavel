@@ -1,11 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import { deleteExercise } from '../../../components/CRUDs/Exercise';
-import HeaderHome from '../../../components/HeaderHome';
-import { TabExercise } from '../../../components/TabExercise/index';
+import Header from '../../../components/Header';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -38,13 +37,12 @@ export const ListExercises = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderHome title="Exercícios" />
+      <Header title={'Exercícios'} />
       <View style={styles.background}>
         <View style={styles.viewList}>
           <FlatList
             data={result}
             keyExtractor={(item) => item.id}
-            ItemSeparatorComponent={() => <Divider />}
             renderItem={({ item }) => (
               <View style={styles.itemContainer}>
                 <List.Item
@@ -54,16 +52,13 @@ export const ListExercises = () => {
                   titleStyle={styles.itemTitle}
                   left={() => (
                     <Image
-                      style={{
-                        width: '30%',
-                        height: 60,
-                      }}
+                      style={styles.image}
                       source={{ uri: item.preview }}
                     />
                   )}
                 />
-                <Ionicons
-                  name="trash"
+                <Feather
+                  name="trash-2"
                   size={24}
                   style={styles.button}
                   onPress={() => {
@@ -74,18 +69,17 @@ export const ListExercises = () => {
             )}
           />
         </View>
-        <View style={styles.add}>
-          <Ionicons
-            name="add-outline"
-            size={24}
-            color={'#fefefe'}
-            onPress={() => {
-              navigation.navigate('UploadExercise');
-            }}
-          />
-        </View>
       </View>
-      <TabExercise />
+      <View style={styles.add}>
+        <Ionicons
+          name="add-outline"
+          size={24}
+          color={'#fefefe'}
+          onPress={() => {
+            navigation.navigate('UploadExercise');
+          }}
+        />
+      </View>
     </View>
   );
 };

@@ -1,15 +1,12 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
 import { Bubble, GiftedChat, Send } from 'react-native-gifted-chat';
-import { Avatar, IconButton } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
+import HeaderHome from '../../components/HeaderHome';
 import { database } from '../../services/firebase';
 import styles from './styles';
 
 export function Chat(props) {
-  const navigation = useNavigation();
-
   const [messages, setMessages] = useState([]);
   const [results, setResults] = useState([]);
 
@@ -75,7 +72,7 @@ export function Chat(props) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <IconButton icon="send-circle" size={40} color="#000" />
+          <IconButton icon="send-circle" size={40} color="#009788" />
         </View>
       </Send>
     );
@@ -84,7 +81,7 @@ export function Chat(props) {
   function scrollToBottomComponent() {
     return (
       <View style={styles.bottomComponentContainer}>
-        <IconButton icon="chevron-double-down" size={36} color="#384955" />
+        <IconButton icon="chevron-double-down" size={36} color="#546F7A" />
       </View>
     );
   }
@@ -92,7 +89,7 @@ export function Chat(props) {
   function renderLoading() {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#384955" />
+        <ActivityIndicator size="large" color="#546F7A" />
       </View>
     );
   }
@@ -103,10 +100,10 @@ export function Chat(props) {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: '#3E9ACD',
+            backgroundColor: '#009788',
           },
           left: {
-            backgroundColor: '#fff',
+            backgroundColor: '#565755',
           },
         }}
       />
@@ -116,27 +113,7 @@ export function Chat(props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.headerNavigator}>
-          <Ionicons
-            name="arrow-back"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.goBack()}
-          />
-          <Ionicons
-            name="home"
-            size={24}
-            style={styles.icon}
-            onPress={() => navigation.navigate('Home')}
-          />
-        </View>
-        <View style={styles.avatarContainer}>
-          <Avatar.Image
-            size={100}
-            style={styles.avatar}
-            source={require('../../assets/profile.jpg')}
-          />
-        </View>
+        <HeaderHome title="Chat" />
         <View style={styles.person}>
           <Text style={styles.text}>{participantName}</Text>
         </View>

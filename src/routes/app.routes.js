@@ -1,3 +1,10 @@
+import {
+  Feather,
+  Foundation,
+  MaterialIcons,
+  Octicons,
+} from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Analytics from 'expo-firebase-analytics';
@@ -12,8 +19,8 @@ import { UploadExercise } from '../screens/Exercise/UploadExercise/index';
 import { Home } from '../screens/Home/index';
 import { Login } from '../screens/Login/index';
 import { Monitoring } from '../screens/Monitoring/index';
+import { ListOrientations } from '../screens/Orientation/ListOrientations';
 import { ListSelectOrientation } from '../screens/Orientation/ListSelectOrientation/index';
-import { MenuOrientation } from '../screens/Orientation/MenuOrientation/index';
 import { NewOrientation } from '../screens/Orientation/NewOrientation/index';
 import { SelectOrientation } from '../screens/Orientation/SelectOrientation/index';
 import { ListParticipantRoute } from '../screens/Participant/ListParticipantRoute/index';
@@ -30,6 +37,14 @@ import { ViewForm } from '../screens/ViewForm/index';
 
 const AuthStack = createStackNavigator();
 const FlowStack = createStackNavigator();
+
+const SelectExerciseStack = createStackNavigator();
+const MonitoringExerciseStack = createStackNavigator();
+const ExerciseTab = createBottomTabNavigator();
+
+const SelectTestStack = createStackNavigator();
+const MonitoringTestStack = createStackNavigator();
+const TestTab = createBottomTabNavigator();
 
 export function AuthRouter() {
   const navigationRef = React.useRef();
@@ -58,6 +73,158 @@ export function AuthRouter() {
         <AuthStack.Screen name="Register" component={Register} />
       </AuthStack.Navigator>
     </NavigationContainer>
+  );
+}
+
+function MonitoringExercise() {
+  return (
+    <MonitoringExerciseStack.Navigator headerMode="none">
+      <MonitoringExerciseStack.Screen
+        name="Monitoramento"
+        component={ListParticipantRoute}
+        initialParams={{ route: 'ExerciseMonitoring' }}
+      />
+      <MonitoringExerciseStack.Screen
+        name="Monitoring"
+        component={Monitoring}
+      />
+    </MonitoringExerciseStack.Navigator>
+  );
+}
+
+function SelectExerciseFlow() {
+  return (
+    <SelectExerciseStack.Navigator headerMode="none">
+      <SelectExerciseStack.Screen
+        name="Exercícios Selecionados"
+        component={ListParticipantRoute}
+        initialParams={{ route: 'ListSelectExercise' }}
+      />
+
+      <SelectExerciseStack.Screen
+        name="ListSelectExercise"
+        component={ListSelectExercise}
+      />
+    </SelectExerciseStack.Navigator>
+  );
+}
+
+function Training() {
+  return (
+    <ExerciseTab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarActiveTintColor: '#fefefe',
+        tabBarInactiveTintColor: '#000',
+        tabBarStyle: {
+          height: '12%',
+          paddingTop: 5,
+          backgroundColor: '#565755',
+          borderTopColor: 'transparent',
+        },
+        tabBarIcon: ({ color, size }) => {
+          switch (route.name) {
+            case 'Exercícios':
+              return <Octicons name={'checklist'} size={size} color={color} />;
+
+            case 'Treinamento':
+              return (
+                <MaterialIcons
+                  name={'directions-walk'}
+                  size={size}
+                  color={color}
+                />
+              );
+            case 'Monitoramento ':
+              return <Feather name={'activity'} size={size} color={color} />;
+          }
+        },
+        tabBarLabelStyle: {
+          flex: 1,
+          width: '100%',
+          fontSize: 16,
+        },
+      })}
+    >
+      <ExerciseTab.Screen name="Exercícios" component={ListExercises} />
+      <ExerciseTab.Screen name="Treinamento" component={SelectExerciseFlow} />
+      <ExerciseTab.Screen
+        name="Monitoramento "
+        component={MonitoringExercise}
+      />
+    </ExerciseTab.Navigator>
+  );
+}
+
+function MonitoringTest() {
+  return (
+    <MonitoringTestStack.Navigator headerMode="none">
+      <MonitoringTestStack.Screen
+        name="Monitoramento"
+        component={ListParticipantRoute}
+        initialParams={{ route: 'TestMonitoring' }}
+      />
+      <MonitoringTestStack.Screen name="Monitoring" component={Monitoring} />
+    </MonitoringTestStack.Navigator>
+  );
+}
+function SelectTestFlow() {
+  return (
+    <SelectTestStack.Navigator headerMode="none">
+      <SelectTestStack.Screen
+        name="Exercícios Selecionados"
+        component={ListParticipantRoute}
+        initialParams={{ route: 'ListSelectTest' }}
+      />
+
+      <SelectTestStack.Screen
+        name="ListSelectTest"
+        component={ListSelectTest}
+      />
+    </SelectTestStack.Navigator>
+  );
+}
+
+function Tests() {
+  return (
+    <TestTab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarActiveTintColor: '#fefefe',
+        tabBarInactiveTintColor: '#000',
+        tabBarStyle: {
+          height: '12%',
+          paddingTop: 5,
+          backgroundColor: '#565755',
+          borderTopColor: 'transparent',
+        },
+        tabBarIcon: ({ color, size }) => {
+          switch (route.name) {
+            case 'Testes':
+              return <Octicons name={'checklist'} size={size} color={color} />;
+            case 'Avaliação':
+              return (
+                <Foundation
+                  name={'clipboard-pencil'}
+                  size={size}
+                  color={color}
+                />
+              );
+            case 'Monitoramento':
+              return <Feather name={'activity'} size={size} color={color} />;
+          }
+        },
+        tabBarLabelStyle: {
+          flex: 1,
+          width: '100%',
+          fontSize: 16,
+        },
+      })}
+    >
+      <TestTab.Screen name="Testes" component={ListTests} />
+      <TestTab.Screen name="Avaliação" component={SelectTestFlow} />
+      <TestTab.Screen name="Monitoramento" component={MonitoringTest} />
+    </TestTab.Navigator>
   );
 }
 
@@ -92,32 +259,32 @@ export function FlowRouter() {
           name="ParticipantRecord"
           component={ParticipantRecord}
         />
-        <FlowStack.Screen name="UploadExercise" component={UploadExercise} />
-        <FlowStack.Screen name="UploadTest" component={UploadTest} />
         <FlowStack.Screen
           name="ListParticipants"
           component={ListParticipants}
         />
-        <FlowStack.Screen
-          name="ListSelectExercise"
-          component={ListSelectExercise}
-        />
-        <FlowStack.Screen name="ListSelectTest" component={ListSelectTest} />
-        <FlowStack.Screen
-          name="ListSelectOrientation"
-          component={ListSelectOrientation}
-        />
+
         <FlowStack.Screen
           name="ListParticipantRoute"
           component={ListParticipantRoute}
         />
-        <FlowStack.Screen name="ListTests" component={ListTests} />
-        <FlowStack.Screen name="ListExercises" component={ListExercises} />
-        <FlowStack.Screen name="SelectExercise" component={SelectExercise} />
+        <FlowStack.Screen name="UploadExercise" component={UploadExercise} />
+        <FlowStack.Screen name="UploadTest" component={UploadTest} />
+        <FlowStack.Screen name="ListTests" component={Tests} />
+        <FlowStack.Screen name="ListExercises" component={Training} />
+        <FlowStack.Screen
+          name="ListOrientations"
+          component={ListOrientations}
+        />
         <FlowStack.Screen name="SelectTest" component={SelectTest} />
+        <FlowStack.Screen name="SelectExercise" component={SelectExercise} />
         <FlowStack.Screen
           name="SelectOrientation"
           component={SelectOrientation}
+        />
+        <FlowStack.Screen
+          name="ListSelectOrientation"
+          component={ListSelectOrientation}
         />
         <FlowStack.Screen
           name="ParticipantProfile"
@@ -130,7 +297,6 @@ export function FlowRouter() {
         <FlowStack.Screen name="TestSettings" component={TestSettings} />
         <FlowStack.Screen name="Monitoring" component={Monitoring} />
         <FlowStack.Screen name="ViewForm" component={ViewForm} />
-        <FlowStack.Screen name="MenuOrientation" component={MenuOrientation} />
         <FlowStack.Screen name="NewOrientation" component={NewOrientation} />
       </FlowStack.Navigator>
     </NavigationContainer>

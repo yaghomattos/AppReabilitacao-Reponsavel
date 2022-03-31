@@ -6,11 +6,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#222222',
+    color: '#000',
     fontSize: 15,
   },
   label: {
-    color: '#222222',
+    color: '#000',
     fontSize: 15,
     fontWeight: 'bold',
     paddingBottom: 10,

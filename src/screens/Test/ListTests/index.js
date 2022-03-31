@@ -1,17 +1,15 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import { deleteTest } from '../../../components/CRUDs/Test';
-import HeaderHome from '../../../components/HeaderHome';
+import Header from '../../../components/Header';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
-export const ListTests = (props) => {
+export const ListTests = () => {
   const navigation = useNavigation();
-
-  const participant = props.route.params;
 
   const [result, setResults] = useState([]);
 
@@ -22,14 +20,12 @@ export const ListTests = (props) => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((child) => {
-          if (child.val().participant == participant) {
-            li.push({
-              name: child.val().name,
-              description: child.val().description,
-              preview: child.val().preview,
-              id: child.key,
-            });
-          }
+          li.push({
+            name: child.val().name,
+            description: child.val().description,
+            preview: child.val().preview,
+            id: child.key,
+          });
         });
         setResults(li);
       });
@@ -40,66 +36,50 @@ export const ListTests = (props) => {
   }
 
   return (
-    <>
-      <View style={styles.container}>
-        <HeaderHome title="Testes" />
-        <View style={styles.background}>
-          <View style={styles.viewList}>
-            <FlatList
-              data={result}
-              keyExtractor={(item) => item.id}
-              ItemSeparatorComponent={() => <Divider />}
-              renderItem={({ item }) => (
-                <View style={styles.itemContainer}>
-                  <List.Item
-                    style={styles.item}
-                    title={item.name}
-                    titleNumberOfLines={1}
-                    titleStyle={styles.itemTitle}
-                    left={() => (
-                      <Image
-                        style={{
-                          width: '20%',
-                          height: 50,
-                          marginLeft: 10,
-                        }}
-                        source={{ uri: item.preview }}
-                      />
-                    )}
-                  />
-
-                  {/* <Ionicons
-                    name="build"
-                    size={24}
-                    style={styles.button}
-                    onPress={() => {
-                      navigation.navigate('TestSettings', item);
-                    }}
-                  /> */}
-                  <Ionicons
-                    name="trash"
-                    size={24}
-                    style={styles.button}
-                    onPress={() => {
-                      handleDelete(item);
-                    }}
-                  />
-                </View>
-              )}
-            />
-          </View>
-          <View style={styles.add}>
-            <Ionicons
-              name="add-outline"
-              size={38}
-              color={'black'}
-              onPress={() => {
-                navigation.navigate('UploadTest');
-              }}
-            />
-          </View>
+    <View style={styles.container}>
+      <Header title={'Testes'} />
+      <View style={styles.background}>
+        <View style={styles.viewList}>
+          <FlatList
+            data={result}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <View style={styles.itemContainer}>
+                <List.Item
+                  style={styles.item}
+                  title={item.name}
+                  titleNumberOfLines={1}
+                  titleStyle={styles.itemTitle}
+                  left={() => (
+                    <Image
+                      style={styles.image}
+                      source={{ uri: item.preview }}
+                    />
+                  )}
+                />
+                <Feather
+                  name="trash-2"
+                  size={24}
+                  style={styles.button}
+                  onPress={() => {
+                    handleDelete(item);
+                  }}
+                />
+              </View>
+            )}
+          />
         </View>
       </View>
-    </>
+      <View style={styles.add}>
+        <Ionicons
+          name="add-outline"
+          size={24}
+          color={'#fefefe'}
+          onPress={() => {
+            navigation.navigate('UploadTest');
+          }}
+        />
+      </View>
+    </View>
   );
 };

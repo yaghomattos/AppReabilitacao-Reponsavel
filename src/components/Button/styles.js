@@ -1,24 +1,24 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 20,
-    borderRadius: 10,
+    margin: 10,
   },
   button: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
-    width: 200,
-    borderRadius: 10,
-    backgroundColor: '#384955',
+    width: Dimensions.get('window').width * 0.41,
+    height: Dimensions.get('window').width * 0.33,
+    borderRadius: 5,
+    backgroundColor: '#fefefe',
   },
   button_label: {
-    color: '#fff',
-    fontSize: 15,
+    color: '#000',
+    fontSize: 12,
+    fontWeight: '700',
   },
 });
 

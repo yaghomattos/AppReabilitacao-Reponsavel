@@ -1,35 +1,49 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: '#3E9ACD',
+    backgroundColor: '#76BCAA',
   },
   viewList: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: Dimensions.get('window').height * 0.023,
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
     alignItems: 'center',
-    backgroundColor: '#fff',
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.152,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#565755',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   item: {
-    width: 350,
-    height: 140,
-    marginBottom: 10,
-    borderRadius: 10,
+    flexDirection: 'row',
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.152,
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#6f6f6f',
   },
   itemTitle: {
     fontSize: 18,
-    color: '#fff',
+    fontWeight: 'bold',
+    color: '#000',
   },
   listDescription: {
     fontSize: 16,
-    color: '#fff',
+    color: '#000',
+  },
+  image: {
+    width: Dimensions.get('window').width * 0.3,
+    height: Dimensions.get('window').height * 0.14,
+    borderRadius: 5,
   },
 });
 

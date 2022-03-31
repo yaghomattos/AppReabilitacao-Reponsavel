@@ -57,9 +57,9 @@ export async function updateSelectExercises(props) {
     selectExerciseRef.update({
       dyspnea: true,
     });
-  if (props.fatigue)
+  if (props.fatique)
     selectExerciseRef.update({
-      fatigue: true,
+      fatique: true,
     });
   Alert.alert('Exercício atualizado!');
 }

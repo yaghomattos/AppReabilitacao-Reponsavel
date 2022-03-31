@@ -1,14 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  keyboard: {
+  container: {
     flex: 1,
+    backgroundColor: '#76BCAA',
   },
   wrapper: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#76BCAA',
+    marginTop: Dimensions.get('window').height * 0.04,
   },
   logo: {
     alignItems: 'center',
@@ -19,33 +19,32 @@ const styles = StyleSheet.create({
     height: 125,
   },
   name: {
-    marginTop: 25,
-    color: '#222222',
+    marginTop: Dimensions.get('window').height * 0.03,
+    color: '#000',
     fontSize: 20,
     fontWeight: 'bold',
   },
   form: {
-    width: 280,
     alignItems: 'center',
-    marginTop: '15%',
+    marginTop: Dimensions.get('window').height * 0.05,
   },
   input: {
-    width: 342,
-    height: 65,
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.08,
     paddingHorizontal: 20,
-    marginBottom: 14,
+    marginBottom: Dimensions.get('window').height * 0.0165,
     backgroundColor: '#76BCAA',
     borderColor: '#565755',
     borderWidth: 1,
   },
   button: {
     flexDirection: 'row',
-    width: 180,
-    height: 60,
-    marginTop: '15%',
+    width: Dimensions.get('window').width * 0.68,
+    height: Dimensions.get('window').height * 0.08,
+    marginTop: Dimensions.get('window').height * 0.063,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#222222',
+    backgroundColor: '#000',
   },
   text_label: {
     color: '#fefefe',
@@ -53,16 +52,17 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   footer_text: {
-    paddingTop: 20,
+    paddingTop: Dimensions.get('window').height * 0.0142,
     flexDirection: 'row',
     alignItems: 'center',
     fontSize: 15,
-    color: '#222222',
+    color: '#000',
+    marginBottom: Dimensions.get('window').height * 0.06,
   },
   footer_link: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#222222',
+    color: '#000',
   },
 });
 

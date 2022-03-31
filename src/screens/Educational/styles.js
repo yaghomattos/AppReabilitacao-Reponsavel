@@ -6,24 +6,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingBottom: '2%',
-    backgroundColor: '#3E9ACD',
-  },
-  headerNavigator: {
-    flexDirection: 'row',
-    width: '100%',
-    marginTop: 30,
-    paddingHorizontal: 20,
-    justifyContent: 'space-between',
-  },
-  icon: {
-    color: '#fff',
-  },
-  avatarContainer: {
-    paddingBottom: '2%',
-    alignItems: 'center',
-  },
-  avatar: {
-    backgroundColor: '#fff',
+    backgroundColor: '#76BCAA',
   },
   person: {
     paddingLeft: '10%',
@@ -32,32 +15,9 @@ const styles = StyleSheet.create({
   },
   text: {
     paddingTop: 4,
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: '#fff',
-  },
-  viewCircle: {
-    width: 110,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginRight: 14,
-  },
-  circleMic: {
-    width: 42,
-    height: 42,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000',
-  },
-  circleFile: {
-    width: 42,
-    height: 42,
-    borderRadius: 10,
-    marginRight: '10%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000',
+    color: '#000',
   },
   sendingContainer: {
     paddingTop: 10,

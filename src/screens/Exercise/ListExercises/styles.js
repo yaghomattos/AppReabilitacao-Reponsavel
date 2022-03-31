@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,21 +14,29 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: 'row',
-    width: 342,
-    height: 80,
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.152,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#565755',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginBottom: 10,
   },
   item: {
-    width: 280,
+    width: Dimensions.get('window').width * 0.79,
   },
   itemTitle: {
     fontSize: 20,
-    color: '#222222',
+    color: '#000',
+  },
+  image: {
+    width: Dimensions.get('window').width * 0.32,
+    height: Dimensions.get('window').height * 0.148,
+    borderRadius: 5,
   },
   button: {
-    color: '#222222',
+    color: '#000',
     margin: 15,
   },
   add: {
@@ -40,7 +48,7 @@ const styles = StyleSheet.create({
     top: '85%',
     left: '80%',
     borderRadius: 20,
-    backgroundColor: '#222222',
+    backgroundColor: '#000',
   },
 });
 

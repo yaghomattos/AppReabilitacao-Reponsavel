@@ -49,31 +49,31 @@ export function ViewForm(props) {
             </>
           )}
 
-          {form.frequency != '' && (
+          {form.frequency && form.frequency != '' && (
             <>
               <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
               <Text style={styles.label}>{form.frequency}</Text>
             </>
           )}
 
-          {form.saturation != '' && (
+          {form.saturation && form.saturation != '' && (
             <>
               <Text style={styles.title}>{'Saturação'}</Text>
               <Text style={styles.label}>{form.saturation}</Text>
             </>
           )}
 
-          {form.dyspnea != '' && (
+          {form.dyspnea && form.dyspnea != '' && (
             <>
               <Text style={styles.title}>{'Falta de Ar'}</Text>
               <Text style={styles.label}>{form.dyspnea}</Text>
             </>
           )}
 
-          {form.fatigue != '' && (
+          {form.fatique && form.fatique != '' && (
             <>
               <Text style={styles.title}>{'Cansaço'}</Text>
-              <Text style={styles.label}>{form.fatigue}</Text>
+              <Text style={styles.label}>{form.fatique}</Text>
             </>
           )}
 

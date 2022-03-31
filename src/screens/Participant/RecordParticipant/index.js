@@ -158,7 +158,7 @@ export function ParticipantRecord() {
           </View>
           <Picker
             selectedValue={gender}
-            style={{ height: 50, width: 150 }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) => setGender(itemValue)}
           >
             <Picker.Item label="Masculino" value="male" />

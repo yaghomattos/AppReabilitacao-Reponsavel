@@ -1,62 +1,35 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: '#3E9ACD',
+    backgroundColor: '#76BCAA',
   },
   wrapper: {
-    height: '100%',
-    borderTopStartRadius: 15,
-    borderTopEndRadius: 15,
-    backgroundColor: '#fff',
+    flex: 1,
   },
   viewList: {
-    height: '82%',
-    paddingTop: 20,
+    flex: 1,
+    marginBottom: Dimensions.get('window').height * 0.02,
     alignItems: 'center',
   },
   item: {
-    width: 350,
-    height: 140,
-    marginBottom: 10,
-    borderRadius: 10,
+    flexDirection: 'row',
+    width: Dimensions.get('window').width * 0.88,
+    marginTop: 8,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#565755',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#6f6f6f',
+    justifyContent: 'space-between',
   },
-  divider: {
-    height: 3,
-    backgroundColor: '#fff',
+  itemText: {
+    width: '82%',
   },
   itemTitle: {
     fontSize: 18,
-    color: '#fff',
-  },
-  extra: {
-    height: '15%',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  warning: {
-    marginTop: 5,
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#DE726A',
-  },
-  button: {
-    width: 100,
-    height: 50,
-    marginTop: 10,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#384955',
-  },
-  text_label: {
-    color: '#fff',
-    fontSize: 15,
+    color: '#000',
   },
 });
 

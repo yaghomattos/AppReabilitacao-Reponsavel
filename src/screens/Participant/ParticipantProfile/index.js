@@ -145,7 +145,7 @@ export function ParticipantProfile(props) {
           <Picker
             selectedValue={gender}
             label={props.route.params.gender}
-            style={{ height: 50, width: 150 }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) => setGender(itemValue)}
           >
             <Picker.Item label="Masculino" value="male" />

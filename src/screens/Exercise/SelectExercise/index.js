@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import { createSelectExercises } from '../../../components/CRUDs/SelectExercise/index';
-import Header from '../../../components/Header';
+import HeaderHome from '../../../components/HeaderHome';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -45,23 +45,14 @@ export const SelectExercise = (props) => {
 
   return (
     <View style={styles.container}>
-      <Header title="Selecionar Exercícios" />
+      <HeaderHome title="Selecionar Exercícios" />
       <View style={styles.viewList}>
         <FlatList
           data={results}
           keyExtractor={(item) => item.id}
-          ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <List.Item
-              style={{
-                width: 350,
-                height: item.description.lenght,
-                marginBottom: 10,
-                borderRadius: 10,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#6f6f6f',
-              }}
+              style={styles.itemContainer}
               title={item.name}
               description={item.description}
               titleNumberOfLines={1}
@@ -70,10 +61,7 @@ export const SelectExercise = (props) => {
               descriptionNumberOfLines={10}
               onPress={() => HandleCreateSelectedExercise(item)}
               left={() => (
-                <Image
-                  style={{ width: '20%', height: '100%', marginRight: 5 }}
-                  source={{ uri: item.preview }}
-                />
+                <Image style={styles.image} source={{ uri: item.preview }} />
               )}
             />
           )}

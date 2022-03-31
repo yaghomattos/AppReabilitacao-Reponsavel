@@ -71,7 +71,7 @@ export const ListOrientations = (props) => {
         <TouchableOpacity
           style={styles.tab}
           onPress={() =>
-            navigation.push('ListSelectOrientation', props.route.params)
+            navigation.navigate('ListSelectOrientation', props.route.params)
           }
         >
           <Feather name="check-square" size={24} color="black" />

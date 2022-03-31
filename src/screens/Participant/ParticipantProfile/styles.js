@@ -1,40 +1,42 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: '#3E9ACD',
-  },
-  background: {
     flex: 1,
-    paddingTop: 15,
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
-    alignItems: 'center',
-    backgroundColor: '#f6f6f6',
+    backgroundColor: '#76BCAA',
   },
   form: {
-    width: '100%',
-    maxWidth: 350,
+    flex: 1,
+    paddingTop: Dimensions.get('window').height * 0.017,
+    alignItems: 'center',
+  },
+  inputBox: {
+    width: Dimensions.get('window').width * 0.88,
+    marginBottom: 8,
+    borderBottomWidth: 1,
+  },
+  label: {
     paddingTop: 5,
-    fontSize: 18,
+    fontSize: 12,
   },
   input: {
-    width: 350,
-    fontSize: 18,
+    width: Dimensions.get('window').width * 0.88,
+    fontSize: 14,
+  },
+  picker: {
+    width: 150,
   },
   button: {
-    width: 180,
-    height: 60,
-    borderRadius: 10,
-    marginTop: 20,
-    marginBottom: '9.5%',
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.07,
+    marginTop: 15,
+    marginBottom: Dimensions.get('window').height * 0.059,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#384955',
+    backgroundColor: '#000',
   },
   text_label: {
-    color: '#fff',
+    color: '#fefefe',
     fontSize: 15,
   },
 });

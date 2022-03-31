@@ -1,9 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { List } from 'react-native-paper';
 import { deleteParticipant } from '../../../components/CRUDs/Participant/index';
+import { CurrentUser } from '../../../components/CRUDs/User';
 import HeaderHome from '../../../components/HeaderHome/index';
 import { database } from '../../../services/firebase';
 import styles from './styles';
@@ -13,6 +14,12 @@ export const ListParticipants = () => {
 
   const [results, setResults] = useState([]);
 
+  const [id, setId] = useState('');
+
+  CurrentUser().then((currentUser) => {
+    setId(currentUser.id);
+  });
+
   useEffect(() => {
     var li = [];
     database
@@ -20,6 +27,7 @@ export const ListParticipants = () => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((child) => {
+          //if (child.val().user == id) {
           li.push({
             name: child.val().name,
             cpf: child.val().cpf,
@@ -32,6 +40,7 @@ export const ListParticipants = () => {
             gender: child.val().gender,
             id: child.key,
           });
+          //}
         });
         setResults(li);
       });
@@ -58,8 +67,8 @@ export const ListParticipants = () => {
                 titleStyle={styles.itemTitle}
                 onPress={() => navigation.navigate('ParticipantProfile', item)}
               />
-              <Ionicons
-                name="trash"
+              <Feather
+                name="trash-2"
                 size={24}
                 style={styles.deleteButton}
                 onPress={() => {

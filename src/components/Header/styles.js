@@ -1,24 +1,23 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#3E9ACD',
     alignItems: 'center',
-    height: 100,
+    justifyContent: 'center',
   },
   backView: {
-    width: '100%',
-    paddingStart: 20,
+    flexDirection: 'row',
+    width: Dimensions.get('window').width,
     margin: 30,
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
   },
-  back: {
-    color: '#fff',
+  icon: {
+    color: '#000',
   },
   header_text: {
-    color: '#fff',
-    fontSize: 18,
-    paddingLeft: '10%',
-    paddingTop: 14,
+    color: '#000',
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });

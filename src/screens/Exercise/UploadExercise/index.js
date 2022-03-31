@@ -1,3 +1,4 @@
+import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
 import {
@@ -118,49 +119,52 @@ export function UploadExercise() {
   return (
     <View style={styles.container}>
       <HeaderHome title="Cadastro de Exercício" />
-      <ScrollView style={styles.scrollView}>
+      <ScrollView>
         <View style={styles.background}>
-          <TextInput
-            style={styles.input}
-            value={name}
-            placeholder={'Nome'}
-            onChangeText={(text) => setName(text)}
-            autoCapitalize={'none'}
-            keyboardType={'email-address'}
-          />
-          <TextInput
-            editable
-            multiline
-            style={styles.input}
-            value={description}
-            placeholder={'Descrição'}
-            onChangeText={(text) => setDescription(text)}
-            autoCapitalize={'none'}
-            keyboardType={'email-address'}
-          />
-
+          <View style={styles.form}>
+            <Text style={styles.label}>{'Nome'}</Text>
+            <TextInput
+              style={styles.input}
+              value={name}
+              onChangeText={(text) => setName(text)}
+              autoCapitalize={'none'}
+              keyboardType={'email-address'}
+            />
+          </View>
+          <View style={styles.form}>
+            <Text style={styles.label}>{'Descrição'}</Text>
+            <TextInput
+              editable
+              multiline
+              style={styles.input}
+              value={description}
+              onChangeText={(text) => setDescription(text)}
+              autoCapitalize={'none'}
+              keyboardType={'email-address'}
+            />
+          </View>
           <View style={styles.preview}>
             <TouchableOpacity style={styles.button} onPress={pickPhoto}>
-              <Text style={styles.text_button}>{'Selecionar ícone'}</Text>
+              <Feather name="paperclip" size={24} color="#000" />
+              <Text style={styles.text_select}>{'Selecionar ícone'}</Text>
             </TouchableOpacity>
             {preview && (
               <Image source={{ uri: preview.uri }} style={styles.image} />
             )}
           </View>
           <View style={styles.preview}>
-            <TouchableOpacity
-              style={video ? styles.button : styles.button2}
-              onPress={pickFile}
-            >
-              <Text style={styles.text_button}>{'Selecionar vídeo'}</Text>
+            <TouchableOpacity style={styles.button} onPress={pickFile}>
+              <Feather name="paperclip" size={24} color="#000" />
+              <Text style={styles.text_select}>{'Selecionar vídeo'}</Text>
             </TouchableOpacity>
             {video && (
               <Image source={{ uri: video.uri }} style={styles.image} />
             )}
           </View>
 
-          {video && preview && !uploaded && (
+          {!uploaded && (
             <TouchableOpacity style={styles.upload} onPress={upload}>
+              <Feather name="save" size={24} color="#fefefe" />
               <Text style={styles.text_button}>{'Finalizar cadastro'}</Text>
             </TouchableOpacity>
           )}

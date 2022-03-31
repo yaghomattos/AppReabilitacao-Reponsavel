@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
-import HeaderHome from '../../components/HeaderHome/index';
+import { FlatList, ScrollView, Text, View } from 'react-native';
+import { List } from 'react-native-paper';
+import Header from '../../components/Header';
 import { database } from '../../services/firebase';
 import styles from './styles';
 
@@ -54,6 +54,7 @@ export function Monitoring(props) {
               name: child.val().name,
               form: child.val().form,
               participant: child.val().participant,
+              reference: child.val().reference,
               createdAt: child.val().createdAt,
               type: 'postForm',
               id: child.key,
@@ -65,12 +66,8 @@ export function Monitoring(props) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <HeaderHome title="Monitoramento" />
-      <View style={styles.today}>
-        <Text style={styles.title}>{'Concluídos'}</Text>
-      </View>
-      <Divider style={styles.divider} />
+    <View style={styles.container}>
+      <Header title="Monitoramento" />
       <View style={styles.wrapper}>
         <ScrollView horizontal={false}>
           <ScrollView horizontal={true}>
@@ -121,6 +118,6 @@ export function Monitoring(props) {
           </ScrollView>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }

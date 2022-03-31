@@ -87,7 +87,7 @@ export const ListSelectOrientation = (props) => {
           <TouchableOpacity
             style={styles.tab}
             onPress={() =>
-              navigation.push('ListOrientations', props.route.params)
+              navigation.navigate('ListOrientations', props.route.params)
             }
           >
             <MaterialIcons name="playlist-add" size={24} color="black" />

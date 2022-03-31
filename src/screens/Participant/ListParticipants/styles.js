@@ -1,57 +1,36 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3E9ACD',
-  },
-  header: {
-    height: 130,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  backView: {
-    flexDirection: 'row',
-    width: '100%',
-    margin: 30,
-    paddingHorizontal: 20,
-    justifyContent: 'space-between',
-  },
-  icon: {
-    color: '#fff',
-  },
-  input: {
-    width: 340,
-    height: 45,
-    paddingHorizontal: 20,
-    backgroundColor: '#f8f8f8',
-    borderRadius: 15,
+    backgroundColor: '#76BCAA',
   },
   viewList: {
     flex: 1,
-    paddingTop: 10,
+    marginTop: Dimensions.get('window').height * 0.041,
   },
   item: {
     flexDirection: 'row',
-    width: '85%',
-    height: 70,
-    marginTop: 20,
-    marginEnd: 20,
-    marginStart: 30,
-    borderRadius: 15,
-    justifyContent: 'space-evenly',
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.082,
+    marginTop: Dimensions.get('window').height * 0.01,
+    marginHorizontal: Dimensions.get('window').width * 0.06,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#565755',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#f8f8f8',
   },
   itemText: {
-    width: '60%',
+    width: '82%',
   },
   itemTitle: {
-    fontSize: 22,
+    fontSize: 16,
+    fontWeight: 'bold',
     color: '#000',
   },
   deleteButton: {
-    paddingRight: 50,
+    paddingRight: 20,
   },
   add: {
     height: 60,
@@ -59,10 +38,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: '85%',
-    left: '80%',
-    borderRadius: 15,
-    backgroundColor: '#f8f8f8',
+    top: Dimensions.get('window').height * 0.82,
+    left: Dimensions.get('window').width * 0.76,
+    borderRadius: 20,
+    backgroundColor: '#000',
   },
 });
 
