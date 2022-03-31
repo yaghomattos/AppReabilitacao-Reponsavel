@@ -1,14 +1,16 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { Divider, List } from 'react-native-paper';
-import { Button } from '../../../components/Button/index';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { List } from 'react-native-paper';
 import { deleteSelectOrientations } from '../../../components/CRUDs/SelectOrientation/index';
-import HeaderHome from '../../../components/HeaderHome';
+import Header from '../../../components/Header';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
 export const ListSelectOrientation = (props) => {
+  const navigation = useNavigation();
+
   const testOrExercise = props.route.params.className;
   const id = props.route.params.id;
 
@@ -54,53 +56,61 @@ export const ListSelectOrientation = (props) => {
   }
 
   return (
-    <>
-      <View style={styles.container}>
-        <HeaderHome title="Orientações selecionadas" />
-        <View style={styles.backgroundList}>
-          <View style={styles.viewList}>
-            <FlatList
-              data={orientation}
-              keyExtractor={(item) => item.id}
-              ItemSeparatorComponent={() => <Divider style={styles.divider} />}
-              renderItem={({ item }) => (
-                <View
-                  style={{
-                    width: 350,
-                    borderRadius: 5,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: '#6f6f6f',
+    <View style={styles.container}>
+      <Header title="Orientações selecionadas" />
+      <View style={styles.backgroundList}>
+        <View style={styles.viewList}>
+          <FlatList
+            data={orientation}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <View style={styles.item}>
+                <List.Item
+                  style={styles.itemText}
+                  title={item.orientation}
+                  titleNumberOfLines={100}
+                  titleStyle={styles.listItemTitle}
+                />
+                <Feather
+                  name="trash-2"
+                  size={24}
+                  style={styles.deleteButton}
+                  onPress={() => {
+                    handleDelete(item.id);
                   }}
-                >
-                  <List.Item
-                    style={{
-                      width: 320,
-                    }}
-                    title={item.orientation}
-                    titleNumberOfLines={100}
-                    titleStyle={styles.listItemTitle}
-                  />
-                  <Ionicons
-                    name="trash"
-                    size={24}
-                    style={styles.deleteButton}
-                    onPress={() => {
-                      handleDelete(item.id);
-                    }}
-                  />
-                </View>
-              )}
-            />
-          </View>
-          <Button
-            title="Selecionar Orientações"
-            onPress="SelectOrientation"
-            props={props.route.params}
+                />
+              </View>
+            )}
           />
         </View>
+        <View style={styles.footer}>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() =>
+              navigation.push('ListOrientations', props.route.params)
+            }
+          >
+            <MaterialIcons name="playlist-add" size={24} color="black" />
+            <Text style={styles.tab_text}>{'Orientações'}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tab}>
+            <Feather name="check-square" size={24} color="#fefefe" />
+            <Text style={styles.tab_text_inative}>
+              {'Orientações selecionadas'}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </>
+      <View style={styles.add}>
+        <Ionicons
+          name="add-outline"
+          size={24}
+          color={'#fefefe'}
+          onPress={() => {
+            navigation.navigate('SelectOrientation', props.route.params);
+          }}
+        />
+      </View>
+    </View>
   );
 };
