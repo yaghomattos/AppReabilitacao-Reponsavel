@@ -53,7 +53,9 @@ export const ListExercises = () => {
                   left={() => (
                     <Image
                       style={styles.image}
-                      source={{ uri: item.preview }}
+                      source={{
+                        uri: item.preview ? item.preview : 'undefined',
+                      }}
                     />
                   )}
                 />
