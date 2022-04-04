@@ -45,7 +45,7 @@ export function Register() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollview}>
         <StatusBar barStyle="dark-content" backgroundColor="#76BCAA" />
         <View style={styles.wrapper}>
           <View style={styles.logo}>

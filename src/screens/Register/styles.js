@@ -5,10 +5,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#76BCAA',
   },
+  scrollview: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
   wrapper: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: Dimensions.get('window').height * 0.04,
   },
   logo: {
     alignItems: 'center',

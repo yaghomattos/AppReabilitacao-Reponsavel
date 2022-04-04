@@ -106,6 +106,14 @@ export function Chat(props) {
             backgroundColor: '#565755',
           },
         }}
+        textStyle={{
+          right: {
+            color: '#fefefe',
+          },
+          left: {
+            color: '#fefefe',
+          },
+        }}
       />
     );
   }

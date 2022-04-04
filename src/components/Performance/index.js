@@ -101,7 +101,7 @@ export const Performance = ({ props }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{'Desemepnho'}</Text>
+      <Text style={styles.title}>{'Desempenho'}</Text>
       <Text style={styles.label}>{result + '%'}</Text>
     </View>
   );

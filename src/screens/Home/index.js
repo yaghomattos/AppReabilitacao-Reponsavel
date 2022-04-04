@@ -45,6 +45,8 @@ export function Home() {
             {'Olá, '}
             <Text style={styles.welcome_text_bold}>{username}</Text>
           </Text>
+        </View>
+        <View style={styles.alignDivider}>
           <Divider style={styles.divider} />
         </View>
         <View style={styles.background}>

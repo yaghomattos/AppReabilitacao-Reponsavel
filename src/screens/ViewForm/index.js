@@ -35,7 +35,7 @@ export function ViewForm(props) {
 
   return (
     <View style={styles.wrapper}>
-      <HeaderHome title="Formulário" />
+      <HeaderHome title="Relatório" />
       <View style={styles.container}>
         <View style={styles.form}>
           {type != 'preForm' && test && (

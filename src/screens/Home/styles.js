@@ -18,22 +18,25 @@ const styles = StyleSheet.create({
   },
   welcome: {
     justifyContent: 'center',
-    alignItems: 'center',
     marginTop: Dimensions.get('window').height * 0.05,
-    marginBottom: Dimensions.get('window').height * 0.05,
+    marginLeft: Dimensions.get('window').height * 0.03,
   },
   welcome_text: {
     color: '#000',
     fontSize: 22,
-    marginRight: Dimensions.get('window').width * 0.62,
   },
   welcome_text_bold: {
     color: '#000',
     fontWeight: 'bold',
   },
+  alignDivider: {
+    alignItems: 'center',
+  },
   divider: {
     width: Dimensions.get('window').width * 0.88,
     height: 1,
+    marginBottom: Dimensions.get('window').height * 0.05,
+    alignItems: 'center',
     color: '#565755',
   },
   background: {
