@@ -21,7 +21,7 @@ const HeaderHome = ({ title }) => {
           name="home"
           size={24}
           style={styles.icon}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('DrawerMenu')}
         />
       </View>
     </View>

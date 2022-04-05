@@ -16,7 +16,7 @@ const Header = ({ title }) => {
           name="home"
           size={24}
           style={styles.icon}
-          onPress={() => navigation.push('Home')}
+          onPress={() => navigation.push('DrawerMenu')}
         />
       </View>
     </View>

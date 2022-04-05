@@ -5,6 +5,7 @@ import {
   Octicons,
 } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Analytics from 'expo-firebase-analytics';
@@ -37,6 +38,8 @@ import { ViewForm } from '../screens/ViewForm/index';
 
 const AuthStack = createStackNavigator();
 const FlowStack = createStackNavigator();
+
+const Drawer = createDrawerNavigator();
 
 const SelectExerciseStack = createStackNavigator();
 const MonitoringExerciseStack = createStackNavigator();
@@ -250,8 +253,8 @@ export function FlowRouter() {
         routeNameRef.current = currentRouteName;
       }}
     >
-      <FlowStack.Navigator headerMode="none" initialRouteName="Home">
-        <FlowStack.Screen name="Home" component={Home} />
+      <FlowStack.Navigator headerMode="none" initialRouteName="DrawerMenu">
+        {/* <FlowStack.Screen name="Home" component={Home} /> */}
         <FlowStack.Screen name="Chat" component={Chat} />
         <FlowStack.Screen name="Educational" component={Educational} />
 
@@ -298,7 +301,28 @@ export function FlowRouter() {
         <FlowStack.Screen name="Monitoring" component={Monitoring} />
         <FlowStack.Screen name="ViewForm" component={ViewForm} />
         <FlowStack.Screen name="NewOrientation" component={NewOrientation} />
+
+        <FlowStack.Screen name="DrawerMenu" component={MenuDrawer} />
       </FlowStack.Navigator>
     </NavigationContainer>
+  );
+}
+
+function MenuDrawer() {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        drawerStyle: {
+          backgroundColor: '#fefefe',
+          width: '60%',
+        },
+        headerStyle: {
+          backgroundColor: '#76BCAA',
+        },
+      }}
+    >
+      <Drawer.Screen name="App Reabilitação" component={Home} />
+    </Drawer.Navigator>
   );
 }
