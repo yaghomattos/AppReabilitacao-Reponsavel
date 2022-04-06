@@ -34,19 +34,6 @@ export function Home() {
       <ScrollView>
         <StatusBar barStyle="dark-content" backgroundColor="#76BCAA" />
 
-        {/* <View style={styles.header}>
-          <Feather
-            name="menu"
-            size={24}
-            color="#000"
-            onPress={() => {
-              navigation.navigate('DrawerMenu');
-            }}
-          />
-          <Text style={styles.app_name}>{'App Reabilitação'}</Text>
-          <Feather name="menu" size={24} color="transparent" />
-        </View> */}
-
         <View style={styles.welcome}>
           <Text style={styles.welcome_text}>
             {'Olá, '}

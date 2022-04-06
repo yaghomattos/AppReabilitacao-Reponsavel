@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Analytics from 'expo-firebase-analytics';
 import React from 'react';
+import CustomDrawer from '../components/CustomDrawer';
 import { Chat } from '../screens/Chat/index';
 import { Educational } from '../screens/Educational/index';
 import { ExerciseSettings } from '../screens/Exercise/ExerciseSettings/index';
@@ -253,7 +254,7 @@ export function FlowRouter() {
         routeNameRef.current = currentRouteName;
       }}
     >
-      <FlowStack.Navigator headerMode="none" initialRouteName="DrawerMenu">
+      <FlowStack.Navigator headerMode="none" initialRouteName="Drawer">
         {/* <FlowStack.Screen name="Home" component={Home} /> */}
         <FlowStack.Screen name="Chat" component={Chat} />
         <FlowStack.Screen name="Educational" component={Educational} />
@@ -302,7 +303,7 @@ export function FlowRouter() {
         <FlowStack.Screen name="ViewForm" component={ViewForm} />
         <FlowStack.Screen name="NewOrientation" component={NewOrientation} />
 
-        <FlowStack.Screen name="DrawerMenu" component={MenuDrawer} />
+        <FlowStack.Screen name="Drawer" component={MenuDrawer} />
       </FlowStack.Navigator>
     </NavigationContainer>
   );
@@ -321,6 +322,7 @@ function MenuDrawer() {
           backgroundColor: '#76BCAA',
         },
       }}
+      drawerContent={CustomDrawer}
     >
       <Drawer.Screen name="App Reabilitação" component={Home} />
     </Drawer.Navigator>
