@@ -1,7 +1,7 @@
 import { Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, TextInput, View } from 'react-native';
 import { List } from 'react-native-paper';
 import { deleteParticipant } from '../../../components/CRUDs/Participant/index';
 import { CurrentUser } from '../../../components/CRUDs/User';
@@ -12,7 +12,8 @@ import styles from './styles';
 export const ListParticipants = () => {
   const navigation = useNavigation();
 
-  const [results, setResults] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [results, setResults] = useState('');
 
   const [id, setId] = useState('');
 
@@ -42,9 +43,18 @@ export const ListParticipants = () => {
           });
           //}
         });
-        setResults(li);
+        if (searchText === '') {
+          setResults(li);
+        } else {
+          setResults(
+            li.filter((item) => {
+              if (item.name.indexOf(searchText) > -1) return true;
+              else return false;
+            })
+          );
+        }
       });
-  }, [results]);
+  }, [results, searchText]);
 
   async function handleDelete(participant) {
     deleteParticipant(participant);
@@ -53,6 +63,16 @@ export const ListParticipants = () => {
   return (
     <View style={styles.container}>
       <HeaderHome title="Participantes" />
+      <View style={styles.search}>
+        <TextInput
+          style={styles.input}
+          value={searchText}
+          placeholder={'Pesquisar'}
+          onChangeText={(text) => setSearchText(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+        />
+      </View>
       <View style={styles.viewList}>
         <FlatList
           numColumns={1}

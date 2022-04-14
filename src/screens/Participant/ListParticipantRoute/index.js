@@ -10,7 +10,7 @@ import styles from './styles';
 export const ListParticipantRoute = (props) => {
   const navigation = useNavigation();
 
-  const [search, setSearch] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [results, setResults] = useState('');
 
   const [id, setId] = useState('');
@@ -34,9 +34,18 @@ export const ListParticipantRoute = (props) => {
           });
           //}
         });
-        setResults(li);
+        if (searchText === '') {
+          setResults(li);
+        } else {
+          setResults(
+            li.filter((item) => {
+              if (item.name.indexOf(searchText) > -1) return true;
+              else return false;
+            })
+          );
+        }
       });
-  }, [results]);
+  }, [results, searchText]);
 
   var route = props.route.params;
   var user = '';
@@ -53,9 +62,9 @@ export const ListParticipantRoute = (props) => {
       <View style={styles.search}>
         <TextInput
           style={styles.input}
-          value={search}
+          value={searchText}
           placeholder={'Pesquisar'}
-          onChangeText={(text) => setSearch(text)}
+          onChangeText={(text) => setSearchText(text)}
           autoCapitalize={'none'}
           keyboardType={'email-address'}
         />
