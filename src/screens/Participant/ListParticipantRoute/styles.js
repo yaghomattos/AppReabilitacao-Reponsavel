@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,22 +10,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    width: '84%',
-    height: 50,
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.07,
     paddingHorizontal: 20,
-    marginBottom: 29,
-    borderRadius: 10,
+    borderRadius: 5,
     backgroundColor: '#fefefe',
   },
   viewList: {
     flex: 1,
+    marginTop: Dimensions.get('window').height * 0.041,
   },
   item: {
     flexDirection: 'row',
-    width: '84%',
-    height: 70,
-    marginTop: 6,
-    marginHorizontal: '8%',
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.082,
+    marginTop: Dimensions.get('window').height * 0.01,
+    marginHorizontal: Dimensions.get('window').width * 0.06,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#565755',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   itemTitle: {
-    fontSize: 22,
+    fontSize: 18,
     color: '#000',
   },
 });

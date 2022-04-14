@@ -5,6 +5,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#76BCAA',
   },
+  search: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    width: Dimensions.get('window').width * 0.88,
+    height: Dimensions.get('window').height * 0.07,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    backgroundColor: '#fefefe',
+  },
   viewList: {
     flex: 1,
     marginTop: Dimensions.get('window').height * 0.041,
@@ -25,8 +36,7 @@ const styles = StyleSheet.create({
     width: '82%',
   },
   itemTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
     color: '#000',
   },
   deleteButton: {
