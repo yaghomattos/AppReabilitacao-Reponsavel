@@ -80,13 +80,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 8,
   },
+  pickerBox: {
+    marginTop: 8,
+  },
   picker: {
     width: Dimensions.get('screen').width * 0.8,
   },
   button: {
     width: Dimensions.get('window').width * 0.51,
     height: Dimensions.get('window').height * 0.07,
-    marginTop: Dimensions.get('window').height * 0.06,
+    marginTop: Dimensions.get('window').height * 0.04,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#000',

@@ -151,6 +151,9 @@ export function TestSettings(props) {
               <Text style={styles.text_checkbox}>{'Cansaço'}</Text>
             </View>
           </View>
+          <View style={styles.pickerBox}>
+            <Text style={styles.title}>{'Tipo de Teste:'}</Text>
+          </View>
           <Picker
             selectedValue={reference}
             style={styles.picker}

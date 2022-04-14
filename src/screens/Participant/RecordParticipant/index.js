@@ -156,14 +156,18 @@ export function ParticipantRecord() {
               style={styles.input}
             />
           </View>
-          <Picker
-            selectedValue={gender}
-            style={styles.picker}
-            onValueChange={(itemValue, itemIndex) => setGender(itemValue)}
-          >
-            <Picker.Item label="Masculino" value="male" />
-            <Picker.Item label="Feminino" value="female" />
-          </Picker>
+          <View style={styles.pickerBox}>
+            <Text style={styles.picker_label}>{'Sexo'}</Text>
+
+            <Picker
+              selectedValue={gender}
+              style={styles.picker}
+              onValueChange={(itemValue, itemIndex) => setGender(itemValue)}
+            >
+              <Picker.Item label="Masculino" value="male" />
+              <Picker.Item label="Feminino" value="female" />
+            </Picker>
+          </View>
 
           <TouchableOpacity onPress={() => handleCreateParticipant()}>
             <View style={styles.button}>

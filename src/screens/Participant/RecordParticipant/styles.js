@@ -23,8 +23,18 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width * 0.88,
     fontSize: 14,
   },
+  pickerBox: {
+    flexDirection: 'row',
+    width: Dimensions.get('window').width * 0.88,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  picker_label: {
+    fontSize: 12,
+  },
   picker: {
     width: 150,
+    marginRight: Dimensions.get('window').width * 0.3,
   },
   button: {
     width: Dimensions.get('window').width * 0.88,
