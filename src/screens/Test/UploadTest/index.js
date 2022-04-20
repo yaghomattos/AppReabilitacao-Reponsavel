@@ -96,7 +96,7 @@ export function UploadTest() {
       preview: previewURL,
       name: name,
       description: description,
-      timer: timer,
+      timer: minutes * 60 + seconds,
       reps: reps,
     };
 
