@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   backView: {
     flexDirection: 'row',
     width: Dimensions.get('window').width,
-    margin: 30,
+    marginBottom: 30,
     paddingHorizontal: 20,
     justifyContent: 'space-between',
   },
