@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   welcome: {
     justifyContent: 'center',
-    marginTop: Dimensions.get('window').height * 0.05,
+    marginTop: Dimensions.get('window').height * 0.03,
     marginLeft: Dimensions.get('window').height * 0.03,
   },
   welcome_text: {
