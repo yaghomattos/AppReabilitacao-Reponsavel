@@ -108,6 +108,7 @@ export function UploadTest() {
   const pickFile = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
+      quality: 0.5,
     });
 
     if (!result.cancelled) {
@@ -118,6 +119,7 @@ export function UploadTest() {
   const pickPhoto = async () => {
     let resultPhoto = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 0.3,
     });
 
     if (!resultPhoto.cancelled) {
