@@ -1,7 +1,7 @@
 import { Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, View } from 'react-native';
+import { FlatList, Image, TouchableOpacity, View } from 'react-native';
 import { List } from 'react-native-paper';
 import { deleteSelectTests } from '../../../components/CRUDs/SelectTest';
 import Header from '../../../components/Header';
@@ -50,17 +50,23 @@ export const ListSelectTest = (props) => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <View style={styles.itemContainer}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('ExerciseSettings', item);
+                  }}
+                >
+                  <Image
+                    style={styles.image}
+                    source={{
+                      uri: item.preview ? item.preview : 'undefined',
+                    }}
+                  />
+                </TouchableOpacity>
                 <List.Item
                   style={styles.item}
                   title={item.name}
                   titleNumberOfLines={1}
                   titleStyle={styles.itemTitle}
-                  left={() => (
-                    <Image
-                      style={styles.image}
-                      source={{ uri: item.preview }}
-                    />
-                  )}
                   onPress={() => {
                     navigation.navigate('TestSettings', item);
                   }}

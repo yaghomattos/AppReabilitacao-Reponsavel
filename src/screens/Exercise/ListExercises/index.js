@@ -45,19 +45,17 @@ export const ListExercises = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <View style={styles.itemContainer}>
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: item.preview ? item.preview : 'undefined',
+                  }}
+                />
                 <List.Item
                   style={styles.item}
                   title={item.name}
-                  titleNumberOfLines={1}
+                  titleNumberOfLines={5}
                   titleStyle={styles.itemTitle}
-                  left={() => (
-                    <Image
-                      style={styles.image}
-                      source={{
-                        uri: item.preview ? item.preview : 'undefined',
-                      }}
-                    />
-                  )}
                 />
                 <Feather
                   name="trash-2"
