@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, View } from 'react-native';
+import { FlatList, Image, TouchableOpacity, View } from 'react-native';
 import { List } from 'react-native-paper';
 import { createSelectTests } from '../../../components/CRUDs/SelectTest/index';
 import HeaderHome from '../../../components/HeaderHome';
@@ -55,19 +55,20 @@ export const SelectTest = (props) => {
           data={results}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <List.Item
-              style={styles.itemContainer}
-              title={item.name}
-              description={item.description}
-              titleNumberOfLines={1}
-              titleStyle={styles.itemTitle}
-              descriptionStyle={styles.listDescription}
-              descriptionNumberOfLines={100}
-              onPress={() => HandleCreateSelectedTest(item)}
-              left={() => (
+            <View style={styles.itemContainer}>
+              <TouchableOpacity onPress={() => HandleCreateSelectedTest(item)}>
                 <Image style={styles.image} source={{ uri: item.preview }} />
-              )}
-            />
+              </TouchableOpacity>
+              <List.Item
+                style={styles.item}
+                title={item.name}
+                titleNumberOfLines={3}
+                titleStyle={styles.itemTitle}
+                description={item.description}
+                descriptionStyle={styles.listDescription}
+                descriptionNumberOfLines={5}
+              />
+            </View>
           )}
         />
       </View>
