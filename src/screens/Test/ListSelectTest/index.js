@@ -52,7 +52,7 @@ export const ListSelectTest = (props) => {
               <View style={styles.itemContainer}>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('ExerciseSettings', item);
+                    navigation.navigate('TestSettings', item);
                   }}
                 >
                   <Image
@@ -65,7 +65,7 @@ export const ListSelectTest = (props) => {
                 <List.Item
                   style={styles.item}
                   title={item.name}
-                  titleNumberOfLines={1}
+                  titleNumberOfLines={3}
                   titleStyle={styles.itemTitle}
                   onPress={() => {
                     navigation.navigate('TestSettings', item);

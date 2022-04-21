@@ -1,4 +1,5 @@
 import { Picker } from '@react-native-picker/picker';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
   ScrollView,
@@ -13,6 +14,8 @@ import HeaderHome from '../../../components/HeaderHome';
 import styles from './styles';
 
 export function TestSettings(props) {
+  const navigation = useNavigation();
+
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
   const [reps, setReps] = useState('');
@@ -186,7 +189,7 @@ export function TestSettings(props) {
           </Picker>
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate('MenuOrientation', props.route.params)
+              navigation.navigate('ListOrientations', props.route.params)
             }
           >
             <View style={styles.button}>
