@@ -28,20 +28,20 @@ export const ListParticipants = () => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((child) => {
-          //if (child.val().user == id) {
-          li.push({
-            name: child.val().name,
-            cpf: child.val().cpf,
-            age: child.val().age,
-            phone: child.val().phone,
-            diagnosis: child.val().diagnosis,
-            address: child.val().address,
-            height: child.val().height,
-            weight: child.val().weight,
-            gender: child.val().gender,
-            id: child.key,
-          });
-          //}
+          if (child.val().user == id) {
+            li.push({
+              name: child.val().name,
+              cpf: child.val().cpf,
+              age: child.val().age,
+              phone: child.val().phone,
+              diagnosis: child.val().diagnosis,
+              address: child.val().address,
+              height: child.val().height,
+              weight: child.val().weight,
+              gender: child.val().gender,
+              id: child.key,
+            });
+          }
         });
         if (searchText === '') {
           setResults(li);

@@ -26,13 +26,13 @@ export const ListParticipantRoute = (props) => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((child) => {
-          // if (child.val().user == id) {
-          li.push({
-            key: child.val().cpf,
-            name: child.val().name,
-            id: child.key,
-          });
-          //}
+          if (child.val().user == id) {
+            li.push({
+              key: child.val().cpf,
+              name: child.val().name,
+              id: child.key,
+            });
+          }
         });
         if (searchText === '') {
           setResults(li);
