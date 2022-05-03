@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "App Reabilitacao-Responsavel",
-    "slug": "app-reabilitacao-responsavel",
+    "name": "Reabilitacao-Responsavel",
+    "slug": "reabilitacao-responsavel",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,11 +13,10 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ufjf.reabilitacao"
     },
     "android": {
       "package": "com.ufjf.reabilitacao",
@@ -34,9 +33,7 @@
         }
       }
     },
-    "plugins": [
-      "expo-image-picker"
-    ],
+    "plugins": ["expo-image-picker"],
     "description": ""
   }
 }
