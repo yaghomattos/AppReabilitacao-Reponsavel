@@ -5,17 +5,12 @@ import { readParticipantWithId } from '../CRUDs/Participant/index';
 import styles from './styles';
 
 export const Performance = ({ props }) => {
-  const [result, setResult] = useState('');
-  const [age, setAge] = useState('');
+  const [result, setResult] = useState(0);
+  const [age, setAge] = useState(0);
   const [gender, setGender] = useState('');
+  const [value, setValue] = useState(0);
 
   const name = props.reference;
-  var numReps = 0;
-  var timerValue = 0;
-
-  if (props.reps) {
-    numReps = props.reps;
-  } else timerValue = props.timer;
 
   useEffect(() => {
     readParticipantWithId(props.participantId).then((response) => {
@@ -23,10 +18,12 @@ export const Performance = ({ props }) => {
       setGender(response.child('gender'));
     });
 
+    setValue(props.reps ? props.reps : props.timer);
+
     switch (name) {
       case 'TSL_5Reps':
         setResult(
-          timerValue /
+          value /
             referenceValues.TSL_5Reps({
               age: age,
               gender: gender,
@@ -34,7 +31,7 @@ export const Performance = ({ props }) => {
         );
       case 'TSL_30Seconds':
         setResult(
-          numReps /
+          value /
             referenceValues.TSL_30Seconds({
               age: age,
               gender: gender,
@@ -42,7 +39,7 @@ export const Performance = ({ props }) => {
         );
       case 'TSL_1Minute':
         setResult(
-          numReps /
+          value /
             referenceValues.TSL_1Minute({
               age: age,
               gender: gender,
@@ -50,7 +47,7 @@ export const Performance = ({ props }) => {
         );
       case 'TUG_Normal':
         setResult(
-          timerValue /
+          value /
             referenceValues.TUG_Normal({
               age: age,
               gender: gender,
@@ -58,7 +55,7 @@ export const Performance = ({ props }) => {
         );
       case 'TUG_Maximum':
         setResult(
-          timerValue /
+          value /
             referenceValues.TUG_Maximum({
               age: age,
               gender: gender,
@@ -66,7 +63,7 @@ export const Performance = ({ props }) => {
         );
       case 'FourMGS_Normal':
         setResult(
-          timerValue /
+          value /
             referenceValues.FourMGS_Normal({
               age: age,
               gender: gender,
@@ -74,7 +71,7 @@ export const Performance = ({ props }) => {
         );
       case 'FourMGS_Maximum':
         setResult(
-          timerValue /
+          value /
             referenceValues.FourMGS_Maximum({
               age: age,
               gender: gender,
@@ -82,7 +79,7 @@ export const Performance = ({ props }) => {
         );
       case 'TD6':
         setResult(
-          numReps /
+          value /
             referenceValues.TD6({
               age: age,
               gender: gender,
@@ -90,7 +87,7 @@ export const Performance = ({ props }) => {
         );
       case 'TDIM':
         setResult(
-          timerValue /
+          value /
             referenceValues.TDIM({
               age: age,
               gender: gender,
