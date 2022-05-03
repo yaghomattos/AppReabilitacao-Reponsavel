@@ -84,7 +84,7 @@ function MonitoringExercise() {
   return (
     <MonitoringExerciseStack.Navigator headerMode="none">
       <MonitoringExerciseStack.Screen
-        name="Monitoramento"
+        name="Monitor"
         component={ListParticipantRoute}
         initialParams={{ route: 'ExerciseMonitoring' }}
       />
@@ -164,7 +164,7 @@ function MonitoringTest() {
   return (
     <MonitoringTestStack.Navigator headerMode="none">
       <MonitoringTestStack.Screen
-        name="Monitoramento"
+        name="Monitor"
         component={ListParticipantRoute}
         initialParams={{ route: 'TestMonitoring' }}
       />
