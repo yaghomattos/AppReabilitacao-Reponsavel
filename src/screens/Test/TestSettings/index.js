@@ -2,6 +2,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
+  Alert,
   ScrollView,
   Text,
   TextInput,
@@ -15,6 +16,8 @@ import styles from './styles';
 
 export function TestSettings(props) {
   const navigation = useNavigation();
+
+  const [save, setSave] = useState(false);
 
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
@@ -162,6 +165,7 @@ export function TestSettings(props) {
             style={styles.picker}
             onValueChange={(itemValue, itemIndex) => setReference(itemValue)}
           >
+            <Picker.Item label="Selecione" />
             <Picker.Item
               label="Teste senta e levanta de 5 repetições"
               value="TSL_5Reps"
@@ -187,18 +191,24 @@ export function TestSettings(props) {
             <Picker.Item label="Teste do degrau de 6 minutos" value="TD6" />
             <Picker.Item label="Teste do degrau incremental" value="TDIM" />
           </Picker>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('ListOrientations', props.route.params)
-            }
-          >
-            <View style={styles.button}>
-              <Text style={styles.text_label}>{'Orientações'}</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleSettings()}>
+
+          <TouchableOpacity onPress={() => handleSettings() && setSave(true)}>
             <View style={styles.button_save}>
               <Text style={styles.text_label}>{'Salvar'}</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() =>
+              save
+                ? navigation.navigate('ListOrientations', props.route.params)
+                : Alert.alert(
+                    'Salvar as Métricas primeiro, antes de acessar as Orientações'
+                  )
+            }
+          >
+            <View style={save ? styles.button : styles.button_off}>
+              <Text style={styles.text_label}>{'Orientações'}</Text>
             </View>
           </TouchableOpacity>
         </View>
