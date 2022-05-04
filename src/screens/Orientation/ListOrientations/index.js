@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { List } from 'react-native-paper';
 import { deleteOrientation } from '../../../components/CRUDs/Orientation/index';
-import Header from '../../../components/Header';
 import { database } from '../../../services/firebase';
 import styles from './styles';
 
@@ -36,7 +35,20 @@ export const ListOrientations = (props) => {
 
   return (
     <View style={styles.container}>
-      <Header title="Orientações" />
+      <View style={styles.header}>
+        <View style={styles.backView}>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            style={styles.icon}
+            onPress={() =>
+              navigation.navigate('TestSettings', props.route.params)
+            }
+          />
+          <Text style={styles.header_text}>{'Orientações'}</Text>
+          <Ionicons name="home" size={24} color="transparent" />
+        </View>
+      </View>
       <View style={styles.background}>
         <View style={styles.viewList}>
           <FlatList
