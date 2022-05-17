@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import * as referenceValues from '../../utils/ReferenceValues';
@@ -14,87 +15,103 @@ export const Performance = ({ props }) => {
 
   useEffect(() => {
     readParticipantWithId(props.participantId).then((response) => {
-      setAge(response.child('age'));
-      setGender(response.child('gender'));
+      setAge(response.val().age);
+      setGender(response.val().gender);
     });
 
     setValue(props.reps ? props.reps : props.timer);
 
-    switch (name) {
-      case 'TSL_5Reps':
-        setResult(
+    if (name == 'TSL_5Reps')
+      setResult(
+        (
           value /
-            referenceValues.TSL_5Reps({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'TSL_30Seconds':
-        setResult(
+          referenceValues.TSL_5Reps({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'TSL_30Seconds')
+      setResult(
+        (
           value /
-            referenceValues.TSL_30Seconds({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'TSL_1Minute':
-        setResult(
+          referenceValues.TSL_30Seconds({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'TSL_1Minute')
+      setResult(
+        (
           value /
-            referenceValues.TSL_1Minute({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'TUG_Normal':
-        setResult(
+          referenceValues.TSL_1Minute({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'TUG_Normal')
+      setResult(
+        (
           value /
-            referenceValues.TUG_Normal({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'TUG_Maximum':
-        setResult(
+          referenceValues.TUG_Normal({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'TUG_Maximum')
+      setResult(
+        (
           value /
-            referenceValues.TUG_Maximum({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'FourMGS_Normal':
-        setResult(
+          referenceValues.TUG_Maximum({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'FourMGS_Normal')
+      setResult(
+        (
           value /
-            referenceValues.FourMGS_Normal({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'FourMGS_Maximum':
-        setResult(
+          referenceValues.FourMGS_Normal({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'FourMGS_Maximum')
+      setResult(
+        (
           value /
-            referenceValues.FourMGS_Maximum({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'TD6':
-        setResult(
+          referenceValues.FourMGS_Maximum({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'TD6')
+      setResult(
+        (
           value /
-            referenceValues.TD6({
-              age: age,
-              gender: gender,
-            })
-        );
-      case 'TDIM':
-        setResult(
+          referenceValues.TD6({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+    else if (name == 'TDIM')
+      setResult(
+        (
           value /
-            referenceValues.TDIM({
-              age: age,
-              gender: gender,
-            })
-        );
-    }
-  }, []);
+          referenceValues.TDIM({
+            age: moment(age, 'DDMMYYYY').fromNow().substring(0, 2),
+            gender: gender,
+          })
+        ).toFixed(2) * 100
+      );
+  });
 
   return (
     <View style={styles.container}>
