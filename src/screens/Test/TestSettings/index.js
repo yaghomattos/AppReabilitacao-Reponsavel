@@ -29,7 +29,7 @@ export function TestSettings(props) {
   const [frequency, setFrequency] = useState(false);
   const [saturation, setSaturation] = useState(false);
   const [dyspnea, setDyspnea] = useState(false);
-  const [fatique, setFatique] = useState(false);
+  const [fatigue, setFatique] = useState(false);
 
   var selectTest = props.route.params.id;
 
@@ -47,7 +47,7 @@ export function TestSettings(props) {
       frequency: frequency,
       saturation: saturation,
       dyspnea: dyspnea,
-      fatique: fatique,
+      fatigue: fatigue,
       reference: reference,
     };
 
@@ -149,9 +149,9 @@ export function TestSettings(props) {
             </View>
             <View style={styles.checkboxContainer}>
               <Checkbox
-                status={fatique ? 'checked' : 'unchecked'}
+                status={fatigue ? 'checked' : 'unchecked'}
                 onPress={() => {
-                  setFatique(!fatique);
+                  setFatique(!fatigue);
                 }}
               />
               <Text style={styles.text_checkbox}>{'Cansaço'}</Text>

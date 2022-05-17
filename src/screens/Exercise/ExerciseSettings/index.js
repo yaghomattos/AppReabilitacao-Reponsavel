@@ -26,7 +26,7 @@ export function ExerciseSettings(props) {
   const [frequency, setFrequency] = useState(false);
   const [saturation, setSaturation] = useState(false);
   const [dyspnea, setDyspnea] = useState(false);
-  const [fatique, setFatigue] = useState(false);
+  const [fatigue, setFatigue] = useState(false);
 
   var selectExercise = props.route.params.id;
 
@@ -42,7 +42,7 @@ export function ExerciseSettings(props) {
       frequency: frequency,
       saturation: saturation,
       dyspnea: dyspnea,
-      fatique: fatique,
+      fatigue: fatigue,
     };
 
     updateSelectExercises(exercise);
@@ -165,9 +165,9 @@ export function ExerciseSettings(props) {
             </View>
             <View style={styles.checkboxContainer}>
               <Checkbox
-                status={fatique ? 'checked' : 'unchecked'}
+                status={fatigue ? 'checked' : 'unchecked'}
                 onPress={() => {
-                  setFatigue(!fatique);
+                  setFatigue(!fatigue);
                 }}
                 color="#000"
               />
