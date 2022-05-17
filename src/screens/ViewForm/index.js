@@ -10,7 +10,6 @@ export function ViewForm(props) {
   const navigation = useNavigation();
 
   const [form, setForm] = useState('');
-  const [performance, setPerformance] = useState('');
 
   const formId = props.route.params.form;
   const type = props.route.params.type;
@@ -49,31 +48,31 @@ export function ViewForm(props) {
             </>
           )}
 
-          {form.frequency && form.frequency != '' && (
+          {form.frequency != '' && (
             <>
               <Text style={styles.title}>{'Frequência Cardíaca'}</Text>
               <Text style={styles.label}>{form.frequency}</Text>
             </>
           )}
 
-          {form.saturation && form.saturation != '' && (
+          {form.saturation != '' && (
             <>
               <Text style={styles.title}>{'Saturação'}</Text>
               <Text style={styles.label}>{form.saturation}</Text>
             </>
           )}
 
-          {form.dyspnea && form.dyspnea != '' && (
+          {form.dyspnea != '' && (
             <>
               <Text style={styles.title}>{'Falta de Ar'}</Text>
               <Text style={styles.label}>{form.dyspnea}</Text>
             </>
           )}
 
-          {form.fatique && form.fatique != '' && (
+          {form.fatigue != '' && (
             <>
               <Text style={styles.title}>{'Cansaço'}</Text>
-              <Text style={styles.label}>{form.fatique}</Text>
+              <Text style={styles.label}>{form.fatigue}</Text>
             </>
           )}
 
@@ -82,7 +81,7 @@ export function ViewForm(props) {
               props={{
                 reference: reference,
                 participantId: participant,
-                reps: form.reps,
+                reps: form.reps ? form.reps : form.timer,
               }}
             />
           )}
