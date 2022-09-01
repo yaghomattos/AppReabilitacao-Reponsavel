@@ -21,7 +21,16 @@ const HeaderHome = ({ title }) => {
           name="home"
           size={24}
           style={styles.icon}
-          onPress={() => navigation.navigate('Drawer')}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: 'Drawer',
+                },
+              ],
+            });
+          }}
         />
       </View>
     </View>
