@@ -10,7 +10,7 @@ import styles from './styles';
 export const ListParticipantRoute = (props) => {
   const navigation = useNavigation();
 
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(null);
   const [results, setResults] = useState('');
 
   const [id, setId] = useState('');
@@ -21,10 +21,9 @@ export const ListParticipantRoute = (props) => {
 
   useEffect(() => {
     var li = [];
-    database
+    const onValueChange = database
       .ref('participant')
-      .get()
-      .then((snapshot) => {
+      .on('value', (snapshot) => {
         snapshot.forEach((child) => {
           if (child.val().user == id) {
             li.push({
@@ -34,8 +33,9 @@ export const ListParticipantRoute = (props) => {
             });
           }
         });
-        if (searchText === '') {
+        if (searchText === '' || searchText == null) {
           setResults(li);
+          setSearchText('');
         } else {
           setResults(
             li.filter((item) => {
@@ -45,7 +45,9 @@ export const ListParticipantRoute = (props) => {
           );
         }
       });
-  }, [results, searchText]);
+
+    return () => database.ref('participant').off('value', onValueChange);
+  }, [searchText]);
 
   var route = props.route.params;
   var user = '';

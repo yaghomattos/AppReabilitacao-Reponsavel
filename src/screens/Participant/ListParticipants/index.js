@@ -12,7 +12,7 @@ import styles from './styles';
 export const ListParticipants = () => {
   const navigation = useNavigation();
 
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(null);
   const [results, setResults] = useState('');
 
   const [id, setId] = useState('');
@@ -23,10 +23,9 @@ export const ListParticipants = () => {
 
   useEffect(() => {
     var li = [];
-    database
+    const onValueChange = database
       .ref('participant')
-      .get()
-      .then((snapshot) => {
+      .on('value', (snapshot) => {
         snapshot.forEach((child) => {
           if (child.val().user == id) {
             li.push({
@@ -43,8 +42,9 @@ export const ListParticipants = () => {
             });
           }
         });
-        if (searchText === '') {
+        if (searchText === '' || searchText == null) {
           setResults(li);
+          setSearchText('');
         } else {
           setResults(
             li.filter((item) => {
@@ -54,7 +54,9 @@ export const ListParticipants = () => {
           );
         }
       });
-  }, [results, searchText]);
+
+    return () => database.ref('participant').off('value', onValueChange);
+  }, [searchText]);
 
   async function handleDelete(participant) {
     deleteParticipant(participant);

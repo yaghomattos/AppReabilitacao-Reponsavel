@@ -117,6 +117,7 @@ function Training() {
   return (
     <ExerciseTab.Navigator
       screenOptions={({ route }) => ({
+        unmountOnBlur: true,
         headerShown: false,
         tabBarActiveTintColor: '#fefefe',
         tabBarInactiveTintColor: '#000',
@@ -193,6 +194,7 @@ function Tests() {
   return (
     <TestTab.Navigator
       screenOptions={({ route }) => ({
+        unmountOnBlur: true,
         headerShown: false,
         tabBarActiveTintColor: '#fefefe',
         tabBarInactiveTintColor: '#000',
