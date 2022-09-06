@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/helper-validator-identifier": "^7.15.7",
+    "@react-native-async-storage/async-storage": "^1.17.10",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-picker/picker": "2.2.1",
     "@react-navigation/bottom-tabs": "^6.2.0",
