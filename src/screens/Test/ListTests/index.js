@@ -12,24 +12,26 @@ export const ListTests = () => {
   const navigation = useNavigation();
 
   const [result, setResults] = useState([]);
+  const [refresh, setRefresh] = useState(null);
 
   useEffect(() => {
     var li = [];
-    database
-      .ref('test')
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((child) => {
-          li.push({
-            name: child.val().name,
-            description: child.val().description,
-            preview: child.val().preview,
-            id: child.key,
-          });
+    const onValueChange = database.ref('test').on('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        li.push({
+          name: child.val().name,
+          description: child.val().description,
+          preview: child.val().preview,
+          id: child.key,
         });
-        setResults(li);
       });
-  }, [result]);
+
+      if (refresh === null) setRefresh('');
+      setResults(li);
+    });
+
+    return () => database.ref('test').off('value', onValueChange);
+  }, []);
 
   async function handleDelete(test) {
     deleteTest(test);
