@@ -122,7 +122,7 @@ function Training() {
         tabBarActiveTintColor: '#fefefe',
         tabBarInactiveTintColor: '#000',
         tabBarStyle: {
-          height: '12%',
+          height: '8%',
           paddingTop: 5,
           backgroundColor: '#565755',
           borderTopColor: 'transparent',
@@ -199,7 +199,7 @@ function Tests() {
         tabBarActiveTintColor: '#fefefe',
         tabBarInactiveTintColor: '#000',
         tabBarStyle: {
-          height: '12%',
+          height: '8%',
           paddingTop: 5,
           backgroundColor: '#565755',
           borderTopColor: 'transparent',
