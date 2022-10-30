@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     width: 100,
     alignItems: 'center',
   },
+  header_text: {
+    fontSize: 16,
+  },
 });
 
 export default styles;

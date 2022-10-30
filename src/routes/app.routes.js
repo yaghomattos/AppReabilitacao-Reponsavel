@@ -1,9 +1,4 @@
-import {
-  Feather,
-  Foundation,
-  MaterialIcons,
-  Octicons,
-} from '@expo/vector-icons';
+import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
@@ -130,15 +125,11 @@ function Training() {
         tabBarIcon: ({ color, size }) => {
           switch (route.name) {
             case 'Exercícios':
-              return <Octicons name={'checklist'} size={size} color={color} />;
+              return <MaterialIcons name={'list'} size={size} color={color} />;
 
-            case 'Treinamento':
+            case 'Selecionar':
               return (
-                <MaterialIcons
-                  name={'directions-walk'}
-                  size={size}
-                  color={color}
-                />
+                <MaterialIcons name={'touch-app'} size={size} color={color} />
               );
             case 'Monitoramento ':
               return <Feather name={'activity'} size={size} color={color} />;
@@ -147,12 +138,12 @@ function Training() {
         tabBarLabelStyle: {
           flex: 1,
           width: '100%',
-          fontSize: 16,
+          fontSize: 14,
         },
       })}
     >
       <ExerciseTab.Screen name="Exercícios" component={ListExercises} />
-      <ExerciseTab.Screen name="Treinamento" component={SelectExerciseFlow} />
+      <ExerciseTab.Screen name="Selecionar" component={SelectExerciseFlow} />
       <ExerciseTab.Screen
         name="Monitoramento "
         component={MonitoringExercise}
@@ -207,15 +198,12 @@ function Tests() {
         tabBarIcon: ({ color, size }) => {
           switch (route.name) {
             case 'Testes':
-              return <Octicons name={'checklist'} size={size} color={color} />;
-            case 'Avaliação':
+              return <MaterialIcons name={'list'} size={size} color={color} />;
+            case 'Selecionar':
               return (
-                <Foundation
-                  name={'clipboard-pencil'}
-                  size={size}
-                  color={color}
-                />
+                <MaterialIcons name={'touch-app'} size={size} color={color} />
               );
+
             case 'Monitoramento':
               return <Feather name={'activity'} size={size} color={color} />;
           }
@@ -228,7 +216,7 @@ function Tests() {
       })}
     >
       <TestTab.Screen name="Testes" component={ListTests} />
-      <TestTab.Screen name="Avaliação" component={SelectTestFlow} />
+      <TestTab.Screen name="Selecionar" component={SelectTestFlow} />
       <TestTab.Screen name="Monitoramento" component={MonitoringTest} />
     </TestTab.Navigator>
   );
