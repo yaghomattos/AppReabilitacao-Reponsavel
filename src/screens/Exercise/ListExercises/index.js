@@ -15,7 +15,6 @@ export const ListExercises = () => {
   const [refresh, setRefresh] = useState(null);
 
   useEffect(() => {
-    console.log('teste');
     var li = [];
     const onValueChange = database.ref('exercise').on('value', (snapshot) => {
       snapshot.forEach((child) => {

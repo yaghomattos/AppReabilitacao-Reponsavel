@@ -18,7 +18,7 @@ export async function createSelectTests(props) {
       frequency: false,
       saturation: false,
       dyspnea: false,
-      fatique: false,
+      fatigue: false,
     })
     .then(() => {
       Alert.alert('Teste selecionado');
@@ -56,7 +56,7 @@ export async function updateSelectTests(props) {
   });
 
   selectTestRef.update({
-    fatique: props.fatique,
+    fatigue: props.fatigue,
   });
 
   selectTestRef.update({

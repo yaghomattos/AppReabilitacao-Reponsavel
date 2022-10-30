@@ -19,7 +19,7 @@ export async function createSelectExercises(props) {
       frequency: false,
       saturation: false,
       dyspnea: false,
-      fatique: false,
+      fatigue: false,
     })
     .then(() => {
       Alert.alert('Exercício selecionado');
@@ -57,9 +57,9 @@ export async function updateSelectExercises(props) {
     selectExerciseRef.update({
       dyspnea: true,
     });
-  if (props.fatique)
+  if (props.fatigue)
     selectExerciseRef.update({
-      fatique: true,
+      fatigue: true,
     });
   Alert.alert('Exercício atualizado!');
 }
