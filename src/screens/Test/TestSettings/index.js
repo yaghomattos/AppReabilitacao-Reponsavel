@@ -75,7 +75,7 @@ export function TestSettings(props) {
             <TextInput
               style={timer ? styles.input_true : styles.input_false}
               value={minutes}
-              onChangeText={(text) => setMinutes(parseInt(text))}
+              onChangeText={(text) => setMinutes(text)}
               keyboardType={'numeric'}
               maxLength={2}
             />
@@ -85,7 +85,7 @@ export function TestSettings(props) {
             <TextInput
               style={timer ? styles.input_true : styles.input_false}
               value={seconds}
-              onChangeText={(text) => setSeconds(parseInt(text))}
+              onChangeText={(text) => setSeconds(text)}
               keyboardType={'numeric'}
               maxLength={3}
             />
