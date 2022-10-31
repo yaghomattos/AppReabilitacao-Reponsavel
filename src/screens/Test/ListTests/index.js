@@ -12,29 +12,37 @@ export const ListTests = () => {
   const navigation = useNavigation();
 
   const [result, setResults] = useState([]);
-  const [refresh, setRefresh] = useState(null);
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
-    var li = [];
-    const onValueChange = database.ref('test').on('value', (snapshot) => {
-      snapshot.forEach((child) => {
-        li.push({
-          name: child.val().name,
-          description: child.val().description,
-          preview: child.val().preview,
-          id: child.key,
-        });
-      });
-
-      if (refresh === null) setRefresh('');
-      setResults(li);
+    const focusHandler = navigation.addListener('focus', () => {
+      if (refresh != 0) setRefresh(refresh + 1);
     });
 
-    return () => database.ref('test').off('value', onValueChange);
-  }, []);
+    var li = [];
+    database
+      .ref('test')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          li.push({
+            name: child.val().name,
+            description: child.val().description,
+            preview: child.val().preview,
+            id: child.key,
+          });
+        });
+
+        setResults(li);
+        setRefresh(li.length);
+      });
+
+    return focusHandler;
+  }, [refresh, navigation]);
 
   async function handleDelete(test) {
     deleteTest(test);
+    setRefresh(refresh - 1);
   }
 
   return (
