@@ -53,32 +53,32 @@ export function UploadExercise() {
     const videoPreview = await fetch(video.uri);
     const blobVideo = await videoPreview.blob();
 
-    previewRef.put(blobPreview).then((snapshot) => {
+    previewRef.put(blobPreview).then(function (response) {
+      previewRef
+        .getDownloadURL()
+        .then(function (url) {
+          setPreviewURL(url);
+          console.log(previewURL);
+        })
+        .catch((e) =>
+          console.log('getting downloadURL of preview error => ', e)
+        );
       console.log('Uploaded a blob preview!');
     });
-    videoRef.put(blobVideo).then((snapshot) => {
+
+    videoRef.put(blobVideo).then(function (response) {
+      videoRef
+        .getDownloadURL()
+        .then(function (url) {
+          setVideoURL(url);
+          console.log(videoURL);
+        })
+        .catch((e) => console.log('getting downloadURL of video error => ', e));
       console.log('Uploaded a blob video!');
     });
 
-    previewRef
-      .getDownloadURL()
-      .then(function (url) {
-        setPreviewURL(url);
-        console.log(previewURL);
-      })
-      .catch((e) => console.log('getting downloadURL of preview error => ', e));
-
-    videoRef
-      .getDownloadURL()
-      .then(function (url) {
-        setVideoURL(url);
-        console.log(videoURL);
-      })
-      .catch((e) => console.log('getting downloadURL of video error => ', e));
-
     setTimeout(() => {
       setUploaded(true);
-      Alert.alert('Upload Concluído!');
     }, 3000);
 
     Alert.alert('Fazendo Upload das informações, Aguarde!');
