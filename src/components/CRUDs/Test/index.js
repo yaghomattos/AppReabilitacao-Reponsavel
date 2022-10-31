@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-import { database } from '../../../services/firebase';
+import { database, storage } from '../../../services/firebase';
 
 export async function createTest(props) {
   const testRef = database.ref('test');
@@ -52,5 +52,13 @@ export async function readTest(props) {
 
 export async function deleteTest(props) {
   const testRef = database.ref('test/' + props.id);
+  testRef.get().then((child) => {
+    var previewRef = storage.refFromURL(child.val().preview);
+    var videoRef = storage.refFromURL(child.val().video);
+
+    previewRef.delete();
+    videoRef.delete();
+  });
+
   testRef.remove();
 }
