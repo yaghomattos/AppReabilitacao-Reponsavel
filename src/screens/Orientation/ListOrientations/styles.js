@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   viewList: {
-    height: '100%',
+    height: '96%',
     alignItems: 'center',
   },
   itemContainer: {
@@ -55,16 +55,16 @@ const styles = StyleSheet.create({
   add: {
     height: 60,
     width: 60,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: '78%',
-    left: '80%',
-    borderRadius: 20,
+    top: Dimensions.get('window').height * 0.805,
+    left: Dimensions.get('window').width * 0.5 - 30,
     backgroundColor: '#000',
   },
   footer: {
-    height: '12%',
+    height: Dimensions.get('window').height * 0.09,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',

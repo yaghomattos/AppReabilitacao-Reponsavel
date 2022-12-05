@@ -65,15 +65,27 @@ export const ListParticipants = () => {
   return (
     <View style={styles.container}>
       <HeaderHome title="Participantes" />
-      <View style={styles.search}>
-        <TextInput
-          style={styles.input}
-          value={searchText}
-          placeholder={'Pesquisar'}
-          onChangeText={(text) => setSearchText(text)}
-          autoCapitalize={'none'}
-          keyboardType={'email-address'}
-        />
+      <View style={styles.topBar}>
+        <View style={styles.search}>
+          <TextInput
+            style={styles.input}
+            value={searchText}
+            placeholder={'Pesquisar'}
+            onChangeText={(text) => setSearchText(text)}
+            autoCapitalize={'none'}
+            keyboardType={'email-address'}
+          />
+        </View>
+        <View style={styles.add}>
+          <Ionicons
+            name="add-outline"
+            size={24}
+            color={'#fefefe'}
+            onPress={() => {
+              navigation.navigate('ParticipantRecord');
+            }}
+          />
+        </View>
       </View>
       <View style={styles.viewList}>
         <FlatList
@@ -99,16 +111,6 @@ export const ListParticipants = () => {
               />
             </View>
           )}
-        />
-      </View>
-      <View style={styles.add}>
-        <Ionicons
-          name="add-outline"
-          size={24}
-          color={'#fefefe'}
-          onPress={() => {
-            navigation.navigate('ParticipantRecord');
-          }}
         />
       </View>
     </View>

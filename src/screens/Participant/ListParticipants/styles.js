@@ -5,20 +5,31 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#76BCAA',
   },
-  search: {
-    alignItems: 'center',
+  topBar: {
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
+  search: {},
   input: {
-    width: Dimensions.get('window').width * 0.88,
-    height: Dimensions.get('window').height * 0.07,
+    width: Dimensions.get('window').width * 0.73,
+    height: Dimensions.get('window').height * 0.06,
     paddingHorizontal: 20,
     borderRadius: 5,
     backgroundColor: '#fefefe',
   },
+  add: {
+    height: 50,
+    width: 50,
+    marginLeft: 10,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000',
+  },
   viewList: {
     flex: 1,
-    marginTop: Dimensions.get('window').height * 0.041,
+    marginTop: Dimensions.get('window').height * 0.031,
   },
   item: {
     flexDirection: 'row',
@@ -41,17 +52,6 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     paddingRight: 20,
-  },
-  add: {
-    height: 60,
-    width: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    top: Dimensions.get('window').height * 0.82,
-    left: Dimensions.get('window').width * 0.76,
-    borderRadius: 20,
-    backgroundColor: '#000',
   },
 });
 

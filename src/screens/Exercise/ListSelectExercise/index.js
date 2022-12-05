@@ -42,44 +42,42 @@ export const ListSelectExercise = (props) => {
 
   return (
     <View style={styles.container}>
-      <Header title="Treinamento" />
+      <Header title="Exercícios Selecionados" />
       <View style={styles.background}>
         <View style={styles.viewList}>
           <FlatList
             data={exercise}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <View style={styles.itemContainer}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('ExerciseSettings', item);
-                  }}
-                >
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('ExerciseSettings', item);
+                }}
+              >
+                <View style={styles.itemContainer}>
                   <Image
                     style={styles.image}
                     source={{
                       uri: item.preview ? item.preview : 'undefined',
                     }}
                   />
-                </TouchableOpacity>
-                <List.Item
-                  style={styles.item}
-                  title={item.name}
-                  titleNumberOfLines={5}
-                  titleStyle={styles.itemTitle}
-                  onPress={() => {
-                    navigation.navigate('ExerciseSettings', item);
-                  }}
-                />
-                <Feather
-                  name="trash-2"
-                  size={24}
-                  style={styles.button}
-                  onPress={() => {
-                    handleDelete(item.id);
-                  }}
-                />
-              </View>
+
+                  <List.Item
+                    style={styles.item}
+                    title={item.name}
+                    titleNumberOfLines={5}
+                    titleStyle={styles.itemTitle}
+                  />
+                  <Feather
+                    name="trash-2"
+                    size={24}
+                    style={styles.button}
+                    onPress={() => {
+                      handleDelete(item.id);
+                    }}
+                  />
+                </View>
+              </TouchableOpacity>
             )}
           />
         </View>

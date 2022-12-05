@@ -60,7 +60,7 @@ export const ListParticipantRoute = (props) => {
 
   return (
     <View style={styles.container}>
-      <HeaderHome title="Participantes" />
+      <HeaderHome title="Selecionar Participante" />
       <View style={styles.search}>
         <TextInput
           style={styles.input}

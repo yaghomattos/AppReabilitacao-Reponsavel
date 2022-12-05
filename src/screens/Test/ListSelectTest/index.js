@@ -42,57 +42,55 @@ export const ListSelectTest = (props) => {
 
   return (
     <View style={styles.container}>
-      <Header title={'Avaliação'} />
+      <Header title={'Testes Selecionados'} />
       <View style={styles.background}>
         <View style={styles.viewList}>
           <FlatList
             data={test}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <View style={styles.itemContainer}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('TestSettings', item);
-                  }}
-                >
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('TestSettings', item);
+                }}
+              >
+                <View style={styles.itemContainer}>
                   <Image
                     style={styles.image}
                     source={{
                       uri: item.preview ? item.preview : 'undefined',
                     }}
                   />
-                </TouchableOpacity>
-                <List.Item
-                  style={styles.item}
-                  title={item.name}
-                  titleNumberOfLines={3}
-                  titleStyle={styles.itemTitle}
-                  onPress={() => {
-                    navigation.navigate('TestSettings', item);
-                  }}
-                />
-                <Feather
-                  name="trash-2"
-                  size={24}
-                  style={styles.button}
-                  onPress={() => {
-                    handleDelete(item.id);
-                  }}
-                />
-              </View>
+
+                  <List.Item
+                    style={styles.item}
+                    title={item.name}
+                    titleNumberOfLines={5}
+                    titleStyle={styles.itemTitle}
+                  />
+                  <Feather
+                    name="trash-2"
+                    size={24}
+                    style={styles.button}
+                    onPress={() => {
+                      handleDelete(item.id);
+                    }}
+                  />
+                </View>
+              </TouchableOpacity>
             )}
           />
         </View>
-        <View style={styles.add}>
-          <Ionicons
-            name="add-outline"
-            size={24}
-            color={'#fefefe'}
-            onPress={() => {
-              navigation.navigate('SelectTest', participant);
-            }}
-          />
-        </View>
+      </View>
+      <View style={styles.add}>
+        <Ionicons
+          name="add-outline"
+          size={24}
+          color={'#fefefe'}
+          onPress={() => {
+            navigation.navigate('SelectTest', participant);
+          }}
+        />
       </View>
     </View>
   );
