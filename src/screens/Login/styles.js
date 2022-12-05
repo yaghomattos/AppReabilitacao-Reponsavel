@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   },
   name: {
     marginTop: Dimensions.get('window').height * 0.03,
-    fontSize: 20,
-    color: '#000',
+    fontSize: 22,
+    color: '#222222',
     fontWeight: 'bold',
   },
   form: {

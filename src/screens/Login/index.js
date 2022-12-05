@@ -59,7 +59,7 @@ export const Login = () => {
               style={styles.icon}
               source={require('../../assets/icon.png')}
             />
-            <Text style={styles.name}>{'App Reabilitação'}</Text>
+            <Text style={styles.name}>{'Redox'}</Text>
           </View>
           <View style={styles.form}>
             <TextInput
