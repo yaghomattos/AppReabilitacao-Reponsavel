@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   viewList: {
     flex: 1,
-    marginTop: Dimensions.get('window').height * 0.041,
+    marginTop: Dimensions.get('window').height * 0.031,
   },
   item: {
     flexDirection: 'row',

@@ -66,7 +66,7 @@ export const SelectTest = (props) => {
                 titleStyle={styles.itemTitle}
                 description={item.description}
                 descriptionStyle={styles.listDescription}
-                descriptionNumberOfLines={5}
+                descriptionNumberOfLines={4}
               />
             </View>
           )}

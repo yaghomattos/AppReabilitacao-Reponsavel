@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    width: 125,
-    height: 125,
+    marginBottom: -10,
+    width: 150,
+    height: 150,
   },
   name: {
-    marginTop: Dimensions.get('window').height * 0.03,
-    fontSize: 22,
     color: '#222222',
+    fontSize: 26,
     fontWeight: 'bold',
   },
   form: {

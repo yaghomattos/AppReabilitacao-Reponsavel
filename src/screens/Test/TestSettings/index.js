@@ -126,6 +126,7 @@ export function TestSettings(props) {
                 onPress={() => {
                   setFrequency(!frequency);
                 }}
+                color="#000"
               />
               <Text style={styles.text_checkbox}>{'Frequência Cardíaca'}</Text>
             </View>
@@ -135,6 +136,7 @@ export function TestSettings(props) {
                 onPress={() => {
                   setSaturation(!saturation);
                 }}
+                color="#000"
               />
               <Text style={styles.text_checkbox}>{'Saturação'}</Text>
             </View>
@@ -144,6 +146,7 @@ export function TestSettings(props) {
                 onPress={() => {
                   setDyspnea(!dyspnea);
                 }}
+                color="#000"
               />
               <Text style={styles.text_checkbox}>{'Falta de ar'}</Text>
             </View>
@@ -153,6 +156,7 @@ export function TestSettings(props) {
                 onPress={() => {
                   setFatique(!fatigue);
                 }}
+                color="#000"
               />
               <Text style={styles.text_checkbox}>{'Cansaço'}</Text>
             </View>

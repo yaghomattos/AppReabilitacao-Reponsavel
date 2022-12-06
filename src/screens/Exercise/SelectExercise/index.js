@@ -65,7 +65,7 @@ export const SelectExercise = (props) => {
                 titleNumberOfLines={3}
                 titleStyle={styles.itemTitle}
                 descriptionStyle={styles.listDescription}
-                descriptionNumberOfLines={10}
+                descriptionNumberOfLines={4}
                 onPress={() => HandleCreateSelectedExercise(item)}
               />
             </View>
