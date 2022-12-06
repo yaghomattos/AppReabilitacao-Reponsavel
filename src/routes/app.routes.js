@@ -67,7 +67,10 @@ export function AuthRouter() {
         routeNameRef.current = currentRouteName;
       }}
     >
-      <AuthStack.Navigator headerMode="none" initialRouteName="Login">
+      <AuthStack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="Login"
+      >
         <AuthStack.Screen name="Login" component={Login} />
         <AuthStack.Screen name="Register" component={Register} />
       </AuthStack.Navigator>
@@ -77,7 +80,7 @@ export function AuthRouter() {
 
 function MonitoringExercise() {
   return (
-    <MonitoringExerciseStack.Navigator headerMode="none">
+    <MonitoringExerciseStack.Navigator screenOptions={{ headerShown: false }}>
       <MonitoringExerciseStack.Screen
         name="Monitor"
         component={ListParticipantRoute}
@@ -93,7 +96,7 @@ function MonitoringExercise() {
 
 function SelectExerciseFlow() {
   return (
-    <SelectExerciseStack.Navigator headerMode="none">
+    <SelectExerciseStack.Navigator screenOptions={{ headerShown: false }}>
       <SelectExerciseStack.Screen
         name="Exercícios Selecionados"
         component={ListParticipantRoute}
@@ -154,7 +157,7 @@ function Training() {
 
 function MonitoringTest() {
   return (
-    <MonitoringTestStack.Navigator headerMode="none">
+    <MonitoringTestStack.Navigator screenOptions={{ headerShown: false }}>
       <MonitoringTestStack.Screen
         name="Monitor"
         component={ListParticipantRoute}
@@ -166,7 +169,7 @@ function MonitoringTest() {
 }
 function SelectTestFlow() {
   return (
-    <SelectTestStack.Navigator headerMode="none">
+    <SelectTestStack.Navigator screenOptions={{ headerShown: false }}>
       <SelectTestStack.Screen
         name="Exercícios Selecionados"
         component={ListParticipantRoute}
@@ -244,7 +247,10 @@ export function FlowRouter() {
         routeNameRef.current = currentRouteName;
       }}
     >
-      <FlowStack.Navigator headerMode="none" initialRouteName="Drawer">
+      <FlowStack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="Drawer"
+      >
         {/* <FlowStack.Screen name="Home" component={Home} /> */}
         <FlowStack.Screen name="Chat" component={Chat} />
         <FlowStack.Screen name="Educational" component={Educational} />
